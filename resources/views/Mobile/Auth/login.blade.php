@@ -8,7 +8,7 @@
   <style>
     /* ======= Base Background ======= */
   body {
-    background-color: rgba(0, 0, 255, 0.1); /* آبی با شفافیت 10% */
+    background-color: rgba(0, 0, 255, 0.1); 
     background-image: none;
 }
 
@@ -97,7 +97,7 @@
               rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-white md:h-[520px]
               anim-card anim-glow card-press">
 
-    <!-- ستون فرم (راست) -->
+    <!-- ستون فرم) -->
     <div class="mt-5 relative w-full md:w-1/2 bg-white
                 flex flex-col justify-center items-center
                 px-8 sm:px-6 md:px-10 order-1">
@@ -161,7 +161,7 @@
       </form>
     </div>
 
-    <!-- ستون تصویر (چپ) -->
+    <!-- ستون تصویر) -->
     <div class="relative w-full md:w-1/2 order-1 md:mt-0 min-h-[48vh] md:min-h-[350px] mb-0 pb-0 overflow-hidden img-reveal">
      
       <img

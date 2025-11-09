@@ -61,12 +61,12 @@
 
           <div id="profileMenu"
                class="hidden absolute left-0 mt-2 w-44 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
-            <!-- آواتار وسطِ جعبه اطلاعات -->
+         
             <div class="p-3 border-b border-dashed border-gray-300 flex items-center justify-center">
               <img src="/img/avatar5 1.png" class="w-12 h-12 rounded-full object-cover" alt="user"/>
             </div>
 
-            <!-- آیتم‌ها -->
+          
             <div class="py-1">
               <a href=""
                  class="flex items-center gap-2 px-3 py-1.5 text-[10px] text-gray-700 hover:bg-gray-100 transition">
@@ -90,7 +90,7 @@
     </div>
   </div>
 </header>
-<!-- JS -->
+
 
 
 <aside id="sidebar"
@@ -125,7 +125,7 @@
 
     <a data-section="customers"
    class="menu-btn group w-full text-right flex items-center gap-3 rounded-xl px-5 py-2 text-sm text-gray-700 transition hover:bg-blue-600 hover:text-white"
-   style="cursor: pointer;">  <!-- افزودن ویژگی cursor -->
+   style="cursor: pointer;">  
     <svg class="group-hover:fill-white" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M18.0001 7.16C17.9401 7.15 17.8701 7.15 17.8101 7.16C16.4301 7.11 15.3301 5.98 15.3301 4.58C15.3301 3.15 16.4801 2 17.9101 2C19.3401 2 20.4901 3.16 20.4901 4.58C20.4801 5.98 19.3801 7.11 18.0001 7.16Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M16.9702 14.4399C18.3402 14.6699 19.8502 14.4299 20.9102 13.7199C22.3202 12.7799 22.3202 11.2399 20.9102 10.2999C19.8402 9.58992 18.3102 9.34991 16.9402 9.58991" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -150,7 +150,7 @@
 
       <a data-section="sells"
    class="menu-btn group w-full text-right flex items-center gap-3 rounded-xl px-5 py-2 text-sm text-gray-700 transition hover:bg-blue-600 hover:text-white"
-   style="cursor: pointer;">  <!-- افزودن ویژگی cursor -->
+   style="cursor: pointer;">  
     <svg class="group-hover:fill-white" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M19.3 7.91998V13.07C19.3 16.15 17.54 17.47 14.9 17.47H6.10995C5.65995 17.47 5.22996 17.43 4.82996 17.34C4.57996 17.3 4.33996 17.23 4.11996 17.15C2.61996 16.59 1.70996 15.29 1.70996 13.07V7.91998C1.70996 4.83998 3.46995 3.52002 6.10995 3.52002H14.9C17.14 3.52002 18.75 4.47001 19.18 6.64001C19.25 7.04001 19.3 7.44998 19.3 7.91998Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M22.3011 10.9201V16.0701C22.3011 19.1501 20.5411 20.4701 17.9011 20.4701H9.11105C8.37105 20.4701 7.70106 20.3701 7.12106 20.1501C5.93106 19.7101 5.12105 18.8001 4.83105 17.3401C5.23105 17.4301 5.66105 17.4701 6.11105 17.4701H14.9011C17.5411 17.4701 19.3011 16.1501 19.3011 13.0701V7.9201C19.3011 7.4501 19.2611 7.03014 19.1811 6.64014C21.0811 7.04014 22.3011 8.38011 22.3011 10.9201Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -213,7 +213,6 @@
 </a>
 
 
-<!-- پایین -->
 <div class="space-y-1 mt-2 lg:mt-0">
   <a data-section="settings"
      class="menu-btn group w-full text-right flex items-center gap-3 rounded-xl px-5 py-2 text-sm text-gray-700 transition hover:bg-blue-600 hover:text-white"
