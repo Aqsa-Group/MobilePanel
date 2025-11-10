@@ -1,8 +1,6 @@
 <div>
 
-
-
-<main class="max-w-7xl mx-auto p-4 sm:p-6 font-yekan">
+<main class="lg:w-[700px] xl:w-[1400px] lg:h-[700px] xl:h-[1400px] mx-auto p-4 sm:p-6 font-yekan">
 
  <section class="grid grid-cols-1 lg:grid-cols-3 gap-5">
  

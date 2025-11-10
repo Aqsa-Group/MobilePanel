@@ -18,7 +18,7 @@
 
     
    
-    <main class="flex-1 main-content-container flex justify-center items-center mt-20">
+    <main class="flex-1 main-content-container flex justify-center items-center mt-20 ">
         @yield('content') 
     </main>
 
