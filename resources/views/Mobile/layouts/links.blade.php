@@ -1,7 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 35f639f42dfbb415133f110a21e2e895a9349a44
+=======
+
+>>>>>>> origin/Marwa-K
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet"

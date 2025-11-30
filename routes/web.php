@@ -6,6 +6,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 Route::get('/inventory', function () {
     return view('Mobile.shop.inventory'); 
@@ -22,6 +23,8 @@ Route::get('/sell', function () {
 Route::get('/salaryworkers', function () {
     return view('Mobile.shop.salaryworkers'); 
 =======
+=======
+>>>>>>> origin/Marwa-K
 //Login
 Route::get('/login', function () {
     return view('Mobile.Auth.login');
@@ -63,5 +66,8 @@ Route::get('/borrowings-page', function () {
 // accounts-page
 Route::get('/accounts', function () {
     return view('Mobile.shop.accounts-page');
+<<<<<<< HEAD
 >>>>>>> 35f639f42dfbb415133f110a21e2e895a9349a44
+=======
+>>>>>>> origin/Marwa-K
 });
