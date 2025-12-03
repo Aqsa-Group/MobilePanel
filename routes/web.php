@@ -5,17 +5,28 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-<<<<<<< ours
-//Login
+
+// Login
 Route::get('/login', function () {
     return view('Mobile.Auth.login');
 });
-//Dashboard
+
+// Dashboard
 Route::get('/dasboard', function () {
     return view('Mobile.shop.dashboard');
 });
-=======
-Route::get('customer', function () {
-    return view('Customers');
+
+// Customers
+Route::get('/customers', function () {
+    return view('Mobile.shop.customers');
 });
->>>>>>> theirs
+
+// User List
+Route::get('/userList', function () {
+    return view('Mobile.shop.userList');
+});
+
+// Reports
+Route::get('/reports', function () {
+    return view('Mobile.shop.reports');
+});
