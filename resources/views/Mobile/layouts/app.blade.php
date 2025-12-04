@@ -12,6 +12,11 @@
         font-weight: normal;
         font-style: normal;
     }
+    font-family: 'Yekan';
+    src: url('/fonts/Yekan.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 </style>
 </head>
 <body class="flex flex-row bg-gray-100 font-yekan ">
@@ -24,3 +29,5 @@
 
 </body>
 </html>
+
+
