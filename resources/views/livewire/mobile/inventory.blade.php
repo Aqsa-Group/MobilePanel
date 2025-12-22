@@ -260,15 +260,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="pagination mt-6 mr-4" style="margin-bottom: 10px;">
-                            <a class="px-2 py-1 rounded-lg bg-[#0948EE14]" href="#">&#60;</a>
-                            <a class="px-2 py-1 rounded-lg bg-[#0948EE14]" href="#">25</a>
-                            <a class="px-2 py-1 rounded-lg bg-[#0948EE14]" href="#">...</a>
-                            <a class="px-2 py-1 rounded-lg bg-[#0948EE14]" href="#">3</a>
-                            <a class="px-2 py-1 rounded-lg bg-[#0948EE14]" href="#">2</a>
-                            <a class="text-[#0800FF] border border-[#0800FF] px-2 py-1 rounded-lg" href="#">1</a>
-                            <a class="px-2 py-1 rounded-lg bg-[#0948EE14]" href="#">&#62;</a>
+                       <!-- صفحه بندی -->
+                        <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
+                            <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">‹</button>
+                            <button class="w-7 h-7 rounded-md border border-blue-500 text-blue-600 bg-[#F3F3F3] text-xs font-medium">1</button>
+                            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">2</button>
+                            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] text-xs">...</button>
+                            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">25</button>
+                            <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">›</button>
                         </div>
+
                     </div>
                     <div id="div2" class="hidden mt-4 transition-all duration-300 pb-2">
                         <div onclick="handleClickBack()" class="relative mx-2 rounded-lg border border-[#0948EE] mt-1 pt-5 px-4 pb-4">

@@ -1,6 +1,6 @@
 <div class="overflow-x-hidden">
     <!--section 1 -->
-    <section class="overflow-x-hidden h-[340px] mt-4 p-4 max-w-full mx-auto md:flex bg-[#F5F5F580]/50 rounded-xl" >
+    <section class="overflow-x-hidden h-auto mt-4 p-4 max-w-full mx-auto md:flex bg-[#F5F5F580]/50 rounded-xl" >
         <div class="w-full p-2 flex flex-col text-[15px]">
             <!-- title-->
             <span class="my-2 mb-6 font-bold">
@@ -151,9 +151,10 @@
             </div>
             <!--mobile mode-->
             <!-- buttons-->
-            <div class="flex flex-wrap gap-2 md:hidden mt-3 text-sm">
+            <div class="grid grid-cols-2 gap-2 md:hidden mt-3 text-sm">
                 <!-- button 1 -->
-                <button class="h-[40px] w-full bg-[#0B35CC1A] text-black rounded-xl flex  px-1"
+                <button class="h-[70px] w-full bg-[#0B35CC1A] text-black rounded-xl flex items-center justify-center gap-2 px-1"
+
                  style="box-shadow: 0px 4px 4px 0px #00000040, 0 0 0 0 #0B35CC40;">
                         <!--icon-->
                         <span class="">
@@ -171,7 +172,8 @@
                         </span>
                 </button>
                 <!-- button 2-->
-                <button class="h-[40px] w-full bg-[#0B35CC1A] text-black rounded-xl flex  px-1"
+                <button class="h-[70px] w-full bg-[#0B35CC1A] text-black rounded-xl flex items-center justify-center gap-2 px-1"
+
                     style="box-shadow: 0px 4px 4px 0px #00000040, 0 0 0 0 #0B35CC40;">
                        <!--icon-->
                         <span class="">
@@ -193,7 +195,8 @@
                         </span>
                 </button>
                 <!-- button 3-->
-                <button class="h-[40px] w-full bg-[#0B35CC1A] text-black rounded-xl flex px-1"
+                <button class="h-[70px] w-full bg-[#0B35CC1A] text-black rounded-xl flex items-center justify-center gap-2 px-1"
+
                     style="box-shadow: 0px 4px 4px 0px #00000040, 0 0 0 0 #0B35CC40;">
                        <!--icon-->
                     <span class="">
@@ -212,7 +215,8 @@
                     </span>
                 </button>
                 <!-- button 4-->
-                <button class="h-[40px] w-full bg-[#0B35CC1A] text-black rounded-xl flex  px-1"
+                <button class="h-[70px] w-full bg-[#0B35CC1A] text-black rounded-xl flex items-center justify-center gap-2 px-1"
+
                     style="box-shadow: 0px 4px 4px 0px #00000040, 0 0 0 0 #0B35CC40;">
                        <!--icon-->
                     <span class="">
@@ -228,7 +232,8 @@
                     </span>
                 </button>
                 <!-- button 5-->
-                <button class="h-[40px] w-full bg-[#0B35CC1A] text-black rounded-xl flex  px-1"
+                <button class="h-[70px] w-full bg-[#0B35CC1A] text-black rounded-xl flex items-center justify-center gap-2 px-1"
+
                     style="box-shadow: 0px 4px 4px 0px #00000040, 0 0 0 0 #0B35CC40;">
                     <!--icon-->
                     <span class="">
@@ -244,7 +249,8 @@
                     </span>
                 </button>
                 <!-- button 6-->
-                <button class="h-[40px] w-full bg-[#0B35CC1A] text-black rounded-xl flex  px-1"
+                <button class="h-[70px] w-full bg-[#0B35CC1A] text-black rounded-xl flex items-center justify-center gap-2 px-1"
+
                     style="box-shadow: 0px 4px 4px 0px #00000040, 0 0 0 0 #0B35CC40;">
                     <!--icon-->
                     <span class="">
@@ -260,7 +266,8 @@
                     </span>
                 </button>
                 <!-- button 7-->
-                <button class="h-[40px] w-full bg-[#0B35CC1A] text-black rounded-xl flex  px-1"
+                <button class="h-[70px] w-full bg-[#0B35CC1A] text-black rounded-xl flex items-center justify-center gap-2 px-1"
+
                     style="box-shadow: 0px 4px 4px 0px #00000040, 0 0 0 0 #0B35CC40;">
                     <!--icon-->
                     <span class="">
@@ -281,236 +288,86 @@
         </div>
     </section>
     <!--section 1 -->
-    <section class="flex flex-col  h-auto p-4 mt-4 max-w-full mx-auto  bg-[#fafafa] rounded-xl" >
-        <div class="w-full h-auto p-2 flex flex-row justify-between text-[20px]">
-            <div>
-                <!-- title-->
-                <span class="my-2 mb-6 font-bold">
-                    نتایج گزارش:
-                </span>
-                <span class="text-[15px]">
-                    فاکتور فروش
-                </span>
-                <span class=" text-[12px] text-center px-3 py-1 rounded-xl bg-[#0B35CC] text-white">
-                    20 مورد
-                </span>
+ <section class="flex flex-col  h-auto p-4 mt-4 max-w-full mx-auto  bg-[#fafafa] rounded-xl" >
+    <div class="w-full h-auto p-2 flex flex-row justify-between text-[20px]">
+        <div>
+            <span class="my-2 mb-6 font-bold">نتایج گزارش:</span>
+            <span class="text-[15px]">فاکتور فروش</span>
+            <span class=" text-[12px] text-center px-3 py-1 rounded-xl bg-[#0B35CC] text-white">
+                20 مورد
+            </span>
+        </div>
+        <div class="flex flex-wrap md:flex-nowrap gap-3 text-[10px]">
+            <div class="flex flex-row justify-center items-center px-4 bg-[#0948EE14] rounded-xl gap-1 h-[25px] md:h-[40px] w-fit">
+                <button class="flex flex-row items-center gap-1 px-2">
+                    <img src="https://i.postimg.cc/hj21BNQK/x.png" class="w-[11px] h-[14px]">
+                    <span>چاپ کردن به اکسل</span>
+                </button>
             </div>
-            <div class="flex flex-row gap-3 text-[10px]">
-                <div class="flex flex-row justify-center items-center px-4 bg-[#0948EE14] rounded-xl gap-1 h-[25px] md:h-[40px]">
-                    <button class="flex flex-row items-center gap-1 px-2">
-                        <img src="https://i.postimg.cc/hj21BNQK/x.png" class="w-[11px] h-[14px]">
-                        <span>چاپ کردن به اکسل</span>
-                    </button>
-                </div>
-            <div class="flex flex-row justify-center items-center px-4 bg-[#0948EE14] rounded-xl gap-1 h-[25px] md:h-[40px]">
+            <div class="flex flex-row justify-center items-center px-4 bg-[#0948EE14] rounded-xl gap-1 h-[25px] md:h-[40px] w-fit">
                 <button class="flex flex-row items-center gap-1 px-2">
                     <img src="https://i.postimg.cc/CKzF7qCm/pdf.png" class="w-[11px] h-[14px]">
                     <span>چاپ کردن به پی دی اف</span>
                 </button>
             </div>
+        </div>
+    </div>
 
-            <!--filter-->
-                <div
-                    class="flex flex-row justify-center rounded-md md:rounded-xl bg-[#0948EE14]  gap-1 h-[25px] md:h-[40px] items-center px-2 ">
-                    <span>
-                        <svg width="20" height="15" viewBox="0 0 14 14" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_464_1127)">
-                                <path d="M10.73 12.424V6.21191" stroke="#292D32" stroke-width="1.5"
-                                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M10.73 3.95309V1.12939" stroke="#292D32" stroke-width="1.5"
-                                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M6.77686 12.4243V9.60059" stroke="#292D32" stroke-width="1.5"
-                                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M6.77686 7.34153V1.12939" stroke="#292D32" stroke-width="1.5"
-                                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M2.82373 12.424V6.21191" stroke="#292D32" stroke-width="1.5"
-                                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M2.82373 3.95309V1.12939" stroke="#292D32" stroke-width="1.5"
-                                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M1.69434 6.21191H3.95329" stroke="#292D32" stroke-width="1.5"
-                                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M9.60059 6.21191H11.8595" stroke="#292D32" stroke-width="1.5"
-                                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M5.64746 7.3418H7.90642" stroke="#292D32" stroke-width="1.5"
-                                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_464_1127">
-                                    <rect width="13.5537" height="13.5537" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </span>
-                    <span class="text-[8px] md:text-[12px] ">
-                        فیلتر
-                    </span>
-                </div>
-                <!--search-->
-                <div class="relative  w-[70px] h-[25px] md:w-[200px] md:h-[40px] ">
-                    <input type="text" class="w-full h-full rounded-md md:rounded-xl bg-[#0948EE14] absolute
-                        pr-2 pb-1  text-[10px] md:text-[13px]" placeholder="جستجو">
-                    <span class="absolute  left-1 top-1.5">
-                        <svg width="20" class="mt-1" height="20" viewBox="0 0 19 19" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M11.899 14.9749C8.8537 14.9749 6.38498 12.5062 6.38498 9.46083C6.38498 6.4155 8.8537 3.94678 11.899 3.94678C14.9444 3.94678 17.4131 6.4155 17.4131 9.46083C17.4131 12.5062 14.9444 14.9749 11.899 14.9749Z"
-                                stroke="#292D32" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                            <path d="M5.80448 15.5554L6.96533 14.3945" stroke="#292D32" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                </div>
+    <!-- TABLE (Laptop) -->
+    <div class="hidden md:flex flex-col justify-center w-full h-auto gap-1 mt-2 border border-[#0948EE80] rounded-xl">
+        <table class="w-full text-center border-separate border-spacing-0">
+            <tr>
+                <th class="p-2 text-[14px] bg-[#0948EE26]">#</th>
+                <th class="p-2 text-[14px] bg-[#0948EE26]">نام مشتری</th>
+                <th class="p-2 text-[14px] bg-[#0948EE26]">مدل دستگاه</th>
+                <th class="p-2 text-[14px] bg-[#0948EE26]">قیمت</th>
+                <th class="p-2 text-[14px] bg-[#0948EE26]">شماره IMEI</th>
+                <th class="p-2 text-[14px] bg-[#0948EE26]">تاریخ فروش</th>
+            </tr>
+            <tbody class="text-[13px] font-semibold">
+                <tr>
+                    <td>1</td>
+                    <td>احمد عزیزی</td>
+                    <td>سامسونگ A20</td>
+                    <td>15000.000؋</td>
+                    <td>0767567567</td>
+                    <td>1404/2/30</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- MOBILE CARDS -->
+    <div class="md:hidden mt-3 space-y-3">
+        <div class="grid grid-cols-2 gap-3 border border-[#0948EE80] rounded-xl p-3 text-[12px]">
+            <div>
+                <span class="text-gray-500">نام مشتری</span>
+                <div class="font-semibold mt-1">احمد عزیزی</div>
+            </div>
+            <div>
+                <span class="text-gray-500">مدل دستگاه</span>
+                <div class="font-semibold mt-1">سامسونگ A20</div>
+            </div>
+            <div>
+                <span class="text-gray-500">قیمت</span>
+                <div class="font-semibold mt-1">15000.000؋</div>
+            </div>
+            <div>
+                <span class="text-gray-500">شماره IMEI</span>
+                <div class="font-semibold mt-1">0767567567</div>
+            </div>
+            <div>
+                <span class="text-gray-500">تاریخ فروش</span>
+                <div class="font-semibold mt-1">1404/2/30</div>
+            </div>
+            <div>
+                <span class="text-gray-500">شماره</span>
+                <div class="font-semibold mt-1">1</div>
             </div>
         </div>
-        <!--container -->
-        <!--pc mode-->
-        <div class="flex flex-col justify-center w-full h-auto gap-1 mt-2 border border-[#0948EE80] rounded-xl">
-            <!--title-->
-            <div class="flex text-center  text-lg " style="font-style: Regular;">
-                <table class="w-full text-center border-separate border-spacing-0">
-                    <tr class="rounded-t-xl">
-                        <th class="p-2 text-[14px] bg-[#0948EE26]"># </th>
-                        <th class="p-2 text-[14px] bg-[#0948EE26]">نام مشتری</th>
-                        <th class="p-2 text-[14px] bg-[#0948EE26]">مدل دستگاه</th>
-                        <th class="p-2 text-[14px] bg-[#0948EE26]">قیمت</th>
-                        <th class="p-2 text-[14px] bg-[#0948EE26]">شماره IMEI</th>
-                        <th class="p-2 text-[14px] bg-[#0948EE26]">تاریخ فروش</th>
-                    </tr>
-                    <tbody
-                        class="[&>tr:not(:last-child)>td]:border-b [&>tr:not(:last-child)>td]:border-b-[#0948EE80] text-[13px] font-semibold">
-                        <tr class=" text-[13px] font-semibold">
-                            <td class="pt-4">
-                                1
-                            </td>
-                            <td class="pt-4">
-                                احمد عزیزی
-                            </td>
-                            <td class="pt-4">
-                                سامسونگ A20
-                            </td>
-                            <td class="pt-4">
-                                15000.000؋
-                            </td>
-                            <td class="pt-4">
-                                0767567567
-                            </td>
-                            <td class="pt-4">
-                                1404/2/30
-                            </td>
-                        </tr>
-                        <tr class="pt-4 text-[13px] font-semibold">
-                            <td class="pt-2">
-                                2
-                            </td>
-                            <td>
-                                احمد عزیزی
-                            </td>
-                            <td>
-                                سامسونگ A20
-                            </td>
-                            <td>
-                                15000.000؋
-                            </td>
-                            <td>
-                                0767567567
-                            </td>
-                            <td>
-                                1404/2/30
-                            </td>
-                        </tr>
-                        <tr class="pt-4 text-[13px] font-semibold">
-                            <td class="pt-2">
-                                3
-                            </td>
-                            <td>
-                                احمد عزیزی
-                            </td>
-                            <td>
-                                سامسونگ A20
-                            </td>
-                            <td>
-                                15000.000؋
-                            </td>
-                            <td>
-                                0767567567
-                            </td>
-                            <td>
-                                1404/2/30
-                            </td>
-                        </tr>
-                        <tr class="pt-4 text-[13px] font-semibold">
-                            <td class="pt-2">
-                                4
-                            </td>
-                            <td>
-                                احمد عزیزی
-                            </td>
-                            <td>
-                                سامسونگ A20
-                            </td>
-                            <td>
-                                15000.000؋
-                            </td>
-                            <td>
-                                0767567567
-                            </td>
-                            <td>
-                                1404/2/30
-                            </td>
-                        </tr>
-                        <tr class=" text-[13px] font-semibold">
-                            <td class="pt-2">
-                                5
-                            </td>
-                            <td>
-                                احمد عزیزی
-                            </td>
-                            <td>
-                                سامسونگ A20
-                            </td>
-                            <td>
-                                15000.000؋
-                            </td>
-                            <td>
-                                0767567567
-                            </td>
-                            <td>
-                                1404/2/30
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="hidden md:flex  flex-row-reverse gap-1 w-full justify-end my-4">
-            <button class="bg-[#0948EE14] rounded-md px-2 items-center ">
-                &gt;
-            </button>
-            <button class="bg-[#0948EE14] rounded-md px-2 items-center ">
-                1
-            </button>
-            <button class="bg-[#0948EE14] rounded-md px-2 items-center ">
-                2
-            </button>
-            <button class="bg-[#0948EE14] rounded-md px-2 items-center ">
-                3
-            </button>
-            <button class="bg-[#0948EE14] rounded-md px-2 items-center ">
-                4
-            </button>
-            <button class="bg-[#0948EE14] rounded-md px-2 flex items-center justify-center text-center pb-1.5 ">
-                ...
-            </button>
-            <button class="bg-[#0948EE14] rounded-md px-2 items-center ">
-                25
-            </button>
-            <button class="bg-[#0948EE14] rounded-md px-2 items-center ">
-                &lt;
-            </button>
-        </div>
-    </section>
+    </div>
+</section>
+
     <script>
         document.querySelectorAll('.btn').forEach(btn =>{
             btn.addEventListener('click', function () {
