@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@30.1.0/dist/font-face.css" rel="stylesheet">
     {{-- admin2 links --}}
     @include('livewire.admin2.components.links')
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
     @livewireStyles
     <style>
         body {

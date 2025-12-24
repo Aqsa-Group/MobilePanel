@@ -6,6 +6,7 @@
     <title>پنل فروشندگان</title>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
     @include('Mobile.layouts.links')
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
     @livewireStyles
     <style>
         body {

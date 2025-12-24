@@ -8,6 +8,6 @@ class Inventory2 extends Component
 {
     public function render()
     {
-        return view('livewire.Mobile.inventory2');
+        return view('livewire.mobile.inventory2');
     }
 }

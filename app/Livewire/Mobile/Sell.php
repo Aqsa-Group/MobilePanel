@@ -8,6 +8,6 @@ class Sell extends Component
 {
     public function render()
     {
-        return view('livewire.Mobile.sell');
+        return view('livewire.mobile.sell');
     }
 }

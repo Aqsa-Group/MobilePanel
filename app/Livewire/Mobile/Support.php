@@ -9,6 +9,6 @@ class Support extends Component
     public function render()
     {
         return view('livewire.mobile.support')
-            ->layout('Mobile.layouts.app');
+            ->layout('mobile.layouts.app');
     }
 }

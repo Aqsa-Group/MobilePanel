@@ -8,6 +8,6 @@ class Salaryworkers extends Component
 {
     public function render()
     {
-        return view('livewire.Mobile.salaryworkers');
+        return view('livewire.mobile.salaryworkers');
     }
 }
