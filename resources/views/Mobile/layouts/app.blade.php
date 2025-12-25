@@ -18,7 +18,7 @@
     <div class="flex min-h-screen">
         <!-- Sidebar -->
         <aside class="w-0 bg-white sm:w-72 lg:block">
-            @include('mobile.layouts.sidebar')
+            @include('Mobile.layouts.sidebar')
         </aside>
         <!-- Main content -->
         <main class="flex-1 sm:-mr-[60px] mx-auto -mr-0 px-4 pt-20">
