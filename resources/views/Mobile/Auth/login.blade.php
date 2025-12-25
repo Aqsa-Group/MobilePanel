@@ -102,7 +102,12 @@
                 </p>
             </div>
             <!-- فرم ورود -->
-            <form id="loginForm" class="w-full max-w-sm space-y-6 sm:space-y-8 anim-rtl" novalidate>
+            <form  id="loginForm"
+                    method="POST"
+                    action="{{ route('login.submit') }}"
+                    class="w-full max-w-sm space-y-6 sm:space-y-8 anim-rtl"
+                >
+                @csrf
                 <div>
                     <div class="relative">
                         <input id="username" name="username" type="text" placeholder="نام کاربری"
@@ -173,78 +178,48 @@
         خوش آمدید!
     </div>
     <script>
-        // Select-to-copy QoL
-        ['username', 'password'].forEach(id => {
-        const el = document.getElementById(id);
-        el.addEventListener('focus', e => setTimeout(() => e.target.select(), 0));
-        el.addEventListener('mouseup', e => e.preventDefault());
-        });
-        const form = document.getElementById('loginForm');
-        const username = document.getElementById('username');
-        const password = document.getElementById('password');
-        const userError = document.getElementById('userError');
-        const passError = document.getElementById('passError');
-        const toast = document.getElementById('toast');
-        function setError(inputEl, errorEl, hasError, message) {
-        if (hasError) {
-            errorEl.textContent = message;
-            errorEl.classList.remove('hidden');
-            inputEl.classList.remove('border-gray-300');
-            inputEl.classList.add('border-red-500');
-            // tiny pulse when error shows
-            inputEl.style.animation = 'pulse-border .6s ease-out';
-            setTimeout(()=> inputEl.style.animation = '', 650);
-        } else {
-            errorEl.classList.add('hidden');
-            inputEl.classList.remove('border-red-500');
-            inputEl.classList.add('border-gray-300');
-        }
-        }
-        username.addEventListener('input', () => {
-        setError(username, userError, username.value.trim().length === 0, 'نام کاربری الزامی است.');
-        });
-        password.addEventListener('input', () => {
-        setError(password, passError, password.value.length < 6, 'رمز عبور باید حداقل ۶ کاراکتر باشد.');
-        });
-        form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const u = username.value.trim();
-        const p = password.value;
-        const userInvalid = u.length === 0;
-        const passInvalid = p.length < 6;
-        setError(username, userError, userInvalid, 'نام کاربری الزامی است.');
-        setError(password, passError, passInvalid, 'رمز عبور باید حداقل ۶ کاراکتر باشد.');
-        if (!userInvalid && !passInvalid) {
-            // Success toast
-            toast.style.opacity = '0';
-            toast.style.pointerEvents = 'auto';
-            toast.style.transition = 'opacity .25s ease, transform .25s ease';
-            toast.style.transform = 'translateY(8px)';
-            requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateY(0)';
-            });
-            setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateY(8px)';
-            setTimeout(()=> toast.style.pointerEvents = 'none', 250);
-            }, 1800);
-            alert(`خوش آمدید، ${u}!`);
-        }
-        });
-        // Entrance stagger for inputs
-        window.addEventListener('DOMContentLoaded', () => {
-        const stagger = [...document.querySelectorAll('#loginForm > *')];
-        stagger.forEach((el, i) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(12px)';
-            el.style.transition = 'opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1)';
-            setTimeout(() => {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-            }, 200 + i * 100);
-        });
-        });
+       const form = document.getElementById('loginForm');
+const username = document.getElementById('username');
+const password = document.getElementById('password');
+const userError = document.getElementById('userError');
+const passError = document.getElementById('passError');
+
+function setError(inputEl, errorEl, hasError, message) {
+    if (hasError) {
+        errorEl.textContent = message;
+        errorEl.classList.remove('hidden');
+        inputEl.classList.remove('border-gray-300');
+        inputEl.classList.add('border-red-500');
+        inputEl.style.animation = 'pulse-border .6s ease-out';
+        setTimeout(() => inputEl.style.animation = '', 650);
+    } else {
+        errorEl.classList.add('hidden');
+        inputEl.classList.remove('border-red-500');
+        inputEl.classList.add('border-gray-300');
+    }
+}
+
+username.addEventListener('input', () => {
+    setError(username, userError, username.value.trim().length === 0, 'نام کاربری الزامی است.');
+});
+password.addEventListener('input', () => {
+    setError(password, passError, password.value.length < 6, 'رمز عبور باید حداقل ۶ کاراکتر باشد.');
+});
+
+form.addEventListener('submit', (e) => {
+    const u = username.value.trim();
+    const p = password.value;
+    const userInvalid = u.length === 0;
+    const passInvalid = p.length < 6;
+
+    setError(username, userError, userInvalid, 'نام کاربری الزامی است.');
+    setError(password, passError, passInvalid, 'رمز عبور باید حداقل ۶ کاراکتر باشد.');
+
+    if (userInvalid || passInvalid) {
+        e.preventDefault(); // مانع submit در صورت خطا
+    }
+});
+
     </script>
 </body>
 </html>

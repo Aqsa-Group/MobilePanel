@@ -7,6 +7,7 @@ use App\Livewire\Mobile\DeviceForm2;
 use App\Livewire\Mobile\Welcome;
 use App\Livewire\Mobile\Support;
 use App\Livewire\Mobile\DeviceRepair;
+use App\Http\Controllers\Auth\LoginController;
 
 // management Panel
 use App\Livewire\Admin2\Dashboard;
@@ -24,9 +25,27 @@ use App\Livewire\Admin2\Support as AdminSupport;
 Route::get('/', Welcome::class)->name('dashboard');
 
 // Login
+// فرم لاگین
 Route::get('/login', function () {
     return view('Mobile.Auth.login');
+})->name('login');
+
+// پردازش لاگین
+Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+
+// صفحه داشبورد فقط برای کاربرانی که لاگین هستند
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard'); // resources/views/dashboard.blade.php
+    })->name('dashboard');
+
+    // خروج
+    Route::post('/logout', function () {
+        Auth::logout();
+        return redirect()->route('login');
+    })->name('logout');
 });
+
 
 // User List
 Route::get('/userList', function () {
