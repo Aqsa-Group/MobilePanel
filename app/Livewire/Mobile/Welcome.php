@@ -9,6 +9,6 @@ class Welcome extends Component
     public function render()
     {
        return view('livewire.mobile.welcome')
-            ->layout('mobile.layouts.app');
+            ->layout('Mobile.layouts.app');
     }
 }
