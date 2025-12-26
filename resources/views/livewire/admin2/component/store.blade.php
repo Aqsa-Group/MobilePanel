@@ -257,7 +257,10 @@
                             </div>
                             <!-- خط بین کارت‌ها -->
                             <div class="border-b border-gray-300 mt-5"></div>
-                            <!-- Pagination -->
+
+                        </div>
+                    @endfor
+                    <!-- Pagination -->
                             <div   class="pagination mt-4 mr-4 flex gap-2 justify-center sm:justify-start" dir="rtl">
                                 <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">&#60;</a>
                                 <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">25</a>
@@ -267,8 +270,6 @@
                                 <a class="text-[#0800FF] border border-[#0800FF] px-2 rounded-lg" href="#">1</a>
                                 <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">&#62;</a>
                             </div>
-                        </div>
-                    @endfor
                 </div>
                 <!-- جدول دسکتاپ -->
                 <div class="hidden lg:block overflow-x-auto ">
@@ -340,7 +341,8 @@
                             <th class="p-2"> شماره جواز</th>
                             <th class="p-2">جواز</th>
                             <th class="p-2">وضعیت</th>
-                            <th class="p-2">عملیات </th>
+                            <th class="p-2">ویرایش </th>
+                            <th class="p-2">حذف </th>
                         </tr>
                     </thead>
                     <tbody>

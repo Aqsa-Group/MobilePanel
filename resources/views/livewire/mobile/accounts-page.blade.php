@@ -153,8 +153,8 @@
             </div>
             <textarea class="w-full rounded-xl border  border-gray-900 p-2 text-sm h-28 mb-3" placeholder="توضیحات..."></textarea>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
-                <button class="bg-blue-700 text-white rounded-xl py-3 text-sm">ثبت  </button>
-                <button class="bg-red-600 text-white rounded-xl py-3 text-sm">انصراف</button>
+                <button class="bg-blue-700 text-white rounded-xl hover:scale-105 transition-all duration-300 py-3 text-sm">ثبت  </button>
+                <button class="bg-red-600 text-white rounded-xl hover:scale-105 transition-all duration-300 py-3 text-sm">انصراف</button>
             </div>
         </div>
         <!-- جدول و کارت موبایل -->

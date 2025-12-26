@@ -1,7 +1,8 @@
-<div >
-    <div class="p-4">
-        <!-- cards -->
-        <div class="gap-4 max-w-7xl mx-auto md:gap-10 grid grid-cols-2 md:grid-cols-4 ">
+<div>
+<div class="p-3 ">
+
+    <!--  کارت های آماری  -->
+        <div class="gap-4 max-w-7xl mx-auto md:gap-10 grid grid-cols-2 md:grid-cols-4 mb-8 mt-4 ">
             <div class="bg-[#0B35CC]/10 rounded-xl space-y-5 h-28 p-4  border-r-[2px]     border-[#0B35CC] shadow-xl shadow-[0px_4px_4px_0px_#00000040] transition-all duration-200 hover:scale-105 cursor-pointer">
                 <div class="flex justify-between items-center">
                     <h1 class="font-bold">مفاد کل فروشات</h1>
@@ -74,27 +75,37 @@
                 </div>
             </div>
         </div>
-        <!-- Table -->
-        <div class="bg-[#fafafa] max-w-7xl mx-auto mt-4 py-4 px-3 md:px-1 rounded-xl shadow-xl shadow-[0px_4px_4px_0px_#00000040]">
-            <div class="">
-                <!-- Title -->
-                <div class="flex justify-between items-center pb-2 md:mb-0">
-                    <div class="flex items-center">
-                        <svg width="25" height="25" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_464_1158)">
+
+<div class="grid grid-cols-1 max-w-7xl  gap-3">
+
+
+    <!-- جدول و کارت موبایل -->
+    <div class=" bg-[#fafafa] rounded-2xl  shadow-[0px_4px_4px_0px_#00000040]  shadow-xl w-full p-3">
+        <!-- کارت موبایل -->
+        <div class="lg:hidden space-y-3 ">
+            <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
+            <!-- ستون لیست قرضه ها -->
+                    <div class="flex items-center gap-1 flex-shrink-0">
+                        <i>
+                            <svg width="20" height="20" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_1047_2670)">
                                 <path d="M34.4314 16.596L32.8736 23.2407C31.5383 28.9792 28.8995 31.3001 23.9398 30.8232C23.145 30.7596 22.2866 30.6166 21.3646 30.394L18.694 29.7582C12.0652 28.1844 10.0146 24.9098 11.5725 18.2651L13.1303 11.6045C13.4482 10.2533 13.8297 9.07698 14.3066 8.1073C16.1665 4.26038 19.3299 3.22712 24.6393 4.48293L27.294 5.10289C33.9545 6.66073 35.9893 9.95128 34.4314 16.596Z" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M23.9399 30.8228C22.9543 31.4905 21.7144 32.0469 20.2043 32.5397L17.6926 33.3663C11.3818 35.401 8.05944 33.7001 6.00881 27.3892L3.97408 21.1102C1.93934 14.7993 3.62436 11.4611 9.93522 9.42633L12.4468 8.59972C13.0986 8.39307 13.7186 8.21821 14.3067 8.10693C13.8298 9.07661 13.4483 10.2529 13.1304 11.6041L11.5725 18.2647C10.0147 24.9094 12.0653 28.1841 18.6941 29.7578L21.3647 30.3936C22.2867 30.6162 23.1451 30.7593 23.9399 30.8228Z" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M23.9399 30.8233C22.9543 31.491 21.7144 32.0474 20.2043 32.5401L17.6926 33.3668C11.3818 35.4015 8.05944 33.7006 6.00881 27.3897L3.97408 21.1107C1.93934 14.7998 3.62436 11.4616 9.93522 9.42682L12.4468 8.60021C13.0986 8.39356 13.7186 8.2187 14.3067 8.10742C13.8298 9.0771 13.4483 10.2534 13.1304 11.6046L11.5725 18.2652C10.0147 24.9099 12.0653 28.1845 18.6941 29.7583L21.3647 30.3941C22.2867 30.6167 23.1451 30.7598 23.9399 30.8233Z" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M20.093 13.5596L27.8028 15.5148" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M18.5352 19.7114L23.1451 20.8878" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_464_1158">
-                                    <rect width="38.1513" height="38.1513" fill="white"/>
+                                <path d="M18.5352 19.7119L23.1451 20.8882" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0_1047_2670">
+                                <rect width="38.1513" height="38.1513" fill="white"/>
                                 </clipPath>
-                            </defs>
-                        </svg>
-                        <h1 class="font-bold text-sm md:text-[20px]">لیست فروشات</h1>
+                                </defs>
+                                </svg>
+
+                        </i>
+                        <h2 class="font-bold text-lg mb-0">لیست فروشات ها:</h2>
                     </div>
+
+            <!-- ستون فیلتر و جستجو -->
                     <div class="flex gap-2">
                         <!-- فیلتر -->
                         <div class="relative mb-1">
@@ -130,243 +141,207 @@
                                 </svg>
                             </span>
                         </div>
+
                     </div>
-                </div>
-                <!-- Table -->
+
+
+            </div>
+
+            @for ($i=1; $i<=5; $i++)
+            <div class="p-4">
+
+                <!-- خود کارت -->
                 <div class="">
-                    <div class="rounded-lg border border-[#0948EE] mt-3">
-                        <div class="hidden md:grid grid-cols-16 items-center bg-[#0B35CC]/20  mb-1 py-4">
-                            <div class="col-span-2 text-center"><p class="font-bold">آیدی فاکتور</p></div>
-                            <div class="text-center"><p class="font-bold">عکس</p></div>
-                            <div class="col-span-2 text-center"><p class="font-bold">مدل دستگاه</p></div>
-                            <div class="col-span-2 text-center"><p class="font-bold">نام مشتری</p></div>
-                            <div class="col-span-2 text-center"><p class="font-bold">تاریخ فروش</p></div>
-                            <div class="col-span-2 text-center"><p class="font-bold">قیمت</p></div>
-                            <div class="col-span-2 text-center"><p class="font-bold">شماره IMEI</p></div>
-                            <div class="col-span-3 text-center"><p class="font-bold">چاپ</p></div>
-                        </div>
 
-                        <div class="md:grid grid-cols-16 items-center mt-3 md:mt-0 py-4 border-b border-dotted border-[#0948EE]">
-                            <div class="col-span-2 text-center"><p class="text-sm">1</p></div>
-                            <div class="flex justify-center mt-3 md:mt-0"><img src="{{ asset('images/photo.jpg') }}" alt="" class="h-10 w-9 object-cover rounded-md" /></div>
-                            <div class="col-span-6 grid grid-cols-3 my-3 md:my-0">
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">مدل دستگاه</h1>
-                                    <p class="text-sm">سامسونگ A20s</p>
-                                </div>
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">نام مشتری</h1>
-                                    <p class="text-sm">محمود عزیزی</p>
-                                </div>
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">تاریخ فروش</h1>
-                                    <p class="text-sm">1404/4/20</p>
-                                </div>
-                            </div>
-                            <div class="col-span-4 grid grid-cols-2 my-3 md:my-0">
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">قیمت</h1>
-                                    <p class="text-sm">150.00؋</p>
-                                </div>
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">شماره IMEI</h1>
-                                    <p class="text-sm">0767567567</p>
-                                </div>
-                            </div>
-                            <div class="col-span-3 my-5 md:my-0 md:px-0">
-                                <div class="mx-auto w-20 flex items-center justify-center border border-[#505B83] cursor-pointer md:border-none rounded-lg px-2 md:px-0 py-1 md:py-0">
-                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.5522 12.2918H22.4481V10.2085C22.4481 8.12516 21.6668 7.0835 19.3231 7.0835H15.6772C13.3335 7.0835 12.5522 8.12516 12.5522 10.2085V12.2918Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M21.6668 20.625V24.7917C21.6668 26.875 20.6252 27.9167 18.5418 27.9167H16.4585C14.3752 27.9167 13.3335 26.875 13.3335 24.7917V20.625H21.6668Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M26.875 15.4165V20.6248C26.875 22.7082 25.8333 23.7498 23.75 23.7498H21.6667V20.6248H13.3333V23.7498H11.25C9.16667 23.7498 8.125 22.7082 8.125 20.6248V15.4165C8.125 13.3332 9.16667 12.2915 11.25 12.2915H23.75C25.8333 12.2915 26.875 13.3332 26.875 15.4165Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M22.7082 20.625H21.4478H12.2915" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M12.2915 16.4585H15.4165" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                    <p class="text-[#505B83] block md:hidden">چاپ</p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="md:grid grid-cols-16 items-center mt-3 md:mt-0 py-4 border-b border-dotted border-[#0948EE]">
-                            <div class="col-span-2 text-center"><p class="text-sm">1</p></div>
-                            <div class="flex justify-center mt-3 md:mt-0"><img src="{{ asset('images/photo.jpg') }}" alt="" class="h-10 w-9 object-cover rounded-md" /></div>
-                            <div class="col-span-6 grid grid-cols-3 my-3 md:my-0">
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">مدل دستگاه</h1>
-                                    <p class="text-sm">سامسونگ A20s</p>
-                                </div>
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">نام مشتری</h1>
-                                    <p class="text-sm">محمود عزیزی</p>
-                                </div>
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">تاریخ فروش</h1>
-                                    <p class="text-sm">1404/4/20</p>
-                                </div>
-                            </div>
-                            <div class="col-span-4 grid grid-cols-2 my-3 md:my-0">
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">قیمت</h1>
-                                    <p class="text-sm">150.00؋</p>
-                                </div>
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">شماره IMEI</h1>
-                                    <p class="text-sm">0767567567</p>
-                                </div>
-                            </div>
-                            <div class="col-span-3 my-5 md:my-0 md:px-0">
-                                <div class="mx-auto w-20 flex items-center justify-center border border-[#505B83] cursor-pointer md:border-none rounded-lg px-2 md:px-0 py-1 md:py-0">
-                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.5522 12.2918H22.4481V10.2085C22.4481 8.12516 21.6668 7.0835 19.3231 7.0835H15.6772C13.3335 7.0835 12.5522 8.12516 12.5522 10.2085V12.2918Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M21.6668 20.625V24.7917C21.6668 26.875 20.6252 27.9167 18.5418 27.9167H16.4585C14.3752 27.9167 13.3335 26.875 13.3335 24.7917V20.625H21.6668Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M26.875 15.4165V20.6248C26.875 22.7082 25.8333 23.7498 23.75 23.7498H21.6667V20.6248H13.3333V23.7498H11.25C9.16667 23.7498 8.125 22.7082 8.125 20.6248V15.4165C8.125 13.3332 9.16667 12.2915 11.25 12.2915H23.75C25.8333 12.2915 26.875 13.3332 26.875 15.4165Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M22.7082 20.625H21.4478H12.2915" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M12.2915 16.4585H15.4165" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                    <p class="text-[#505B83] block md:hidden">چاپ</p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="md:grid grid-cols-16 items-center mt-3 md:mt-0 py-4 border-b border-dotted border-[#0948EE]">
-                            <div class="col-span-2 text-center"><p class="text-sm">1</p></div>
-                            <div class="flex justify-center mt-3 md:mt-0"><img src="{{ asset('images/photo.jpg') }}" alt="" class="h-10 w-9 object-cover rounded-md" /></div>
-                            <div class="col-span-6 grid grid-cols-3 my-3 md:my-0">
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">مدل دستگاه</h1>
-                                    <p class="text-sm">سامسونگ A20s</p>
-                                </div>
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">نام مشتری</h1>
-                                    <p class="text-sm">محمود عزیزی</p>
-                                </div>
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">تاریخ فروش</h1>
-                                    <p class="text-sm">1404/4/20</p>
-                                </div>
-                            </div>
-                            <div class="col-span-4 grid grid-cols-2 my-3 md:my-0">
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">قیمت</h1>
-                                    <p class="text-sm">150.00؋</p>
-                                </div>
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">شماره IMEI</h1>
-                                    <p class="text-sm">0767567567</p>
-                                </div>
-                            </div>
-                            <div class="col-span-3 my-5 md:my-0 md:px-0">
-                                <div class="mx-auto w-20 flex items-center justify-center border border-[#505B83] cursor-pointer md:border-none rounded-lg px-2 md:px-0 py-1 md:py-0">
-                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.5522 12.2918H22.4481V10.2085C22.4481 8.12516 21.6668 7.0835 19.3231 7.0835H15.6772C13.3335 7.0835 12.5522 8.12516 12.5522 10.2085V12.2918Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M21.6668 20.625V24.7917C21.6668 26.875 20.6252 27.9167 18.5418 27.9167H16.4585C14.3752 27.9167 13.3335 26.875 13.3335 24.7917V20.625H21.6668Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M26.875 15.4165V20.6248C26.875 22.7082 25.8333 23.7498 23.75 23.7498H21.6667V20.6248H13.3333V23.7498H11.25C9.16667 23.7498 8.125 22.7082 8.125 20.6248V15.4165C8.125 13.3332 9.16667 12.2915 11.25 12.2915H23.75C25.8333 12.2915 26.875 13.3332 26.875 15.4165Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M22.7082 20.625H21.4478H12.2915" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M12.2915 16.4585H15.4165" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                    <p class="text-[#505B83] block md:hidden">چاپ</p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="md:grid grid-cols-16 items-center mt-3 md:mt-0 py-4 border-b border-dotted border-[#0948EE]">
-                            <div class="col-span-2 text-center"><p class="text-sm">1</p></div>
-                            <div class="flex justify-center mt-3 md:mt-0"><img src="{{ asset('images/photo.jpg') }}" alt="" class="h-10 w-9 object-cover rounded-md" /></div>
-                            <div class="col-span-6 grid grid-cols-3 my-3 md:my-0">
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">مدل دستگاه</h1>
-                                    <p class="text-sm">سامسونگ A20s</p>
-                                </div>
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">نام مشتری</h1>
-                                    <p class="text-sm">محمود عزیزی</p>
-                                </div>
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">تاریخ فروش</h1>
-                                    <p class="text-sm">1404/4/20</p>
-                                </div>
-                            </div>
-                            <div class="col-span-4 grid grid-cols-2 my-3 md:my-0">
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">قیمت</h1>
-                                    <p class="text-sm">150.00؋</p>
-                                </div>
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">شماره IMEI</h1>
-                                    <p class="text-sm">0767567567</p>
-                                </div>
-                            </div>
-                            <div class="col-span-3 my-5 md:my-0 md:px-0">
-                                <div class="mx-auto w-20 flex items-center justify-center border border-[#505B83] cursor-pointer md:border-none rounded-lg px-2 md:px-0 py-1 md:py-0">
-                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.5522 12.2918H22.4481V10.2085C22.4481 8.12516 21.6668 7.0835 19.3231 7.0835H15.6772C13.3335 7.0835 12.5522 8.12516 12.5522 10.2085V12.2918Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M21.6668 20.625V24.7917C21.6668 26.875 20.6252 27.9167 18.5418 27.9167H16.4585C14.3752 27.9167 13.3335 26.875 13.3335 24.7917V20.625H21.6668Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M26.875 15.4165V20.6248C26.875 22.7082 25.8333 23.7498 23.75 23.7498H21.6667V20.6248H13.3333V23.7498H11.25C9.16667 23.7498 8.125 22.7082 8.125 20.6248V15.4165C8.125 13.3332 9.16667 12.2915 11.25 12.2915H23.75C25.8333 12.2915 26.875 13.3332 26.875 15.4165Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M22.7082 20.625H21.4478H12.2915" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M12.2915 16.4585H15.4165" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                    <p class="text-[#505B83] block md:hidden">چاپ</p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="md:grid grid-cols-16 items-center mt-3 md:mt-0 py-4">
-                            <div class="col-span-2 text-center"><p class="text-sm">1</p></div>
-                            <div class="flex justify-center mt-3 md:mt-0"><img src="{{ asset('images/photo.jpg') }}" alt="" class="h-10 w-9 object-cover rounded-md" /></div>
-                            <div class="col-span-6 grid grid-cols-3 my-3 md:my-0">
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">مدل دستگاه</h1>
-                                    <p class="text-sm">سامسونگ A20s</p>
-                                </div>
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">نام مشتری</h1>
-                                    <p class="text-sm">محمود عزیزی</p>
-                                </div>
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">تاریخ فروش</h1>
-                                    <p class="text-sm">1404/4/20</p>
-                                </div>
-                            </div>
-                            <div class="col-span-4 grid grid-cols-2 my-3 md:my-0">
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">قیمت</h1>
-                                    <p class="text-sm">150.00؋</p>
-                                </div>
-                                <div class="text-center">
-                                    <h1 class="text-[#00000080] block md:hidden">شماره IMEI</h1>
-                                    <p class="text-sm">0767567567</p>
-                                </div>
-                            </div>
-                            <div class="col-span-3 my-5 md:my-0 md:px-0">
-                                <div class="mx-auto w-20 flex items-center justify-center border border-[#505B83] cursor-pointer md:border-none rounded-lg px-2 md:px-0 py-1 md:py-0">
-                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.5522 12.2918H22.4481V10.2085C22.4481 8.12516 21.6668 7.0835 19.3231 7.0835H15.6772C13.3335 7.0835 12.5522 8.12516 12.5522 10.2085V12.2918Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M21.6668 20.625V24.7917C21.6668 26.875 20.6252 27.9167 18.5418 27.9167H16.4585C14.3752 27.9167 13.3335 26.875 13.3335 24.7917V20.625H21.6668Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M26.875 15.4165V20.6248C26.875 22.7082 25.8333 23.7498 23.75 23.7498H21.6667V20.6248H13.3333V23.7498H11.25C9.16667 23.7498 8.125 22.7082 8.125 20.6248V15.4165C8.125 13.3332 9.16667 12.2915 11.25 12.2915H23.75C25.8333 12.2915 26.875 13.3332 26.875 15.4165Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M22.7082 20.625H21.4478H12.2915" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M12.2915 16.4585H15.4165" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                    <p class="text-[#505B83] block md:hidden">چاپ</p>
-                                </div>
-                            </div>
-
-                        </div>
+                    <!-- عنوان بالای کارت -->
+                    <div class="text-center font-bold text-lg text-[#0948EE] mb-4">
+                        محمود عزیزی
                     </div>
-                    <!-- صفحه بندی -->
-                    <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
-                        <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">‹</button>
-                        <button class="w-7 h-7 rounded-md border border-blue-500 text-blue-600 bg-[#F3F3F3] text-xs font-medium">1</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">2</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] text-xs">...</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">25</button>
-                        <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">›</button>
+
+                    <!-- محتوا (عنوان بالا – متن پایین) -->
+                    <div class="grid grid-cols-2 gap-5 text-sm">
+
+                        <div>
+                            <div class="text-gray-600 text-xs font-semibold mb-1">تاریخ</div>
+                            <div class="text-gray-900 font-bold">1404/4/20</div>
+                        </div>
+
+                        <div>
+                            <div class="text-gray-600 text-xs font-semibold mb-1">مدل دستگاه</div>
+                            <div class="text-gray-900 font-bold">سامسونګ</div>
+                        </div>
+
+                        <div>
+                            <div class="text-gray-600 text-xs font-semibold mb-1">مبلغ</div>
+                            <div class="text-gray-900 font-bold">؋75,000</div>
+                        </div>
+
+                        <div class="">
+                            <div class="text-gray-600 text-xs font-semibold mb-1">شمارهIMEI</div>
+                            <div class="text-gray-900 font-bold">#454655767878  </div>
+                        </div>
+
                     </div>
+
+                    <!-- دکمه‌ها -->
+                    <div class="flex justify-center gap-3 mt-5">
+
+                        <button class="flex items-center gap-1  border-blue-600 border border-2 e py-2 px-3 rounded-lg text-xs">
+                            <i class="bi bi-pencil-square">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#0948EE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16.0399 3.02025L8.15988 10.9003C7.85988 11.2003 7.55988 11.7903 7.49988 12.2203L7.06988 15.2303C6.90988 16.3203 7.67988 17.0803 8.76988 16.9303L11.7799 16.5003C12.1999 16.4403 12.7899 16.1403 13.0999 15.8403L20.9799 7.96025C22.3399 6.60025 22.9799 5.02025 20.9799 3.02025C18.9799 1.02025 17.3999 1.66025 16.0399 3.02025Z" stroke="#0948EE" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14.9102 4.15039C15.5802 6.54039 17.4502 8.41039 19.8502 9.09039" stroke="#0948EE" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+
+                            </i> ویرایش
+                        </button>
+                        <button class="flex items-center gap-1  border-red-600 border border-2   py-2 px-3 rounded-lg text-xs">
+                            <i class="bi bi-trash">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 5.98047C17.67 5.65047 14.32 5.48047 10.98 5.48047C9 5.48047 7.02 5.58047 5.04 5.78047L3 5.98047" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M18.8499 9.13965L18.1999 19.2096C18.0899 20.7796 17.9999 21.9996 15.2099 21.9996H8.7899C5.9999 21.9996 5.9099 20.7796 5.7999 19.2096L5.1499 9.13965" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+
+                            </i> حذف
+                        </button>
+                        <button class="flex items-center gap-1  border-gray-700 border border-2  py-2 px-3 rounded-lg text-xs">
+                            <i class="bi bi-printer">
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.5522 12.2913H22.4481V10.208C22.4481 8.12467 21.6668 7.08301 19.3231 7.08301H15.6772C13.3335 7.08301 12.5522 8.12467 12.5522 10.208V12.2913Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21.6668 20.625V24.7917C21.6668 26.875 20.6252 27.9167 18.5418 27.9167H16.4585C14.3752 27.9167 13.3335 26.875 13.3335 24.7917V20.625H21.6668Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M26.875 15.417V20.6253C26.875 22.7087 25.8333 23.7503 23.75 23.7503H21.6667V20.6253H13.3333V23.7503H11.25C9.16667 23.7503 8.125 22.7087 8.125 20.6253V15.417C8.125 13.3337 9.16667 12.292 11.25 12.292H23.75C25.8333 12.292 26.875 13.3337 26.875 15.417Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22.7082 20.625H21.4478H12.2915" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12.2915 16.458H15.4165" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+
+                            </i> چاپ
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- خط بین کارت‌ها -->
+                <div class="border-b border-gray-300 mt-5"></div>
+
+            </div>
+            @endfor
+
+
+        </div>
+
+        <!-- جدول دسکتاپ -->
+        <div class="hidden lg:block overflow-x-auto ">
+        <div class="flex justify-between mb-3">
+            <div class="flex gap-1 items-center">
+                <i>
+                <svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_1047_2670)">
+                <path d="M34.4314 16.596L32.8736 23.2407C31.5383 28.9792 28.8995 31.3001 23.9398 30.8232C23.145 30.7596 22.2866 30.6166 21.3646 30.394L18.694 29.7582C12.0652 28.1844 10.0146 24.9098 11.5725 18.2651L13.1303 11.6045C13.4482 10.2533 13.8297 9.07698 14.3066 8.1073C16.1665 4.26038 19.3299 3.22712 24.6393 4.48293L27.294 5.10289C33.9545 6.66073 35.9893 9.95128 34.4314 16.596Z" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M23.9399 30.8233C22.9543 31.491 21.7144 32.0474 20.2043 32.5401L17.6926 33.3668C11.3818 35.4015 8.05944 33.7006 6.00881 27.3897L3.97408 21.1107C1.93934 14.7998 3.62436 11.4616 9.93522 9.42682L12.4468 8.60021C13.0986 8.39356 13.7186 8.2187 14.3067 8.10742C13.8298 9.0771 13.4483 10.2534 13.1304 11.6046L11.5725 18.2652C10.0147 24.9099 12.0653 28.1845 18.6941 29.7583L21.3647 30.3941C22.2867 30.6167 23.1451 30.7598 23.9399 30.8233Z" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M20.093 13.5596L27.8028 15.5148" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M18.5352 19.7119L23.1451 20.8882" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_1047_2670">
+                <rect width="38.1513" height="38.1513" fill="white"/>
+                </clipPath>
+                </defs>
+                </svg>
+
+                </i>
+                <h2 class="font-bold text-lg mb-0">لیست فروشات ها:</h2>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-1">
+                <!-- فیلتر -->
+                <div class="relative mb-1">
+                    <span class="absolute right-2 top-1.5 text-gray-200 mt-1">
+                        <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1047_2643)">
+                        <path d="M10.2915 12.8337V6.41699" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10.2915 4.08366V1.16699" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6.5 12.8337V9.91699" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6.5 7.58366V1.16699" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2.7085 12.8337V6.41699" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2.7085 4.08366V1.16699" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M1.625 6.41699H3.79167" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9.2085 6.41699H11.3752" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5.4165 7.58301H7.58317" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_1047_2643">
+                        <rect width="13" height="14" fill="white"/>
+                        </clipPath>
+                        </defs>
+                        </svg>
+
+                    </span>
+                    <input type="text" class="p-2 pr-8 w-[100px]  bg-[#0B35CC]/20 rounded-xl" placeholder="فیلتر">
+                </div>
+                <!-- جستجو -->
+                <div class="relative mb-1">
+                    <input type="text" class="p-2  w-[170px] bg-[#0B35CC]/20 rounded-xl" placeholder="جستجو....">
+                    <span class="absolute left-1 mt-1 top-1.5 text-gray-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" class="w-4 h-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
+                        </svg>
+                    </span>
                 </div>
             </div>
+         </div>
+            <table class="w-full text-center border-2 border-blue-300 text-sm border-collapse">
+                <thead class="bg-[#0B35CC]/20 border-b-2 border-blue-300">
+                    <tr>
+                        <th class="p-2">شماره</th>
+                        <th class="p-2">مدل دستگاه </th>
+                        <th class="p-2">نام مشتری </th>
+                        <th class="p-2">تاریخ فروش</th>
+                        <th class="p-2">مبلغ</th>
+                        <th class="p-2">شماره IMEI</th>
+                        <th class="p-2">چاپ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for ($i=1; $i<=5; $i++)
+                    <tr class="hover:bg-gray-50 border-b-2 border-blue-300">
+                        <td class="p-2">{{ $i }}</td>
+                        <td class="p-2"> سامسونګ</td>
+                        <td class="p-2">محمود عزیزی</td>
+                        <td class="p-2">1404/2/30</td>
+                        <td class="p-2">؋75,000</td>
+                        <td class="p-2">مبایل سامسونګ A20</td>
+                        <td class="p-2 ">
+                            <i class=" text-blue-600 text-lg cursor-pointer">
+                              <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12.5522 12.2913H22.4481V10.208C22.4481 8.12467 21.6668 7.08301 19.3231 7.08301H15.6772C13.3335 7.08301 12.5522 8.12467 12.5522 10.208V12.2913Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M21.6668 20.625V24.7917C21.6668 26.875 20.6252 27.9167 18.5418 27.9167H16.4585C14.3752 27.9167 13.3335 26.875 13.3335 24.7917V20.625H21.6668Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M26.875 15.417V20.6253C26.875 22.7087 25.8333 23.7503 23.75 23.7503H21.6667V20.6253H13.3333V23.7503H11.25C9.16667 23.7503 8.125 22.7087 8.125 20.6253V15.417C8.125 13.3337 9.16667 12.292 11.25 12.292H23.75C25.8333 12.292 26.875 13.3337 26.875 15.417Z" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M22.7082 20.625H21.4478H12.2915" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M12.2915 16.458H15.4165" stroke="#505B83" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+
+                            </i>
+                        </td>
+
+                    </tr>
+                    @endfor
+                </tbody>
+            </table>
         </div>
+            <!-- صفحه بندی -->
+          <div class="flex items-start justify-center sm:justify-start mt-4 space-x-1 rtl:space-x-reverse">
+            <button class=" w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">‹</button>
+            <button class=" w-7 h-7 rounded-md border border-blue-500 text-blue-600 bg-[#F3F3F3] text-xs font-medium">1</button>
+            <button class=" w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">2</button>
+            <button class=" w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] text-xs">...</button>
+            <button class=" w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">25</button>
+            <button class=" w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">›</button>
+          </div>
     </div>
+</div>
+
 </div>

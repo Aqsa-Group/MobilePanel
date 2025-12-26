@@ -27,7 +27,7 @@
                     class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-20"
                 >
                 <button
-                    class="absolute top-1/2 mt-3 mt-4 -translate-y-1/2 left-2 bg-blue-600 text-white px-5 py-2 rounded-lg text-sm">
+                    class="absolute top-1/2   -translate-y-1/2 left-2 bg-blue-600 text-white px-5 py-2 rounded-lg text-sm">
                     خدمات نرم افزاری
                 </button>
             </div>
@@ -40,7 +40,7 @@
                     class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right"
                 >
                 <!-- آیکن سمت چپ -->
-                <svg  class="w-5 h-5 text-gray-600 absolute top-1/2 mt-3 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg  class="w-5 h-5 text-gray-600 absolute top-1/2 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2 12H9C10.7 12 12 13.3 12 15C12 16.7 10.7 18 9 18H3C2.4 18 2 17.6 2 17V7C2 6.4 2.4 6 3 6H8C9.7 6 11 7.3 11 9C11 10.7 9.7 12 8 12H2Z" stroke="#17191C" stroke-width="1.5" stroke-miterlimit="10"/>
                 <path d="M14 14H22C22 11.8 20.2 10 18 10C15.8 10 14 11.8 14 14ZM14 14C14 16.2 15.8 18 18 18H19.7" stroke="#17191C" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M19.5 7.5H16.5" stroke="#17191C" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -53,7 +53,7 @@
                     class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right"
                 >
                 <!-- آیکن سمت چپ -->
-                <svg class="w-5 h-5 text-gray-600 absolute top-1/2 mt-3 -translate-y-1/2 left-3"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="w-5 h-5 text-gray-600 absolute top-1/2  -translate-y-1/2 left-3"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 16.9503H6.21C2.84 16.9503 2 16.1103 2 12.7403V6.74027C2 3.37027 2.84 2.53027 6.21 2.53027H16.74C20.11 2.53027 20.95 3.37027 20.95 6.74027" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M10 21.4702V16.9502" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M2 12.9502H10" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -69,7 +69,7 @@
                     class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right"
                 >
                 <!-- آیکن سمت چپ -->
-                <svg class="w-5 h-5 text-gray-600 absolute top-1/2 mt-3 -translate-y-1/2 left-3" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="w-5 h-5 text-gray-600 absolute top-1/2  -translate-y-1/2 left-3" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.5999 7.45801L11.1666 12.8913C10.5249 13.533 9.4749 13.533 8.83324 12.8913L3.3999 7.45801" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
@@ -80,7 +80,7 @@
                     class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right"
                 >
                 <!-- آیکن سمت چپ -->
-                <svg class="w-5 h-5 text-gray-600 absolute top-1/2 mt-3 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="w-5 h-5 text-gray-600 absolute top-1/2  -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2C17.52 2 22 6.48 22 12Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M15.7099 15.1798L12.6099 13.3298C12.0699 13.0098 11.6299 12.2398 11.6299 11.6098V7.50977" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -94,7 +94,7 @@
                 class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right"
             >
             <!-- آیکن سمت چپ -->
-            <svg class="w-5 h-5 text-gray-600 absolute top-1/2 mt-3 -translate-y-1/2 left-3"  viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-5 h-5 text-gray-600 absolute top-1/2  -translate-y-1/2 left-3"  viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M16.5999 7.45801L11.1666 12.8913C10.5249 13.533 9.4749 13.533 8.83324 12.8913L3.3999 7.45801" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </div>
@@ -105,7 +105,7 @@
                 class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right"
             >
             <!-- آیکن سمت چپ -->
-            <svg class="w-5 h-5 text-gray-600 absolute top-1/2 mt-3 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-5 h-5 text-gray-600 absolute top-1/2  -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9.86982 5.6701L6.44982 7.75012L4.88982 5.19012C4.31982 4.25012 4.61982 3.01012 5.55982 2.44012C6.49982 1.87012 7.73982 2.1701 8.30982 3.1101L9.86982 5.6701Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M11.8201 9.1596L8.66012 11.0796C6.82012 12.1996 6.26011 14.4596 7.15011 16.2596L9.20011 20.4396C9.86011 21.7896 11.4601 22.2596 12.7401 21.4696L19.1701 17.5596C20.4601 16.7796 20.7701 15.1496 19.8801 13.9396L17.1101 10.1996C15.9101 8.57964 13.6601 8.0396 11.8201 9.1596Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M10.7564 5.09815L5.63184 8.21875L7.71224 11.6351L12.8368 8.51455L10.7564 5.09815Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -121,7 +121,7 @@
                 class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right"
             >
             <!-- آیکن سمت چپ -->
-            <svg  class="w-5 h-5 text-gray-600 absolute top-1/2 mt-3 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg  class="w-5 h-5 text-gray-600 absolute top-1/2  -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8.67188 14.3298C8.67188 15.6198 9.66188 16.6598 10.8919 16.6598H13.4019C14.4719 16.6598 15.3419 15.7498 15.3419 14.6298C15.3419 13.4098 14.8119 12.9798 14.0219 12.6998L9.99187 11.2998C9.20187 11.0198 8.67188 10.5898 8.67188 9.36984C8.67188 8.24984 9.54187 7.33984 10.6119 7.33984H13.1219C14.3519 7.33984 15.3419 8.37984 15.3419 9.66984" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M12 6V18" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M15 22H9C4 22 2 20 2 15V9C2 4 4 2 9 2H15C20 2 22 4 22 9V15C22 20 20 22 15 22Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -134,7 +134,7 @@
                 class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right"
             >
             <!-- آیکن سمت چپ -->
-            <svg class="w-5 h-5 text-gray-600 absolute top-1/2 mt-3 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-5 h-5 text-gray-600 absolute top-1/2  -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 2V5" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M16 2V5" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M3.5 9.08984H20.5" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -155,7 +155,7 @@
                 placeholder=" شرایط دستگاه"
                 class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right"
             >
-            <svg class="w-5 h-5 text-gray-600 absolute top-1/2 mt-3 -translate-y-1/2 left-3" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-5 h-5 text-gray-600 absolute top-1/2  -translate-y-1/2 left-3" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M16.5999 7.45801L11.1666 12.8913C10.5249 13.533 9.4749 13.533 8.83324 12.8913L3.3999 7.45801" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </div>
@@ -166,7 +166,7 @@
                 placeholder=" حالت دستگاه"
                 class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right"
             >
-            <svg class="w-5 h-5 text-gray-600 absolute top-1/2 mt-3 -translate-y-1/2 left-3" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-5 h-5 text-gray-600 absolute top-1/2 -translate-y-1/2 left-3" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M16.5999 7.45801L11.1666 12.8913C10.5249 13.533 9.4749 13.533 8.83324 12.8913L3.3999 7.45801" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </div>
@@ -177,7 +177,7 @@
                 placeholder=" توضیحات"
                 class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right"
             >
-            <svg class="w-5 h-5 text-gray-600 absolute top-1/2 mt-3 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-5 h-5 text-gray-600 absolute top-1/2 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M16 2H8C4 2 2 4 2 8V21C2 21.55 2.45 22 3 22H16C20 22 22 20 22 16V8C22 4 20 2 16 2Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M12.9098 7.84015L7.71979 13.0302C7.51979 13.2302 7.3298 13.6202 7.2898 13.9002L7.0098 15.8802C6.9098 16.6002 7.40979 17.1002 8.12979 17.0002L10.1098 16.7202C10.3898 16.6802 10.7798 16.4902 10.9798 16.2902L16.1698 11.1002C17.0598 10.2102 17.4898 9.17015 16.1698 7.85015C14.8498 6.52015 13.8098 6.94015 12.9098 7.84015Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M12.1699 8.58008C12.6099 10.1501 13.8399 11.3901 15.4199 11.8301" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -193,7 +193,7 @@
                 class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right"
             >
             <!-- آیکن سمت چپ -->
-            <svg class="w-5 h-5 text-gray-600 absolute top-1/2 mt-3 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-5 h-5 text-gray-600 absolute top-1/2 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M7.16021 14.56C4.74021 16.18 4.74021 18.82 7.16021 20.43C9.91021 22.27 14.4202 22.27 17.1702 20.43C19.5902 18.81 19.5902 16.17 17.1702 14.56C14.4302 12.73 9.92021 12.73 7.16021 14.56Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -205,7 +205,7 @@
                 class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right"
             >
             <!-- آیکن سمت چپ -->
-            <svg  class="w-5 h-5 text-gray-600 absolute top-1/2 mt-3 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg  class="w-5 h-5 text-gray-600 absolute top-1/2 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M7.16021 14.56C4.74021 16.18 4.74021 18.82 7.16021 20.43C9.91021 22.27 14.4202 22.27 17.1702 20.43C19.5902 18.81 19.5902 16.17 17.1702 14.56C14.4302 12.73 9.92021 12.73 7.16021 14.56Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -217,7 +217,7 @@
                 class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right"
             >
             <!-- آیکن سمت چپ -->
-            <svg class="w-5 h-5 text-gray-600 absolute top-1/2 mt-3 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-5 h-5 text-gray-600 absolute top-1/2 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M21.97 18.33C21.97 18.69 21.89 19.06 21.72 19.42C21.55 19.78 21.33 20.12 21.04 20.44C20.55 20.98 20.01 21.37 19.4 21.62C18.8 21.87 18.15 22 17.45 22C16.43 22 15.34 21.76 14.19 21.27C13.04 20.78 11.89 20.12 10.75 19.29C9.6 18.45 8.51 17.52 7.47 16.49C6.44 15.45 5.51 14.36 4.68 13.22C3.86 12.08 3.2 10.94 2.72 9.81C2.24 8.67 2 7.58 2 6.54C2 5.86 2.12 5.21 2.36 4.61C2.6 4 2.98 3.44 3.51 2.94C4.15 2.31 4.85 2 5.59 2C5.87 2 6.15 2.06 6.4 2.18C6.66 2.3 6.89 2.48 7.07 2.74L9.39 6.01C9.57 6.26 9.7 6.49 9.79 6.71C9.88 6.92 9.93 7.13 9.93 7.32C9.93 7.56 9.86 7.8 9.72 8.03C9.59 8.26 9.4 8.5 9.16 8.74L8.4 9.53C8.29 9.64 8.24 9.77 8.24 9.93C8.24 10.01 8.25 10.08 8.27 10.16C8.3 10.24 8.33 10.3 8.35 10.36C8.53 10.69 8.84 11.12 9.28 11.64C9.73 12.16 10.21 12.69 10.73 13.22C11.27 13.75 11.79 14.24 12.32 14.69C12.84 15.13 13.27 15.43 13.61 15.61C13.66 15.63 13.72 15.66 13.79 15.69C13.87 15.72 13.95 15.73 14.04 15.73C14.21 15.73 14.34 15.67 14.45 15.56L15.21 14.81C15.46 14.56 15.7 14.37 15.93 14.25C16.16 14.11 16.39 14.04 16.64 14.04C16.83 14.04 17.03 14.08 17.25 14.17C17.47 14.26 17.7 14.39 17.95 14.56L21.26 16.91C21.52 17.09 21.7 17.3 21.81 17.55C21.91 17.8 21.97 18.05 21.97 18.33Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"/>
             </svg>
         </div>
@@ -228,7 +228,7 @@
                 class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right"
             >
             <!-- آیکن سمت چپ -->
-            <svg class="w-5 h-5 text-gray-600 absolute top-1/2 mt-3 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-5 h-5 text-gray-600 absolute top-1/2 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 2V5" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M16 2V5" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M3.5 9.08984H20.5" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -244,7 +244,7 @@
         </div>
     </div>
     <!-- دکمه ثبت -->
-    <button onclick="addRow()" class="bg-blue-600 text-white w-full mt-6 py-3 rounded-lg text-lg">
+    <button onclick="addRow()" class="bg-blue-600 hover:scale-105 transition-all duration-300 text-white w-full mt-6 py-3 rounded-lg text-lg">
         ثبت
     </button>
 </div>
@@ -480,7 +480,8 @@
                         <th class="p-2">توضیحات</th>
                         <th class="p-2">شرایط دستگاه</th>
                         <th class="p-2">حالت دستگاه</th>
-                        <th class="p-2">عملیات </th>
+                        <th class="p-2">ویرایش </th>
+                        <th class="p-2">حذف </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -527,5 +528,14 @@
             </table>
         </div>
 
+        <!-- صفحه بندی -->
+        <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
+            <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">‹</button>
+            <button class="w-7 h-7 rounded-md border border-blue-500 text-blue-600 bg-[#F3F3F3] text-xs font-medium">1</button>
+            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">2</button>
+            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] text-xs">...</button>
+            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">25</button>
+            <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">›</button>
+        </div>
     </div>
 </div>

@@ -641,35 +641,13 @@
                                 </td>
                             </tr>
                         </tbody>
+
                     </table>
                 </div>
+
             </div>
-            <div class="hidden md:flex  flex-row-reverse gap-1 w-full justify-end my-4">
-                    <button class="bg-[#0948EE14] rounded-md px-2 items-center ">
-                        &gt;
-                    </button>
-                    <button class="bg-[#0948EE14] rounded-md px-2 items-center ">
-                        1
-                    </button>
-                    <button class="bg-[#0948EE14] rounded-md px-2 items-center ">
-                        2
-                    </button>
-                    <button class="bg-[#0948EE14] rounded-md px-2 items-center ">
-                        3
-                    </button>
-                    <button class="bg-[#0948EE14] rounded-md px-2 items-center ">
-                        4
-                    </button>
-                    <button class="bg-[#0948EE14] rounded-md px-2 flex items-center justify-center text-center pb-1.5 ">
-                        ...
-                    </button>
-                    <button class="bg-[#0948EE14] rounded-md px-2 items-center ">
-                        25
-                    </button>
-                    <button class="bg-[#0948EE14] rounded-md px-2 items-center ">
-                        &lt;
-                    </button>
-            </div>
+
+
             <!--mobile mode-->
             <div class="container flex flex-col gap-2 md:hidden text-[10px] w-full bg-white" >
                 <!--line-->
@@ -1239,7 +1217,17 @@
                     </div>
                 </div>
             </div>
+            <!-- صفحه بندی -->
+            <div class="flex items-start justify-center sm:justify-end mt-4 space-x-1 rtl:space-x-reverse">
+                <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">‹</button>
+                <button class="w-7 h-7 rounded-md border border-blue-500 text-blue-600 bg-[#F3F3F3] text-xs font-medium">1</button>
+                <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">2</button>
+                <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] text-xs">...</button>
+                <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">25</button>
+                <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">›</button>
+            </div>
         </section>
+
         <style>
             .card-anim {
                 transition: all 0.4s ease;
