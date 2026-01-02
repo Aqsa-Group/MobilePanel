@@ -15,13 +15,11 @@
     </style>
 </head>
 <body class="bg-white">
-    <div class="flex min-h-screen">
+    <div class="flex min-h-screen ">
         <!-- Sidebar -->
-        <aside class="w-0 bg-white sm:w-72 lg:block">
-            @include('Mobile.layouts.sidebar')
-        </aside>
+        @include('Mobile.layouts.sidebar')
         <!-- Main content -->
-        <main class="flex-1 sm:-mr-[60px] mx-auto -mr-0 px-4 pt-20">
+        <main class="flex-1 w-full px-3 sm:px-4 overflow-x-hidden mx-auto lg:px-6 pt-16 sm:pt-20 lg:pt-20">
             {{ $slot ?? '' }}
             @yield('content')
         </main>

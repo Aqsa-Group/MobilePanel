@@ -1,4 +1,4 @@
-<div class="pt-24 mt-[20%]   sm:mt-[0px]  pb-4 px-4 w-full">
+<div class="  max-w-7xl w-full mx-auto  pb-4 px-4 w-full">
     <div class="lg:grid grid-cols-5 gap-6">
         <!-- Cards -->
         <div class="lg:col-span-3">

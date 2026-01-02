@@ -1,15 +1,15 @@
 <div>
-    <main class="max-w-7xl overflow-x-hidden mx-auto  mt-0 ">
-        <section class="  max-w-7xl m-2  mx-auto h-full flex flex-col bg-[#FAFAFA] rounded-2xl shadow shadow-[0px_4px_4px_0px_#00000040] p-2  items-center"
+    <main class="max-w-9xl mx-auto   mt-2 ">
+        <section class="  max-w-7xl m-2   mx-auto h-full flex flex-col bg-[#FAFAFA] rounded-2xl shadow shadow-[0px_4px_4px_0px_#00000040] p-2  items-center"
             >
             <!--header-->
-            <div class="flex flex-col-reverse
-            flex-col md:flex-row justify-between w-full   h-[40px] mt-1">
-                <div class="hidden md:flex flex-row  gap-2 font-bold ">
-                    <!--icon-->
-                    <span class="hidden lg:mt-1 md:block">
-                        <svg width="28" height="28" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_464_1158)">
+            <div class="flex flex-col md:flex-row justify-between items-center w-full mt-1 gap-1 md:gap-2">
+                <div class="flex items-center gap-2 font-bold whitespace-nowrap">
+                    <svg class="w-4 h-4 md:w-6 md:h-6 shrink-0"
+                        viewBox="0 0 39 39"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_464_1158)">
                                 <path
                                     d="M34.4314 16.596L32.8736 23.2407C31.5383 28.9792 28.8995 31.3001 23.9398 30.8232C23.145 30.7596 22.2866 30.6166 21.3646 30.394L18.694 29.7582C12.0652 28.1844 10.0146 24.9098 11.5725 18.2651L13.1303 11.6045C13.4482 10.2533 13.8297 9.07698 14.3066 8.1073C16.1665 4.26038 19.3299 3.22712 24.6393 4.48293L27.294 5.10289C33.9545 6.66073 35.9893 9.95128 34.4314 16.596Z"
                                     stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -26,41 +26,21 @@
                                     <rect width="38.1513" height="38.1513" fill="white" />
                                 </clipPath>
                             </defs>
-                        </svg>
-                    </span>
-                    <span class="block md:hidden ">
-                        <svg width="15" height="15" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_464_1158)">
-                                <path
-                                    d="M34.4314 16.596L32.8736 23.2407C31.5383 28.9792 28.8995 31.3001 23.9398 30.8232C23.145 30.7596 22.2866 30.6166 21.3646 30.394L18.694 29.7582C12.0652 28.1844 10.0146 24.9098 11.5725 18.2651L13.1303 11.6045C13.4482 10.2533 13.8297 9.07698 14.3066 8.1073C16.1665 4.26038 19.3299 3.22712 24.6393 4.48293L27.294 5.10289C33.9545 6.66073 35.9893 9.95128 34.4314 16.596Z"
-                                    stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
-                                    d="M23.9399 30.8228C22.9543 31.4905 21.7144 32.0469 20.2043 32.5397L17.6926 33.3663C11.3818 35.401 8.05944 33.7001 6.00881 27.3892L3.97408 21.1102C1.93934 14.7993 3.62436 11.4611 9.93522 9.42633L12.4468 8.59972C13.0986 8.39307 13.7186 8.21821 14.3067 8.10693C13.8298 9.07661 13.4483 10.2529 13.1304 11.6041L11.5725 18.2647C10.0147 24.9094 12.0653 28.1841 18.6941 29.7578L21.3647 30.3936C22.2867 30.6162 23.1451 30.7593 23.9399 30.8228Z"
-                                    stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M20.093 13.5596L27.8028 15.5148" stroke="#0948EE" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M18.5352 19.7114L23.1451 20.8878" stroke="#0948EE" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_464_1158">
-                                    <rect width="38.1513" height="38.1513" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </span>
-                    <span class="text-sm  md:text-[15px] md:p-2">
-                        لیست کاربران
-                    </span>
-                </div>
-                <div class="flex flex-row gap-1 ">
+                         </svg>
+                        <span class="text-sm md:text-[15px] leading-none">
+                            لیست کاربران
+                        </span>
+                    </div>
+
+                <div class="flex flex-wrap md:flex-row gap-2 w-full justify-center md:justify-end p-2">
+
                     <!--search-->
                     <div class="relative  w-[60px]  md:w-[150px]  ">
                         <input type="text" class="w-full h-full rounded-md md:rounded-xl bg-[#0948EE14] absolute top-0
-                                pr-2 text-[7px] md:text-[10px]" placeholder="جستجو">
+                                pr-2 text-[7px] p-4 md:text-[10px]" placeholder="جستجو">
                         <!--mobile mode-->
-                        <span class="absolute md:hidden left-1  top-1.5">
-                            <svg width="10" height="10" viewBox="0 0 19 19" fill="none"
+                        <span class="absolute md:hidden left-1  top-3">
+                            <svg width="14" height="14" viewBox="0 0 19 19" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M11.899 14.9749C8.8537 14.9749 6.38498 12.5062 6.38498 9.46083C6.38498 6.4155 8.8537 3.94678 11.899 3.94678C14.9444 3.94678 17.4131 6.4155 17.4131 9.46083C17.4131 12.5062 14.9444 14.9749 11.899 14.9749Z"
@@ -71,7 +51,7 @@
                             </svg>
                         </span>
                         <!--pc mode-->
-                        <span class="hidden md:block absolute left-2 top-2.5">
+                        <span class="hidden md:block absolute left-2 top-3">
                             <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -85,10 +65,10 @@
                     </div>
                     <!--filter-->
                     <div
-                        class="flex flex-row justify-center rounded-md md:rounded-xl bg-[#0948EE14]  gap-1  items-center px-2 md:px-3 ">
+                        class="flex flex-row justify-center h-10 rounded-md md:rounded-xl bg-[#0948EE14]  gap-1  items-center px-2 md:px-4 ">
                         <!--mobile mode-->
                         <span class="block md:hidden">
-                            <svg width="10" height="10" viewBox="0 0 14 14" fill="none"
+                            <svg width="10" height="10" viewBox="0 0 14 14" fill="none" class="w-4 h-4 md:w-6 md:h-6 shrink-0"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_464_1127)">
                                     <path d="M10.73 12.424V6.21191" stroke="#292D32" stroke-width="1.5"
@@ -154,9 +134,9 @@
                     </div>
                     <!--sort by-->
                     <div
-                        class="flex flex-row justify-center rounded-md md:rounded-xl bg-[#0948EE14]  gap-1  items-center px-1 md:px-3 ">
+                        class="flex flex-row justify-center rounded-md md:rounded-xl bg-[#0948EE14]  gap-1  items-center px-1 md:px-4 ">
                         <!--mobile mode-->
-                        <span class="block md:hidden">
+                        <span class="block p-3 md:hidden">
                             <svg width="10" height="10" viewBox="0 0 14 14" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.21191 11.0122H11.8593" stroke="#292D32" stroke-width="1.5"
@@ -188,88 +168,59 @@
                         </span>
                     </div>
                     <!--add-->
-                    <div
-                        class="flex flex-row justify-center rounded-md md:rounded-xl bg-[#0948EE] text-white gap-1  items-center px-1 md:px-3 ">
-                        <!--mobile mode-->
-                        <span class="block md:hidden">
-                            <svg width="10" height="10" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <g clip-path="url(#clip0_464_1107)">
-                                    <path
-                                        d="M7.52977 13.8047C10.981 13.8047 13.8047 10.981 13.8047 7.52977C13.8047 4.07858 10.981 1.25488 7.52977 1.25488C4.07858 1.25488 1.25488 4.07858 1.25488 7.52977C1.25488 10.981 4.07858 13.8047 7.52977 13.8047Z"
-                                        stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path d="M5.02002 7.52979H10.0399" stroke="white" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M7.52979 10.0399V5.02002" stroke="white" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_464_1107">
-                                        <rect width="15.0597" height="15.0597" fill="white" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                        </span>
-                        <!--pc mode-->
-                        <span class="hidden md:block">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <g clip-path="url(#clip0_464_1107)">
-                                    <path
-                                        d="M7.52977 13.8047C10.981 13.8047 13.8047 10.981 13.8047 7.52977C13.8047 4.07858 10.981 1.25488 7.52977 1.25488C4.07858 1.25488 1.25488 4.07858 1.25488 7.52977C1.25488 10.981 4.07858 13.8047 7.52977 13.8047Z"
-                                        stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path d="M5.02002 7.52979H10.0399" stroke="white" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M7.52979 10.0399V5.02002" stroke="white" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_464_1107">
-                                        <rect width="15.0597" height="15.0597" fill="white" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                        </span>
-                        <a href="{{ route('user.form') }}" class="text-[10px] md:text-[10px]">
-                            اضافه کردن کاربر جدید
-                        </a>
-                    </div>
-                </div>
-                <!--icon-->
-                <div class=" flex flex-row md:hidden gap-2 font-bold ">
-                    <span>
-                        <svg width="20" height="20" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_464_1158)">
-                                <path
-                                    d="M34.4314 16.596L32.8736 23.2407C31.5383 28.9792 28.8995 31.3001 23.9398 30.8232C23.145 30.7596 22.2866 30.6166 21.3646 30.394L18.694 29.7582C12.0652 28.1844 10.0146 24.9098 11.5725 18.2651L13.1303 11.6045C13.4482 10.2533 13.8297 9.07698 14.3066 8.1073C16.1665 4.26038 19.3299 3.22712 24.6393 4.48293L27.294 5.10289C33.9545 6.66073 35.9893 9.95128 34.4314 16.596Z"
-                                    stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
-                                    d="M23.9399 30.8228C22.9543 31.4905 21.7144 32.0469 20.2043 32.5397L17.6926 33.3663C11.3818 35.401 8.05944 33.7001 6.00881 27.3892L3.97408 21.1102C1.93934 14.7993 3.62436 11.4611 9.93522 9.42633L12.4468 8.59972C13.0986 8.39307 13.7186 8.21821 14.3067 8.10693C13.8298 9.07661 13.4483 10.2529 13.1304 11.6041L11.5725 18.2647C10.0147 24.9094 12.0653 28.1841 18.6941 29.7578L21.3647 30.3936C22.2867 30.6162 23.1451 30.7593 23.9399 30.8228Z"
-                                    stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M20.093 13.5596L27.8028 15.5148" stroke="#0948EE" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M18.5352 19.7114L23.1451 20.8878" stroke="#0948EE" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_464_1158">
-                                    <rect width="38.1513" height="38.1513" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </span>
-                    <span class="text-sm md:text-[28px] md:p-2">
-                        لیست کاربران
-                    </span>
+                    <a href="{{ route('user.form') }}"
+                        class="flex flex-row justify-center rounded-md md:rounded-xl bg-[#0948EE] text-white gap-1 items-center px-1 md:px-4">
+
+                            <!-- mobile icon -->
+                            <span class="block p-3 md:hidden">
+                                <svg width="10" height="10" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_464_1107)">
+                                        <path d="M7.52977 13.8047C10.981 13.8047 13.8047 10.981 13.8047 7.52977C13.8047 4.07858 10.981 1.25488 7.52977 1.25488C4.07858 1.25488 1.25488 4.07858 1.25488 7.52977C1.25488 10.981 4.07858 13.8047 7.52977 13.8047Z"
+                                            stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M5.02002 7.52979H10.0399" stroke="white" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7.52979 10.0399V5.02002" stroke="white" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round"/>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_464_1107">
+                                            <rect width="15.0597" height="15.0597" fill="white"/>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </span>
+
+                            <!-- desktop icon -->
+                            <span class="hidden md:block">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_464_1107)">
+                                        <path d="M7.52977 13.8047C10.981 13.8047 13.8047 10.981 13.8047 7.52977C13.8047 4.07858 10.981 1.25488 7.52977 1.25488C4.07858 1.25488 1.25488 4.07858 1.25488 7.52977C1.25488 10.981 4.07858 13.8047 7.52977 13.8047Z"
+                                            stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M5.02002 7.52979H10.0399" stroke="white" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7.52979 10.0399V5.02002" stroke="white" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round"/>
+                                    </g>
+                                </svg>
+                            </span>
+
+                            <!-- text (desktop only) -->
+                            <span class="hidden md:inline text-[10px]">
+                                اضافه کردن کاربر جدید
+                            </span>
+
+                    </a>
+
                 </div>
             </div>
             <!--container -->
             <!--pc mode-->
             <div class="flex flex-col w-full gap-2">
                 <!--desktop table-->
-                <div class="hidden md:flex flex-col justify-center w-full h-auto gap-1 mt-2 border border-[#0948EE] rounded-xl">
+                <div class="hidden md:flex flex-col w-full gap-2 mt-2 border border-[#0948EE] rounded-xl overflow-x-auto">
+
                     <!--title-->
                     <table class="w-full text-center border-separate border-spacing-0 text-lg" style="font-style: Regular;">
                         <tr>
@@ -317,7 +268,8 @@
                     </table>
                 </div>
                 <!--mobile table/cards-->
-                <div class="md:hidden flex flex-col gap-2 w-full">
+                <div class="md:hidden flex flex-col gap-2 w-full px-2">
+
                     <div class="rounded-2xl flex flex-col items-center mt-2 border border-[#0948EE66] h-auto w-full">
                         <table dir="ltr" class="w-full table-fixed items-center font-semibold justify-center text-center mx-auto">
                             <tr>
@@ -376,7 +328,7 @@
                     </div>
                 </div>
                 <!--pagination (both desktop & mobile) -->
-                <div class="flex flex-col items-center justify-center w-full mt-3 text-[10px] md:flex-row md:justify-between">
+                <div class="flex flex-wrap gap-1 justify-center md:justify-between items-center mt-3 text-[10px]">
                     <div class="flex flex-row-reverse gap-1 flex-wrap justify-center">
                         <button class="bg-[#0948EE14] rounded-md px-2 py-1 items-center">&gt;</button>
                         <button class="bg-[#0948EE14] rounded-md px-2 py-1 items-center">1</button>

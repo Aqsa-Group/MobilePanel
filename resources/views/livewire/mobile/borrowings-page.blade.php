@@ -1,8 +1,8 @@
 <div class="p-3">
     <!--  کارت های آماری  -->
-    <div class="grid grid-cols-1 max-w-7xl mx-auto sm:grid-cols-1  lg:grid-cols-4 gap-4 mb-4 ">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto  gap-4 mb-4 ">
         <!-- کارت 1 -->
-        <div class="bg-[#0B35CC]/10 rounded-2xl border-r-[2px] card-anim      border-[#0B35CC] shadow-xl shadow-[0px_4px_4px_0px_#00000040] p-4">
+        <div class="bg-[#0B35CC]/10 rounded-2xl border-r-[3px] card-anim      border-[#0B35CC] shadow-xl shadow-[0px_4px_4px_0px_#00000040] p-4">
             <div class="flex justify-between items-center mb-1">
                 <span class="text-sm text-gray-600 mb-6">  کل بردگی</span>
                 <i class="bi bi-cash text-blue-600 text-xl mb-6 rounded-full bg-[#0B35CC]/20 w-8 h-8">
@@ -23,7 +23,7 @@
             </div>
         </div>
         <!-- کارت 2 -->
-        <div class="bg-[#0099FF]/10 rounded-2xl  border-r-[2px] card-anim  p-4    border-[#0099FF] shadow-xl shadow-[0px_4px_4px_0px_#00000040] w-full max-w-full">
+        <div class="bg-[#0099FF]/10 rounded-2xl  border-r-[3px] card-anim  p-4    border-[#0099FF] shadow-xl shadow-[0px_4px_4px_0px_#00000040] w-full max-w-full">
             <div class="flex justify-between items-center mb-1">
                 <span class="text-sm text-gray-600 mb-6">  کل رسید ها</span>
                 <i class="bi bi-clipboard-data text-purple-600 text-xl mb-6 bg-blue-300 w-8 h-8 rounded-full">
@@ -44,7 +44,7 @@
             </div>
         </div>
         <!-- کارت 3 -->
-        <div class="bg-[#31009B]/10 rounded-2xl border-r-[2px] card-anim  p-4    border-[#31009B] shadow-xl shadow-[0px_4px_4px_0px_#00000040] p-4 w-full max-w-full">
+        <div class="bg-[#31009B]/10 rounded-2xl border-r-[3px] card-anim  p-4    border-[#31009B] shadow-xl shadow-[0px_4px_4px_0px_#00000040] p-4 w-full max-w-full">
             <div class="flex justify-between items-center mb-1">
                 <span class="text-sm text-gray-600 mb-6">  الباقی قرضه ها</span>
                 <i class="bi bi-journal-check text-blue-700 text-xl mb-6 bg-[#31009B]/20 w-8 h-8 rounded-full">
@@ -66,7 +66,7 @@
             </div>
         </div>
         <!-- کارت 4 -->
-        <div class="bg-[#3A64D0]/10 rounded-2xl border-r-[2px] card-anim  p-4    border-[#3A64D0] shadow-xl shadow-[0px_4px_4px_0px_#00000040] w-full max-w-full">
+        <div class="bg-[#3A64D0]/10 rounded-2xl border-r-[3px] card-anim  p-4    border-[#3A64D0] shadow-xl shadow-[0px_4px_4px_0px_#00000040] w-full max-w-full">
             <div class="flex justify-between items-center mb-1">
                 <span class="text-sm text-gray-600 mb-6">مقدار باز پرداخت </span>
                 <i class="bi bi-people text-indigo-700 text-xl mb-6 bg-[#3A64D0]/40 w-8 h-8 rounded-full">
@@ -96,7 +96,7 @@
     <div class="grid grid-cols-1 max-w-7xl mx-auto lg:grid-cols-3 gap-3">
         <!-- فرم -->
         <div class="bg-[#fafafa] rounded-2xl shadow-[0_4px_12px] shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
-            <div class="flex justify-between mb-2 shadow p-3 rounded-xl border border-[#0948EE]">
+            <div class="flex justify-between mb-2 shadow p-3 rounded-xl border border-black">
                 <div class="flex gap-2 mt-3">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.99609 8.5H11.4961" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -407,7 +407,7 @@
                     </thead>
                     <tbody>
                         @for ($i=1; $i<=5; $i++)
-                        <tr class="hover:bg-gray-50 text-[10px] border-b-2 border-blue-200">
+                        <tr class="hover:bg-gray-100 text-[10px] border-b-2 border-blue-200">
                             <td class="p-2">{{ $i }}</td>
                             <td class="p-2">محمود عزیزی</td>
                             <td class="p-2">1404/2/30</td>

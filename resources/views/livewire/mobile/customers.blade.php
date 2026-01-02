@@ -1,7 +1,7 @@
 <div>
-    <main class=" max-w-7xl mx-auto mt-2 overflow-x-hidden ">
+    <main class=" max-w-7xl mx-auto mt-2 ">
         <!--section 1-->
-        <div class="grid grid-cols-2 md:grid-cols-6 gap-2 md:gap-4 max-w-7xl h-auto  p-2 mx-auto items-center"
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-2 md:gap-4 max-w-7xl h-auto  p-2 mx-auto items-center"
            >
             <!--No 1 -->
             <div
@@ -118,7 +118,7 @@
             <!--No 3 -->
             <div
                 class="text-[#5100FF] h-[80px] card-anim md:h-[104px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] md:w-full rounded-xl  border-r-[2px]  border-[#5100FF] bg-[#5100FF08]">
-                <div class="flex flex-row w-full p-1 md:p-2 mx-auto">
+                <div class="flex items-center justify-between w-full p-1 md:p-2 mx-auto">
                     <span class="text-[13px] md:text-[15px] font-semibold">
                         مشتریان جدید این ماه
                     </span>
@@ -140,7 +140,7 @@
                         </svg>
                     </span>
                     <!--mobile mode-->
-                    <span class=" rounded-full bg-[#0014AE] w-[22px] h-[22px] p-0.5 flex md:hidden items-center justify-center">
+                    <span class=" rounded-full ml-2 bg-[#0014AE] w-[22px] h-[22px] p-0.5 flex md:hidden items-center justify-center">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M9.16006 10.87C9.06006 10.86 8.94006 10.86 8.83006 10.87C6.45006 10.79 4.56006 8.84 4.56006 6.44C4.56006 3.99 6.54006 2 9.00006 2C11.4501 2 13.4401 3.99 13.4401 6.44C13.4301 8.84 11.5401 10.79 9.16006 10.87Z"
@@ -301,160 +301,102 @@
         <!--section 2-->
         <section class="shadow-xl shadow-[0px_4px_4px_0px_#00000040] m-2 md:mt-6 h-auto flex flex-col bg-[#fafafa] rounded-2xl  p-2  items-center">
             <!--header-->
-            <div class="flex flex-col md:flex-row justify-between  w-full  h-full mt-1">
-                <div class="hidden md:flex flex-row  gap-2 font-bold ">
-                    <!--icon-->
-                    <span class="hidden mt-1 md:block">
-                        <svg width="30" height="30" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_464_1158)">
-                                <path
-                                    d="M34.4314 16.596L32.8736 23.2407C31.5383 28.9792 28.8995 31.3001 23.9398 30.8232C23.145 30.7596 22.2866 30.6166 21.3646 30.394L18.694 29.7582C12.0652 28.1844 10.0146 24.9098 11.5725 18.2651L13.1303 11.6045C13.4482 10.2533 13.8297 9.07698 14.3066 8.1073C16.1665 4.26038 19.3299 3.22712 24.6393 4.48293L27.294 5.10289C33.9545 6.66073 35.9893 9.95128 34.4314 16.596Z"
-                                    stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
-                                    d="M23.9399 30.8228C22.9543 31.4905 21.7144 32.0469 20.2043 32.5397L17.6926 33.3663C11.3818 35.401 8.05944 33.7001 6.00881 27.3892L3.97408 21.1102C1.93934 14.7993 3.62436 11.4611 9.93522 9.42633L12.4468 8.59972C13.0986 8.39307 13.7186 8.21821 14.3067 8.10693C13.8298 9.07661 13.4483 10.2529 13.1304 11.6041L11.5725 18.2647C10.0147 24.9094 12.0653 28.1841 18.6941 29.7578L21.3647 30.3936C22.2867 30.6162 23.1451 30.7593 23.9399 30.8228Z"
-                                    stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M20.093 13.5596L27.8028 15.5148" stroke="#0948EE" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M18.5352 19.7114L23.1451 20.8878" stroke="#0948EE" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_464_1158">
-                                    <rect width="38.1513" height="38.1513" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </span>
-                    <span class="block md:hidden ">
-                        <svg width="20" height="20" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_464_1158)">
-                                <path
-                                    d="M34.4314 16.596L32.8736 23.2407C31.5383 28.9792 28.8995 31.3001 23.9398 30.8232C23.145 30.7596 22.2866 30.6166 21.3646 30.394L18.694 29.7582C12.0652 28.1844 10.0146 24.9098 11.5725 18.2651L13.1303 11.6045C13.4482 10.2533 13.8297 9.07698 14.3066 8.1073C16.1665 4.26038 19.3299 3.22712 24.6393 4.48293L27.294 5.10289C33.9545 6.66073 35.9893 9.95128 34.4314 16.596Z"
-                                    stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
-                                    d="M23.9399 30.8228C22.9543 31.4905 21.7144 32.0469 20.2043 32.5397L17.6926 33.3663C11.3818 35.401 8.05944 33.7001 6.00881 27.3892L3.97408 21.1102C1.93934 14.7993 3.62436 11.4611 9.93522 9.42633L12.4468 8.59972C13.0986 8.39307 13.7186 8.21821 14.3067 8.10693C13.8298 9.07661 13.4483 10.2529 13.1304 11.6041L11.5725 18.2647C10.0147 24.9094 12.0653 28.1841 18.6941 29.7578L21.3647 30.3936C22.2867 30.6162 23.1451 30.7593 23.9399 30.8228Z"
-                                    stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M20.093 13.5596L27.8028 15.5148" stroke="#0948EE" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M18.5352 19.7114L23.1451 20.8878" stroke="#0948EE" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_464_1158">
-                                    <rect width="38.1513" height="38.1513" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </span>
-                    <span class="text-sm md:text-[18px] md:p-2">
-                        لیست مشتریان
-                    </span>
-                </div>
-                <div class="flex flex-row gap-1 ">
-                    <!--search-->
-                    <div class="relative  w-[70px] h-[25px] md:w-[150px] md:h-[50px] ">
-                        <input type="text" class="w-full h-full rounded-md md:rounded-xl bg-[#0948EE14] absolute
-                           pr-2 pb-1  text-[10px] md:text-[10px]" placeholder="جستجو">
-                        <!--mobile mode-->
-                        <span class="absolute md:hidden left-1 top-1.5">
-                            <svg width="12" height="12" viewBox="0 0 19 19" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M11.899 14.9749C8.8537 14.9749 6.38498 12.5062 6.38498 9.46083C6.38498 6.4155 8.8537 3.94678 11.899 3.94678C14.9444 3.94678 17.4131 6.4155 17.4131 9.46083C17.4131 12.5062 14.9444 14.9749 11.899 14.9749Z"
-                                    stroke="#292D32" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M5.80448 15.5554L6.96533 14.3945" stroke="#292D32" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </span>
-                        <!--pc mode-->
-                        <span class="hidden md:block absolute left-2 top-4">
-                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M11.899 14.9749C8.8537 14.9749 6.38498 12.5062 6.38498 9.46083C6.38498 6.4155 8.8537 3.94678 11.899 3.94678C14.9444 3.94678 17.4131 6.4155 17.4131 9.46083C17.4131 12.5062 14.9444 14.9749 11.899 14.9749Z"
-                                    stroke="#292D32" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M5.80448 15.5554L6.96533 14.3945" stroke="#292D32" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </span>
-                    </div>
-                    <!--filter-->
-                    <div
-                        class="flex flex-row justify-center rounded-md md:rounded-xl bg-[#0948EE14]  gap-1 h-[25px] md:h-[50px] items-center px-2 md:px-3 ">
-                        <!--mobile mode-->
-                        <span class="block md:hidden">
-                            <svg width="10" height="10" viewBox="0 0 14 14" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <g clip-path="url(#clip0_464_1127)">
-                                    <path d="M10.73 12.424V6.21191" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M10.73 3.95309V1.12939" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M6.77686 12.4243V9.60059" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M6.77686 7.34153V1.12939" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M2.82373 12.424V6.21191" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M2.82373 3.95309V1.12939" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M1.69434 6.21191H3.95329" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M9.60059 6.21191H11.8595" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M5.64746 7.3418H7.90642" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_464_1127">
-                                        <rect width="13.5537" height="13.5537" fill="white" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                        </span>
-                        <!--pc mode-->
-                        <span class="hidden md:block">
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <g clip-path="url(#clip0_464_1127)">
-                                    <path d="M10.73 12.424V6.21191" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M10.73 3.95309V1.12939" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M6.77686 12.4243V9.60059" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M6.77686 7.34153V1.12939" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M2.82373 12.424V6.21191" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M2.82373 3.95309V1.12939" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M1.69434 6.21191H3.95329" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M9.60059 6.21191H11.8595" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M5.64746 7.3418H7.90642" stroke="#292D32" stroke-width="1.5"
-                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_464_1127">
-                                        <rect width="13.5537" height="13.5537" fill="white" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                        </span>
-                        <span class="text-[10px] md:text-[10px]">
-                            فیلتر
-                        </span>
-                    </div>
-                    <!--sort by-->
-                    <div
-                        class="flex flex-row justify-center rounded-md md:rounded-xl bg-[#0948EE14]  gap-1 h-[25px] md:h-[50px] items-center px-1 md:px-3 ">
-                        <!--mobile mode-->
-                        <span class="block md:hidden">
-                            <svg width="10" height="10" viewBox="0 0 14 14" fill="none"
+<div class="w-full flex flex-col gap-2 md:flex-row md:items-center md:justify-between mt-1">
+
+    <!-- عنوان و آیکون -->
+    <div class="flex items-center gap-2 font-bold">
+        <!-- mobile icon -->
+        <span class="md:hidden">
+            <svg width="20" height="20" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_mobile)">
+                    <path d="M34.4314 16.596L32.8736 23.2407C31.5383 28.9792 28.8995 31.3001 23.9398 30.8232C23.145 30.7596 22.2866 30.6166 21.3646 30.394L18.694 29.7582C12.0652 28.1844 10.0146 24.9098 11.5725 18.2651L13.1303 11.6045C13.4482 10.2533 13.8297 9.07698 14.3066 8.1073C16.1665 4.26038 19.3299 3.22712 24.6393 4.48293L27.294 5.10289C33.9545 6.66073 35.9893 9.95128 34.4314 16.596Z" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M23.9399 30.8228C22.9543 31.4905 21.7144 32.0469 20.2043 32.5397L17.6926 33.3663C11.3818 35.401 8.05944 33.7001 6.00881 27.3892L3.97408 21.1102C1.93934 14.7993 3.62436 11.4611 9.93522 9.42633L12.4468 8.59972C13.0986 8.39307 13.7186 8.21821 14.3067 8.10693C13.8298 9.07661 13.4483 10.2529 13.1304 11.6041L11.5725 18.2647C10.0147 24.9094 12.0653 28.1841 18.6941 29.7578L21.3647 30.3936C22.2867 30.6162 23.1451 30.7593 23.9399 30.8228Z" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M20.093 13.5596L27.8028 15.5148" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M18.5352 19.7114L23.1451 20.8878" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <defs>
+                    <clipPath id="clip0_mobile">
+                        <rect width="38.1513" height="38.1513" fill="white"/>
+                    </clipPath>
+                </defs>
+            </svg>
+        </span>
+        <!-- desktop icon -->
+        <span class="hidden md:block">
+            <svg width="30" height="30" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_desktop)">
+                    <path d="M34.4314 16.596L32.8736 23.2407C31.5383 28.9792 28.8995 31.3001 23.9398 30.8232C23.145 30.7596 22.2866 30.6166 21.3646 30.394L18.694 29.7582C12.0652 28.1844 10.0146 24.9098 11.5725 18.2651L13.1303 11.6045C13.4482 10.2533 13.8297 9.07698 14.3066 8.1073C16.1665 4.26038 19.3299 3.22712 24.6393 4.48293L27.294 5.10289C33.9545 6.66073 35.9893 9.95128 34.4314 16.596Z" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M23.9399 30.8228C22.9543 31.4905 21.7144 32.0469 20.2043 32.5397L17.6926 33.3663C11.3818 35.401 8.05944 33.7001 6.00881 27.3892L3.97408 21.1102C1.93934 14.7993 3.62436 11.4611 9.93522 9.42633L12.4468 8.59972C13.0986 8.39307 13.7186 8.21821 14.3067 8.10693C13.8298 9.07661 13.4483 10.2529 13.1304 11.6041L11.5725 18.2647C10.0147 24.9094 12.0653 28.1841 18.6941 29.7578L21.3647 30.3936C22.2867 30.6162 23.1451 30.7593 23.9399 30.8228Z" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M20.093 13.5596L27.8028 15.5148" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M18.5352 19.7114L23.1451 20.8878" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <defs>
+                    <clipPath id="clip0_desktop">
+                        <rect width="38.1513" height="38.1513" fill="white"/>
+                    </clipPath>
+                </defs>
+            </svg>
+        </span>
+        <span class="text-sm md:text-[15px] leading-none">لیست مشتریان</span>
+    </div>
+
+    <!-- دکمه‌ها، جستجو و فیلتر -->
+    <div class="flex flex-wrap gap-2 md:flex-row md:gap-3 mt-2 md:mt-0">
+
+        <!-- جستجو -->
+        <div class="relative flex-1 md:flex-none md:w-[150px]">
+            <input type="text"
+                class="w-full h-9 md:h-[50px] rounded-md md:rounded-xl bg-[#0948EE14] pr-2 text-[10px] md:text-[10px]"
+                placeholder="جستجو">
+            <span class="absolute left-1 top-1.5 md:hidden">
+                <svg width="12" height="12" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.899 14.9749C8.8537 14.9749 6.38498 12.5062 6.38498 9.46083C6.38498 6.4155 8.8537 3.94678 11.899 3.94678C14.9444 3.94678 17.4131 6.4155 17.4131 9.46083C17.4131 12.5062 14.9444 14.9749 11.899 14.9749Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5.80448 15.5554L6.96533 14.3945" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <span class="hidden md:block absolute left-2 top-4">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.899 14.9749C8.8537 14.9749 6.38498 12.5062 6.38498 9.46083C6.38498 6.4155 8.8537 3.94678 11.899 3.94678C14.9444 3.94678 17.4131 6.4155 17.4131 9.46083C17.4131 12.5062 14.9444 14.9749 11.899 14.9749Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5.80448 15.5554L6.96533 14.3945" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </div>
+
+        <!-- فیلتر -->
+        <div class="flex items-center gap-1 px-3 h-9 md:h-[50px] rounded-md md:rounded-xl bg-[#0948EE14] text-[10px] md:text-[10px]">
+            <span class="block md:hidden">
+                <svg width="10" height="10" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.73 12.424V6.21191" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10.73 3.95309V1.12939" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6.77686 12.4243V9.60059" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6.77686 7.34153V1.12939" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2.82373 12.424V6.21191" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2.82373 3.95309V1.12939" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1.69434 6.21191H3.95329" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9.60059 6.21191H11.8595" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5.64746 7.3418H7.90642" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <span class="hidden md:block">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.73 12.424V6.21191" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10.73 3.95309V1.12939" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6.77686 12.4243V9.60059" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6.77686 7.34153V1.12939" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2.82373 12.424V6.21191" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2.82373 3.95309V1.12939" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1.69434 6.21191H3.95329" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9.60059 6.21191H11.8595" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5.64746 7.3418H7.90642" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            فیلتر
+        </div>
+
+        <!-- چاپ -->
+        <div class="flex items-center gap-1 px-3 h-9 md:h-[50px] rounded-md md:rounded-xl bg-[#0948EE14] text-[10px] md:text-[10px]">
+            <span class="block md:hidden">
+                <svg width="12" height="12" viewBox="0 0 14 14" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.21191 11.0122H11.8593" stroke="#292D32" stroke-width="1.5"
                                     stroke-linecap="round" stroke-linejoin="round" />
@@ -469,27 +411,25 @@
                                 <path d="M1.69434 11.0123L2.25908 11.577L3.95329 9.88281" stroke="#292D32"
                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
-                        </span>
-                        <!--pc mode-->
-                        <span class="hidden md:block">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            </span>
+            <span class="hidden md:block">
+                 <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.0415 5.83317H13.9582V4.1665C13.9582 2.49984 13.3332 1.6665 11.4582 1.6665H8.5415C6.6665 1.6665 6.0415 2.49984 6.0415 4.1665V5.83317Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M13.3332 12.5V15.8333C13.3332 17.5 12.4998 18.3333 10.8332 18.3333H9.1665C7.49984 18.3333 6.6665 17.5 6.6665 15.8333V12.5H13.3332Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M17.5 8.3335V12.5002C17.5 14.1668 16.6667 15.0002 15 15.0002H13.3333V12.5002H6.66667V15.0002H5C3.33333 15.0002 2.5 14.1668 2.5 12.5002V8.3335C2.5 6.66683 3.33333 5.8335 5 5.8335H15C16.6667 5.8335 17.5 6.66683 17.5 8.3335Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M14.1668 12.5H13.1585H5.8335" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M5.8335 9.1665H8.3335" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                        </span>
-                        <span class="text-[10px] md:text-[10px]">
-                            چاپ کردن
-                        </span>
-                    </div>
-                    <!--add-->
-                    <div
-                        class="flex flex-row justify-center rounded-md md:rounded-xl bg-[#0948EE] text-white gap-1 h-[25px] md:h-[50px] items-center px-1 md:px-3 ">
-                        <!--mobile mode-->
-                        <span class="block md:hidden">
-                            <svg width="10" height="10" viewBox="0 0 16 16" fill="none"
+            </span>
+            چاپ کردن
+        </div>
+
+        <!-- اضافه کردن مشتری -->
+        <a href="{{ route('customer') }}"
+           class="flex items-center gap-1 px-3 h-9 md:h-[50px] rounded-md md:rounded-xl bg-[#0948EE] text-white text-[10px] md:text-[10px]">
+           <!-- آیکون همیشه -->
+           <span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_464_1107)">
                                     <path
@@ -507,61 +447,15 @@
                                     </clipPath>
                                 </defs>
                             </svg>
-                        </span>
-                        <!--pc mode-->
-                        <span class="hidden md:block">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <g clip-path="url(#clip0_464_1107)">
-                                    <path
-                                        d="M7.52977 13.8047C10.981 13.8047 13.8047 10.981 13.8047 7.52977C13.8047 4.07858 10.981 1.25488 7.52977 1.25488C4.07858 1.25488 1.25488 4.07858 1.25488 7.52977C1.25488 10.981 4.07858 13.8047 7.52977 13.8047Z"
-                                        stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path d="M5.02002 7.52979H10.0399" stroke="white" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M7.52979 10.0399V5.02002" stroke="white" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_464_1107">
-                                        <rect width="15.0597" height="15.0597" fill="white" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                        </span>
-                        <a href="{{ route('customer') }}" class="text-[10px] md:text-[10px]">
-                            اضافه کردن مشتری جدید
-                        </a>
-                    </div>
-                </div>
-                <!--icon-->
-                <div class=" flex flex-row md:hidden gap-2 font-bold ">
-                    <span>
-                        <svg width="20" height="20" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_464_1158)">
-                                <path
-                                    d="M34.4314 16.596L32.8736 23.2407C31.5383 28.9792 28.8995 31.3001 23.9398 30.8232C23.145 30.7596 22.2866 30.6166 21.3646 30.394L18.694 29.7582C12.0652 28.1844 10.0146 24.9098 11.5725 18.2651L13.1303 11.6045C13.4482 10.2533 13.8297 9.07698 14.3066 8.1073C16.1665 4.26038 19.3299 3.22712 24.6393 4.48293L27.294 5.10289C33.9545 6.66073 35.9893 9.95128 34.4314 16.596Z"
-                                    stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
-                                    d="M23.9399 30.8228C22.9543 31.4905 21.7144 32.0469 20.2043 32.5397L17.6926 33.3663C11.3818 35.401 8.05944 33.7001 6.00881 27.3892L3.97408 21.1102C1.93934 14.7993 3.62436 11.4611 9.93522 9.42633L12.4468 8.59972C13.0986 8.39307 13.7186 8.21821 14.3067 8.10693C13.8298 9.07661 13.4483 10.2529 13.1304 11.6041L11.5725 18.2647C10.0147 24.9094 12.0653 28.1841 18.6941 29.7578L21.3647 30.3936C22.2867 30.6162 23.1451 30.7593 23.9399 30.8228Z"
-                                    stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M20.093 13.5596L27.8028 15.5148" stroke="#0948EE" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M18.5352 19.7114L23.1451 20.8878" stroke="#0948EE" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_464_1158">
-                                    <rect width="38.1513" height="38.1513" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </span>
-                    <span class="text-sm md:text-[28px] md:p-2">
-                        لیست مشتریان
-                    </span>
-                </div>
-            </div>
+           </span>
+           <!-- متن فقط دسکتاپ -->
+           <span class="hidden md:block">اضافه کردن مشتری جدید</span>
+        </a>
+
+    </div>
+</div>
+
+
             <!--container -->
             <!--pc mode-->
             <div class="hidden md:flex flex-col justify-center w-full h-auto gap-1 mt-2 border border-[#0948EE] rounded-xl">
@@ -1218,14 +1112,15 @@
                 </div>
             </div>
             <!-- صفحه بندی -->
-            <div class="flex items-start justify-center sm:justify-end mt-4 space-x-1 rtl:space-x-reverse">
-                <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">‹</button>
-                <button class="w-7 h-7 rounded-md border border-blue-500 text-blue-600 bg-[#F3F3F3] text-xs font-medium">1</button>
-                <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">2</button>
-                <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] text-xs">...</button>
-                <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">25</button>
-                <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">›</button>
-            </div>
+            <div class="w-full flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
+    <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">‹</button>
+    <button class="w-7 h-7 rounded-md border border-blue-500 text-blue-600 bg-[#F3F3F3] text-xs font-medium">1</button>
+    <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">2</button>
+    <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] text-xs">...</button>
+    <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">25</button>
+    <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">›</button>
+</div>
+
         </section>
 
         <style>

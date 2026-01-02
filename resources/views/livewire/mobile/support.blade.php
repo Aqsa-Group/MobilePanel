@@ -1,9 +1,9 @@
 <div> <!-- المان ریشه Livewire -->
     <div class="flex max-w-7xl mx-auto">
         <!-- Main -->
-        <div class="pt-8 pb-4 px-4 ">
+        <div class="pt-8 pb-4 px-4 w-full">
             <!-- Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
                 <div class="rounded-xl transition-all duration-200 hover:scale-105 cursor-pointer shadow-[0px_4px_4px_0px_#00000040] p-4 bg-[#fafafa]">
                     <div class="flex justify-between">
                         <h1 class="font-bold text-xl">تکت های باز</h1>

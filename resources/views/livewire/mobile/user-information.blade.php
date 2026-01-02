@@ -1,5 +1,5 @@
 <div>
-    <div class=" text-gray-800 flex items-center justify-center p-3 sm:p-4">
+    <div class=" text-gray-800 max-w-7xl mx-auto flex items-center justify-center p-3 sm:p-4">
         <!-- باکس اصلی سفید -->
         <div class="animate-fade-slide w-full p-2 shadow-xl shadow-[0px_4px_4px_0px_#00000040] bg-[#FAFAFA] md:w-[600px] mt-[45]    lg:w-[900px]  rounded-2xl flex flex-col lg:flex-row overflow-hidden">
             <div class="flex-1 lg:w-7/12 flex items-center justify-center p-5 sm:p-6 order-1 lg:order-1">
@@ -54,9 +54,9 @@
         </div>
         <!-- ستون عکس (در موبایل پایین بیاد) -->
         <div class="flex-1 lg:w-1/12 flex items-center justify-center p-4 sm:p-5 order-2 lg:order-2">
-            <div class="w-full max-w-[600px] rounded-2xl overflow-hidden">
+            <div class="w-full max-w-full rounded-2xl overflow-hidden">
                 <img src="https://i.postimg.cc/Vkfgsc4N/download-(5).png" alt="Success Illustration"
-                    class="w-full h-auto object-cover rounded-2xl">
+                    class="w-full h-auto ">
             </div>
         </div>
     </div>

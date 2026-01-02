@@ -1,7 +1,7 @@
 <div>
-   <div class="max-w-6xl mt-[20%]   sm:mt-[100px] mx-auto">
+   <div class="max-w-6xl  mx-auto">
         <!-- کارت بزرگ -->
-        <div class="bg-white rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl m-auto p-5 mt-3">
+        <div class="bg-white w-full rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl m-auto p-5 mt-3">
             <div class=" text-center">
                 <h1 class="text-xl font-bold mb-2"> اطلاعات فروشگاه   </h1>
                 <P class="text-[12px] mb-6">لطفا اطلاعات را وارد کنید</P>
@@ -130,7 +130,7 @@
                 </button>
             </div>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 p-2">
+        <div class="grid w-full grid-cols-1 lg:grid-cols-2 gap-3 pt-2">
             <!-- جدول و کارت موبایل -->
             <div class="lg:col-span-2   rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl  border border-gray-200 w-full lg:max-w-full p-3">
                 <!-- کارت موبایل -->
@@ -347,7 +347,7 @@
                     </thead>
                     <tbody>
                         @for ($i=1; $i<=5; $i++)
-                            <tr class="hover:bg-gray-50 border-b-2 border-blue-300">
+                            <tr class="hover:bg-gray-100 border-b-2 border-blue-300">
                                 <td class="p-2">{{ $i }}</td>
                                 <td class="p-2">  <img src="https://i.postimg.cc/Vkfgsc4N/download-(5).png" class=" rounded-full w-10 h-10 " alt=""></td>
                                 <td class="p-2"> حاجی ظریف الله نور</td>
@@ -383,7 +383,7 @@
                     </tbody>
                 </table>
                 <!-- Pagination -->
-                <div   class="pagination mt-4 mr-4 flex gap-2 justify-center sm:justify-start" dir="rtl">
+                <div   class="pagination mt-4 flex gap-2 justify-center sm:justify-start" dir="rtl">
                     <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">&#60;</a>
                     <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">25</a>
                     <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">...</a>

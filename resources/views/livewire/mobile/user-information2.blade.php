@@ -1,14 +1,15 @@
 <div>
-    <div class="text-gray-800 flex items-center max-w-7xl justify-center p-3 sm:p-4">
+   <div class="text-gray-800 flex items-center max-w-7xl mt-3 mx-auto justify-center p-3 sm:p-4">
         <!-- باکس اصلی سفید با انیمیشن -->
-        <div class="animate-fade-slide p-2 shadow-[0px_4px_4px_0px_#00000040] max-w-7xl bg-[#fafafa] rounded-2xl shadow-xl overflow-hidden flex flex-col lg:flex-row opacity-0 transform translate-y-10">
+        <div class="animate-fade-slide w-full overflow-x-hidden p-2 bg-[#fafafa] rounded-2xl shadow-xl flex flex-col lg:flex-row">
         <!-- ستون فرم -->
-        <div class="flex-1 lg:w-5/12 flex items-start justify-center sm:p-4 order-1 lg:order-1 animate-fade-in delay-200">
-            <div class="w-full max-w-md">
-                <h2 class="text-[40px] sm:text-2xl font-bold text-center lg:text-right flex items-center justify-center mt-[30px]">
+        <div class="flex-1 lg:w-1/2 flex items-center justify-center px-3 sm:px-4 order-1 animate-fade-in delay-200">
+
+            <div class="w-full max-w-lg mx-auto">
+                <h2 class="text-[40px] sm:text-2xl font-bold text-center lg:text-right flex items-center justify-center ">
                     اطلاعات کاربر
                 </h2>
-                <p class="text-[10px] text-gray-500 text-center lg:text-right mb-6 flex items-center justify-center">
+                <p class="text-[10px] text-gray-500 text-center lg:text-right mb-6 mt-2 flex items-center justify-center">
                     لطفا اطلاعات را وارد کنید.
                 </p>
                 <!-- نوار مراحل -->
@@ -121,9 +122,9 @@
         </div>
         <!-- ستون تصویر -->
         <div class="flex-1 lg:w-5/12 flex items-center justify-center p-5 sm:p-5 order-2 lg:order-1   mt-6 lg:mt-0 animate-fade-in delay-400">
-            <div class="w-full max-w-[400px]">
+            <div class="w-full max-w-full">
             <img src="https://i.postimg.cc/Vkfgsc4N/download-(5).png" alt="Success Illustration"
-                class="w-full h-auto object-cover rounded-2xl">
+                class="w-full h-auto ">
             </div>
         </div>
         </div>

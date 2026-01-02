@@ -250,9 +250,9 @@
 </div>
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 p-2">
     <!-- جدول و کارت موبایل -->
-    <div class="lg:col-span-2 bg-gray-100 rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
+    <div class="lg:col-span-2 bg-[#fafafa] rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
         <!-- کارت موبایل -->
-        <div class="lg:hidden space-y-3 ">
+        <div class="md:hidden space-y-3 ">
             <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
             <!-- ستون لیست قرضه ها -->
                     <div class="flex items-center gap-1 flex-shrink-0">
@@ -407,7 +407,7 @@
         </div>
 
         <!-- جدول دسکتاپ -->
-        <div class="hidden lg:block overflow-x-auto ">
+        <div class="hidden md:block overflow-x-auto">
         <div class="flex justify-between mb-3">
             <div class="flex gap-1 items-center">
                 <i>
@@ -486,7 +486,7 @@
                 </thead>
                 <tbody>
                     @for ($i=1; $i<=5; $i++)
-                    <tr class="hover:bg-gray-50 border-b-2 border-blue-300">
+                    <tr class="hover:bg-gray-100 border-b-2 border-blue-300">
                         <td class="p-2">{{ $i }}</td>
                         <td class="p-2">محمود عزیزی</td>
                         <td class="p-2"> سامسونګ</td>

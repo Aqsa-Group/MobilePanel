@@ -8,20 +8,22 @@
                         <div class="flex justify-between">
                             <h1 class="font-bold text-2xl">موجودی اجناس:</h1>
                             <div class="bg-[#0948EE] text-white p-2 rounded-lg flex gap-1 items-center cursor-pointer">
-                                <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g clip-path="url(#clip0_464_1107)">
-                                        <path d="M7.52977 13.8047C10.981 13.8047 13.8047 10.981 13.8047 7.52977C13.8047 4.07858 10.981 1.25488 7.52977 1.25488C4.07858 1.25488 1.25488 4.07858 1.25488 7.52977C1.25488 10.981 4.07858 13.8047 7.52977 13.8047Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M5.02002 7.52979H10.0399" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M7.52979 10.0399V5.02002" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_464_1107">
-                                            <rect width="15.0597" height="15.0597" fill="white"/>
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                                <a href="{{ route('device.form') }}" class="hidden md:flex text-sm">
-                                اضافه کردن دستگاه جدید
+                                <a href="{{ route('device.form') }}" class="flex items-center gap-1 p-2 bg-[#0948EE] text-white rounded-lg cursor-pointer">
+                                    <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_464_1107)">
+                                            <path d="M7.52977 13.8047C10.981 13.8047 13.8047 10.981 13.8047 7.52977C13.8047 4.07858 10.981 1.25488 7.52977 1.25488C4.07858 1.25488 1.25488 4.07858 1.25488 7.52977C1.25488 10.981 4.07858 13.8047 7.52977 13.8047Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M5.02002 7.52979H10.0399" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M7.52979 10.0399V5.02002" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_464_1107">
+                                                <rect width="15.0597" height="15.0597" fill="white"/>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                    <span class="hidden md:inline text-sm">
+                                        اضافه کردن دستگاه جدید
+                                    </span>
                                 </a>
                             </div>
                         </div>

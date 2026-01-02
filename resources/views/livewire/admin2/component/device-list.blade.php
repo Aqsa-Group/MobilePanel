@@ -1,6 +1,6 @@
 <div>
-    <div class="pt-24 pb-4 px-4 w-full">
-        <div class="md:grid grid-cols-6 gap-4">
+    <div class="max-w-7xl pt-4 sm:p-0 mx-auto pb-4 px-4 w-full">
+        <div class="md:grid w-full grid-cols-6 gap-4">
             <div class="col-span-4">
                 <!-- Table  -->
                 <div class=" rounded-xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl">

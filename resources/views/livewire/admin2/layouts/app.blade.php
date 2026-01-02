@@ -16,13 +16,18 @@
     </style>
 </head>
 <body class="bg-white">
-    <div class="flex min-h-screen">
-        <aside class="w-0 bg-white sm:w-72 lg:block">
+    <!-- فاصله برای هدر -->
+    <div class="pt-[78px] min-h-screen">
+
+        <div class="flex">
             @include('livewire.admin2.components.sidebar')
-        </aside>
-        <main class="flex-1 sm:-mr-[60px] mx-auto px-4 ">
-            @yield('content')
-        </main>
+
+            <main class="flex-1 w-full px-3 sm:px-4 max-w-7xl overflow-x-hidden mx-auto lg:p-6">
+                @yield('content')
+            </main>
+        </div>
+
     </div>
 </body>
+
 </html>

@@ -1,7 +1,7 @@
 <div class="text-gray-800 ">
-    <div class="min-h-full flex items-center justify-center p-3 sm:p-4">
+    <div class="min-h-full flex items-center  max-w-7xl mx-auto justify-center p-3 sm:p-4">
         <!-- باکس اصلی سفید با انیمیشن -->
-        <div class="animate-fade-slide shadow-xl shadow-[0px_4px_4px_0px_#00000040] max-w-7xl  bg-[#fafafa] rounded-2xl  overflow-hidden flex flex-col lg:flex-row opacity-0 transform translate-y-10">
+        <div class="animate-fade-slide shadow-xl w-full shadow-[0px_4px_4px_0px_#00000040]  bg-[#fafafa] rounded-2xl  overflow-hidden flex flex-col lg:flex-row opacity-0 transform translate-y-10">
         <!-- ستون فرم -->
         <div class="flex-1 lg:w-5/12 flex items-start justify-center sm:p-4 order-1 lg:order-1 animate-fade-in delay-200">
             <div class="w-full max-w-md">
@@ -116,9 +116,9 @@
         </div>
         <!-- ستون تصویر -->
         <div class="flex-1 lg:w-5/12 flex items-center justify-center p-5 sm:p-5 order-2 lg:order-1   mt-6 lg:mt-0 animate-fade-in delay-400">
-            <div class="w-full max-w-[400px]">
+            <div class="w-full max-w-full">
             <img src="https://i.postimg.cc/CMnYr98x/download-(2).png" alt="Success Illustration"
-                class="w-full h-auto object-cover rounded-2xl  ">
+                class="w-full h-auto  ">
             </div>
         </div>
         </div>

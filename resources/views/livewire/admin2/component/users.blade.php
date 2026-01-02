@@ -1,6 +1,6 @@
 <div>
-    <div class="pt-24 px-4 w-full">
-        <div class="w-full rounded-xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl px-8 pt-8 pb-6">
+    <div class="max-w-7xl mx-auto px-4 w-full">
+        <div class="w-full rounded-xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl px-8 pt-5 pb-6">
             <!-- Title -->
             <div class="text-center">
                 <h1 class="font-bold text-2xl md:text-4xl">اطلاعات کاربر</h1>
@@ -170,10 +170,10 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
-                                <p class="md:flex hidden text-xs">فیلتر</p>
+                                <p class="flex  text-xs">فیلتر</p>
                             </div>
                             <div class="relative">
-                                <input type="text" name="" id="" class="py-2 pr-2 bg-[#0948EE14] rounded-lg w-26 md:w-40 outline-none" placeholder="جستجو...">
+                                <input type="text" name="" id="" class="py-2 pr-2 bg-[#0948EE14] rounded-lg w-20 md:w-40 outline-none" placeholder="جستجو">
                                 <div class="absolute top-3 left-2">
                                     <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M6.46875 15.3184C9.42002 15.3184 11.8125 12.793 11.8125 9.67773C11.8125 6.5625 9.42002 4.03711 6.46875 4.03711C3.51748 4.03711 1.125 6.5625 1.125 9.67773C1.125 12.793 3.51748 15.3184 6.46875 15.3184Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -184,8 +184,8 @@
                         </div>
                     </div>
                     <!-- Table -->
-                    <div class="rounded-lg border border-[#0948EE]">
-                        <div class="hidden md:grid grid-cols-12 items-center bg-[#0948EE14] mb-1 px-2 py-4">
+                    <div class="rounded-lg  border border-[#0948EE]">
+                        <div class="hidden  md:grid grid-cols-12 items-center bg-[#0948EE14] mb-1 px-2 py-4">
                             <div class="text-center"><p class="font-bold">#</p></div>
                             <div class="text-center"><p class="font-bold">عکس</p></div>
                             <div class="text-center"><p class="font-bold">نام کامل</p></div>
@@ -377,7 +377,7 @@
                         </div>
                     </div>
                     <!-- Pagination -->
-                    <div   class="pagination mt-5 mr-4 flex gap-2 justify-center sm:justify-start" dir="rtl">
+                    <div   class="pagination mt-5  flex gap-2 justify-center sm:justify-start" dir="rtl">
                         <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">&#60;</a>
                         <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">25</a>
                         <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">...</a>

@@ -95,17 +95,24 @@
     </header>
     <!-- Sidebar -->
     <aside id="sidebar"
-        class="fixed lg inset-y-0 right-0 mt-[70px] z-40 h-full w-55 bg-white shadow shadow-[#0B35CC] transform translate-x-full transition-transform duration-200 ease-out
-            lg:static lg:translate-x-0 lg:flex lg:flex-col lg:w-52 p-2" aria-label="Sidebar">
-        <div class="h-16 flex items-center justify-end px-3">
+        class="fixed lg:static
+    top-20 lg:top-0
+    right-0
+    h-[calc(100vh-5rem)] lg:h-auto
+    w-56
+    bg-white  shadow shadow-[#0B35CC]    duration-200 ease-out
+    z-40  overflow-y-auto
+    transform translate-x-full lg:translate-x-0
+    transition-transform" aria-label="Sidebar">
+        <div class="h-16 flex items-center justify-start ">
             <a id="closeSidebar"
                 class="lg:hidden inline-flex  items-center justify-center rounded-lg border border-gray-200 p-2 hover:bg-gray-100 transition"
                 aria-label="بستن">
                 <i class="fa-solid fa-xmark"></i>
             </a>
         </div>
-        <nav id="menu" class="p-3 mt-0 lg:-mt-16 h-full flex flex-col justify-start ">
-            <div class=" mt-2">
+        <nav id="menu" class="sm:p-7 mt-0  p-3  flex flex-col justify-start ">
+            <div class=" sm:mt-2 mt-0">
                 <a  href="{{ route('dashboard') }}"  data-section="dashboard"
                     class="menu-btn group  w-full  {{ request()->routeIs('dashboard') ? 'bg-blue-600 text-white' : 'text-gray-700' }} text-right flex  gap-3 rounded-xl px-2 py-2 text-sm transition hover:bg-blue-600 hover:text-white">
                     <svg class="group-hover:fill-white" width="22" height="22" viewBox="0 0 22 22" fill="#fff" xmlns="http://www.w3.org/2000/svg">

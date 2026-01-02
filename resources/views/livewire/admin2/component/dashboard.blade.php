@@ -1,6 +1,6 @@
-<div class="pt-24 max-w-7xl mt-[20%]   sm:mt-[0px] px-4 w-full">
+<div class=" max-w-7xl  mx-auto p-4  w-full">
     <!-- Cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 w-full sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="relative card-anim w-full p-6 shadow-[0px_4px_4px_0px_#00000040] shadow-xl rounded-xl bg-white overflow-visible ">
             <div class="w-5 bg-[#0B35CC] absolute right-0 top-0 bottom-0 rounded-xl flex items-center justify-center z-0"></div>
             <!-- نیم‌دایره‌های سفید که نوار آبی را "کات" می‌کنند -->
@@ -440,7 +440,7 @@
         </div>
     </div>
     <!-- نمودارها: ردیف پایین -->
-    <div class="col-span-1 lg:col-span-3 grid grid-cols-1 lg:grid-cols-2 gap-5 mt-6">
+    <div class="col-span-1 w-full lg:col-span-3 grid grid-cols-1 lg:grid-cols-2 gap-5 mt-6">
         <div class="card-anim bg-white shadow-lg rounded-xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl p-5 "style="border-color: rgba(9, 72, 238, 0.15);">
             <div class="flex items-center gap-2 ">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

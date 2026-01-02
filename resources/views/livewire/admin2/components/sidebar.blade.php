@@ -8,9 +8,9 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="fixed top-0 inset-x-0 w-full bg-white z-[60] shadow shadow-[#0B35CC] p-2">
+    <header class="fixed top-0 inset-x-0 w-full h-auto bg-white z-[60] shadow shadow-[#0B35CC] p-2">
         <div class="w-full  lg:px-2">
-            <div class="h-18 flex items-center justify-between">
+            <div class="h-auto flex items-center justify-between">
                 <div class="flex items-center p-3">
                     <button id="openSidebar"
                             class="lg:hidden inline-flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 transition"
@@ -24,26 +24,35 @@
                 </div>
                 <div class="flex-1"></div>
                 <div class="flex items-center gap-2 sm:gap-3">
-                    <div class="w-44 sm:w-60">
-                        <div class="flex items-center h-10 rounded-lg border border-blue-500 bg-gray-50 overflow-hidden">
-                            <span class="flex  gap-[160px] px-2 text-gray-600 shrink-0">
-                                <p> <span class="text-sm pr-1 ">جستجو</span></p>
-                                <svg width="20" height="20" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20.8621 12.3747C20.5137 17.333 16.2118 21.0701 11.2534 20.7218C6.2951 20.3734 2.55797 16.0715 2.90634 11.1131C3.2547 6.15478 7.55664 2.41766 12.515 2.76602C17.4733 3.11439 21.2104 7.41632 20.8621 12.3747Z" stroke="#292D32" stroke-opacity="0.7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M20.9943 20.3334C22.5533 20.9742 22.6281 22.1924 21.1663 23.022C19.8299 23.7802 18.8217 23.148 18.9297 21.6118C18.9996 20.4739 19.9323 19.8979 20.9943 20.3334Z" stroke="#292D32" stroke-opacity="0.7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </span>
-                            <input type="text" class="w-full h-full bg-transparent outline-none px-3 text-sm placeholder-gray-400" />
-                        </div>
+                 <div class="w-10 sm:w-44 md:w-60">
+                    <div class="flex items-center h-10 rounded-full sm:rounded-lg border border-blue-500 bg-gray-50 overflow-hidden
+                                justify-center sm:justify-start sm:pl-2">
+                        <!-- آیکون و متن -->
+                        <span class="flex items-center gap-2 text-gray-600 shrink-0 sm:flex-row-reverse">
+                            <!-- متن فقط در sm به بالا -->
+                            {{-- <p><span class="text-sm hidden sm:inline pr-1">جستجو</span></p> --}}
+                            <!-- آیکون همیشه نمایش داده شود -->
+                            <svg width="20" height="20" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.8621 12.3747C20.5137 17.333 16.2118 21.0701 11.2534 20.7218C6.2951 20.3734 2.55797 16.0715 2.90634 11.1131C3.2547 6.15478 7.55664 2.41766 12.515 2.76602C17.4733 3.11439 21.2104 7.41632 20.8621 12.3747Z" stroke="#292D32" stroke-opacity="0.7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M20.9943 20.3334C22.5533 20.9742 22.6281 22.1924 21.1663 23.022C19.8299 23.7802 18.8217 23.148 18.9297 21.6118C18.9996 20.4739 19.9323 19.8979 20.9943 20.3334Z" stroke="#292D32" stroke-opacity="0.7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+
+                        <!-- ورودی متن فقط در sm به بالا نمایش داده شود -->
+                        <input type="text" placeholder="جستجو" class="w-full h-full bg-transparent outline-none px-3 text-sm placeholder-gray-400 hidden sm:block" />
                     </div>
-                    <button class="rounded-full bg-blue-100  w-8 h-8  transition relative">
+                </div>
+
+
+
+                    <button class="rounded-full bg-blue-100  w-10 h-10  transition relative">
                         <i class="fa-regular fa-bell"></i>
                         <span class="absolute -top-1 -right-1 bg-blue-500 text-white text-[10px] rounded-full px-1.5">3</span>
                     </button>
                     <!-- پروفایل -->
                     <div class="relative">
                         <button id="profileButton" class="flex items-center border border-blue-600 rounded-full p-0.5 gap-2 focus:outline-none" aria-expanded="false" aria-haspopup="true">
-                            <img src="/img/avatar5 1.png" class="w-7 h-7 rounded-full object-cover" alt="user" />
+                            <img src="/img/avatar5 1.png" class="w-10 h-10 rounded-full object-cover" alt="user" />
                         </button>
                         <div id="profileMenu"
                             class="hidden absolute left-0  mt-2 w-[150px] bg-white border border-[#0948EE] rounded-xl shadow shadow-[#0B35CC] overflow-hidden z-50 text-right">
@@ -76,19 +85,21 @@
     </header>
     <!-- Sidebar -->
     <aside id="sidebar"
-        class="fixed lg inset-y-0 right-0 mt-[70px] z-40 h-full w-55 bg-white shadow shadow-[#0B35CC] transform translate-x-full transition-transform duration-200 ease-out
-            lg:static lg:translate-x-0 lg:flex lg:flex-col lg:w-52 p-2" aria-label="Sidebar">
-        <div class="h-16 flex items-center justify-end px-3">
+        class="fixed inset-y-0 right-0 top-16 z-40 h-[calc(100vh-100px)] w-64
+        bg-white shadow shadow-[#0B35CC] h-full
+        transform translate-x-full transition-transform duration-200 ease-out
+        lg:static lg:top-0 lg:h-auto lg:translate-x-0 lg:flex lg:flex-col lg:w-52 p-2" aria-label="Sidebar">
+        <div class="h-16 flex items-center justify-strt px-3">
             <a id="closeSidebar"
-                class="lg:hidden inline-flex  items-center justify-center rounded-lg border border-gray-200 p-2 hover:bg-gray-100 transition"
+                class="lg:hidden inline-flex  items-center justify-center rounded-lg border border-gray-200 p-2 pb-8 hover:bg-gray-100 transition"
                 aria-label="بستن">
                 <i class="fa-solid fa-xmark"></i>
             </a>
         </div>
-        <nav id="menu" class="p-3 mt-0 lg:-mt-16 h-full flex flex-col justify-start ">
-            <div class=" mt-2">
+        <nav id="menu" class="p-3 mt-0  h-full flex flex-col justify-start ">
+            <div >
                 <a  href="{{ route('admin2.dashboard') }}"  data-section="dashboard"
-                    class="menu-btn group  w-full  {{ request()->routeIs('admin2.dashboard') ? 'bg-[#0B35CC] text-white' : 'text-gray-700' }} text-right flex  gap-3 rounded-xl px-2 py-2 text-sm transition hover:bg-[#0B35CC] hover:text-white">
+                    class="menu-btn group sm:-mt-10   w-full  {{ request()->routeIs('admin2.dashboard') ? 'bg-[#0B35CC] text-white' : 'text-gray-700' }} text-right flex  gap-3 rounded-xl px-2 py-2 text-sm transition hover:bg-[#0B35CC] hover:text-white">
                     <svg class="group-hover:fill-white" width="22" height="22" viewBox="0 0 22 22" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3.75 8.64844H5.75C7.75 8.64844 8.75 7.66113 8.75 5.68652V3.71191C8.75 1.7373 7.75 0.75 5.75 0.75H3.75C1.75 0.75 0.75 1.7373 0.75 3.71191V5.68652C0.75 7.66113 1.75 8.64844 3.75 8.64844Z" stroke="black" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M15.75 8.64844H17.75C19.75 8.64844 20.75 7.66113 20.75 5.68652V3.71191C20.75 1.7373 19.75 0.75 17.75 0.75H15.75C13.75 0.75 12.75 1.7373 12.75 3.71191V5.68652C12.75 7.66113 13.75 8.64844 15.75 8.64844Z" stroke="black" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>

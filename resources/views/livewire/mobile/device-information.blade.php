@@ -1,7 +1,7 @@
 <div>
-    <div class="  text-gray-800 flex items-center justify-center p-3 sm:p-4">
+    <div class="  text-gray-800 flex items-center mx-auto max-w-7xl  justify-center p-3 sm:p-4">
     <!-- باکس اصلی سفید -->
-    <div class="max-w-7xl mt-[50] shadow-xl shadow-[0px_4px_4px_0px_#00000040] bg-[#fafafa] mx-auto bg-white rounded-2xl shadow-lg flex flex-col lg:flex-row overflow-hidden">
+    <div class=" mt-[50] shadow-xl w-full shadow-[0px_4px_4px_0px_#00000040] bg-[#fafafa] bg-white rounded-2xl shadow-lg flex flex-col lg:flex-row overflow-hidden">
         <div class="flex-1 lg:w-7/12 flex items-center justify-center p-5 sm:p-6 order-1 lg:order-1">
         <div class="w-full max-w-md text-center lg:text-right">
             <h2 class="text-[40px] sm:text-2xl font-bold text-center lg:text-right flex items-center justify-center mt-[30px]">
@@ -54,9 +54,9 @@
         </div>
         <!-- ستون عکس (در موبایل پایین بیاد) -->
         <div class="flex-1 lg:w-1/12 flex items-center justify-center p-4 sm:p-5 order-2 lg:order-2">
-        <div class="w-full max-w-[400px] rounded-2xl overflow-hidden">
+        <div class="w-full max-w-full rounded-2xl overflow-hidden">
             <img src="https://i.postimg.cc/26KWkgjQ/download-(4).png" alt="Success Illustration"
-                class="w-full h-auto object-cover rounded-2xl">
+                class="w-full h-auto ">
         </div>
         </div>
     </div>

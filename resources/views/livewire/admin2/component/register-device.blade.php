@@ -1,4 +1,4 @@
-<div class="bg-white rounded-2xl shadow-md p-6 w-full max-w-7xl mt-[60%]  sm:mt-[100px] mb-6">
+<div class="bg-white rounded-2xl shadow-md p-6 w-full max-w-7xl mx-auto mb-6">
     <h2 class="text-center text-2xl font-bold mb-1">ثبت دستگاه</h2>
     <p class="text-center text-gray-500 mb-6 text-sm">لطفاً اطلاعات را وارد نمایید.</p>
     <form class="grid grid-cols-1 md:grid-cols-2 gap-4">

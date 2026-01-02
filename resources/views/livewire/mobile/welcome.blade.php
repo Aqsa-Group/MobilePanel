@@ -1,9 +1,9 @@
-<div>
-    <main class=" max-w-7xl xl:-mt-7 overflow-x-hidden lg:h-full xl:h-full  p-4 sm:pt-4 ">
+<div class="min-h-screen w-full flex justify-center">
+    <main class="w-full max-w-7xl px-3 sm:px-4 lg:px-6">
         <section class="col-span-1 lg:col-span-2 rounded-xl p-4 space-y-4">
             <aside class="col-span-1 space-y-5">
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-4">
-                    <div class="card-anim  bg-[#FAFAFA] shadow-xl rounded-xl p-2 shadow-[0px_4px_4px_0px_#00000040]">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <div class="card-anim  bg-[#FAFAFA] shadow-xl p-4 flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#00000040]">
                         <div class=" flex items-end justify-between">
                             <p class="text-[18px] font-bold">تعداد کاربران</p>
                             <svg class="bg-pink-100 p-1 rounded-full" width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -13,9 +13,9 @@
                                 <path d="M18.3401 20C19.0601 19.85 19.7401 19.56 20.3001 19.13C21.8601 17.96 21.8601 16.03 20.3001 14.86C19.7501 14.44 19.0801 14.16 18.3701 14" stroke="#FF00D4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
-                        <h3 class="text-3xl mt-12 font-bold">10</h3>
+                        <h3 class="mt-6 text-xl sm:text-2xl lg:text-3xl font-bold">10</h3>
                     </div>
-                    <div class="card-anim  bg-[#FAFAFA] shadow-xl rounded-xl p-2 shadow-[0px_4px_4px_0px_#00000040]">
+                    <div class="card-anim  bg-[#FAFAFA] shadow-xl rounded-xl p-4 flex flex-col justify-between shadow-[0px_4px_4px_0px_#00000040]">
                         <div class=" flex items-end justify-between">
                             <p class="text-[18px] font-bold">تعدادمشتریان </p>
                             <svg width="35" class="bg-[#E1F0FA] rounded-full p-1" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,9 +34,9 @@
                                 </defs>
                             </svg>
                         </div>
-                        <h3 class="text-3xl mt-12 font-bold">10</h3>
+                        <h3 class="mt-6 text-xl sm:text-2xl lg:text-3xl font-bold">10</h3>
                     </div>
-                    <div class="card-anim  bg-[#FAFAFA] shadow-xl rounded-xl p-2 shadow-[0px_4px_4px_0px_#00000040]">
+                    <div class="card-anim  bg-[#FAFAFA] shadow-xl rounded-xl p-4 flex flex-col justify-between shadow-[0px_4px_4px_0px_#00000040]">
                         <div class=" flex items-end justify-between">
                             <p class="text-[18px] font-bold">فروش روزانه </p>
                             <svg class="bg-[#F0EDF5] rounded-full p-1" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,9 +47,9 @@
                                 <path d="M32.0832 2.9165L24.7915 10.2082" stroke="#31009B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
-                        <h3 class="text-3xl mt-12 font-bold">75,000؋</h3>
+                        <h3 class="mt-6 text-xl sm:text-2xl lg:text-3xl font-bold">75,000؋</h3>
                     </div>
-                    <div class="card-anim  bg-[#FAFAFA] shadow-xl rounded-xl p-2 shadow-[0px_4px_4px_0px_#00000040]">
+                    <div class="card-anim  bg-[#FAFAFA] shadow-xl rounded-xl p-4 flex flex-col justify-between shadow-[0px_4px_4px_0px_#00000040]">
                         <div class=" flex items-end justify-between">
                             <p class="text-[18px] font-bold"> فایده روزانه </p>
                             <svg  class="bg-[#FFF6F2] rounded-full p-1" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,9 +58,9 @@
                                 <path d="M17.4998 32.0832C25.554 32.0832 32.0832 25.554 32.0832 17.4998C32.0832 9.44568 25.554 2.9165 17.4998 2.9165C9.44568 2.9165 2.9165 9.44568 2.9165 17.4998C2.9165 25.554 9.44568 32.0832 17.4998 32.0832Z" stroke="#FF4800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
-                        <h3 class="text-3xl mt-12 font-bold">75,000؋</h3>
+                        <h3 class="mt-6 text-xl sm:text-2xl lg:text-3xl font-bold">75,000؋</h3>
                     </div>
-                    <div class="card-anim  bg-[#FAFAFA] shadow-xl rounded-xl p-2 shadow-[0px_4px_4px_0px_#00000040]">
+                    <div class="card-anim  bg-[#FAFAFA] shadow-xl rounded-xl p-4 flex flex-col justify-between shadow-[0px_4px_4px_0px_#00000040]">
                         <div class=" flex items-end justify-between">
                             <p class="text-[18px] font-bold">موجودی کل اجناس </p>
                             <svg class="bg-[#EEF1FA] rounded-full p-1" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -78,9 +78,9 @@
                                 </defs>
                             </svg>
                         </div>
-                        <h3 class="text-3xl mt-12 font-bold">75,000</h3>
+                        <h3 class="mt-6 text-xl sm:text-2xl lg:text-3xl font-bold">75,000</h3>
                     </div>
-                    <div class="card-anim  bg-[#FAFAFA] shadow-xl rounded-xl p-2 shadow-[0px_4px_4px_0px_#00000040]">
+                    <div class="card-anim  bg-[#FAFAFA] shadow-xl rounded-xl p-4 flex flex-col justify-between shadow-[0px_4px_4px_0px_#00000040]">
                         <div class=" flex items-end justify-between">
                             <p class="text-[18px] font-bold">مجموعه قرضه ها </p>
                             <svg class="bg-[#F0F3F8] p-1 rounded-full" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -100,9 +100,9 @@
                                 </defs>
                             </svg>
                         </div>
-                        <h3 class="text-3xl mt-12 font-bold">75,000؋</h3>
+                        <h3 class="mt-6 text-xl sm:text-2xl lg:text-3xl font-bold">75,000؋</h3>
                     </div>
-                    <div class="card-anim  bg-[#FAFAFA] shadow-xl rounded-xl p-2 shadow-[0px_4px_4px_0px_#00000040]">
+                    <div class="card-anim  bg-[#FAFAFA] shadow-xl rounded-xl p-4 flex flex-col justify-between shadow-[0px_4px_4px_0px_#00000040]">
                         <div class=" flex items-end justify-between">
                             <p class="text-[18px] font-bold"> مصارف امروز</p>
                             <svg class="bg-[#F2EDFA] rounded-full p-1" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -120,9 +120,9 @@
                                 </defs>
                             </svg>
                         </div>
-                        <h3 class="text-3xl mt-12 font-bold">75,000؋</h3>
+                        <h3 class="mt-6 text-xl sm:text-2xl lg:text-3xl font-bold">75,000؋</h3>
                     </div>
-                    <div class="card-anim  bg-[#FAFAFA] shadow-xl rounded-xl p-2 shadow-[0px_4px_4px_0px_#00000040]">
+                    <div class="card-anim  bg-[#FAFAFA] shadow-xl rounded-xl p-4 flex flex-col justify-between shadow-[0px_4px_4px_0px_#00000040]">
                         <div class=" flex items-end justify-between">
                             <p class="text-[18px] font-bold"> مجموعه سرمایه دوکان </p>
                             <svg class="p-1 rounded-full bg-[#EDEFF6]" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -140,13 +140,13 @@
                             </svg>
 
                         </div>
-                        <h3 class="text-3xl mt-12 font-bold">75,000؋</h3>
+                        <h3 class="mt-6 text-xl sm:text-2xl lg:text-3xl font-bold">75,000؋</h3>
                     </div>
                 </div>
             </aside>
             <!-- نمودارها: ردیف پایین -->
-            <div class="col-span-1 lg:col-span-3 p-4 grid grid-cols-1 lg:grid-cols-2 gap-5">
-                <div class="card-anim bg-[#FAFAFA] shadow-[0px_4px_4px_0px_#00000040] shadow-xl rounded-xl  p-5 ">
+            <div class=" grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-5">
+                <div class="card-anim bg-[#FAFAFA] shadow-[0px_4px_4px_0px_#00000040] shadow-xl rounded-xl p-4 sm:p-5">
                     <div class="flex items-center gap-2 ">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6.87988 18.1501V16.0801" stroke="#01BB04" stroke-width="1.5" stroke-linecap="round"/>
@@ -158,9 +158,9 @@
                         </svg>
                         <h3 class="font-bold">مفاد ماهوار</h3>
                     </div>
-                    <canvas id="profitChart" class="mt-4 h-64 w-full"></canvas>
+                    <canvas id="profitChart" class="w-full h-[220px] sm:h-[260px]"></canvas>
                 </div>
-                <div class="card-anim bg-[#FAFAFA] shadow-[0px_4px_4px_0px_#00000040] shadow-xl rounded-xl  p-5 ">
+                <div class="card-anim bg-[#FAFAFA] shadow-[0px_4px_4px_0px_#00000040] shadow-xl rounded-xl p-4 sm:p-5">
                     <div class="flex items-center gap-2">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17.1201 5.84992V7.91992" stroke="#E30000" stroke-width="1.5" stroke-linecap="round"/>
@@ -172,7 +172,7 @@
                         </svg>
                         <h3 class="font-bold">ضرر ماهوار</h3>
                     </div>
-                    <canvas id="lossChart" class="mt-4 h-64 w-full"></canvas>
+                    <canvas id="lossChart" class="w-full h-[220px] sm:h-[260px]"></canvas>
                 </div>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

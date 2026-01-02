@@ -1,4 +1,4 @@
-<div class="overflow-x-hidden">
+<div >
     <!--section 1 -->
     <section class="overflow-x-hidden h-auto mt-4 p-4 max-w-full mx-auto md:flex bg-[#F5F5F580]/50 rounded-xl" >
         <div class="w-full p-2 flex flex-col text-[15px]">
@@ -288,95 +288,95 @@
         </div>
     </section>
     <!--section 1 -->
- <section class="flex flex-col  h-auto p-4 mt-4 max-w-full mx-auto  bg-[#fafafa] rounded-xl" >
-    <div class="w-full h-auto p-2 flex flex-row justify-between text-[20px]">
-        <div>
-            <span class="my-2 mb-6 font-bold">نتایج گزارش:</span>
-            <span class="text-[15px]">فاکتور فروش</span>
-            <span class=" text-[12px] text-center px-3 py-1 rounded-xl bg-[#0B35CC] text-white">
-                20 مورد
-            </span>
-        </div>
-        <div class="flex flex-wrap md:flex-nowrap gap-3 text-[10px]">
-            <div class="flex flex-row justify-center items-center px-4 bg-[#0948EE14] rounded-xl gap-1 h-[25px] md:h-[40px] w-fit">
-                <button class="flex flex-row items-center gap-1 px-2">
-                    <img src="https://i.postimg.cc/hj21BNQK/x.png" class="w-[11px] h-[14px]">
-                    <span>چاپ کردن به اکسل</span>
-                </button>
+    <section class="flex flex-col  h-auto p-4 mt-4 max-w-full mx-auto  bg-[#fafafa] rounded-xl" >
+        <div class="w-full h-auto p-2 flex flex-row justify-between text-[20px]">
+            <div>
+                <span class="my-2 mb-6 font-bold">نتایج گزارش:</span>
+                <span class="text-[15px]">فاکتور فروش</span>
+                <span class=" text-[12px] text-center px-3 py-1 rounded-xl bg-[#0B35CC] text-white">
+                    20 مورد
+                </span>
             </div>
-            <div class="flex flex-row justify-center items-center px-4 bg-[#0948EE14] rounded-xl gap-1 h-[25px] md:h-[40px] w-fit">
-                <button class="flex flex-row items-center gap-1 px-2">
-                    <img src="https://i.postimg.cc/CKzF7qCm/pdf.png" class="w-[11px] h-[14px]">
-                    <span>چاپ کردن به پی دی اف</span>
-                </button>
+            <div class="flex flex-wrap md:flex-nowrap gap-3 text-[10px]">
+                <div class="flex flex-row justify-center items-center px-4 bg-[#0948EE14] rounded-xl gap-1 h-[25px] md:h-[40px] w-fit">
+                    <button class="flex flex-row items-center gap-1 px-2">
+                        <img src="https://i.postimg.cc/hj21BNQK/x.png" class="w-[11px] h-[14px]">
+                        <span>چاپ کردن به اکسل</span>
+                    </button>
+                </div>
+                <div class="flex flex-row justify-center items-center px-4 bg-[#0948EE14] rounded-xl gap-1 h-[25px] md:h-[40px] w-fit">
+                    <button class="flex flex-row items-center gap-1 px-2">
+                        <img src="https://i.postimg.cc/CKzF7qCm/pdf.png" class="w-[11px] h-[14px]">
+                        <span>چاپ کردن به پی دی اف</span>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- TABLE (Laptop) -->
-    <div class="hidden md:flex flex-col justify-center w-full h-auto gap-1 mt-2 border border-[#0948EE80] rounded-xl">
-        <table class="w-full text-center border-separate border-spacing-0">
-            <tr>
-                <th class="p-2 text-[14px] bg-[#0948EE26]">#</th>
-                <th class="p-2 text-[14px] bg-[#0948EE26]">نام مشتری</th>
-                <th class="p-2 text-[14px] bg-[#0948EE26]">مدل دستگاه</th>
-                <th class="p-2 text-[14px] bg-[#0948EE26]">قیمت</th>
-                <th class="p-2 text-[14px] bg-[#0948EE26]">شماره IMEI</th>
-                <th class="p-2 text-[14px] bg-[#0948EE26]">تاریخ فروش</th>
-            </tr>
-            <tbody class="text-[13px] font-semibold">
+        <!-- TABLE (Laptop) -->
+        <div class="hidden md:flex flex-col justify-center w-full h-auto gap-1 mt-2 border border-[#0948EE80] rounded-xl">
+            <table class="w-full text-center border-separate border-spacing-0">
                 <tr>
-                    <td>1</td>
-                    <td>احمد عزیزی</td>
-                    <td>سامسونگ A20</td>
-                    <td>15000.000؋</td>
-                    <td>0767567567</td>
-                    <td>1404/2/30</td>
+                    <th class="p-2 text-[14px] bg-[#0948EE26]">#</th>
+                    <th class="p-2 text-[14px] bg-[#0948EE26]">نام مشتری</th>
+                    <th class="p-2 text-[14px] bg-[#0948EE26]">مدل دستگاه</th>
+                    <th class="p-2 text-[14px] bg-[#0948EE26]">قیمت</th>
+                    <th class="p-2 text-[14px] bg-[#0948EE26]">شماره IMEI</th>
+                    <th class="p-2 text-[14px] bg-[#0948EE26]">تاریخ فروش</th>
                 </tr>
-            </tbody>
-        </table>
-    </div>
-     <!-- صفحه بندی -->
-
-    <!-- MOBILE CARDS -->
-    <div class="md:hidden mt-3 space-y-3">
-        <div class="grid grid-cols-2 gap-3 border border-[#0948EE80] rounded-xl p-3 text-[12px]">
-            <div>
-                <span class="text-gray-500">نام مشتری</span>
-                <div class="font-semibold mt-1">احمد عزیزی</div>
-            </div>
-            <div>
-                <span class="text-gray-500">مدل دستگاه</span>
-                <div class="font-semibold mt-1">سامسونگ A20</div>
-            </div>
-            <div>
-                <span class="text-gray-500">قیمت</span>
-                <div class="font-semibold mt-1">15000.000؋</div>
-            </div>
-            <div>
-                <span class="text-gray-500">شماره IMEI</span>
-                <div class="font-semibold mt-1">0767567567</div>
-            </div>
-            <div>
-                <span class="text-gray-500">تاریخ فروش</span>
-                <div class="font-semibold mt-1">1404/2/30</div>
-            </div>
-            <div>
-                <span class="text-gray-500">شماره</span>
-                <div class="font-semibold mt-1">1</div>
-            </div>
+                <tbody class="text-[13px] font-semibold">
+                    <tr>
+                        <td>1</td>
+                        <td>احمد عزیزی</td>
+                        <td>سامسونگ A20</td>
+                        <td>15000.000؋</td>
+                        <td>0767567567</td>
+                        <td>1404/2/30</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+        <!-- صفحه بندی -->
 
-    </div>
-      <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
-        <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">‹</button>
-        <button class="w-7 h-7 rounded-md border border-blue-500 text-blue-600 bg-[#F3F3F3] text-xs font-medium">1</button>
-        <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">2</button>
-        <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] text-xs">...</button>
-        <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">25</button>
-        <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">›</button>
-    </div>
-</section>
+        <!-- MOBILE CARDS -->
+        <div class="md:hidden mt-3 space-y-3">
+            <div class="grid grid-cols-2 gap-3 border border-[#0948EE80] rounded-xl p-3 text-[12px]">
+                <div>
+                    <span class="text-gray-500">نام مشتری</span>
+                    <div class="font-semibold mt-1">احمد عزیزی</div>
+                </div>
+                <div>
+                    <span class="text-gray-500">مدل دستگاه</span>
+                    <div class="font-semibold mt-1">سامسونگ A20</div>
+                </div>
+                <div>
+                    <span class="text-gray-500">قیمت</span>
+                    <div class="font-semibold mt-1">15000.000؋</div>
+                </div>
+                <div>
+                    <span class="text-gray-500">شماره IMEI</span>
+                    <div class="font-semibold mt-1">0767567567</div>
+                </div>
+                <div>
+                    <span class="text-gray-500">تاریخ فروش</span>
+                    <div class="font-semibold mt-1">1404/2/30</div>
+                </div>
+                <div>
+                    <span class="text-gray-500">شماره</span>
+                    <div class="font-semibold mt-1">1</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
+            <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">‹</button>
+            <button class="w-7 h-7 rounded-md border border-blue-500 text-blue-600 bg-[#F3F3F3] text-xs font-medium">1</button>
+            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">2</button>
+            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] text-xs">...</button>
+            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">25</button>
+            <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">›</button>
+        </div>
+    </section>
 
     <script>
         document.querySelectorAll('.btn').forEach(btn =>{

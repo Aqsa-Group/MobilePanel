@@ -347,7 +347,7 @@
                     </thead>
                     <tbody>
                         @for ($i=1; $i<=5; $i++)
-                        <tr class="hover:bg-gray-50 text-[11px]  border-b-2 border-blue-200">
+                        <tr class="hover:bg-gray-100 text-[11px]  border-b-2 border-blue-200">
                             <td class="p-2">{{ $i }}</td>
                             <td class="p-2"> کرایه</td>
                             <td class="p-2">1404/2/30</td>
