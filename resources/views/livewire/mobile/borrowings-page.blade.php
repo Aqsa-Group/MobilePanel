@@ -1,6 +1,6 @@
 <div class="p-3">
     <!--  کارت های آماری  -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto  gap-4 mb-4 ">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 max-w-full mx-auto  gap-4 mb-4 ">
         <!-- کارت 1 -->
         <div class="bg-[#0B35CC]/10 rounded-2xl border-r-[3px] card-anim      border-[#0B35CC] shadow-xl shadow-[0px_4px_4px_0px_#00000040] p-4">
             <div class="flex justify-between items-center mb-1">
@@ -93,7 +93,7 @@
 
         </div>
     </div>
-    <div class="grid grid-cols-1 max-w-7xl mx-auto lg:grid-cols-3 gap-3">
+    <div class="grid grid-cols-1 max-w-full mx-auto lg:grid-cols-3 gap-3">
         <!-- فرم -->
         <div class="bg-[#fafafa] rounded-2xl shadow-[0_4px_12px] shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
             <div class="flex justify-between mb-2 shadow p-3 rounded-xl border border-black">

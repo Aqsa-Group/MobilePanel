@@ -1,6 +1,6 @@
 <div>
-    <main class="max-w-9xl mx-auto   mt-2 ">
-        <section class="  max-w-7xl m-2   mx-auto h-full flex flex-col bg-[#FAFAFA] rounded-2xl shadow shadow-[0px_4px_4px_0px_#00000040] p-2  items-center"
+    <main class=" mx-auto max-w-full   mt-2 ">
+        <section class=" w-full  m-2   mx-auto h-full flex flex-col bg-[#FAFAFA] rounded-2xl shadow shadow-[0px_4px_4px_0px_#00000040] p-2  items-center"
             >
             <!--header-->
             <div class="flex flex-col md:flex-row justify-between items-center w-full mt-1 gap-1 md:gap-2">

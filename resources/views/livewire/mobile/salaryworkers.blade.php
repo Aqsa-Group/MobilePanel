@@ -1,5 +1,5 @@
 <div class="w-full">
-    <div class="py-4 px-4 max-w-7xl mx-auto md:px-0">
+    <div class="py-4 px-4 max-w-full mx-auto md:px-0">
         <!-- Cards -->
     <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full">
 

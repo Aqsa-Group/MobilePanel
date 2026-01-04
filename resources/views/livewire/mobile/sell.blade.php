@@ -2,7 +2,7 @@
 <div class="p-3 ">
 
     <!--  کارت های آماری  -->
-    <div class="gap-4 max-w-7xl mx-auto md:gap-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-8 mt-4 ">
+    <div class="gap-4 max-w-full mx-auto md:gap-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-8 mt-4 ">
         <div class="bg-[#0B35CC]/10 rounded-2xl space-y-5 h-28 p-4  border-r-[3px]     border-[#0B35CC] shadow-xl shadow-[0px_4px_4px_0px_#00000040] transition-all duration-200 hover:scale-105 cursor-pointer">
             <div class="flex justify-between items-center">
                 <h1 class="font-bold">مفاد کل فروشات</h1>
@@ -76,7 +76,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 max-w-7xl  gap-3">
+    <div class="grid grid-cols-1 max-w-full mx-auto  gap-3">
 
 
         <!-- جدول و کارت موبایل -->

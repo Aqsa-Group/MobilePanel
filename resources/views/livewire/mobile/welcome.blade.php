@@ -1,5 +1,5 @@
-<div class="min-h-screen w-full flex justify-center">
-    <main class="w-full max-w-7xl px-3 sm:px-4 lg:px-6">
+<div class="min-h-screen max-w-full mx-auto flex justify-center">
+    <main class="w-full px-3 sm:px-4 lg:px-6">
         <section class="col-span-1 lg:col-span-2 rounded-xl p-4 space-y-4">
             <aside class="col-span-1 space-y-5">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

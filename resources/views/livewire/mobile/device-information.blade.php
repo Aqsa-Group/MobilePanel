@@ -1,5 +1,5 @@
 <div>
-    <div class="  text-gray-800 flex items-center mx-auto max-w-7xl  justify-center p-3 sm:p-4">
+    <div class="  text-gray-800 flex items-center mx-auto max-w-full  justify-center p-3 sm:p-4">
     <!-- باکس اصلی سفید -->
     <div class=" mt-[50] shadow-xl w-full shadow-[0px_4px_4px_0px_#00000040] bg-[#fafafa] bg-white rounded-2xl shadow-lg flex flex-col lg:flex-row overflow-hidden">
         <div class="flex-1 lg:w-7/12 flex items-center justify-center p-5 sm:p-6 order-1 lg:order-1">

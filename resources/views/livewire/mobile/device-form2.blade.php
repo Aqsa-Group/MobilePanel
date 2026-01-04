@@ -1,5 +1,5 @@
 <div class="text-gray-800 ">
-    <div class="min-h-full flex items-center  max-w-7xl mx-auto justify-center p-3 sm:p-4">
+    <div class="min-h-full flex items-center  max-w-full mx-auto justify-center p-3 sm:p-4">
         <!-- باکس اصلی سفید با انیمیشن -->
         <div class="animate-fade-slide shadow-xl w-full shadow-[0px_4px_4px_0px_#00000040]  bg-[#fafafa] rounded-2xl  overflow-hidden flex flex-col lg:flex-row opacity-0 transform translate-y-10">
         <!-- ستون فرم -->

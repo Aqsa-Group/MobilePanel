@@ -185,3 +185,17 @@ Route::prefix('admin2')->group(function () {
 // support
 Route::get('/admin2/support', AdminSupport::class)
     ->name('admin2.support');
+
+use App\Livewire\Website\Home;
+use App\Livewire\Website\About;
+use App\Livewire\Website\Contact;
+
+Route::prefix('website')
+    ->name('website.')
+    ->group(function () {
+
+        Route::get('/', Home::class)->name('home');
+        // Route::get('/about', About::class)->name('about');
+        // Route::get('/contact', Contact::class)->name('contact');
+
+    });

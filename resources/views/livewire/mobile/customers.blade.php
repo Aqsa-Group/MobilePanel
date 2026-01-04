@@ -1,7 +1,7 @@
 <div>
-    <main class=" max-w-7xl mx-auto mt-2 ">
+    <main class=" max-w-full mx-auto mt-2 ">
         <!--section 1-->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-2 md:gap-4 max-w-7xl h-auto  p-2 mx-auto items-center"
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-2 md:gap-4 max-w-full h-auto  p-2 mx-auto items-center"
            >
             <!--No 1 -->
             <div

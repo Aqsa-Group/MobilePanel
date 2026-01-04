@@ -1,5 +1,5 @@
 <div> <!-- المان ریشه Livewire -->
-    <div class="flex max-w-7xl mx-auto">
+    <div class="flex max-w-full mx-auto">
         <!-- Main -->
         <div class="pt-8 pb-4 px-4 w-full">
             <!-- Cards -->
