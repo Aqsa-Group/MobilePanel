@@ -61,7 +61,7 @@
                                 <div class="col-span-2 text-center"><p class="font-bold">مدل دستگاه</p></div>
                                 <div class="text-center"><p class="font-bold">حافظه</p></div>
                                 <div class="col-span-2 text-center"><p class="font-bold">شماره IMEI</p></div>
-                                <div class="col-span-3 text-center"><p class="font-bold">  فروشگاه</p></div>
+                                <div class="col-span-3 text-center"><p class="font-bold">  حالت</p></div>
                                 <div class="col-span-2 text-center"><p class="font-bold">حالت موجودی</p></div>
                                 <div class="text-center"><p class="font-bold">ادیت</p></div>
                                 <div class="text-center"><p class="font-bold">حذف</p></div>
@@ -75,8 +75,8 @@
                                         <p class="text-sm">0798554322</p>
                                     </div>
                                     <div class="col-span-2 text-center">
-                                        <h1 class="text-[#00000080]  block md:hidden">  فروشگاه</h1>
-                                        <p class="text-sm">مطمین مبایل</p>
+                                        <h1 class="text-[#00000080]  block md:hidden">  حالت</h1>
+                                        <p class="text-sm">جدید</p>
                                     </div>
                                     <div class="text-center">
                                         <h1 class="text-[#00000080] block md:hidden">حالت موجودی</h1>
@@ -114,8 +114,8 @@
                                         <p class="text-sm">0798554322</p>
                                     </div>
                                     <div class="col-span-2 text-center">
-                                        <h1 class="text-[#00000080] block md:hidden">  فروشگاه</h1>
-                                        <p class="text-sm">مطمین مبایل</p>
+                                        <h1 class="text-[#00000080] block md:hidden">  حالت</h1>
+                                        <p class="text-sm">جدید</p>
                                     </div>
                                     <div class="text-center">
                                         <h1 class="text-[#00000080] block md:hidden">حالت موجودی</h1>
@@ -153,8 +153,8 @@
                                         <p class="text-sm">0798554322</p>
                                     </div>
                                     <div class="col-span-2 text-center">
-                                        <h1 class="text-[#00000080] block md:hidden">  فروشگاه</h1>
-                                        <p class="text-sm">مطمین مبایل</p>
+                                        <h1 class="text-[#00000080] block md:hidden">  حالت</h1>
+                                        <p class="text-sm">جدید</p>
                                     </div>
                                     <div class="text-center">
                                         <h1 class="text-[#00000080] block md:hidden">حالت موجودی</h1>
@@ -192,8 +192,8 @@
                                         <p class="text-sm">0798554322</p>
                                     </div>
                                     <div class="col-span-2 text-center">
-                                        <h1 class="text-[#00000080] block md:hidden">  فروشگاه</h1>
-                                        <p class="text-sm">مطمین مبایل</p>
+                                        <h1 class="text-[#00000080] block md:hidden">  حالت</h1>
+                                        <p class="text-sm">جدید</p>
                                     </div>
                                     <div class="text-center">
                                         <h1 class="text-[#00000080] block md:hidden">حالت موجودی</h1>
@@ -231,8 +231,8 @@
                                         <p class="text-sm">0798554322</p>
                                     </div>
                                     <div class="col-span-2 text-center">
-                                        <h1 class="text-[#00000080] block md:hidden">  فروشگاه</h1>
-                                        <p class="text-sm">مطمین مبایل</p>
+                                        <h1 class="text-[#00000080] block md:hidden">  حالت</h1>
+                                        <p class="text-sm">جدید</p>
                                     </div>
                                     <div class="text-center">
                                         <h1 class="text-[#00000080] block md:hidden">حالت موجودی</h1>
