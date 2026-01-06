@@ -1,6 +1,6 @@
 <div class="max-w-full mx-auto">
     <!-- کارت بزرگ -->
-    <div class="bf-[#fafafa] rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl p-5 mt-3">
+    <div class="bg-[#616161]/5 rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl p-5 mt-3">
         <div class="flex gap-2">
             <span><svg width="24" height="24" class="mt-1" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2.66162 11.333H15.3283" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -250,7 +250,7 @@
 </div>
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 p-2">
     <!-- جدول و کارت موبایل -->
-    <div class="lg:col-span-2 bg-[#fafafa] rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
+    <div class="lg:col-span-2 bg-[#616161]/5 rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
         <!-- کارت موبایل -->
         <div class="md:hidden space-y-3 ">
             <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
@@ -299,11 +299,11 @@
                                 </defs>
                                 </svg>
                     </span>
-                    <input type="text" class="p-1 pr-8 w-full   bg-[#0B35CC]/20 rounded-xl" placeholder="فیلتر">
+                    <input type="text" class="p-1 pr-8 w-full   bg-[#0948EE]/60 rounded-xl" placeholder="فیلتر">
                 </div>
                 <!-- جستجو -->
                 <div class="relative flex-1">
-                    <input type="text" class="p-1 w-full  bg-[#0B35CC]/20  rounded-xl" placeholder="جستجو....">
+                    <input type="text" class="p-1 w-full  bg-[#0948EE]/60  rounded-xl" placeholder="جستجو....">
                     <span class="absolute left-1 top-1.5 text-gray-600">
                         <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.46875 15.3184C9.42002 15.3184 11.8125 12.793 11.8125 9.67773C11.8125 6.5625 9.42002 4.03711 6.46875 4.03711C3.51748 4.03711 1.125 6.5625 1.125 9.67773C1.125 12.793 3.51748 15.3184 6.46875 15.3184Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -452,11 +452,11 @@
                         </svg>
 
                     </span>
-                    <input type="text" class="p-1 pr-8 w-[100px]   bg-[#0B35CC]/20 rounded-xl" placeholder="فیلتر">
+                    <input type="text" class="p-1 pr-8 w-[100px]   bg-[#0948EE]/20 rounded-xl" placeholder="فیلتر">
                 </div>
                 <!-- جستجو -->
                 <div class="relative mb-1">
-                    <input type="text" class="p-1 w-[170px]  bg-[#0B35CC]/20  rounded-xl" placeholder="جستجو....">
+                    <input type="text" class="p-1 w-[170px]  bg-[#0948EE]/20  rounded-xl" placeholder="جستجو....">
                     <span class="absolute left-1 top-1.5 text-gray-600">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" class="w-4 h-4">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
@@ -465,8 +465,8 @@
                 </div>
             </div>
         </div>
-            <table class="w-full text-center  border-2 border-blue-300 text-sm border-collapse">
-                <thead class="bg-[#0B35CC]/20  border-b-2 w-full border-blue-300 text-center">
+            <table class="w-full text-center  border-2 border-[#0948EE] text-sm border-collapse">
+                <thead class="bg-[#0948EE]  border-b-2 w-full border-[#0948EE] text-white text-center">
                     <tr>
                         <th class="p-2">شماره</th>
                         <th class="p-2">نام مشتری</th>
@@ -486,7 +486,7 @@
                 </thead>
                 <tbody>
                     @for ($i=1; $i<=5; $i++)
-                    <tr class="hover:bg-gray-100 border-b-2 border-blue-300">
+                    <tr class="hover:bg-gray-200 border-b-2 border-[#0948EE]">
                         <td class="p-2">{{ $i }}</td>
                         <td class="p-2">محمود عزیزی</td>
                         <td class="p-2"> سامسونګ</td>
@@ -530,12 +530,12 @@
 
         <!-- صفحه بندی -->
         <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
-            <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">‹</button>
-            <button class="w-7 h-7 rounded-md border border-blue-500 text-blue-600 bg-[#F3F3F3] text-xs font-medium">1</button>
-            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">2</button>
-            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] text-xs">...</button>
-            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">25</button>
-            <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">›</button>
+            <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white">‹</button>
+            <button class="w-7 h-7 rounded-md border border-blue-500 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs font-medium">1</button>
+            <button class="w-7 h-7 rounded-md border border-transparent bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs">2</button>
+            <button class="w-7 h-7 rounded-md border border-transparent bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs">...</button>
+            <button class="w-7 h-7 rounded-md border border-transparent bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs">25</button>
+            <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white">›</button>
         </div>
     </div>
 </div>

@@ -3,7 +3,7 @@
     <!--  کارت های آماری  -->
     <div class="grid grid-cols-1 max-w-full mx-auto sm:grid-cols-1  lg:grid-cols-4 gap-4 mb-4  ">
         <!-- کارت 1 -->
-        <div class="bg-[#0B35CC]/10 rounded-2xl  border-r-[2px] card-anim      border-[#0B35CC] shadow-xl shadow-[0px_4px_4px_0px_#00000040] p-4  ">
+        <div class="bg-[#0948EE]/20 rounded-2xl  border-r-[2px] card-anim      border-[#0B35CC] shadow-xl shadow-[0px_4px_4px_0px_#00000040] p-4  ">
             <div class="flex  justify-between items-center mb-1">
                 <span class="text-sm text-gray-600 mb-6">   برداشت امروز</span>
                 <i class="bi bi-cash text-blue-600 text-xl mb-6 rounded-full bg-[#0B35CC]/20 w-8 h-8">
@@ -87,7 +87,7 @@
     </div>
     <div class="grid grid-cols-1 max-w-full mx-auto lg:grid-cols-3 gap-3">
         <!-- فرم -->
-        <div class="bg-[#fafafa] rounded-2xl shadow-xl shadow-[0px_4px_4px_0px_#00000040] border border-gray-200 w-full lg:max-w-full p-3">
+        <div class="bg-[#616161]/5  rounded-2xl shadow-xl shadow-[0px_4px_4px_0px_#00000040] border border-gray-200 w-full lg:max-w-full p-3">
             <div class="flex justify-between mb-2 shadow p-3 rounded-xl border border-black">
                 <div class="flex gap-2 mt-3">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -158,7 +158,7 @@
             </div>
         </div>
         <!-- جدول و کارت موبایل -->
-        <div class="lg:col-span-2 bg-[#fafafa] rounded-2xl shadow-[0_4px_12px] shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
+        <div class="lg:col-span-2 bg-[#616161]/5  rounded-2xl shadow-[0_4px_12px] shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
             <!-- کارت موبایل -->
             <div class="lg:hidden space-y-3 ">
                 <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
@@ -319,11 +319,11 @@
                                 </defs>
                                 </svg>
                             </span>
-                            <input type="text" class="p-2 pr-8 w-[100px]  text-[13px] bg-[#0B35CC]/10 rounded-xl" placeholder="فیلتر">
+                            <input type="text" class="p-2 pr-8 w-[100px]  text-[13px] bg-[#0948EE]/20 rounded-xl" placeholder="فیلتر">
                         </div>
                         <!-- جستجو -->
                         <div class="relative mb-1">
-                            <input type="text" class="p-2 w-[170px]  bg-[#0B35CC]/10 text-[13px]  rounded-xl" placeholder="جستجو....">
+                            <input type="text" class="p-2 w-[170px]  bg-[#0948EE]/20 text-[13px]  rounded-xl" placeholder="جستجو....">
                             <span class="absolute left-1 mt-1 top-1.5 text-gray-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" class="w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
@@ -332,8 +332,8 @@
                         </div>
                     </div>
                 </div>
-                <table class="w-full text-center  border-2 border-blue-200 text-sm border-collapse">
-                    <thead class="bg-[#0B35CC]/10">
+                <table class="w-full text-center  border-2 border-[#0948EE] text-sm border-collapse">
+                    <thead class="bg-[#0948EE] text-white">
                         <tr>
                             <th class="p-2 text-[12px]">شماره</th>
                             <th class="p-2 text-[12px]"> نوع برداشت</th>
@@ -347,7 +347,7 @@
                     </thead>
                     <tbody>
                         @for ($i=1; $i<=5; $i++)
-                        <tr class="hover:bg-gray-100 text-[11px]  border-b-2 border-blue-200">
+                        <tr class="hover:bg-gray-200 text-[11px]  border-b-2 border-[#0948EE]">
                             <td class="p-2">{{ $i }}</td>
                             <td class="p-2"> کرایه</td>
                             <td class="p-2">1404/2/30</td>
@@ -392,12 +392,12 @@
             </div>
             <!-- صفحه بندی -->
             <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
-                <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">‹</button>
-                <button class="w-7 h-7 rounded-md border border-blue-500 text-blue-600 bg-[#F3F3F3] text-xs font-medium">1</button>
-                <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">2</button>
-                <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] text-xs">...</button>
-                <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">25</button>
-                <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">›</button>
+                <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white">‹</button>
+                <button class="w-7 h-7 rounded-md border border-blue-500 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs font-medium">1</button>
+                <button class="w-7 h-7 rounded-md border border-transparent bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs">2</button>
+                <button class="w-7 h-7 rounded-md border border-transparent bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs">...</button>
+                <button class="w-7 h-7 rounded-md border border-transparent bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs">25</button>
+                <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white">›</button>
             </div>
         </div>
     </div>

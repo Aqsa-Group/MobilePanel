@@ -1,6 +1,6 @@
 <div>
     <main class=" mx-auto max-w-full   mt-2 ">
-        <section class=" w-full  m-2   mx-auto h-full flex flex-col bg-[#FAFAFA] rounded-2xl shadow shadow-[0px_4px_4px_0px_#00000040] p-2  items-center"
+        <section class=" w-full  m-2   mx-auto h-full flex flex-col bg-[#616161]/5 rounded-2xl shadow shadow-[0px_4px_4px_0px_#00000040] p-2  items-center"
             >
             <!--header-->
             <div class="flex flex-col md:flex-row justify-between items-center w-full mt-1 gap-1 md:gap-2">
@@ -36,8 +36,8 @@
 
                     <!--search-->
                     <div class="relative  w-[60px]  md:w-[150px]  ">
-                        <input type="text" class="w-full h-full rounded-md md:rounded-xl bg-[#0948EE14] absolute top-0
-                                pr-2 text-[7px] p-4 md:text-[10px]" placeholder="جستجو">
+                        <input type="text" class="w-full h-full rounded-md md:rounded-xl bg-[#0948EE]/20 absolute top-0
+                                pr-2 text-[7px] p-4  md:text-[10px]" placeholder="جستجو">
                         <!--mobile mode-->
                         <span class="absolute md:hidden left-1  top-3">
                             <svg width="14" height="14" viewBox="0 0 19 19" fill="none"
@@ -65,7 +65,7 @@
                     </div>
                     <!--filter-->
                     <div
-                        class="flex flex-row justify-center h-10 rounded-md md:rounded-xl bg-[#0948EE14]  gap-1  items-center px-2 md:px-4 ">
+                        class="flex flex-row justify-center h-10 rounded-md md:rounded-xl  bg-[#0948EE]/20  gap-1  items-center px-2 md:px-4 ">
                         <!--mobile mode-->
                         <span class="block md:hidden">
                             <svg width="10" height="10" viewBox="0 0 14 14" fill="none" class="w-4 h-4 md:w-6 md:h-6 shrink-0"
@@ -134,7 +134,7 @@
                     </div>
                     <!--sort by-->
                     <div
-                        class="flex flex-row justify-center rounded-md md:rounded-xl bg-[#0948EE14]  gap-1  items-center px-1 md:px-4 ">
+                        class="flex flex-row justify-center rounded-md md:rounded-xl  bg-[#0948EE]/20  gap-1  items-center px-1 md:px-4 ">
                         <!--mobile mode-->
                         <span class="block p-3 md:hidden">
                             <svg width="10" height="10" viewBox="0 0 14 14" fill="none"
@@ -224,17 +224,17 @@
                     <!--title-->
                     <table class="w-full text-center border-separate border-spacing-0 text-lg" style="font-style: Regular;">
                         <tr>
-                            <th class="p-4 text-[12px] bg-[#0948EE26]">عکس</th>
-                            <th class="p-4 text-[12px] bg-[#0948EE26]">نام کامل</th>
-                            <th class="p-4 text-[12px] bg-[#0948EE26]">اسم کاربری</th>
-                            <th class="p-4 text-[12px] bg-[#0948EE26]">شماره</th>
-                            <th class="p-4 text-[12px] bg-[#0948EE26]">ایمیل</th>
-                            <th class="p-4 text-[12px] bg-[#0948EE26]">آدرس</th>
-                            <th class="p-4 text-[12px] bg-[#0948EE26]">نقش</th>
-                            <th class="p-4 text-[12px] bg-[#0948EE26]">وضعیت</th>
-                            <th class="p-4 text-[12px] bg-[#0948EE26]">پسورد</th>
-                            <th class="p-4 text-[12px] bg-[#0948EE26]">ادیت</th>
-                            <th class="p-4 text-[12px] bg-[#0948EE26]">حذف</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">عکس</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">نام کامل</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">اسم کاربری</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">شماره</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">ایمیل</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">آدرس</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">نقش</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">وضعیت</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">پسورد</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">ادیت</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">حذف</th>
                         </tr>
                         <tbody class="[&>tr:not(:last-child)>td]:border-b [&>tr:not(:last-child)>td]:border-[#0948EE] text-[10px]">
                             <tr>
@@ -330,14 +330,14 @@
                 <!--pagination (both desktop & mobile) -->
                 <div class="flex flex-wrap gap-1 justify-center md:justify-between items-center mt-3 text-[10px]">
                     <div class="flex flex-row-reverse gap-1 flex-wrap justify-center">
-                        <button class="bg-[#0948EE14] rounded-md px-2 py-1 items-center">&gt;</button>
-                        <button class="bg-[#0948EE14] rounded-md px-2 py-1 items-center">1</button>
-                        <button class="bg-[#0948EE14] rounded-md px-2 py-1 items-center">2</button>
-                        <button class="bg-[#0948EE14] rounded-md px-2 py-1 items-center">3</button>
-                        <button class="bg-[#0948EE14] rounded-md px-2 py-1 items-center">4</button>
-                        <button class="bg-[#0948EE14] rounded-md px-2 py-1 flex items-center justify-center text-center">...</button>
-                        <button class="bg-[#0948EE14] rounded-md px-2 py-1 items-center">25</button>
-                        <button class="bg-[#0948EE14] rounded-md px-2 py-1 items-center">&lt;</button>
+                        <button class="bg-[#0948EE]/60 hover:bg-[#0948EE] text-white rounded-md px-2 py-1 items-center">&gt;</button>
+                        <button class="bg-[#0948EE]/60 hover:bg-[#0948EE] text-white rounded-md px-2 py-1 items-center">1</button>
+                        <button class="bg-[#0948EE]/60 hover:bg-[#0948EE] text-white rounded-md px-2 py-1 items-center">2</button>
+                        <button class="bg-[#0948EE]/60 hover:bg-[#0948EE] text-white rounded-md px-2 py-1 items-center">3</button>
+                        <button class="bg-[#0948EE]/60 hover:bg-[#0948EE] text-white rounded-md px-2 py-1 items-center">4</button>
+                        <button class="bg-[#0948EE]/60 hover:bg-[#0948EE] text-white rounded-md px-2 py-1 flex items-center justify-center text-center">...</button>
+                        <button class="bg-[#0948EE]/60 hover:bg-[#0948EE] text-white rounded-md px-2 py-1 items-center">25</button>
+                        <button class="bg-[#0948EE]/60 hover:bg-[#0948EE] text-white rounded-md px-2 py-1 items-center">&lt;</button>
                     </div>
                     <!--count of users-->
                     <div class="flex flex-row gap-2 mt-2 md:mt-0">

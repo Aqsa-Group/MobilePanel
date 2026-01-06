@@ -174,7 +174,7 @@
         <div class="grid grid-cols-1  lg:grid-cols-3 gap-3 pt-2">
 
             <!-- فرم -->
-            <div class="bg-[#fafafa] rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl   w-full lg:max-w-full p-3">
+            <div class="bg-[#616161]/5 rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl   w-full lg:max-w-full p-3">
                 <div class="flex justify-between mb-2 shadow p-3 rounded-xl border border-black">
                     <div class="flex gap-2 mt-3">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -192,7 +192,7 @@
                     </div>
                 </div>
 
-                <select class="w-full rounded-xl border bg-[#fafafa] border-gray-900 p-4 text-sm mb-3">
+                <select class="w-full rounded-xl border bg-[#616161]/5 border-gray-900 p-4 text-sm mb-3">
                     <option class="text-gray-100"> انتخاب یا جستجوی کارمند...  ...</option>
                 </select>
 
@@ -245,7 +245,7 @@
                     </div>
                 </div>
 
-                <textarea class="w-full rounded-xl border bg-[#fafafa] border-gray-900 p-2 text-sm h-28 mb-3" placeholder="توضیحات..."></textarea>
+                <textarea class="w-full rounded-xl border bg-[#616161]/5 border-gray-900 p-2 text-sm h-28 mb-3" placeholder="توضیحات..."></textarea>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
                     <button class="bg-blue-600 text-white hover:scale-105 transition-all duration-300 rounded-xl py-3 text-sm">ثبت</button>
@@ -254,7 +254,7 @@
             </div>
 
             <!-- جدول و کارت موبایل -->
-            <div class="lg:col-span-2 bg-[#fafafa] rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl border border-gray-200 w-full lg:max-w-full p-3">
+            <div class="lg:col-span-2 bg-[#616161]/5 rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl border border-gray-200 w-full lg:max-w-full p-3">
                 <!-- کارت موبایل -->
                 <div class="lg:hidden space-y-3 ">
                     <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
@@ -303,11 +303,11 @@
                                         </defs>
                                         </svg>
                             </span>
-                            <input type="text" class="p-1 pr-8 w-full  bg-[#0B35CC]/20 rounded-xl" placeholder="فیلتر">
+                            <input type="text" class="p-1 pr-8 w-full  bg-[#0948EE] text-white rounded-xl" placeholder="فیلتر">
                         </div>
                         <!-- جستجو -->
                         <div class="relative flex-1">
-                            <input type="text" class="p-1 w-full  bg-[#0B35CC]/20 rounded-xl" placeholder="جستجو....">
+                            <input type="text" class="p-1 w-full  bg-[#0948EE] text-white rounded-xl" placeholder="جستجو....">
                             <span class="absolute left-1 top-1.5 text-gray-600">
                                 <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.46875 15.3184C9.42002 15.3184 11.8125 12.793 11.8125 9.67773C11.8125 6.5625 9.42002 4.03711 6.46875 4.03711C3.51748 4.03711 1.125 6.5625 1.125 9.67773C1.125 12.793 3.51748 15.3184 6.46875 15.3184Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -452,11 +452,11 @@
                                 </svg>
 
                             </span>
-                            <input type="text" class="p-1 pr-8 w-[100px]   bg-[#0B35CC]/20 rounded-xl" placeholder="فیلتر">
+                            <input type="text" class="p-1 pr-8 w-[100px]   bg-[#0948EE]/20 text-white rounded-xl" placeholder="فیلتر">
                         </div>
                         <!-- جستجو -->
                         <div class="relative mb-1">
-                            <input type="text" class="p-1 w-[170px]  bg-[#0B35CC]/20  rounded-xl" placeholder="جستجو....">
+                            <input type="text" class="p-1 w-[170px]  bg-[#0948EE]/20 text-white  rounded-xl" placeholder="جستجو....">
                             <span class="absolute left-1  top-1.5 text-gray-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" class="w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
@@ -465,8 +465,8 @@
                         </div>
                     </div>
                 </div>
-                    <table class="w-full text-center border-2 border-blue-300 text-sm border-collapse">
-                        <thead class="bg-[#0B35CC]/20 border-b-2 border-blue-300">
+                    <table class="w-full text-center border-2 border-[#0948EE] text-sm border-collapse">
+                        <thead class="bg-[#0948EE] text-white border-b-2 border-[#0948EE]">
                             <tr>
                                 <th class="p-2">شماره</th>
                                 <th class="p-2"> نام کارمند </th>
@@ -481,7 +481,7 @@
                         </thead>
                         <tbody>
                             @for ($i=1; $i<=5; $i++)
-                            <tr class="hover:bg-gray-100 border-b-2 border-blue-300">
+                            <tr class="hover:bg-gray-200 border-b-2 border-[#0948EE]">
                                 <td class="p-2">{{ $i }}</td>
                                 <td class="p-2">محمود عزیزی</td>
                                 <td class="p-2"> فروشنده</td>
@@ -530,12 +530,12 @@
                 </div>
                     <!-- صفحه بندی -->
                 <div class="flex items-start sm:justify-start justify-center mt-4 space-x-1 rtl:space-x-reverse">
-                    <button class=" w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-[#fafafa]">‹</button>
-                    <button class=" w-7 h-7 rounded-md border border-blue-500 text-blue-600 bg-[#F3F3F3] text-xs font-medium">1</button>
-                    <button class=" w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-[#fafafa] text-xs">2</button>
-                    <button class=" w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] text-xs">...</button>
-                    <button class=" w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-[#fafafa] text-xs">25</button>
-                    <button class=" w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-[#fafafa]">›</button>
+                    <button class=" w-7 h-7 rounded-md border border-gray-300 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white">‹</button>
+                    <button class=" w-7 h-7 rounded-md border border-blue-500 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs font-medium">1</button>
+                    <button class=" w-7 h-7 rounded-md border border-transparent bg-[#0948EE]/60 hover:bg-[#0948EE] text-white  text-xs">2</button>
+                    <button class=" w-7 h-7 rounded-md border border-transparent bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs">...</button>
+                    <button class=" w-7 h-7 rounded-md border border-transparent bg-[#0948EE]/60 hover:bg-[#0948EE] text-white  text-xs">25</button>
+                    <button class=" w-7 h-7 rounded-md border border-gray-300 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white">›</button>
                 </div>
             </div>
         </div>

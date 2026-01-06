@@ -1,6 +1,6 @@
 <div >
     <!--section 1 -->
-    <section class="overflow-x-hidden h-auto mt-4 p-4 max-w-full mx-auto md:flex bg-[#F5F5F580]/50 rounded-xl" >
+    <section class="overflow-x-hidden h-auto mt-4 p-4 max-w-full mx-auto md:flex bg-[#616161]/5 rounded-xl" >
         <div class="w-full p-2 flex flex-col text-[15px]">
             <!-- title-->
             <span class="my-2 mb-6 font-bold">
@@ -288,7 +288,7 @@
         </div>
     </section>
     <!--section 1 -->
-    <section class="flex flex-col  h-auto p-4 mt-4 max-w-full mx-auto  bg-[#fafafa] rounded-xl" >
+    <section class="flex flex-col  h-auto p-4 mt-4 max-w-full mx-auto  bg-[#616161]/5 rounded-xl" >
         <div class="w-full h-auto p-2 flex flex-row justify-between text-[20px]">
             <div>
                 <span class="my-2 mb-6 font-bold">نتایج گزارش:</span>
@@ -298,13 +298,13 @@
                 </span>
             </div>
             <div class="flex flex-wrap md:flex-nowrap gap-3 text-[10px]">
-                <div class="flex flex-row justify-center items-center px-4 bg-[#0948EE14] rounded-xl gap-1 h-[25px] md:h-[40px] w-fit">
+                <div class="flex flex-row justify-center items-center px-4 bg-[#0948EE]/20 rounded-xl gap-1 h-[25px] md:h-[40px] w-fit">
                     <button class="flex flex-row items-center gap-1 px-2">
                         <img src="https://i.postimg.cc/hj21BNQK/x.png" class="w-[11px] h-[14px]">
                         <span>چاپ کردن به اکسل</span>
                     </button>
                 </div>
-                <div class="flex flex-row justify-center items-center px-4 bg-[#0948EE14] rounded-xl gap-1 h-[25px] md:h-[40px] w-fit">
+                <div class="flex flex-row justify-center items-center px-4 bg-[#0948EE]/20 rounded-xl gap-1 h-[25px] md:h-[40px] w-fit">
                     <button class="flex flex-row items-center gap-1 px-2">
                         <img src="https://i.postimg.cc/CKzF7qCm/pdf.png" class="w-[11px] h-[14px]">
                         <span>چاپ کردن به پی دی اف</span>
@@ -314,15 +314,15 @@
         </div>
 
         <!-- TABLE (Laptop) -->
-        <div class="hidden md:flex flex-col justify-center w-full h-auto gap-1 mt-2 border border-[#0948EE80] rounded-xl">
+        <div class="hidden md:flex flex-col justify-center w-full h-auto gap-1 mt-2 border border-[#0948EE] rounded-xl">
             <table class="w-full text-center border-separate border-spacing-0">
                 <tr>
-                    <th class="p-2 text-[14px] bg-[#0948EE26]">#</th>
-                    <th class="p-2 text-[14px] bg-[#0948EE26]">نام مشتری</th>
-                    <th class="p-2 text-[14px] bg-[#0948EE26]">مدل دستگاه</th>
-                    <th class="p-2 text-[14px] bg-[#0948EE26]">قیمت</th>
-                    <th class="p-2 text-[14px] bg-[#0948EE26]">شماره IMEI</th>
-                    <th class="p-2 text-[14px] bg-[#0948EE26]">تاریخ فروش</th>
+                    <th class="p-2 text-[14px] bg-[#0948EE] text-white rounded-tr-xl">#</th>
+                    <th class="p-2 text-[14px] bg-[#0948EE] text-white">نام مشتری</th>
+                    <th class="p-2 text-[14px] bg-[#0948EE] text-white">مدل دستگاه</th>
+                    <th class="p-2 text-[14px] bg-[#0948EE] text-white">قیمت</th>
+                    <th class="p-2 text-[14px] bg-[#0948EE] text-white">شماره IMEI</th>
+                    <th class="p-2 text-[14px] bg-[#0948EE] text-white rounded-tl-xl">تاریخ فروش</th>
                 </tr>
                 <tbody class="text-[13px] font-semibold">
                     <tr>
@@ -340,7 +340,7 @@
 
         <!-- MOBILE CARDS -->
         <div class="md:hidden mt-3 space-y-3">
-            <div class="grid grid-cols-2 gap-3 border border-[#0948EE80] rounded-xl p-3 text-[12px]">
+            <div class="grid grid-cols-2 gap-3 border border-[#0948EE] rounded-xl p-3 text-[12px]">
                 <div>
                     <span class="text-gray-500">نام مشتری</span>
                     <div class="font-semibold mt-1">احمد عزیزی</div>
@@ -369,12 +369,12 @@
 
         </div>
         <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
-            <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">‹</button>
-            <button class="w-7 h-7 rounded-md border border-blue-500 text-blue-600 bg-[#F3F3F3] text-xs font-medium">1</button>
-            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">2</button>
-            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] text-xs">...</button>
-            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">25</button>
-            <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">›</button>
+            <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white">‹</button>
+            <button class="w-7 h-7 rounded-md border border-blue-500 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs font-medium">1</button>
+            <button class="w-7 h-7 rounded-md border border-transparent bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs">2</button>
+            <button class="w-7 h-7 rounded-md border border-transparent bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs">...</button>
+            <button class="w-7 h-7 rounded-md border border-transparent bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs">25</button>
+            <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white">›</button>
         </div>
     </section>
 
@@ -382,7 +382,7 @@
         document.querySelectorAll('.btn').forEach(btn =>{
             btn.addEventListener('click', function () {
                 this.classList.toggle('bg-transparent');
-                this.classList.toggle('bg-[#0B35CC]');
+                this.classList.toggle('bg-[#0948EE]');
                 this.classList.toggle('text-black');
                 this.classList.toggle('text-white');
             })});

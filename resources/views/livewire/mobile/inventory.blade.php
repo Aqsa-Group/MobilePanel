@@ -3,7 +3,7 @@
         <div class="md:grid grid-cols-5 max-w-full mx-auto gap-4">
             <div class="col-span-3 ">
                 <!-- Table  -->
-                <div class=" rounded-xl shadow-xl shadow-[0px_4px_4px_0px_#00000040]">
+                <div class="bg-[#616161]/5 rounded-xl shadow-xl shadow-[0px_4px_4px_0px_#00000040]">
                     <div class="bg-[#0948EE0D] rounded-xl p-4">
                         <div class="flex justify-between">
                             <h1 class="font-bold text-2xl">موجودی اجناس:</h1>
@@ -57,7 +57,7 @@
                     </div>
                     <div id="div1" class="transition-all duration-300 pb-3">
                         <div class="mx-2 rounded-lg border border-[#0948EE] mt-1">
-                            <div class="hidden md:grid grid-cols-12 items-center bg-[#0948EE33] py-4 ">
+                            <div class="hidden md:grid grid-cols-12 items-center bg-[#0948EE] text-white rounded-t-md py-4 ">
                                 <div class="col-span-2 text-center"><p class="font-bold">مدل دستگاه</p></div>
                                 <div class="text-center"><p class="font-bold">حافظه</p></div>
                                 <div class="col-span-2 text-center"><p class="font-bold">شماره IMEI</p></div>
@@ -66,7 +66,7 @@
                                 <div class="text-center"><p class="font-bold">ادیت</p></div>
                                 <div class="text-center"><p class="font-bold">حذف</p></div>
                             </div>
-                            <div class="cursor-pointer md:grid grid-cols-11 items-center md:mt-0 mt-0 py-4 hover:bg-[#0948EE33] border-b border-dotted border-[#0948EE]" onclick="handleClickDiv1()">
+                            <div class="cursor-pointer md:grid grid-cols-11 items-center md:mt-0 mt-0 py-4 hover:bg-[#0948EE]/20  border-b border-dotted border-[#0948EE]" onclick="handleClickDiv1()">
                                 <div class="col-span-2 text-center"><p class="text-sm">A20</p></div>
                                 <div class="text-center"><p class="text-sm">64GB</p></div>
                                 <div class="col-span-6 grid grid-cols-4 my-3 md:my-0">
@@ -264,12 +264,12 @@
                         </div>
                        <!-- صفحه بندی -->
                         <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
-                            <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">‹</button>
-                            <button class="w-7 h-7 rounded-md border border-blue-500 text-blue-600 bg-[#F3F3F3] text-xs font-medium">1</button>
-                            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">2</button>
-                            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] text-xs">...</button>
-                            <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">25</button>
-                            <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">›</button>
+                            <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white">‹</button>
+                            <button class="w-7 h-7 rounded-md border border-blue-500 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs font-medium">1</button>
+                            <button class="w-7 h-7 rounded-md border border-transparent bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs">2</button>
+                            <button class="w-7 h-7 rounded-md border border-transparent bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs">...</button>
+                            <button class="w-7 h-7 rounded-md border border-transparent bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs">25</button>
+                            <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white">›</button>
                         </div>
 
                     </div>
@@ -392,7 +392,7 @@
             </div>
             <!-- Details  -->
             <div class="col-span-2 hidden md:block mt-4 md:mt-0">
-                <div class="rounded-xl bg-[#fafafa] shadow-xl shadow-[0px_4px_4px_0px_#00000040] pt-5 px-4 pb-5">
+                <div class="rounded-xl bg-[#616161]/5 shadow-xl shadow-[0px_4px_4px_0px_#00000040] pt-5 px-4 pb-5">
                     <div class="flex justify-center">
                         <img src="{{ asset('images/photo1.PNG') }}" alt="" class="w-60 rounded-xl mx-auto">
                     </div>

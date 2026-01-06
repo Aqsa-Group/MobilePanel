@@ -1,7 +1,7 @@
 <div>
    <div class="text-gray-800 flex items-center max-w-full mt-3 mx-auto justify-center p-3 sm:p-4">
         <!-- باکس اصلی سفید با انیمیشن -->
-        <div class="animate-fade-slide w-full overflow-x-hidden p-2 bg-[#fafafa] rounded-2xl shadow-xl flex flex-col lg:flex-row">
+        <div class="animate-fade-slide w-full overflow-x-hidden p-2 bg-[#616161]/5 rounded-2xl shadow-xl flex flex-col lg:flex-row">
         <!-- ستون فرم -->
         <div class="flex-1 lg:w-1/2 flex items-center justify-center px-3 sm:px-4 order-1 animate-fade-in delay-200">
 
@@ -23,19 +23,19 @@
                             <div class="w-16 sm-[150px] border-t-2 border-dashed border-gray-400"></div>
                         </div>
                         <!-- مراحل -->
-                        <div class="flex flex-col items-center relative z-10 bg-[#fafafa]">
+                        <div class="flex flex-col items-center relative z-10 ">
                             <div class="w-10 h-10 flex items-center justify-center rounded-xl text-[#0D00C8] font-bold bg-[#1100FF]/20 shadow-md text-[20px]">
                             1
                             </div>
                             <p class="text-sm text-gray-700">  اطلاعات شخصی</p>
                         </div>
-                        <div class="flex flex-col items-center relative z-10 bg-[#fafafa] ">
+                        <div class="flex flex-col items-center relative z-10  ">
                             <div class="w-10 h-10 flex items-center justify-center rounded-xl text-white font-bold bg-[#1100FF] shadow-md text-[20px]">
                             2
                             </div>
                             <p class="text-sm text-gray-700">  اطلاعات کاربری</p>
                         </div>
-                        <div class="flex flex-col items-center relative z-10 bg-[#fafafa] ">
+                        <div class="flex flex-col items-center relative z-10  ">
                             <div class="w-10 h-10 flex items-center justify-center rounded-xl text-[#1100FF] font-bold bg-[#1100FF]/20 text-[20px] shadow-md">
                             3
                             </div>

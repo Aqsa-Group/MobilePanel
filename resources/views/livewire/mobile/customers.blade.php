@@ -5,7 +5,7 @@
            >
             <!--No 1 -->
             <div
-                class="text-[#0746F7] card-anim  shadow-xl shadow-[0px_4px_4px_0px_#00000040] h-[80px]  md:h-[104px] md:w-full rounded-xl  border-r-[2px]     border-[#0746F7] bg-[#0746F708]" >
+                class="text-[#0746F7] card-anim  shadow-xl shadow-[0px_4px_4px_0px_#00000040] h-[80px]  md:h-[104px] md:w-full rounded-xl  border-r-[2px]     border-[#0746F7] bg-[#616161]/5 " >
                 <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
                     <span class="text-[15px] font-semibold">
                         کل مشتریان
@@ -70,7 +70,7 @@
             </div>
             <!--No 2 -->
             <div
-                class="text-[#0014AE] h-[80px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] card-anim  md:h-[104px] md:w-full rounded-xl border-r-[2px]  border-[#0014AE] bg-[#0014AE08]">
+                class="text-[#0014AE] h-[80px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] card-anim  md:h-[104px] md:w-full rounded-xl border-r-[2px]  border-[#0014AE] bg-[#616161]/5 ">
                 <div class="flex flex-row gap-1 md:gap-2  w-full p-2 mx-auto justify-between">
                     <span class="text-[13px] md:text-[15px] font-semibold">
                         مشتریان همیشگی
@@ -117,7 +117,7 @@
             </div>
             <!--No 3 -->
             <div
-                class="text-[#5100FF] h-[80px] card-anim md:h-[104px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] md:w-full rounded-xl  border-r-[2px]  border-[#5100FF] bg-[#5100FF08]">
+                class="text-[#5100FF] h-[80px] card-anim md:h-[104px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] md:w-full rounded-xl  border-r-[2px]  border-[#5100FF] bg-[#616161]/5 ">
                 <div class="flex items-center justify-between w-full p-1 md:p-2 mx-auto">
                     <span class="text-[13px] md:text-[15px] font-semibold">
                         مشتریان جدید این ماه
@@ -170,7 +170,7 @@
             </div>
             <!--No 4 -->
             <div
-                class="text-[#31009B] h-[80px] card-anim shadow-xl shadow-[0px_4px_4px_0px_#00000040]  md:h-[104px] md:w-full rounded-xl  border-r-[2px]   border-[#31009B] bg-[#31009B08]">
+                class="text-[#31009B] h-[80px] card-anim shadow-xl shadow-[0px_4px_4px_0px_#00000040]  md:h-[104px] md:w-full rounded-xl  border-r-[2px]   border-[#31009B] bg-[#616161]/5 ">
                 <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
                     <span class="text-[13px] md:text-[15px] font-semibold">
                         مشتریان راضی
@@ -211,7 +211,7 @@
             </div>
             <!--No 5 -->
             <div
-                class="text-[#0099FF] shadow-xl shadow-[0px_4px_4px_0px_#00000040] h-[80px] card-anim md:h-[104px] md:w-full rounded-xl  border-r-[2px]   border-[#0099FF] bg-[#0099FF08]"
+                class="text-[#0099FF] shadow-xl shadow-[0px_4px_4px_0px_#00000040] h-[80px] card-anim md:h-[104px] md:w-full rounded-xl  border-r-[2px]   border-[#0099FF] bg-[#616161]/5 "
                >
                 <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
                     <span class="text-[13px] md:text-[15px] font-semibold">
@@ -261,7 +261,7 @@
             </div>
             <!--No 6 -->
             <div
-                class="text-[#3A64D0] h-[80px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] card-anim  md:h-[104px] md:w-full rounded-xl  border-r-[2px]  border-[#3A64D0] bg-[#3A64D008]"
+                class="text-[#3A64D0] h-[80px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] card-anim  md:h-[104px] md:w-full rounded-xl  border-r-[2px]  border-[#3A64D0] bg-[#616161]/5 "
                 >
                 <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
                     <span class="text-[13px] md:text-[15px] font-semibold">
@@ -299,7 +299,7 @@
             </div>
         </div>
         <!--section 2-->
-        <section class="shadow-xl shadow-[0px_4px_4px_0px_#00000040] m-2 md:mt-6 h-auto flex flex-col bg-[#fafafa] rounded-2xl  p-2  items-center">
+        <section class="shadow-xl shadow-[0px_4px_4px_0px_#00000040] m-2 md:mt-6 h-auto flex flex-col bg-[#616161]/5 rounded-2xl  p-2  items-center">
             <!--header-->
 <div class="w-full flex flex-col gap-2 md:flex-row md:items-center md:justify-between mt-1">
 
@@ -346,7 +346,7 @@
         <!-- جستجو -->
         <div class="relative flex-1 md:flex-none md:w-[150px]">
             <input type="text"
-                class="w-full h-9 md:h-[50px] rounded-md md:rounded-xl bg-[#0948EE14] pr-2 text-[10px] md:text-[10px]"
+                class="w-full h-9 md:h-[50px] rounded-md md:rounded-xl bg-[#0948EE]/20 pr-2 text-[10px] md:text-[10px]"
                 placeholder="جستجو">
             <span class="absolute left-1 top-1.5 md:hidden">
                 <svg width="12" height="12" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -363,7 +363,7 @@
         </div>
 
         <!-- فیلتر -->
-        <div class="flex items-center gap-1 px-3 h-9 md:h-[50px] rounded-md md:rounded-xl bg-[#0948EE14] text-[10px] md:text-[10px]">
+        <div class="flex items-center gap-1 px-3 h-9 md:h-[50px] rounded-md md:rounded-xl bg-[#0948EE]/20 text-[10px] md:text-[10px]">
             <span class="block md:hidden">
                 <svg width="10" height="10" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10.73 12.424V6.21191" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -394,7 +394,7 @@
         </div>
 
         <!-- چاپ -->
-        <div class="flex items-center gap-1 px-3 h-9 md:h-[50px] rounded-md md:rounded-xl bg-[#0948EE14] text-[10px] md:text-[10px]">
+        <div class="flex items-center gap-1 px-3 h-9 md:h-[50px] rounded-md md:rounded-xl bg-[#0948EE]/20 text-[10px] md:text-[10px]">
             <span class="block md:hidden">
                 <svg width="12" height="12" viewBox="0 0 14 14" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -462,19 +462,19 @@
                 <!--title-->
                 <div class="hidden md:flex text-center  text-lg " style="font-style: Regular;">
                     <table class="w-full text-center border-separate border-spacing-0">
-                        <tr class="rounded-t-xl">
-                            <th class="p-4 text-[15px]   bg-[#0948EE26]">عکس</th>
-                            <th class="p-4 text-[15px]  bg-[#0948EE26]">نام کامل</th>
-                            <th class="p-4 text-[15px]  bg-[#0948EE26]">شماره</th>
-                            <th class="p-4 text-[15px]  bg-[#0948EE26]">آدرس</th>
-                            <th class="p-4 text-[15px]  bg-[#0948EE26]">نوع مشتری</th>
-                            <th class="p-4 text-[15px]  bg-[#0948EE26]">وضعیت</th>
-                            <th class="p-4 text-[15px]  bg-[#0948EE26]">آیدی شناسنامه</th>
-                            <th class="p-4 text-[15px]  bg-[#0948EE26]">ادیت</th>
-                            <th class="p-4 text-[15px]  bg-[#0948EE26]  ">حذف</th>
+                        <tr >
+                            <th class="p-4 text-[12px] bg-[#0948EE] rounded-tr-xl text-white">عکس</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">نام کامل</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">شماره</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">آدرس</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">نوع مشتری</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">وضعیت</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">آیدی شناسنامه</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] text-white">ادیت</th>
+                            <th class="p-4 text-[12px] bg-[#0948EE] rounded-tl-xl text-white  ">حذف</th>
                         </tr>
                         <tbody
-                            class="[&>tr:not(:last-child)>td]:border-b [&>tr:not(:last-child)>td]:border-[#0948EE] text-[13px]">
+                            class="[&>tr:not(:last-child)>td]:border-b [&>tr:not(:last-child)>td]:border-[#0948EE] text-[13px] rounded-md">
                             <tr class="pt-4 text-[13px] font-semibold">
                                 <td>
                                     <div class="flex mr-6">
@@ -1113,13 +1113,13 @@
             </div>
             <!-- صفحه بندی -->
             <div class="w-full flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
-    <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">‹</button>
-    <button class="w-7 h-7 rounded-md border border-blue-500 text-blue-600 bg-[#F3F3F3] text-xs font-medium">1</button>
-    <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">2</button>
-    <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] text-xs">...</button>
-    <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#F3F3F3] hover:border-gray-300 hover:bg-gray-100 text-xs">25</button>
-    <button class="w-7 h-7 rounded-md border border-gray-300 text-gray-500 bg-[#F3F3F3] hover:bg-gray-100">›</button>
-</div>
+                <button class="w-7 h-7 rounded-md border border-gray-300  bg-[#0948EE]/60 hover:bg-[#0948EE] text-white">‹</button>
+                <button class="w-7 h-7 rounded-md border border-blue-500 text-blue-600 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs font-medium">1</button>
+                <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white hover:border-gray-300 hover:bg-gray-100 text-xs">2</button>
+                <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white text-xs">...</button>
+                <button class="w-7 h-7 rounded-md border border-transparent text-gray-700 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white hover:border-gray-300 hover:bg-gray-100 text-xs">25</button>
+                <button class="w-7 h-7 rounded-md border border-gray-300  bg-[#0948EE]/60 hover:bg-[#0948EE] text-white">›</button>
+            </div>
 
         </section>
 

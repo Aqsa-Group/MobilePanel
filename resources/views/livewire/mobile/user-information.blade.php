@@ -1,7 +1,7 @@
 <div>
       <div class=" text-gray-800  max-w-full flex items-center mt-3 mx-auto justify-center p-3 sm:p-4">
         <!-- باکس اصلی سفید -->
-        <div class="animate-fade-slide w-full p-2 shadow-xl shadow-[0px_4px_4px_0px_#00000040] bg-[#FAFAFA]  rounded-2xl flex flex-col lg:flex-row overflow-hidden">
+        <div class="animate-fade-slide w-full p-2 shadow-xl shadow-[0px_4px_4px_0px_#00000040] bg-[#616161]/5  rounded-2xl flex flex-col lg:flex-row overflow-hidden">
             <div class="flex-1 lg:w-7/12 flex items-center justify-center p-5 sm:p-6 order-1 lg:order-1">
                 <div class="w-full max-w-md text-center lg:text-right">
                     <h2 class="text-[40px] sm:text-2xl mb-6 font-bold text-center lg:text-right flex items-center justify-center mt-[30px]">
@@ -18,19 +18,19 @@
                             <div class="w-16 sm-[150px] border-t-2 border-dashed border-gray-400"></div>
                         </div>
                         <!-- مراحل -->
-                        <div class="flex flex-col items-center relative z-10 bg-[#FAFAFA]">
+                        <div class="flex flex-col items-center relative z-10 ">
                             <div class="w-10 h-10 flex items-center justify-center rounded-xl text-[#0D00C8] font-bold bg-[#1100FF]/20 shadow-md text-[20px]">
                                 1
                             </div>
                             <p class="text-sm mt-2 text-gray-700">  اطلاعات شخصی</p>
                         </div>
-                        <div class="flex flex-col items-center relative z-10 bg-[#FAFAFA]">
+                        <div class="flex flex-col items-center relative z-10 ">
                             <div class="w-10 h-10 flex items-center justify-center rounded-xl text-[#0D00C8] font-bold bg-[#1100FF]/20 shadow-md text-[20px]">
                                 2
                             </div>
                             <p class="text-sm mt-2 text-gray-700">  اطلاعات کاربری</p>
                         </div>
-                        <div class="flex flex-col items-center relative z-10 bg-[#FAFAFA]">
+                        <div class="flex flex-col items-center relative z-10 ">
                             <div class="w-10 h-10 flex items-center justify-center rounded-xl text-white font-bold bg-[#1100FF] text-[20px] shadow-md">
                                 3
                             </div>

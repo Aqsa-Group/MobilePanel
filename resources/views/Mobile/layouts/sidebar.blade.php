@@ -44,7 +44,7 @@
                 <div class="flex-1"></div>
                 <div class="flex items-center gap-2 sm:gap-3">
                     <div class="w-44 sm:w-60">
-                        <div class="flex items-center h-10 rounded-lg border border-blue-500 bg-gray-50 overflow-hidden">
+                        <div class="flex items-center h-10 rounded-lg border border-gray-500 bg-gray-50 overflow-hidden">
                             <span class="flex  gap-[160px] px-2 text-gray-600 shrink-0">
                                 <p> <span class="text-sm pr-1 ">جستجو</span></p>
                                 <svg width="20" height="20" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,13 +55,13 @@
                             <input type="text" class="w-full h-full bg-transparent outline-none px-3 text-sm placeholder-gray-400" />
                         </div>
                     </div>
-                    <button class="rounded-full bg-blue-100  w-8 h-8  transition relative">
+                    <button class="rounded-full bg-gray-100  w-8 h-8  transition relative">
                         <i class="fa-regular fa-bell"></i>
                         <span class="absolute -top-1 -right-1 bg-blue-500 text-white text-[10px] rounded-full px-1.5">3</span>
                     </button>
                     <!-- پروفایل -->
                     <div class="relative">
-                        <button id="profileButton" class="flex items-center border border-blue-600 rounded-full p-0.5 gap-2 focus:outline-none" aria-expanded="false" aria-haspopup="true">
+                        <button id="profileButton" class="flex items-center border border-gray-600 rounded-full p-0.5 gap-2 focus:outline-none" aria-expanded="false" aria-haspopup="true">
                             <img src="/img/avatar5 1.png" class="w-7 h-7 rounded-full object-cover" alt="user" />
                         </button>
                         <div id="profileMenu"
@@ -112,7 +112,7 @@
             </a>
         </div>
         <nav id="menu" class="sm:p-7 mt-0  p-3  flex flex-col justify-start ">
-            <div class=" sm:mt-2 mt-0">
+            <div class="space-y-2 sm:mt-2 mt-0">
                 <a  href="{{ route('dashboard') }}"  data-section="dashboard"
                     class="menu-btn group  w-full  {{ request()->routeIs('dashboard') ? 'bg-blue-600 text-white' : 'text-gray-700' }} text-right flex  gap-3 rounded-xl px-2 py-2 text-sm transition hover:bg-blue-600 hover:text-white">
                     <svg class="group-hover:fill-white" width="22" height="22" viewBox="0 0 22 22" fill="#fff" xmlns="http://www.w3.org/2000/svg">
