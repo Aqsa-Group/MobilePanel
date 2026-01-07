@@ -104,7 +104,7 @@
             <!-- فرم ورود -->
             <form  id="loginForm"
                     method="POST"
-                    action="{{ route('login.submit') }}"
+                    action=""
                     class="w-full max-w-sm space-y-6 sm:space-y-8 anim-rtl"
                 >
                 @csrf

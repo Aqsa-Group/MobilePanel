@@ -22,29 +22,13 @@ use App\Livewire\Admin2\Support as AdminSupport;
 // Seller Panel ***********************************
 
 // dashboard
-Route::get('/', Welcome::class)->name('dashboard');
+Route::get('/', Welcome::class)->name('welcome');
 
 // Login
 // فرم لاگین
 Route::get('/login', function () {
     return view('Mobile.Auth.login');
 })->name('login');
-
-// پردازش لاگین
-Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
-
-// صفحه داشبورد فقط برای کاربرانی که لاگین هستند
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard'); // resources/views/dashboard.blade.php
-    })->name('dashboard');
-
-    // خروج
-    Route::post('/logout', function () {
-        Auth::logout();
-        return redirect()->route('login');
-    })->name('logout');
-});
 
 
 // User List
