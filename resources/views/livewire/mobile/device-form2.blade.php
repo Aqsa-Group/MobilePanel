@@ -1,7 +1,7 @@
 <div class="text-gray-800 ">
     <div class="min-h-full flex items-center  max-w-full mx-auto justify-center p-3 sm:p-4">
         <!-- باکس اصلی سفید با انیمیشن -->
-        <div class="animate-fade-slide shadow-xl w-full shadow-[0px_4px_4px_0px_#00000040]  bg-[#fafafa] rounded-2xl  overflow-hidden flex flex-col lg:flex-row opacity-0 transform translate-y-10">
+        <div class="animate-fade-slide shadow-xl w-full shadow-[0px_4px_4px_0px_#00000040]  bg-[#616161]/5 rounded-2xl  overflow-hidden flex flex-col lg:flex-row opacity-0 transform translate-y-10">
         <!-- ستون فرم -->
         <div class="flex-1 lg:w-5/12 flex items-start justify-center sm:p-4 order-1 lg:order-1 animate-fade-in delay-200">
             <div class="w-full max-w-md">
@@ -22,19 +22,19 @@
                             <div class="w-16 sm-[150px] border-t-2 border-dashed border-gray-400"></div>
                         </div>
                         <!-- مراحل -->
-                        <div class="flex flex-col items-center relative z-10 bg-[#fafafa]">
+                        <div class="flex flex-col items-center relative z-10 ">
                             <div class="w-10 h-10 flex items-center justify-center rounded-xl text-[#0D00C8] font-bold bg-[#1100FF]/20 shadow-md text-[20px]">
                             1
                             </div>
                             <p class="text-sm  text-gray-700"> مشخصات دستگاه</p>
                         </div>
-                        <div class="flex flex-col items-center relative z-10 bg-[#fafafa] ">
+                        <div class="flex flex-col items-center relative z-10  ">
                             <div class="w-10 h-10 flex items-center justify-center rounded-xl text-white font-bold bg-[#1100FF] shadow-md text-[20px]">
                             2
                             </div>
                             <p class="text-sm  text-gray-700"> توضیحات دستگاه</p>
                         </div>
-                        <div class="flex flex-col items-center relative z-10 bg-[#fafafa] ">
+                        <div class="flex flex-col items-center relative z-10  ">
                             <div class="w-10 h-10 flex items-center justify-center rounded-xl text-[#1100FF] font-bold bg-[#1100FF]/20 text-[20px] shadow-md">
                             3
                             </div>

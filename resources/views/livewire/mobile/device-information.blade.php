@@ -1,7 +1,7 @@
 <div>
     <div class="  text-gray-800 flex items-center mx-auto max-w-full  justify-center p-3 sm:p-4">
     <!-- باکس اصلی سفید -->
-    <div class=" mt-[50] shadow-xl w-full shadow-[0px_4px_4px_0px_#00000040] bg-[#fafafa] bg-white rounded-2xl shadow-lg flex flex-col lg:flex-row overflow-hidden">
+    <div class=" mt-[50] shadow-xl w-full shadow-[0px_4px_4px_0px_#00000040] bg-[#616161]/5  rounded-2xl shadow-lg flex flex-col lg:flex-row overflow-hidden">
         <div class="flex-1 lg:w-7/12 flex items-center justify-center p-5 sm:p-6 order-1 lg:order-1">
         <div class="w-full max-w-md text-center lg:text-right">
             <h2 class="text-[40px] sm:text-2xl font-bold text-center lg:text-right flex items-center justify-center mt-[30px]">
@@ -24,13 +24,13 @@
                     </div>
                     <p class="text-sm mt-2 text-gray-700"> مشخصات دستگاه</p>
                 </div>
-                <div class="flex flex-col items-center relative z-10 bg-[#fafafa] px-2">
+                <div class="flex flex-col items-center relative z-10  px-2">
                     <div class="w-10 h-10 flex items-center justify-center rounded-xl text-[#0D00C8] font-bold bg-[#1100FF]/20 shadow-md text-[20px]">
                     2
                     </div>
                     <p class="text-sm mt-2 text-gray-700"> توضیحات دستگاه</p>
                 </div>
-                <div class="flex flex-col items-center relative z-10 bg-[#fafafa] px-2">
+                <div class="flex flex-col items-center relative z-10  px-2">
                     <div class="w-10 h-10 flex items-center justify-center rounded-xl text-white font-bold bg-[#1100FF] text-[20px] shadow-md">
                     3
                     </div>
