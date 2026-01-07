@@ -115,15 +115,13 @@
     </header>
     <!-- Sidebar -->
     <aside id="sidebar"
-        class="fixed inset-y-0 right-0 top-16 z-40 h-[calc(100vh-100px)] w-64
+        class="fixed inset-y-0 right-0 sm:top-16 z-40 h-[calc(100vh-100px)] w-64
         bg-white shadow shadow-[#0B35CC] h-full
         transform translate-x-full transition-transform duration-200 ease-out
         lg:static lg:top-0 lg:h-auto lg:translate-x-0 lg:flex lg:flex-col lg:w-52 p-2" aria-label="Sidebar">
-        <div class="h-16 flex items-center justify-strt px-3">
-            <a id="closeSidebar"
-                class="lg:hidden inline-flex  items-center justify-center rounded-lg border border-gray-200 p-2 pb-8 hover:bg-gray-100 transition"
-                aria-label="بستن">
-                <i class="fa-solid fa-xmark"></i>
+        <div class="h-16 flex items-center justify-start px-3">
+           <a id="closeSidebar" class="hidden" aria-label="بستن">
+            <i class="fa-solid fa-xmark"></i>
             </a>
         </div>
         <nav id="menu" class="p-3 mt-0  h-full flex flex-col justify-start  ">

@@ -44,8 +44,8 @@
                 <div class="flex-1"></div>
                 <div class="flex items-center gap-2 sm:gap-3">
                      <div class="flex items-center gap-2 sm:gap-3">
-                 <div class="w-10 sm:w-44 md:w-60">
-                    <div class="flex items-center h-10 rounded-full sm:rounded-lg border border-gray-500 bg-gray-50 overflow-hidden
+                 <div class="w-8 sm:w-44 md:w-60">
+                    <div class="flex items-center h-8 rounded-full sm:rounded-lg border border-gray-500 bg-gray-50 overflow-hidden
                                 justify-center sm:justify-start sm:pl-2">
                         <!-- آیکون و متن -->
                         <span class="flex items-center gap-2 text-gray-600 shrink-0 sm:flex-row-reverse">
@@ -133,7 +133,7 @@
     <!-- Sidebar -->
     <aside id="sidebar"
         class="fixed lg:static
-        top-20 lg:top-0
+        sm:top-20 lg:top-0 top-5
         right-0
         h-[calc(100vh-5rem)] lg:h-auto
         w-56
@@ -142,11 +142,9 @@
         transform translate-x-full lg:translate-x-0
         transition-transform" aria-label="Sidebar">
         <div class="h-16 flex items-center justify-start ">
-            <a id="closeSidebar"
-                class="lg:hidden inline-flex  items-center justify-center rounded-lg border border-gray-200 p-2 hover:bg-gray-100 transition"
-                aria-label="بستن">
-                <i class="fa-solid fa-xmark"></i>
-            </a>
+           <a id="closeSidebar" class="hidden" aria-label="بستن">
+   <i class="fa-solid fa-xmark"></i>
+</a>
         </div>
         <nav id="menu" class="sm:p-7 mt-0  p-3  flex flex-col justify-start ">
             <div class="space-y-2 sm:mt-2 mt-0">

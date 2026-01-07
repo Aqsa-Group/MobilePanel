@@ -5,7 +5,7 @@
            >
             <!--No 1 -->
             <div
-                class="text-[#0746F7] card-anim  shadow-xl shadow-[0px_4px_4px_0px_#00000040] h-[80px]  md:h-[104px] md:w-full rounded-xl  border-r-[2px]     border-[#0746F7] bg-[#616161]/5 " >
+                class="text-[#0746F7] card-anim  shadow-xl shadow-[0px_4px_4px_0px_#00000040] h-[80px]  md:h-[104px] md:w-full rounded-xl  border-r-[2px]     border-[#0746F7] bg-[#616161]/10 " >
                 <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
                     <span class="text-[15px] font-semibold">
                         کل مشتریان
@@ -70,7 +70,7 @@
             </div>
             <!--No 2 -->
             <div
-                class="text-[#0014AE] h-[80px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] card-anim  md:h-[104px] md:w-full rounded-xl border-r-[2px]  border-[#0014AE] bg-[#616161]/5 ">
+                class="text-[#0014AE] h-[80px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] card-anim  md:h-[104px] md:w-full rounded-xl border-r-[2px]  border-[#0014AE] bg-[#616161]/10 ">
                 <div class="flex flex-row gap-1 md:gap-2  w-full p-2 mx-auto justify-between">
                     <span class="text-[13px] md:text-[15px] font-semibold">
                         مشتریان همیشگی
@@ -117,7 +117,7 @@
             </div>
             <!--No 3 -->
             <div
-                class="text-[#5100FF] h-[80px] card-anim md:h-[104px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] md:w-full rounded-xl  border-r-[2px]  border-[#5100FF] bg-[#616161]/5 ">
+                class="text-[#5100FF] h-[80px] card-anim md:h-[104px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] md:w-full rounded-xl  border-r-[2px]  border-[#5100FF] bg-[#616161]/10 ">
                 <div class="flex items-center justify-between w-full p-1 md:p-2 mx-auto">
                     <span class="text-[13px] md:text-[15px] font-semibold">
                         مشتریان جدید این ماه
@@ -170,7 +170,7 @@
             </div>
             <!--No 4 -->
             <div
-                class="text-[#31009B] h-[80px] card-anim shadow-xl shadow-[0px_4px_4px_0px_#00000040]  md:h-[104px] md:w-full rounded-xl  border-r-[2px]   border-[#31009B] bg-[#616161]/5 ">
+                class="text-[#31009B] h-[80px] card-anim shadow-xl shadow-[0px_4px_4px_0px_#00000040]  md:h-[104px] md:w-full rounded-xl  border-r-[2px]   border-[#31009B] bg-[#616161]/10 ">
                 <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
                     <span class="text-[13px] md:text-[15px] font-semibold">
                         مشتریان راضی
@@ -211,7 +211,7 @@
             </div>
             <!--No 5 -->
             <div
-                class="text-[#0099FF] shadow-xl shadow-[0px_4px_4px_0px_#00000040] h-[80px] card-anim md:h-[104px] md:w-full rounded-xl  border-r-[2px]   border-[#0099FF] bg-[#616161]/5 "
+                class="text-[#0099FF] shadow-xl shadow-[0px_4px_4px_0px_#00000040] h-[80px] card-anim md:h-[104px] md:w-full rounded-xl  border-r-[2px]   border-[#0099FF] bg-[#616161]/10 "
                >
                 <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
                     <span class="text-[13px] md:text-[15px] font-semibold">
@@ -261,7 +261,7 @@
             </div>
             <!--No 6 -->
             <div
-                class="text-[#3A64D0] h-[80px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] card-anim  md:h-[104px] md:w-full rounded-xl  border-r-[2px]  border-[#3A64D0] bg-[#616161]/5 "
+                class="text-[#3A64D0] h-[80px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] card-anim  md:h-[104px] md:w-full rounded-xl  border-r-[2px]  border-[#3A64D0] bg-[#616161]/10 "
                 >
                 <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
                     <span class="text-[13px] md:text-[15px] font-semibold">
@@ -299,7 +299,7 @@
             </div>
         </div>
         <!--section 2-->
-        <section class="shadow-xl shadow-[0px_4px_4px_0px_#00000040] m-2 md:mt-6 h-auto flex flex-col bg-[#616161]/5 rounded-2xl  p-2  items-center">
+        <section class="shadow-xl shadow-[0px_4px_4px_0px_#00000040] m-2 md:mt-6 h-auto flex flex-col bg-[#616161]/10 rounded-2xl  p-2  items-center">
             <!--header-->
 <div class="w-full flex flex-col gap-2 md:flex-row md:items-center md:justify-between mt-1">
 
