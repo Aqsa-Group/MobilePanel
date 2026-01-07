@@ -126,14 +126,14 @@
     <!-- Sidebar -->
     <aside id="sidebar"
         class="fixed lg:static
-    top-20 lg:top-0
-    right-0
-    h-[calc(100vh-5rem)] lg:h-auto
-    w-56
-    bg-white  shadow shadow-[#0B35CC]    duration-200 ease-out
-    z-40  overflow-y-auto
-    transform translate-x-full lg:translate-x-0
-    transition-transform" aria-label="Sidebar">
+        top-20 lg:top-0
+        right-0
+        h-[calc(100vh-5rem)] lg:h-auto
+        w-56
+        bg-white  shadow shadow-[#0B35CC]    duration-200 ease-out
+        z-40  overflow-y-auto
+        transform translate-x-full lg:translate-x-0
+        transition-transform" aria-label="Sidebar">
         <div class="h-16 flex items-center justify-start ">
             <a id="closeSidebar"
                 class="lg:hidden inline-flex  items-center justify-center rounded-lg border border-gray-200 p-2 hover:bg-gray-100 transition"
