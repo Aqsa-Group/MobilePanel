@@ -144,7 +144,7 @@
         <nav id="menu" class="sm:p-7 mt-0  p-3  flex flex-col justify-start ">
             <div class="space-y-2 sm:mt-2 mt-0">
                 <a  href="{{ route('dashboard') }}"  data-section="dashboard"
-                    class="menu-btn group  w-full  {{ request()->routeIs('dashboard') ? 'bg-blue-600 text-white' : 'text-gray-700' }} text-right flex  gap-3 rounded-xl px-2 py-2 text-sm transition hover:bg-blue-600 hover:text-white">
+                    class="menu-btn group  w-full  {{ request()->routeIs('dashboard') ? 'bg-blue-600 text-white' : 'text-gray-700' }} text-right flex  gap-3 rounded-xl px-2 py-2 text-sm transition hover:bg-blue-600 ">
                     <svg class="group-hover:fill-white" width="22" height="22" viewBox="0 0 22 22" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3.75 8.64844H5.75C7.75 8.64844 8.75 7.66113 8.75 5.68652V3.71191C8.75 1.7373 7.75 0.75 5.75 0.75H3.75C1.75 0.75 0.75 1.7373 0.75 3.71191V5.68652C0.75 7.66113 1.75 8.64844 3.75 8.64844Z" stroke="black" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M15.75 8.64844H17.75C19.75 8.64844 20.75 7.66113 20.75 5.68652V3.71191C20.75 1.7373 19.75 0.75 17.75 0.75H15.75C13.75 0.75 12.75 1.7373 12.75 3.71191V5.68652C12.75 7.66113 13.75 8.64844 15.75 8.64844Z" stroke="black" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -154,7 +154,7 @@
                     <span class="text-[15px]">داشبورد</span>
                 </a>
                 <a  href="{{ route('user.list') }}" data-section="users"
-                    class="menu-btn group w-full text-right flex {{ request()->routeIs('user.list') ? 'bg-blue-600 text-white' : 'text-gray-700' }} gap-3 rounded-xl px-2 py-2 text-sm text-gray-700 transition hover:bg-blue-600 hover:text-white">
+                    class="menu-btn group w-full text-right flex {{ request()->routeIs('user.list') ? 'bg-blue-600 text-white' : 'text-gray-700' }} gap-3 rounded-xl px-2 py-2 text-sm text-gray-700 transition hover:bg-blue-600 ">
                     <svg class="group-hover:fill-white" width="20" height="20" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9.16006 10.87C9.06006 10.86 8.94006 10.86 8.83006 10.87C6.45006 10.79 4.56006 8.84 4.56006 6.44C4.56006 3.99 6.54006 2 9.00006 2C11.4501 2 13.4401 3.99 13.4401 6.44C13.4301 8.84 11.5401 10.79 9.16006 10.87Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M16.41 4C18.35 4 19.91 5.57 19.91 7.5C19.91 9.39 18.41 10.93 16.54 11C16.46 10.99 16.37 10.99 16.28 11" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -164,7 +164,7 @@
                     <span class="text-[15px]">کاربران ها</span>
                 </a>
                 <a data-section="customers"  href="{{ route('customers') }}"
-                    class="menu-btn group w-full text-right flex  {{ request()->routeIs('customers') ? 'bg-blue-600 text-white' : 'text-gray-700' }} gap-3 rounded-xl px-2 py-2 text-sm text-gray-700 transition hover:bg-blue-600 hover:text-white"
+                    class="menu-btn group w-full text-right flex  {{ request()->routeIs('customers') ? 'bg-blue-600 text-white' : 'text-gray-700' }} gap-3 rounded-xl px-2 py-2 text-sm text-gray-700 transition hover:bg-blue-600 "
                     style="cursor: pointer;">
                     <svg class="group-hover:fill-white" width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.0001 7.16C17.9401 7.15 17.8701 7.15 17.8101 7.16C16.4301 7.11 15.3301 5.98 15.3301 4.58C15.3301 3.15 16.4801 2 17.9101 2C19.3401 2 20.4901 3.16 20.4901 4.58C20.4801 5.98 19.3801 7.11 18.0001 7.16Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -190,7 +190,7 @@
                     <button
                         @click.prevent="open = !open"
                         :class="{ 'bg-blue-600 text-white': open }"
-                        class="menu-btn group w-full text-right flex items-center gap-3 rounded-xl px-2 py-2 text-sm text-gray-700 transition hover:bg-blue-600 hover:text-white"
+                        class="menu-btn group w-full text-right flex items-center gap-3 rounded-xl px-2 py-2 text-sm text-gray-700 transition hover:bg-blue-600 "
                         style="cursor: pointer;"
                         >
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
@@ -212,7 +212,7 @@
                         <a
                             href="{{ route('accounts') }}"
                             :class="{ 'bg-blue-400 text-white': @js(request()->routeIs('accounts')) }"
-                            class="menu-btn bg-gray-50 group w-full text-left flex  items-center gap-3 rounded-xl px-5 py-2 text-sm text-gray-700 transition hover:bg-blue-400 hover:text-white"
+                            class="menu-btn bg-gray-50 group w-full text-left flex  items-center gap-3 rounded-xl px-5 py-2 text-sm text-gray-700 transition hover:bg-blue-400 "
                             >
                             <svg class="w-5 h-5 transition " viewBox="0 0 17 17" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.07609 12.7357C10.2018 12.7357 12.7357 10.2018 12.7357 7.07609C12.7357 3.95039 10.2018 1.4165 7.07609 1.4165C3.95039 1.4165 1.4165 3.95039 1.4165 7.07609C1.4165 10.2018 3.95039 12.7357 7.07609 12.7357Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -231,7 +231,7 @@
                         <a
                             href="{{ route('salaryworkers') }}"
                             :class="{ 'bg-blue-400 text-white': @js(request()->routeIs('salaryworkers')) }"
-                                class="menu-btn bg-gray-50 group w-full text-left flex  items-center gap-2 rounded-xl px-5 py-2  text-sm text-gray-700 transition hover:bg-blue-400 hover:text-white"
+                                class="menu-btn bg-gray-50 group w-full text-left flex  items-center gap-2 rounded-xl px-5 py-2  text-sm text-gray-700 transition hover:bg-blue-400 "
                             >
                                <svg class="w-5 h-5 transition" viewBox="0 0 17 17" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9.2085 6.375H4.9585" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -246,7 +246,7 @@
                         <a
                                 href="{{ route('borrowings') }}"
                                 :class="{ 'bg-blue-400 text-white': @js(request()->routeIs('borrowings')) }"
-                                class="menu-btn bg-gray-50 group w-full text-left flex  items-center gap-2 rounded-xl px-5 py-2 text-sm text-gray-700 transition hover:bg-blue-400 hover:text-white"
+                                class="menu-btn bg-gray-50 group w-full text-left flex  items-center gap-2 rounded-xl px-5 py-2 text-sm text-gray-700 transition hover:bg-blue-400 "
                             >
                                                         <svg class="w-5 h-5 transition" viewBox="0 0 17 17" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8.31567 12.5728H12.509C12.4453 12.6295 12.3815 12.6791 12.3178 12.7357L9.29317 15.0024C8.29442 15.7461 6.66526 15.7461 5.65942 15.0024L2.62776 12.7357C1.96193 12.2399 1.4165 11.142 1.4165 10.3132V5.06446C1.4165 4.2003 2.07526 3.24405 2.88276 2.93946L6.41026 1.61488C6.99109 1.3953 7.95442 1.3953 8.53526 1.61488L12.0557 2.93946C12.7286 3.19446 13.3023 3.9028 13.4794 4.6253H8.30858C8.15275 4.6253 8.01108 4.63239 7.8765 4.63239C6.56608 4.71031 6.22608 5.18488 6.22608 6.67946V10.5257C6.23317 12.1549 6.65109 12.5728 8.31567 12.5728Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -275,7 +275,7 @@
                         class="menu-btn group w-full text-right flex items-center gap-3 rounded-xl px-2 py-2 text-sm transition
                         {{ request()->routeIs('sell') || request()->routeIs('inventory') || request()->routeIs('inventory2')
                             ? 'bg-blue-600 text-white'
-                            : 'text-gray-700 hover:bg-blue-600 hover:text-white' }}"
+                            : 'text-gray-700 hover:bg-blue-600 ' }}"
                         style="cursor: pointer;"
                     >
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
@@ -294,7 +294,7 @@
                         <a
                             href="{{ route('sell') }}"
                             class="menu-btn group w-full flex  items-center gap-2 px-5 py-2 rounded-xl text-sm transition
-                            {{ request()->routeIs('sell') ? 'bg-blue-400 text-white' : 'bg-gray-50 text-gray-700 hover:bg-blue-400 hover:text-white' }}"
+                            {{ request()->routeIs('sell') ? 'bg-blue-400 text-white' : 'bg-gray-50 text-gray-700 hover:bg-blue-400 ' }}"
                          >
                          <!-- آیکون سمت راست بدون فاصله -->
                           <svg class="w-5 h-5 transition" viewBox="0 0 17 17" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
@@ -312,7 +312,7 @@
                         <a
                             href="{{ route('inventory') }}"
                             class="menu-btn group w-full flex  items-center gap-2 px-5 py-2  rounded-xl text-sm transition
-                            {{ request()->routeIs('inventory') ? 'bg-blue-400 text-white' : 'bg-gray-50 text-gray-700 hover:bg-blue-400 hover:text-white' }}"
+                            {{ request()->routeIs('inventory') ? 'bg-blue-400 text-white' : 'bg-gray-50 text-gray-700 hover:bg-blue-400 ' }}"
                             >
                                 <svg class="w-5 h-5 transition" viewBox="0 0 24 24" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3.00999 11.22V15.71C3.00999 20.2 4.80999 22 9.29999 22H14.69C19.18 22 20.98 20.2 20.98 15.71V11.22" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -332,7 +332,7 @@
                         <a
                             href="{{ route('inventory2') }}"
                             class="menu-btn group w-full flex  items-center gap-2 px-5 py-2  rounded-xl text-sm transition
-                            {{ request()->routeIs('inventory2') ? 'bg-blue-400 text-white' : 'bg-gray-50 text-gray-700 hover:bg-blue-400 hover:text-white' }}"
+                            {{ request()->routeIs('inventory2') ? 'bg-blue-400 text-white' : 'bg-gray-50 text-gray-700 hover:bg-blue-400 ' }}"
                         >
 
                         <svg class="w-5 h-5 transition" viewBox="0 0 17 17" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
@@ -354,7 +354,7 @@
                 </div>
                 <a data-section="reports" href="{{ route('reports') }}"
                     class="menu-btn group w-full text-right flex gap-3 rounded-xl px-2 py-2 text-sm transition
-                    {{ request()->routeIs('reports') ? 'bg-blue-600 text-white' : 'text-gray-700 hover:bg-blue-600 hover:text-white' }}">
+                    {{ request()->routeIs('reports') ? 'bg-blue-600 text-white' : 'text-gray-700 hover:bg-blue-600 ' }}">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" fill="#fff" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M10.11 11.1501H7.46005C6.83005 11.1501 6.32007 11.6601 6.32007 12.2901V17.4101H10.11V11.1501V11.1501Z" fill="#fff" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -365,7 +365,7 @@
                 </a>
                 <a data-section="fix" href="{{ route('device.repair') }}"
                     class="menu-btn group w-full text-right flex gap-3 rounded-xl px-2 py-2 text-sm transition
-                    {{ request()->routeIs('device.repair') ? 'bg-blue-600 text-white' : 'text-gray-700 hover:bg-blue-600 hover:text-white' }}"
+                    {{ request()->routeIs('device.repair') ? 'bg-blue-600 text-white' : 'text-gray-700 hover:bg-blue-600 ' }}"
                     style="cursor: pointer;">
                     <svg width="26" height="23" viewBox="0 0 26 23" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21.6666 9.20016C21.6666 5.36683 19.9333 3.8335 15.5999 3.8335H10.3999C6.06659 3.8335 4.33325 5.36683 4.33325 9.20016V13.8002C4.33325 17.6335 6.06659 19.1668 10.3999 19.1668" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -385,7 +385,7 @@
                 </a>
                 <a data-section="support" href="{{ route('support') }}"
                 class="menu-btn group w-full text-right flex gap-3 rounded-xl px-2 py-2 text-sm transition
-                {{ request()->routeIs('support') ? 'bg-blue-600 text-white' : 'text-gray-700 hover:bg-blue-600 hover:text-white' }}"
+                {{ request()->routeIs('support') ? 'bg-blue-600 text-white' : 'text-gray-700 hover:bg-blue-600 ' }}"
                 style="cursor: pointer;">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20 12.2V13.9C20 17.05 18.2 18.4 15.5 18.4H6.5C3.8 18.4 2 17.05 2 13.9V8.5C2 5.35 3.8 4 6.5 4H9.2C9.07 4.38 9 4.8 9 5.25V9.15002C9 10.12 9.32 10.94 9.89 11.51C10.46 12.08 11.28 12.4 12.25 12.4V13.79C12.25 14.3 12.83 14.61 13.26 14.33L16.15 12.4H18.75C19.2 12.4 19.62 12.33 20 12.2Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
