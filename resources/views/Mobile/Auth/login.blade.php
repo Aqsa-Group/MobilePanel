@@ -1,83 +1,83 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>صفحه ورود </title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* ======= Base Background ======= */
-    body {
-        background-color: rgba(0, 0, 255, 0.1);
-        background-image: none;
-    }
-    /* ======= Keyframes ======= */
-    @keyframes fade-in{
-      from{opacity:0} to{opacity:1}
-    }
-    @keyframes slide-up{
-      from{transform:translateY(24px); opacity:0} to{transform:translateY(0); opacity:1}
-    }
-    @keyframes slide-in-rtl{ /* for RTL: from left to right visually */
-      from{transform:translateX(-28px); opacity:0} to{transform:translateX(0); opacity:1}
-    }
-    @keyframes float-y{
-      0%{ transform: translateY(0) }
-      50%{ transform: translateY(-8px) }
-      100%{ transform: translateY(0) }
-    }
-    @keyframes subtle-tilt{
-      0%{ transform: rotate(-1deg) scale(1) }
-      50%{ transform: rotate(1deg) scale(1.01) }
-      100%{ transform: rotate(-1deg) scale(1) }
-    }
-    @keyframes glow{
-      0%{ box-shadow: 0 0 0 rgba(59,130,246,0) }
-      100%{ box-shadow: 0 10px 30px rgba(59,130,246,.25) }
-    }
-    @keyframes pulse-border{
-      0%{ box-shadow: 0 0 0 0 rgba(59,130,246,.45) }
-      100%{ box-shadow: 0 0 0 10px rgba(59,130,246,0) }
-    }
-    @keyframes shimmer{
-      0%{ background-position: 200% 0 }
-      100%{ background-position: -200% 0 }
-    }
-    /* ======= Animation Utilities ======= */
-    .anim-fade{ animation: fade-in .7s ease-out both }
-    .anim-card{ animation: slide-up .8s cubic-bezier(.22,1,.36,1) .15s both }
-    .anim-rtl{ animation: slide-in-rtl .8s cubic-bezier(.22,1,.36,1) .2s both }
-    .anim-float{ animation: float-y 5s ease-in-out infinite }
-    .anim-tilt{ animation: subtle-tilt 9s ease-in-out infinite }
-    .anim-glow{ animation: glow .9s ease-out .2s both }
-    /* Button shimmer on hover */
-    .btn-shimmer{ position: relative; overflow: hidden }
-    .btn-shimmer::after{
-      content:""; position:absolute; inset:0; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.5) 50%, rgba(255,255,255,0) 100%);
-      transform: translateX(-150%);
-    }
-    .btn-shimmer:hover::after{ animation: shimmer 1.3s ease }
-    /* Focus styles & micro-interactions */
-    .input-anim{ transition: box-shadow .25s ease, transform .15s ease, border-color .2s ease }
-    .input-anim:focus{ box-shadow: 0 8px 24px rgba(59,130,246,.15); transform: translateY(-1px) }
-    .card-press{ transition: transform .18s ease }
-    .card-press:active{ transform: translateY(1px) }
-    .hover-lift{ transition: transform .25s ease }
-    .hover-lift:hover{ transform: translateY(-2px) }
-    /* Image reveal gradient on the right side */
-    .img-reveal{ position: relative }
-    .img-reveal::before{
-      content:""; position:absolute; inset:0;
-      background: radial-gradient(120% 100% at 50% 100%, rgba(0,0,0,.35), rgba(0,0,0,.15) 40%, rgba(0,0,0,0) 70%);
-      pointer-events:none; opacity:.3; transition: opacity .4s ease
-    }
-    .img-reveal:hover::before{ opacity:.2 }
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      .anim-fade,.anim-card,.anim-rtl,.anim-float,.anim-tilt,.anim-glow{ animation: none !important }
-      .hover-lift,.card-press,.input-anim{ transition: none !important }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>صفحه ورود </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* ======= Base Background ======= */
+        body {
+            background-color: rgba(0, 0, 255, 0.1);
+            background-image: none;
+        }
+        /* ======= Keyframes ======= */
+        @keyframes fade-in{
+        from{opacity:0} to{opacity:1}
+        }
+        @keyframes slide-up{
+        from{transform:translateY(24px); opacity:0} to{transform:translateY(0); opacity:1}
+        }
+        @keyframes slide-in-rtl{ /* for RTL: from left to right visually */
+        from{transform:translateX(-28px); opacity:0} to{transform:translateX(0); opacity:1}
+        }
+        @keyframes float-y{
+        0%{ transform: translateY(0) }
+        50%{ transform: translateY(-8px) }
+        100%{ transform: translateY(0) }
+        }
+        @keyframes subtle-tilt{
+        0%{ transform: rotate(-1deg) scale(1) }
+        50%{ transform: rotate(1deg) scale(1.01) }
+        100%{ transform: rotate(-1deg) scale(1) }
+        }
+        @keyframes glow{
+        0%{ box-shadow: 0 0 0 rgba(59,130,246,0) }
+        100%{ box-shadow: 0 10px 30px rgba(59,130,246,.25) }
+        }
+        @keyframes pulse-border{
+        0%{ box-shadow: 0 0 0 0 rgba(59,130,246,.45) }
+        100%{ box-shadow: 0 0 0 10px rgba(59,130,246,0) }
+        }
+        @keyframes shimmer{
+        0%{ background-position: 200% 0 }
+        100%{ background-position: -200% 0 }
+        }
+        /* ======= Animation Utilities ======= */
+        .anim-fade{ animation: fade-in .7s ease-out both }
+        .anim-card{ animation: slide-up .8s cubic-bezier(.22,1,.36,1) .15s both }
+        .anim-rtl{ animation: slide-in-rtl .8s cubic-bezier(.22,1,.36,1) .2s both }
+        .anim-float{ animation: float-y 5s ease-in-out infinite }
+        .anim-tilt{ animation: subtle-tilt 9s ease-in-out infinite }
+        .anim-glow{ animation: glow .9s ease-out .2s both }
+        /* Button shimmer on hover */
+        .btn-shimmer{ position: relative; overflow: hidden }
+        .btn-shimmer::after{
+        content:""; position:absolute; inset:0; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.5) 50%, rgba(255,255,255,0) 100%);
+        transform: translateX(-150%);
+        }
+        .btn-shimmer:hover::after{ animation: shimmer 1.3s ease }
+        /* Focus styles & micro-interactions */
+        .input-anim{ transition: box-shadow .25s ease, transform .15s ease, border-color .2s ease }
+        .input-anim:focus{ box-shadow: 0 8px 24px rgba(59,130,246,.15); transform: translateY(-1px) }
+        .card-press{ transition: transform .18s ease }
+        .card-press:active{ transform: translateY(1px) }
+        .hover-lift{ transition: transform .25s ease }
+        .hover-lift:hover{ transform: translateY(-2px) }
+        /* Image reveal gradient on the right side */
+        .img-reveal{ position: relative }
+        .img-reveal::before{
+        content:""; position:absolute; inset:0;
+        background: radial-gradient(120% 100% at 50% 100%, rgba(0,0,0,.35), rgba(0,0,0,.15) 40%, rgba(0,0,0,0) 70%);
+        pointer-events:none; opacity:.3; transition: opacity .4s ease
+        }
+        .img-reveal:hover::before{ opacity:.2 }
+        /* Respect reduced motion */
+        @media (prefers-reduced-motion: reduce){
+        .anim-fade,.anim-card,.anim-rtl,.anim-float,.anim-tilt,.anim-glow{ animation: none !important }
+        .hover-lift,.card-press,.input-anim{ transition: none !important }
+        }
+    </style>
 </head>
 <body class="flex items-center justify-center min-h-screen relative p-4 sm:p-6 anim-fade">
     <!-- کارت اصلی: عرض کمتر + قد ثابت در دسکتاپ -->
@@ -93,7 +93,7 @@
             <!-- هدر -->
             <div class="mb-8 sm:mb-6 flex flex-col items-center w-full anim-rtl">
                 <div class="flex items-center  justify-center hover-lift">
-                    <h3 class="text-[#0B35CC] mb-4 text-base sm:text-lg md:text-xl font-semibold whitespace-nowrap leading-none">
+                    <h3 class="flex items-center font-bold gap-2 text-blue-800 mb-4 text-base    sm:text-lg md:text-xl  whitespace-nowrap leading-none">
                     بازار الکترونیک
                     </h3>
                 </div>

@@ -1,5 +1,5 @@
 <div>
-   <div class="max-w-6xl  mx-auto">
+   <div class="max-w-full  mx-auto">
         <!-- کارت بزرگ -->
         <div class="bg-white w-full rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl m-auto p-5 mt-3">
             <div class=" text-center">
@@ -262,13 +262,13 @@
                     @endfor
                     <!-- Pagination -->
                             <div   class="pagination mt-4 mr-4 flex gap-2 justify-center sm:justify-start" dir="rtl">
-                                <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">&#60;</a>
-                                <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">25</a>
-                                <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">...</a>
-                                <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">3</a>
-                                <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">2</a>
-                                <a class="text-[#0800FF] border border-[#0800FF] px-2 rounded-lg" href="#">1</a>
-                                <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">&#62;</a>
+                                <a class=" px-2 rounded-lg bg-[#0B35CC]/60 text-white hover:bg-[#0B35CC]" href="#">&#60;</a>
+                                <a class=" px-2 rounded-lg bg-[#0B35CC]/60 text-white hover:bg-[#0B35CC]" href="#">25</a>
+                                <a class=" px-2 rounded-lg bg-[#0B35CC]/60 text-white hover:bg-[#0B35CC]" href="#">...</a>
+                                <a class=" px-2 rounded-lg bg-[#0B35CC]/60 text-white hover:bg-[#0B35CC]" href="#">3</a>
+                                <a class=" px-2 rounded-lg bg-[#0B35CC]/60 text-white hover:bg-[#0B35CC]" href="#">2</a>
+                                <a class=" border bg-[#0B35CC]/60 text-white hover:bg-[#0B35CC] px-2 rounded-lg" href="#">1</a>
+                                <a class=" px-2 rounded-lg bg-[#0B35CC]/60 text-white hover:bg-[#0B35CC]" href="#">&#62;</a>
                             </div>
                 </div>
                 <!-- جدول دسکتاپ -->
@@ -315,11 +315,11 @@
                                 </defs>
                                 </svg>
                             </span>
-                            <input type="text" class="p-1 pr-8 w-[100px] shadow border  bg-blue-100 rounded-xl" placeholder="فیلتر">
+                            <input type="text" class="p-1 pr-8 w-[100px]  border  bg-blue-200 rounded-xl" placeholder="فیلتر">
                         </div>
                         <!-- جستجو -->
                         <div class="relative mb-1">
-                            <input type="text" class="p-1 w-[170px] shadow bg-blue-100 border  rounded-xl" placeholder="جستجو....">
+                            <input type="text" class="p-1 w-[170px]  bg-blue-200 border  rounded-xl" placeholder="جستجو....">
                             <span class="absolute left-1 top-1.5 text-gray-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" class="w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
@@ -328,8 +328,8 @@
                         </div>
                     </div>
                 </div>
-                <table class="w-full text-center border-2 border-blue-300 text-sm border-collapse">
-                    <thead class="bg-blue-100  border-b-2 border-blue-300 text-center">
+                <table class="w-full text-center border-2 border-[#0B35CC] text-sm border-collapse">
+                    <thead class="bg-[#0B35CC] text-white border-b-2 border-[#0B35CC] text-center">
                         <tr>
                             <th class="p-2">شماره</th>
                             <th class="p-2"> عکس فروشنده</th>
@@ -347,7 +347,7 @@
                     </thead>
                     <tbody>
                         @for ($i=1; $i<=5; $i++)
-                            <tr class="hover:bg-gray-100 border-b-2 border-blue-300">
+                            <tr class="hover:bg-gray-200 border-b-2 border-[#0B35CC]">
                                 <td class="p-2">{{ $i }}</td>
                                 <td class="p-2">  <img src="https://i.postimg.cc/Vkfgsc4N/download-(5).png" class=" rounded-full w-10 h-10 " alt=""></td>
                                 <td class="p-2"> حاجی ظریف الله نور</td>
@@ -384,13 +384,13 @@
                 </table>
                 <!-- Pagination -->
                 <div   class="pagination mt-4 flex gap-2 justify-center sm:justify-start" dir="rtl">
-                    <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">&#60;</a>
-                    <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">25</a>
-                    <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">...</a>
-                    <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">3</a>
-                    <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">2</a>
-                    <a class="text-[#0800FF] border border-[#0800FF] px-2 rounded-lg" href="#">1</a>
-                    <a class=" px-2 rounded-lg bg-[#0948EE14]" href="#">&#62;</a>
+                    <a class=" px-2 rounded-lg bg-[#0B35CC]/60 text-white hover:bg-[#0B35CC]" href="#">&#60;</a>
+                    <a class=" px-2 rounded-lg bg-[#0B35CC]/60 text-white hover:bg-[#0B35CC]" href="#">25</a>
+                    <a class=" px-2 rounded-lg bg-[#0B35CC]/60 text-white hover:bg-[#0B35CC]" href="#">...</a>
+                    <a class=" px-2 rounded-lg bg-[#0B35CC]/60 text-white hover:bg-[#0B35CC]" href="#">3</a>
+                    <a class=" px-2 rounded-lg bg-[#0B35CC]/60 text-white hover:bg-[#0B35CC]" href="#">2</a>
+                    <a class=" border  bg-[#0B35CC]/60 text-white hover:bg-[#0B35CC] px-2 rounded-lg" href="#">1</a>
+                    <a class=" px-2 rounded-lg bg-[#0B35CC]/60 text-white hover:bg-[#0B35CC]" href="#">&#62;</a>
                 </div>
             </div>
         </div>

@@ -1,74 +1,141 @@
 <div> <!-- المان ریشه Livewire -->
-    <div class="flex max-w-7xl mx-auto ">
+    <div class="flex max-w-full mx-auto">
         <!-- Main -->
-        <div class="w-fll mx-auto ">
+        <div class="pt-8 pb-4 px-4 w-full">
             <!-- Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
-                <div class="rounded-xl transition-all duration-200 hover:scale-105 cursor-pointer shadow-[0px_4px_4px_0px_#00000040] p-4 ">
-                    <div class="flex justify-between">
-                        <h1 class="font-bold text-xl">تکت های باز</h1>
-                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.25 27.5H18.75C25 27.5 27.5 25 27.5 18.75V11.25C27.5 5 25 2.5 18.75 2.5H11.25C5 2.5 2.5 5 2.5 11.25V18.75C2.5 25 5 27.5 11.25 27.5Z" fill="white" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M21.6875 11.3135L18.7625 20.7385C18.0625 22.976 14.925 23.0135 14.1875 20.7885L13.3125 18.201C13.075 17.4885 12.5125 16.9135 11.8 16.6885L9.19997 15.8135C6.98747 15.076 7.02497 11.9135 9.26247 11.2385L18.6875 8.30096C20.5375 7.73846 22.275 9.47596 21.6875 11.3135Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
+                <div
+                    class="rounded-xl overflow-hidden transition-all duration-200 hover:scale-105 cursor-pointer shadow-[0px_4px_4px_0px_#00000040] bg-white flex flex-col">
+
+                    <!-- body -->
+                    <div class="p-5 flex flex-col items-center text-center flex-1">
+                        <div class="w-14 h-14 flex items-center justify-center rounded-full bg-[#0B35CC] mb-4">
+                            <!-- icon -->
+                            <svg class="w-16 h-16 text-white" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="white" d="M21.6875 11.3135L18.7625 20.7385C18.0625 22.976 14.925 23.0135 14.1875 20.7885L13.3125 18.201C13.075 17.4885 12.5125 16.9135 11.8 16.6885L9.19997 15.8135C6.98747 15.076 7.02497 11.9135 9.26247 11.2385L18.6875 8.30096C20.5375 7.73846 22.275 9.47596 21.6875 11.3135Z"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+
+                        <p class="text-gray-600  mb-1">تکت های باز</p>
+                        <p class="text-[#0B35CC] text-3xl font-bold">10</p>
+                    </div>
+
+                    <!-- bottom bar -->
+                    <div class="bg-[#0B35CC] text-white  text-center py-2">
+                    درخواستهای که در انتطار بررسی هستند.
+                    </div>
+
+                </div>
+
+                <div
+                    class="rounded-xl overflow-hidden transition-all duration-200 hover:scale-105 cursor-pointer shadow-[0px_4px_4px_0px_#00000040] bg-white flex flex-col">
+
+                    <!-- body -->
+                    <div class="p-5 flex flex-col items-center text-center flex-1">
+                        <div class="w-14 h-14 flex items-center justify-center rounded-full bg-[#0B35CC] mb-4">
+                            <!-- icon -->
+                            <svg width="40" height="40" viewBox="0 0 30 30" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="text-white">
+                                <path d="M13.775 24.375H9.375C8.6 24.375 7.9125 24.35 7.3 24.2625C4.0125 23.9 3.125 22.35 3.125 18.125V11.875C3.125 7.65 4.0125 6.1 7.3 5.7375C7.9125 5.65 8.6 5.625 9.375 5.625H13.7"
+                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M18.7749 5.625H20.6249C21.3999 5.625 22.0874 5.65 22.6999 5.7375C25.9874 6.1 26.8749 7.65 26.8749 11.875V18.125C26.8749 22.35 25.9874 23.9 22.6999 24.2625C22.0874 24.35 21.3999 24.375 20.6249 24.375H18.7749"
+                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M18.75 2.5V27.5" stroke="white" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M13.8681 15H13.8794" stroke="white" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M8.86813 15H8.87936" stroke="white" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+
+                        <p class="text-gray-600  mb-1">در حال بررسی</p>
+                        <p class="text-[#0B35CC] text-3xl font-bold">5</p>
+                    </div>
+
+                    <!-- bottom bar -->
+                    <div class="bg-[#0B35CC] text-white  text-center py-2">
+                    درخواستهای که در حال بررسی هستند.
+                    </div>
+
+                </div>
+
+                <div
+                    class="rounded-xl overflow-hidden transition-all duration-200 hover:scale-105 cursor-pointer shadow-[0px_4px_4px_0px_#00000040] bg-white flex flex-col">
+
+                    <!-- body -->
+                    <div class="p-5 flex flex-col items-center text-center flex-1">
+                        <div class="w-14 h-14 flex items-center justify-center rounded-full bg-[#0B35CC] mb-4">
+                            <!-- icon -->
+                            <svg width="40" height="40" viewBox="0 0 30 30" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="text-white">
+                                <path d="M11.6377 18.375L13.5127 20.25L18.5127 15.25"
+                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M12.5 7.5H17.5C20 7.5 20 6.25 20 5C20 2.5 18.75 2.5 17.5 2.5H12.5C11.25 2.5 10 2.5 10 5C10 7.5 11.25 7.5 12.5 7.5Z"
+                                    stroke="white" stroke-width="1.5" stroke-miterlimit="10"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M20 5.02539C24.1625 5.25039 26.25 6.78789 26.25 12.5004V20.0004C26.25 25.0004 25 27.5004 18.75 27.5004H11.25C5 27.5004 3.75 25.0004 3.75 20.0004V12.5004C3.75 6.80039 5.8375 5.25039 10 5.02539"
+                                    stroke="white" stroke-width="1.5" stroke-miterlimit="10"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+
+                        <p class="text-gray-600  mb-1">حل شده</p>
+                        <p class="text-[#0B35CC] text-3xl font-bold">5</p>
+                    </div>
+
+                    <!-- bottom bar -->
+                    <div class="bg-[#0B35CC] text-white text-center py-2">
+                        درخواست‌هایی که حل شده‌اند.
+                    </div>
+
+                </div>
+
+                <div
+                class="rounded-xl overflow-hidden transition-all duration-200 hover:scale-105 cursor-pointer shadow-[0px_4px_4px_0px_#00000040] bg-white flex flex-col">
+
+                <!-- body -->
+                <div class="p-5 flex flex-col items-center text-center flex-1">
+                    <div class="w-14 h-14 flex items-center justify-center rounded-full bg-[#0B35CC] mb-4">
+                        <!-- icon -->
+                        <svg width="40" height="40" viewBox="0 0 30 30" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.5 10.625C2.5 6.25 5 4.375 8.75 4.375H21.25C25 4.375 27.5 6.25 27.5 10.625V19.375C27.5 23.75 25 25.625 21.25 25.625H8.75"
+                                stroke="white" stroke-width="1.5" stroke-miterlimit="10"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M21.25 11.25L17.3375 14.375C16.05 15.4 13.9375 15.4 12.65 14.375L8.75 11.25"
+                                stroke="white" stroke-width="1.5" stroke-miterlimit="10"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M2.5 20.625H10" stroke="white" stroke-width="1.5"
+                                stroke-miterlimit="10" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M2.5 15.625H6.25" stroke="white" stroke-width="1.5"
+                                stroke-miterlimit="10" stroke-linecap="round"
+                                stroke-linejoin="round" />
                         </svg>
                     </div>
-                    <div class="flex flex-col items-center justify-center mt-5">
-                        <h1 class="font-bold text-4xl border-b border-blue-500 px-4 py-1">5</h1>
-                        <p class="text-xs my-4">درخواستهای که در انتطار بررسی هستند.</p>
-                    </div>
+
+                    <p class="text-gray-600  mb-1">مشکلات فوری</p>
+                    <p class="text-[#0B35CC] text-3xl font-bold">5</p>
                 </div>
-                <div class="rounded-xl transition-all duration-200 hover:scale-105 cursor-pointer shadow-[0px_4px_4px_0px_#00000040] p-4 ">
-                    <div class="flex justify-between">
-                        <h1 class="font-bold text-xl">در حال بررسی</h1>
-                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13.775 24.375H9.375C8.6 24.375 7.9125 24.35 7.3 24.2625C4.0125 23.9 3.125 22.35 3.125 18.125V11.875C3.125 7.65 4.0125 6.1 7.3 5.7375C7.9125 5.65 8.6 5.625 9.375 5.625H13.7" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M18.7749 5.625H20.6249C21.3999 5.625 22.0874 5.65 22.6999 5.7375C25.9874 6.1 26.8749 7.65 26.8749 11.875V18.125C26.8749 22.35 25.9874 23.9 22.6999 24.2625C22.0874 24.35 21.3999 24.375 20.6249 24.375H18.7749" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M18.75 2.5V27.5" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M13.8681 15H13.8794" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M8.86813 15H8.87936" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <div class="flex flex-col items-center justify-center mt-5">
-                        <h1 class="font-bold text-4xl border-b border-blue-500 px-4 py-1">5</h1>
-                        <p class="text-xs my-4">درخواستهای که در انتطار بررسی هستند.</p>
-                    </div>
+
+                <!-- bottom bar -->
+                <div class="bg-[#0B35CC] text-white  text-center py-2">
+                    درخواست‌هایی که نیاز به رسیدگی فوری دارند.
                 </div>
-                <div class="rounded-xl transition-all duration-200 hover:scale-105 cursor-pointer shadow-[0px_4px_4px_0px_#00000040] p-4 ">
-                    <div class="flex justify-between">
-                        <h1 class="font-bold text-xl">حل شده</h1>
-                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.6377 18.375L13.5127 20.25L18.5127 15.25" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M12.5 7.5H17.5C20 7.5 20 6.25 20 5C20 2.5 18.75 2.5 17.5 2.5H12.5C11.25 2.5 10 2.5 10 5C10 7.5 11.25 7.5 12.5 7.5Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M20 5.02539C24.1625 5.25039 26.25 6.78789 26.25 12.5004V20.0004C26.25 25.0004 25 27.5004 18.75 27.5004H11.25C5 27.5004 3.75 25.0004 3.75 20.0004V12.5004C3.75 6.80039 5.8375 5.25039 10 5.02539" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <div class="flex flex-col items-center justify-center mt-5">
-                        <h1 class="font-bold text-4xl border-b border-blue-500 px-4 py-1">5</h1>
-                        <p class="text-xs my-4">درخواستهای که در انتطار بررسی هستند.</p>
-                    </div>
+
                 </div>
-                <div class="rounded-xl transition-all duration-200 hover:scale-105 cursor-pointer shadow-[0px_4px_4px_0px_#00000040] p-4 ">
-                    <div class="flex justify-between">
-                        <h1 class="font-bold text-xl">مشکلات فوری</h1>
-                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2.5 10.625C2.5 6.25 5 4.375 8.75 4.375H21.25C25 4.375 27.5 6.25 27.5 10.625V19.375C27.5 23.75 25 25.625 21.25 25.625H8.75" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M21.25 11.25L17.3375 14.375C16.05 15.4 13.9375 15.4 12.65 14.375L8.75 11.25" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M2.5 20.625H10" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M2.5 15.625H6.25" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <div class="flex flex-col items-center justify-center mt-5">
-                        <h1 class="font-bold text-4xl border-b border-blue-500 px-4 py-1">5</h1>
-                        <p class="text-xs my-4">درخواستهای که در انتطار بررسی هستند.</p>
-                    </div>
-                </div>
+
             </div>
             <!-- Send Message -->
             <div class="mt-6 rounded-xl relative flex overflow-hidden shadow-[0px_4px_4px_0px_#00000040] md:grid grid-cols-6 h-[670px]">
-                <div id="rightPanel" class="w-80 md:w-full bg-gray-100 md:bg-white rounded-xl md:rounded-none absolute md:relative top-0 right-0 md:static md:block hidden translate-x-full opacity-0 scale-95 md:translate-x-0 md:opacity-100 md:scale-100 transition-all duration-500 ease-[cubic-bezier(.4,0,.2,1)] z-10 col-span-2 md:border-l-2 border-black h-full">
+                <div id="rightPanel" class="w-80 md:w-full bg-white  rounded-xl md:rounded-none absolute md:relative top-0 right-0 md:static md:block hidden translate-x-full opacity-0 scale-95 md:translate-x-0 md:opacity-100 md:scale-100 transition-all duration-500 ease-[cubic-bezier(.4,0,.2,1)] z-10 col-span-2 md:border-l-2 border-black h-full">
                     <button id="menuCloseBtn" class="md:hidden absolute top-2 left-2"><i class="fa-solid fa-xmark text-xl"></i></button>
                     <div class="p-4 border-b-2 border-black">
-                        <div class="bg-blue-600 rounded-full w-24 h-24 flex justify-center items-center text-white mx-auto mt-4">اگ</div>
+                        <div class="bg-[#0B35CC] rounded-full w-24 h-24 flex justify-center items-center text-white mx-auto mt-4">اگ</div>
                         <h1 class="font-bold text-2xl text-center my-2">اقصی گروپ</h1>
                         <div class="flex justify-center items-center gap-2">
                             <div class="bg-gray-300 rounded-full p-2.5">
@@ -79,7 +146,7 @@
                                 </div>
                             </div>
                             <div class="bg-gray-300 rounded-full p-2.5">
-                                <div class="bg-blue-600 rounded-full p-1.5">
+                                <div class="bg-[#0B35CC] rounded-full p-1.5">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M6.16689 5.26667L13.2419 2.90834C16.4169 1.85001 18.1419 3.58334 17.0919 6.75834L14.7336 13.8333C13.1502 18.5917 10.5502 18.5917 8.96689 13.8333L8.26689 11.7333L6.16689 11.0333C1.40856 9.45001 1.40856 6.85834 6.16689 5.26667Z" fill="white"/>
                                             </svg>
@@ -100,7 +167,7 @@
                         <div class="my-4"><h1 class="font-bold text-lg">آدرس شرکت:</h1></div>
                     </div>
                 </div>
-                <div class="col-span-4 w-full flex flex-col place-content-between">
+                <div class="col-span-4 w-full bg-white flex flex-col place-content-between">
                     <div class="flex items-center p-4 gap-2 border-b-2 border-black w-full">
                         <button id="menuOpenBtn" class="md:hidden inline-flex items-center justify-center border border-gray-200 p-1 hover:bg-gray-100 transition rounded-lg">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -119,15 +186,54 @@
                     </div>
                     <div class="px-12 py-4">
                         <div class="relative w-full">
-                            <input type="text" class=" py-5 pr-4 pl-20 rounded-3xl outline-none w-full text-xl placeholder-gray-800" placeholder="نوشتن پیام...">
-                            <div class="absolute top-1.5 left-3 p-4 bg-white rounded-full">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M18.0697 9.57L11.9997 3.5L5.92969 9.57" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M12 20.5V3.67004" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+
+                            <!-- input -->
+                            <input
+                                type="text"
+                                class="bg-[#616161]/10 py-5 pr-[130px] pl-20 rounded-3xl outline-none w-full text-xl placeholder-gray-800"
+                                placeholder="نوشتن پیام..."
+                            >
+
+                            <!-- right icons -->
+                            <div class="absolute top-1/2 right-3 -translate-y-1/2 flex gap-2">
+                                <div class="p-3 bg-white rounded-full cursor-pointer hover:bg-gray-100 transition">
+                                    <!-- icon 1 -->
+                                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 15.5C14.21 15.5 16 13.71 16 11.5V6C16 3.79 14.21 2 12 2C9.79 2 8 3.79 8 6V11.5C8 13.71 9.79 15.5 12 15.5Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M4.3501 9.6499V11.3499C4.3501 15.5699 7.7801 18.9999 12.0001 18.9999C16.2201 18.9999 19.6501 15.5699 19.6501 11.3499V9.6499" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M10.6101 6.43012C11.5101 6.10012 12.4901 6.10012 13.3901 6.43012" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M11.2 8.55007C11.73 8.41007 12.28 8.41007 12.81 8.55007" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12 19V22" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+
+                                </div>
+
+                                <div class="p-3 bg-white rounded-full cursor-pointer hover:bg-gray-100 transition">
+                                    <!-- icon 2 -->
+                                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13.5 12C13.5 15.18 10.93 17.75 7.75 17.75C4.57 17.75 2 15.18 2 12C2 8.82 4.57 6.25 7.75 6.25" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M10 12C10 8.69 12.69 6 16 6C19.31 6 22 8.69 22 12C22 15.31 19.31 18 16 18" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+
+                                </div>
+                            </div>
+
+                            <!-- left icon -->
+                            <div class="absolute top-1/2 left-3 -translate-y-1/2 p-4 hover:bg-gray-100 bg-white rounded-full cursor-pointer">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.0697 9.57L11.9997 3.5L5.92969 9.57"
+                                        stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M12 20.5V3.67004"
+                                        stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </div>
+
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

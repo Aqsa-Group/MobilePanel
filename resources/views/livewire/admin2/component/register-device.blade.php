@@ -1,4 +1,4 @@
-<div class="bg-white rounded-2xl shadow-md p-6 w-full max-w-7xl mx-auto mb-6">
+<div class="bg-white rounded-2xl shadow-md p-6 w-full max-w-full mx-auto mb-6">
     <h2 class="text-center text-2xl font-bold mb-1">ثبت دستگاه</h2>
     <p class="text-center text-gray-500 mb-6 text-sm">لطفاً اطلاعات را وارد نمایید.</p>
     <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -159,11 +159,12 @@
     </form>
     <!-- دکمه -->
     <div class="flex flex-col md:flex-row justify-between mt-6 gap-2">
+         <a href="{{ route('admin2.device-list') }}" class="bg-red-600 text-white w-full md:w-1/2 py-3 hover:scale-105 transition-all duration-300 cursor-pointer rounded-lg text-lg inline-block text-center">
+            لغو
+        </a>
         <a href="{{ route('admin2.device-list') }}" class="bg-blue-600 text-white w-full md:w-1/2 py-3 hover:scale-105 transition-all duration-300 cursor-pointer rounded-lg text-lg inline-block text-center">
             ثبت
         </a>
-        <a href="{{ route('admin2.device-list') }}" class="bg-red-600 text-white w-full md:w-1/2 py-3 hover:scale-105 transition-all duration-300 cursor-pointer rounded-lg text-lg inline-block text-center">
-            لغو
-        </a>
+
     </div>
 </div>

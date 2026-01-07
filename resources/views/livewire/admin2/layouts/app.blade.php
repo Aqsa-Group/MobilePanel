@@ -22,7 +22,7 @@
         <div class="flex">
             @include('livewire.admin2.components.sidebar')
 
-            <main class="flex-1 w-full px-3 sm:px-4 max-w-7xl overflow-x-hidden mx-auto lg:p-6">
+            <main class="flex-1 max-w-full px-3 bg-[#616161]/5 sm:px-4 overflow-x-hidden mx-auto lg:p-6">
                 @yield('content')
             </main>
         </div>

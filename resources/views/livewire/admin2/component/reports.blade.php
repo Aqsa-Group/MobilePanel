@@ -1,4 +1,4 @@
-<div class="  max-w-7xl w-full mx-auto  pb-4 px-4 w-full">
+<div class="  max-w-full w-full mx-auto  pb-4 px-4 w-full">
     <div class="lg:grid grid-cols-5 gap-6">
         <!-- Cards -->
         <div class="lg:col-span-3">
@@ -178,8 +178,8 @@
             </div>
         </div>
         <!-- Check Cards -->
-        <div class="col-span-2">
-            <div class="flex flex-col items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer  rounded-xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl  p-4 mt-6 lg:mt-0">
+        <div class="bg-white col-span-2">
+            <div class="flex bg-white flex-col items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer  rounded-xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl  p-4 mt-6 lg:mt-0">
                 <h1 class="font-bold text-4xl mt-4">بررسی دستگاه</h1>
                 <p class="text-sm text-gray-400 py-1">لطفا اطلاعات را وارد کنید.</p>
                 <div class="relative w-full mt-8">
@@ -201,7 +201,7 @@
         </div>
     </div>
     <!-- Form -->
-    <div class="w-full mt-6 rounded-xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl  px-8 pt-8 pb-6">
+    <div class="w-full mt-6 bg-white rounded-xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl  px-8 pt-8 pb-6">
     <!-- Title -->
     <div class="text-center">
         <h1 class="font-bold text-xl md:text-3xl">گزارش دستگاه</h1>
