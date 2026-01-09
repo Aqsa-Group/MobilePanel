@@ -90,7 +90,7 @@
 
                             </div>
                             <div class="py-1">
-                                <a href=""
+                                <a href="{{ route('admin2.profile') }}"
                                 class="flex items-center gap-2 px-3 py-1.5 text-[13px] text-gray-700 hover:bg-gray-100 transition">
                                     <i class="fa-regular fa-user text-[#0948EE]"></i>
                                     پروفایل من

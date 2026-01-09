@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Mobile\UserForm2;
 use App\Livewire\Mobile\DeviceForm2;
+use App\Livewire\Mobile\Profile;
 use App\Livewire\Mobile\Welcome;
 use App\Livewire\Mobile\Support;
 use App\Livewire\Mobile\DeviceRepair;
@@ -16,6 +17,7 @@ use App\Livewire\Admin2\DeviceList;
 use App\Livewire\Admin2\RegisterDevice;
 use App\Livewire\Admin2\Store;
 use App\Livewire\Admin2\Reports;
+use App\Livewire\Admin2\Profile as AdminProfile;
 use App\Livewire\Admin2\Support as AdminSupport;
 
 // ********************************************************
@@ -29,6 +31,11 @@ Route::get('/', Welcome::class)->name('welcome');
 Route::get('/login', function () {
     return view('Mobile.Auth.login');
 })->name('login');
+
+// Profile
+Route::get('/profile', function () {
+    return view('Mobile.shop.profile');
+})->name('profile');
 
 
 // User List
@@ -129,6 +136,11 @@ Route::get('/support', Support::class)->name('support');
 Route::get('/admin2/login', function () {
     return view('livewire.admin2.pages.login');
 })->name('admin2.login');
+
+// profile
+Route::get('/admin2/profile', function () {
+    return view('livewire.admin2.pages.profile');
+})->name('admin2.profile');
 
 // Dashboard
 Route::prefix('admin2')->group(function () {
