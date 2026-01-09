@@ -1,19 +1,33 @@
-<footer class="bg-indigo-600 text-white">
+<footer class="bg-[#2F25FF] text-white">
     <!-- موج بالای فوتر -->
-     <div class="w-full overflow-hidden leading-none">
-        <svg class="w-full  " viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,40 C120,80 240,0 360,20 480,40 600,80 720,60 840,40 960,0 1080,20 1200,40 1320,80 1440,60 L1440,0 L0,0 Z"
-        fill="#ffffff"></path> </svg>
-    </div>
+    <div class="w-full overflow-hidden leading-none">
+    <svg class="w-full h-[70px]" viewBox="0 0 1440 100" preserveAspectRatio="none"
+         xmlns="http://www.w3.org/2000/svg">
+
+        <path fill="#ffffff">
+            <animate attributeName="d"
+                dur="5s"
+                repeatCount="indefinite"
+                values="
+                M0,40 C120,80 240,0 360,20 480,40 600,80 720,60 840,40 960,0 1080,20 1200,40 1320,80 1440,60 L1440,0 L0,0 Z;
+                M0,60 C120,20 240,80 360,60 480,40 600,0 720,20 840,40 960,80 1080,60 1200,40 1320,0 1440,20 L1440,0 L0,0 Z;
+                M0,40 C120,80 240,0 360,20 480,40 600,80 720,60 840,40 960,0 1080,20 1200,40 1320,80 1440,60 L1440,0 L0,0 Z
+                " />
+        </path>
+
+    </svg>
+
+</div>
+
 
     <!-- محتوای فوتر -->
     <div class="w-full px-6 sm:px-10 lg:px-20 py-6">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-lg">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 ">
 
             <!-- درباره ما -->
-            <div class="flex flex-col items-center text-center">
-                <h3 class="text-base font-bold mb-2">درباره ما</h3>
-                <p class="text-indigo-100 leading-relaxed">
+            <div class="flex flex-col items-center  justify-center ">
+                <h3 class="text-sm font-bold ">درباره ما</h3>
+                <p class="text-white text-[10px] leading-relaxed">
                     ما خدمات قابل اعتماد بررسی IMEI را برای کمک به
                     شناسایی دستگاه‌های سرقتی ارائه می‌دهیم.
                     هدف ما افزایش امنیت و شفافیت در بازار موبایل است.
@@ -21,51 +35,53 @@
             </div>
 
             <!-- خدمات -->
-            <div class="flex flex-col items-center text-center">
-                <h3 class="text-base font-bold mb-2">خدمات</h3>
-                <ul class="space-y-1 text-indigo-100">
-                    <li>بررسی IMEI</li>
-                    <li>وضعیت لیست سیاه</li>
-                    <li>گزارش سرقت / مفقودی</li>
-                    <li>پشتیبانی مشتری</li>
-                    <li>همکاری با نمایندگان</li>
+            <div class="flex flex-col items-center justify-center">
+                <h3 class="text-sm font-bold mb-2">خدمات</h3>
+                <ul class="space-y-1 flex flex-col items-center justify-center text-sm">
+                    <li class="text-[10px]">بررسی IMEI</li>
+                    <li class="text-[10px]">وضعیت لیست سیاه</li>
+                    <li class="text-[10px]">گزارش سرقت / مفقودی</li>
+                    <li class="text-[10px]">پشتیبانی مشتری</li>
+                    <li class="text-[10px]">همکاری با نمایندگان</li>
                 </ul>
             </div>
 
             <!-- لینک‌های سریع -->
-            <div class="flex flex-col items-center text-center">
-                <h3 class="text-base font-bold mb-2">لینک های سریع</h3>
-                <ul class="space-y-1 text-indigo-100">
-                    <li>صفحه اصلی</li>
-                    <li>ثبت سرقت / مفقودی</li>
-                    <li>خدمات</li>
-                    <li>درباره ما</li>
-                    <li>تماس با ما</li>
+            <div class="flex flex-col items-center justify-center">
+                <h3 class="text-sm font-bold mb-2">لینک های سریع</h3>
+                <ul class="space-y-1 flex flex-col items-center justify-center">
+                    <li class="text-[10px]"><a href="">صفحه اصلی</a> </li>
+                    <li class="text-[10px]"><a href="">ثبت سرقت /مفقودی</a> </li>
+                    <li class="text-[10px]"><a href="">خدمات</a></li>
+                    <li class="text-[10px]"><a href="">درباره ما</a> </li>
+                    <li class="text-[10px]"><a href="">تماس با ما</a> ا</li>
                 </ul>
             </div>
 
             <!-- تماس با ما -->
-            <div class="flex flex-col items-center text-center">
-                <h3 class="text-base font-bold mb-2">تماس با ما</h3>
-                <ul class="space-y-1 text-indigo-100">
-                    <li class="flex items-center gap-2 justify-center">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21.6002 10.2H12.2002V13.9H17.7002C17.6002 14.8 17.0002 16.2 15.7002 17.1C14.9002 17.7 13.7002 18.1 12.2002 18.1C9.6002 18.1 7.3002 16.4 6.5002 13.9C6.3002 13.3 6.2002 12.6 6.2002 11.9C6.2002 11.2 6.3002 10.5 6.5002 9.9C6.6002 9.7 6.6002 9.5 6.7002 9.4C7.6002 7.3 9.7002 5.8 12.2002 5.8C14.1002 5.8 15.3002 6.6 16.1002 7.3L18.9002 4.5C17.2002 3 14.9002 2 12.2002 2C8.3002 2 4.9002 4.2 3.3002 7.5C2.6002 8.9 2.2002 10.4 2.2002 12C2.2002 13.6 2.6002 15.1 3.3002 16.5C4.9002 19.8 8.3002 22 12.2002 22C14.9002 22 17.2002 21.1 18.8002 19.6C20.7002 17.9 21.8002 15.3 21.8002 12.2C21.8002 11.4 21.7002 10.8 21.6002 10.2Z" fill="white"/>
+            <div class="flex flex-col items-center justify-center">
+                <h3 class="text-sm font-bold mb-2">تماس با ما</h3>
+                <ul class="space-y-1 flex flex-col items-center justify-center">
+                    <li class="flex  gap-2 text-[10px]">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 20.5H7C4 20.5 2 19 2 15.5V8.5C2 5 4 3.5 7 3.5H17C20 3.5 22 5 22 8.5V15.5C22 19 20 20.5 17 20.5Z" fill="white"/>
+                        <path d="M17 9L13.87 11.5C12.84 12.32 11.15 12.32 10.12 11.5L7 9" stroke="#2F25FF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        aqsagroup.af@gmail.com
+
+                        <a href="">aqsagroup.af@gmail.com</a>
                     </li>
-                    <li class="flex items-center gap-2 justify-center">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <li class="flex  gap-2 text-[10px]">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15.5634 12.4831C15.5634 12.7381 15.5067 13.0002 15.3863 13.2552C15.2659 13.5102 15.1101 13.751 14.9046 13.9777C14.5576 14.3602 14.1751 14.6364 13.743 14.8135C13.318 14.9906 12.8576 15.0827 12.3617 15.0827C11.6392 15.0827 10.8671 14.9127 10.0526 14.5656C9.23797 14.2185 8.42339 13.751 7.61589 13.1631C6.8013 12.5681 6.02922 11.9093 5.29255 11.1798C4.56297 10.4431 3.90422 9.67102 3.3163 8.86352C2.73547 8.05602 2.26797 7.24852 1.92797 6.4481C1.58797 5.6406 1.41797 4.86852 1.41797 4.13185C1.41797 3.65018 1.50297 3.18977 1.67297 2.76477C1.84297 2.33268 2.11214 1.93602 2.48755 1.58185C2.94089 1.1356 3.43672 0.916016 3.96089 0.916016C4.15922 0.916016 4.35755 0.958516 4.53464 1.04352C4.7188 1.12852 4.88172 1.25602 5.00922 1.44018L6.65255 3.75643C6.78005 3.93352 6.87214 4.09643 6.93589 4.25227C6.99964 4.40102 7.03505 4.54977 7.03505 4.68435C7.03505 4.85435 6.98547 5.02435 6.8863 5.18727C6.79422 5.35018 6.65964 5.52018 6.48964 5.69018L5.9513 6.24977C5.87339 6.32768 5.83797 6.41977 5.83797 6.5331C5.83797 6.58977 5.84505 6.63935 5.85922 6.69602C5.88047 6.75268 5.90172 6.79518 5.91589 6.83768C6.04339 7.07143 6.26297 7.37602 6.57464 7.74435C6.89339 8.11268 7.23339 8.4881 7.60172 8.86352C7.98422 9.23893 8.35255 9.58601 8.72797 9.90477C9.0963 10.2164 9.40089 10.4289 9.64172 10.5564C9.67714 10.5706 9.71964 10.5918 9.76922 10.6131C9.82589 10.6343 9.88255 10.6414 9.9463 10.6414C10.0667 10.6414 10.1588 10.5989 10.2367 10.521L10.7751 9.98977C10.9521 9.81268 11.1221 9.6781 11.2851 9.5931C11.448 9.49393 11.6109 9.44435 11.788 9.44435C11.9226 9.44435 12.0642 9.47268 12.2201 9.53643C12.3759 9.60018 12.5388 9.69227 12.7159 9.81268L15.0605 11.4773C15.2446 11.6048 15.3721 11.7535 15.4501 11.9306C15.5209 12.1077 15.5634 12.2848 15.5634 12.4831Z" fill="white"/>
                         </svg>
-                        8676786856
+                        <a href="">8676786856</a>
                     </li>
-                    <li class="flex items-center gap-2 justify-center">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <li class="flex  gap-2 text-[10px]">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3.61971 8.49C5.58971 -0.169998 18.4197 -0.159997 20.3797 8.5C21.5297 13.58 18.3697 17.88 15.5997 20.54C13.5897 22.48 10.4097 22.48 8.38971 20.54C5.62971 17.88 2.46971 13.57 3.61971 8.49Z" fill="white"/>
                             <path d="M11.9999 13.4299C13.723 13.4299 15.1199 12.0331 15.1199 10.3099C15.1199 8.58681 13.723 7.18994 11.9999 7.18994C10.2768 7.18994 8.87988 8.58681 8.87988 10.3099C8.87988 12.0331 10.2768 13.4299 11.9999 13.4299Z" fill="#2F25FF"/>
                         </svg>
-                        هرات، جوی نو
+                       <a href=""> هرات، جوی نو</a>
                     </li>
                 </ul>
             </div>

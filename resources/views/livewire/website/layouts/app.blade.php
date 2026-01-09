@@ -27,7 +27,7 @@
 
         @include('livewire.website.components.header')
 
-        <main class="flex-1 w-full px-3 sm:px-4 max-w-7xl overflow-x-hidden mx-auto lg:p-6">
+        <main class="flex-1 w-full px-3 sm:px-4 max-w-full overflow-x-hidden mx-auto lg:p-6">
             {{ $slot }}
         </main>
 

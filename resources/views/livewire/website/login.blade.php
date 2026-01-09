@@ -1,201 +1,101 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>داشبورد</title>
-  @include('Mobile.layouts.links')
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>صفحه ورود </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@30.1.0/dist/font-face.css" rel="stylesheet">
+    <style>
+        /* ======= Base Background ======= */
+        body {
+            background-color: rgba(0, 0, 255, 0.1);
+            background-image: none;
+            font-family: 'Vazir', 'Poppins', sans-serif;
+        }
+        /* ======= Keyframes ======= */
+        @keyframes fade-in{
+        from{opacity:0} to{opacity:1}
+        }
+        @keyframes slide-up{
+        from{transform:translateY(24px); opacity:0} to{transform:translateY(0); opacity:1}
+        }
+        @keyframes slide-in-rtl{ /* for RTL: from left to right visually */
+        from{transform:translateX(-28px); opacity:0} to{transform:translateX(0); opacity:1}
+        }
+        @keyframes float-y{
+        0%{ transform: translateY(0) }
+        50%{ transform: translateY(-8px) }
+        100%{ transform: translateY(0) }
+        }
+        @keyframes subtle-tilt{
+        0%{ transform: rotate(-1deg) scale(1) }
+        50%{ transform: rotate(1deg) scale(1.01) }
+        100%{ transform: rotate(-1deg) scale(1) }
+        }
+        @keyframes glow{
+        0%{ box-shadow: 0 0 0 rgba(59,130,246,0) }
+        100%{ box-shadow: 0 10px 30px rgba(59,130,246,.25) }
+        }
+        @keyframes pulse-border{
+        0%{ box-shadow: 0 0 0 0 rgba(59,130,246,.45) }
+        100%{ box-shadow: 0 0 0 10px rgba(59,130,246,0) }
+        }
+        @keyframes shimmer{
+        0%{ background-position: 200% 0 }
+        100%{ background-position: -200% 0 }
+        }
+        /* ======= Animation Utilities ======= */
+        .anim-fade{ animation: fade-in .7s ease-out both }
+        .anim-card{ animation: slide-up .8s cubic-bezier(.22,1,.36,1) .15s both }
+        .anim-rtl{ animation: slide-in-rtl .8s cubic-bezier(.22,1,.36,1) .2s both }
+        .anim-float{ animation: float-y 5s ease-in-out infinite }
+        .anim-tilt{ animation: subtle-tilt 9s ease-in-out infinite }
+        .anim-glow{ animation: glow .9s ease-out .2s both }
+        /* Button shimmer on hover */
+        .btn-shimmer{ position: relative; overflow: hidden }
+        .btn-shimmer::after{
+        content:""; position:absolute; inset:0; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.5) 50%, rgba(255,255,255,0) 100%);
+        transform: translateX(-150%);
+        }
+        .btn-shimmer:hover::after{ animation: shimmer 1.3s ease }
+        /* Focus styles & micro-interactions */
+        .input-anim{ transition: box-shadow .25s ease, transform .15s ease, border-color .2s ease }
+        .input-anim:focus{ box-shadow: 0 8px 24px rgba(59,130,246,.15); transform: translateY(-1px) }
+        .card-press{ transition: transform .18s ease }
+        .card-press:active{ transform: translateY(1px) }
+        .hover-lift{ transition: transform .25s ease }
+        .hover-lift:hover{ transform: translateY(-2px) }
+        /* Image reveal gradient on the right side */
+        .img-reveal{ position: relative }
+        .img-reveal::before{
+        content:""; position:absolute; inset:0;
+        background: radial-gradient(120% 100% at 50% 100%, rgba(0,0,0,.35), rgba(0,0,0,.15) 40%, rgba(0,0,0,0) 70%);
+        pointer-events:none; opacity:.3; transition: opacity .4s ease
+        }
+        .img-reveal:hover::before{ opacity:.2 }
+        /* Respect reduced motion */
+        @media (prefers-reduced-motion: reduce){
+        .anim-fade,.anim-card,.anim-rtl,.anim-float,.anim-tilt,.anim-glow{ animation: none !important }
+        .hover-lift,.card-press,.input-anim{ transition: none !important }
+        }
+    </style>
 </head>
-<style>
-    /* From Uiverse.io by satyamchaudharydev */
-.button1 {
-  position: relative;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-  padding-block: 0.5rem;
-  padding-inline: 1.25rem;
-  background-color: #2F25FF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffff;
-  gap: 10px;
-  font-weight: bold;
-  border: 3px solid #ffffff4d;
-  outline: none;
-  overflow: hidden;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.icon {
-  width: 24px;
-  height: 24px;
-  transition: all 0.3s ease-in-out;
-}
-
-.button1:hover {
-  transform: scale(1.05);
-  border-color: #fff9;
-}
-
-.button1:hover .icon {
-  transform: translate(4px);
-}
-
-.button1:hover::before {
-  animation: shine 1.5s ease-out infinite;
-}
-
-.button1::before {
-  content: "";
-  position: absolute;
-  width: 100px;
-  height: 100%;
-  background-image: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0) 30%,
-    rgba(255, 255, 255, 0.8),
-    rgba(255, 255, 255, 0) 70%
-  );
-  top: 0;
-  left: -100px;
-  opacity: 0.6;
-}
-
-@keyframes shine {
-  0% {
-    left: -100px;
-  }
-
-  60% {
-    left: 100%;
-  }
-
-  to {
-    left: 100%;
-  }
-}
-
-.button2 {
-  position: relative;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-  padding-block: 0.5rem;
-  padding-inline: 1.25rem;
-  background-color: #2F25FF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffff;
-  gap: 10px;
-  font-weight: bold;
-  border: 3px solid #ffffff4d;
-  outline: none;
-  overflow: hidden;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-
-.button2:hover {
-  transform: scale(1.05);
-  border-color: #fff9;
-}
-
-.button2:hover .icon {
-  transform: translate(4px);
-}
-
-.button2:hover::before {
-  animation: shine2 1.5s ease-out infinite;
-}
-
-.button2::before {
-  content: "";
-  position: absolute;
-  width: 100px;
-  height: 100%;
-  background-image: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0) 30%,
-    rgba(255, 255, 255, 0.8),
-    rgba(255, 255, 255, 0) 70%
-  );
-  top: 0;
-  left: -100px;
-  opacity: 0.6;
-}
-
-@keyframes shine2 {
-  0% {
-    left: -100px;
-  }
-
-  60% {
-    left: 100%;
-  }
-
-  to {
-    left: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .button {
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    border-radius: 9999px;
-    gap: 0;
-  }
-
-  .button span {
-    display: none;
-  }
-
-  .button .icon {
-    width: 22px;
-    height: 22px;
-    transform: none !important;
-  }
-    .button1 {
-    display: none !important;
-  }
-  .button2 {
-    width: 44px;       /* عرض ثابت */
-    height: 44px;      /* ارتفاع ثابت */
-    padding: 0;        /* بدون padding */
-    border-radius: 9999px; /* کاملاً گرد */
-    gap: 0;
-    text-align: center        /* فاصله بین آیکون و متن */
-  }
-
-
-}
-</style>
-
-<body  class="flex flex-col min-h-screen">
-  <!-- Header -->
-@php
-$navBase = "relative inline-block font-medium
-    after:content-['']
-    after:absolute after:left-0 after:-bottom-1
-    after:w-full after:h-[2px]
-    after:bg-[#2F25FF]
-    after:origin-center
-    after:scale-x-0
-    after:transition-transform after:duration-300 after:ease-in-out";
-@endphp
-
-<header class="bg-white w-full">
-    <!-- ردیف اصلی -->
-    <div class="w-full px-6">
-        <div class="flex items-center justify-between h-20">
-
-            <!-- لوگو (راست) -->
-            <div class="flex items-center gap-2 text-[#2F25FF] font-bold text-xl">
-                <div
+<body class="flex items-center justify-center min-h-screen relative p-4 sm:p-6 anim-fade">
+    <!-- کارت اصلی: عرض کمتر + قد ثابت در دسکتاپ -->
+    <div id="card"
+        class="relative w-full max-w-[820px] md:max-w-[880px]
+        flex flex-col md:flex-row
+        rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-white md:h-[520px]
+        anim-card anim-glow card-press">
+        <!-- ستون فرم) -->
+        <div class="mt-5 relative w-full md:w-1/2 bg-white
+            flex flex-col justify-center items-center
+            px-8 sm:px-6 md:px-10 order-1">
+            <!-- هدر -->
+            <div class="mb-8 sm:mb-6 flex flex-col items-center w-full anim-rtl">
+               <div class="flex items-center justify-center hover-lift">
+                   <div
                     class="w-9 h-9 bg-[#2F25FF] rounded-xl flex items-center justify-center text-white font-bold">
                    <svg width="84" height="84" viewBox="0 0 79 83" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <rect width="79" height="83" fill="url(#pattern0_1518_3460)"/>
@@ -208,155 +108,132 @@ $navBase = "relative inline-block font-medium
                         </svg>
 
                 </div>
-                <span>همراه یاب</span>
-
+                <span class="text-2xl">همراه <span class="text-[#2F25FF]">یاب</span>
+                    </span>
+                </div>
+                <p class="text-[#2F25FF] opacity-[70%] text-[8px] sm:text-[9px] leading-none mt-3 text-center">
+                    لطفاً اطلاعات حساب خود را وارد کنید.
+                </p>
             </div>
-
-            <!-- منو (وسط) -->
-            <nav class="hidden md:flex items-center gap-6 text-[16px] font-semibold text-gray-800
-            ">
-               <a href="{{ route('website.home') }}"
-            class="{{ $navBase }}
-            {{ request()->routeIs('website.home')
-                    ? 'text-[#2F25FF] after:scale-x-100'
-                    : 'text-gray-700 hover:text-[#2F25FF] after:scale-x-0 hover:after:scale-x-100' }}">
-                صفحه اصلی
-            </a>
-             <a href="{{ route('website.about') }}"
-            class="{{ $navBase }}
-            {{ request()->routeIs('website.about')
-                    ? 'text-[#2F25FF] after:scale-x-100'
-                    : 'text-gray-700 hover:text-[#2F25FF] after:scale-x-0 hover:after:scale-x-100' }}">
-               درباره ما
-            </a>
-             <a href="{{ route('website.register') }}"
-            class="{{ $navBase }}
-            {{ request()->routeIs('website.register')
-                    ? 'text-[#2F25FF] after:scale-x-100'
-                    : 'text-gray-700 hover:text-[#2F25FF] after:scale-x-0 hover:after:scale-x-100' }}">
-             ثبت دستگاه/مفقودی
-            </a>
-             <a href="{{ route('website.services') }}"
-            class="{{ $navBase }}
-            {{ request()->routeIs('website.services')
-                    ? 'text-[#2F25FF] after:scale-x-100'
-                    : 'text-gray-700 hover:text-[#2F25FF] after:scale-x-0 hover:after:scale-x-100' }}">
-            خدمات
-            </a>
-                 <a href="{{ route('website.contact') }}"
-            class="{{ $navBase }}
-            {{ request()->routeIs('website.contact')
-                    ? 'text-[#2F25FF] after:scale-x-100'
-                    : 'text-gray-700 hover:text-[#2F25FF] after:scale-x-0 hover:after:scale-x-100' }}">
-          تماس با ما
-            </a>
-            </nav>
-
-            <!-- ورود (چپ) -->
-
-           <!-- From Uiverse.io by satyamchaudharydev -->
-        <a href="{{ route('website.login') }}" class="button1 hidden md:flex items-center gap-1 bg-[#2F25FF] rounded-full text-white sm:px-4 sm:py-2 sm:rounded-xl text-sm font-bold">
-            <svg class="icon" width="22" height="22" viewBox="0 0 27 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.2124 14.4934C16.0791 14.4801 15.9191 14.4801 15.7724 14.4934C12.5991 14.3867 10.0791 11.7867 10.0791 8.58675C10.0791 5.32008 12.7191 2.66675 15.9991 2.66675C19.2658 2.66675 21.9191 5.32008 21.9191 8.58675C21.9058 11.7867 19.3858 14.3867 16.2124 14.4934Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M9.54598 19.4133C6.31931 21.5733 6.31931 25.0933 9.54598 27.2399C13.2126 29.6933 19.226 29.6933 22.8926 27.2399C26.1193 25.0799 26.1193 21.5599 22.8926 19.4133C19.2393 16.9733 13.226 16.9733 9.54598 19.4133Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="hidden md:inline">ورود</span>
-        </a>
-
-            <!-- ورود (چپ) -->
-            <div class="flex items-center gap-2 md:hidden">
-
-                <a href="{{ route('website.login') }}" class="button2 bg-[#2F25FF] rounded-full text-white text-sm font-bold">
-                    <svg class="icon" width="22" height="22" viewBox="0 0 27 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16.2124 14.4934C16.0791 14.4801 15.9191 14.4801 15.7724 14.4934C12.5991 14.3867 10.0791 11.7867 10.0791 8.58675C10.0791 5.32008 12.7191 2.66675 15.9991 2.66675C19.2658 2.66675 21.9191 5.32008 21.9191 8.58675C21.9058 11.7867 19.3858 14.3867 16.2124 14.4934Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M9.54598 19.4133C6.31931 21.5733 6.31931 25.0933 9.54598 27.2399C13.2126 29.6933 19.226 29.6933 22.8926 27.2399C26.1193 25.0799 26.1193 21.5599 22.8926 19.4133C19.2393 16.9733 13.226 16.9733 9.54598 19.4133Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+            <!-- فرم ورود -->
+            <form  id="loginForm"
+                    method="POST"
+                    action=""
+                    class="w-full max-w-sm space-y-6 sm:space-y-8 anim-rtl"
+                >
+                @csrf
+                <div>
+                    <div class="relative">
+                        <input id="username" name="username" type="text" placeholder="نام کاربری"
+                            class="peer w-full border border-gray-900 rounded-xl
+                            py-6 sm:py-3.5 pr-10 pl-3
+                            text-right text-sm sm:text-base
+                            outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-500
+                            placeholder:text-gray-500 bg-white transition input-anim"/>
+                        <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 flex  items-center">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M7.15997 14.56C4.73997 16.18 4.73997 18.82 7.15997 20.43C9.90997 22.27 14.42 22.27 17.17 20.43C19.59 18.81 19.59 16.17 17.17 14.56C14.43 12.73 9.91997 12.73 7.15997 14.56Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <p id="userError" class="hidden text-red-600 text-xs sm:text-sm mt-1">نام کاربری الزامی است.</p>
+                </div>
+                <div>
+                    <div class="relative">
+                        <input id="password" name="password" type="password" placeholder="رمز عبور"
+                            class="peer w-full border border-gray-900 rounded-xl
+                            py-6 sm:py-3.5 pr-10 pl-3
+                            text-right text-sm sm:text-base
+                            outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-500
+                            placeholder:text-gray-500 bg-white transition input-anim"/>
+                        <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 flex items-center">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_71_66)">
+                                <path d="M6 10V8C6 4.69 7 2 12 2C17 2 18 4.69 18 8V10" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 18.5C13.3807 18.5 14.5 17.3807 14.5 16C14.5 14.6193 13.3807 13.5 12 13.5C10.6193 13.5 9.5 14.6193 9.5 16C9.5 17.3807 10.6193 18.5 12 18.5Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M17 22H7C3 22 2 21 2 17V15C2 11 3 10 7 10H17C21 10 22 11 22 15V17C22 21 21 22 17 22Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0_71_66">
+                                <rect width="24" height="24" fill="white"/>
+                                </clipPath>
+                                </defs>
+                            </svg>
+                        </span>
+                    </div>
+                    <p id="passError" class="hidden text-red-600 text-xs sm:text-sm mt-1">رمز عبور باید حداقل ۶ کاراکتر باشد.</p>
+                </div>
+                <a href="{{ route('website.home') }}"
+                class="w-full inline-block bg-[#2F25FF] hover:bg-blue-700 text-white font-bold
+                        py-6 sm:py-3.5 text-center rounded-lg transition text-sm sm:text-base
+                        hover-lift btn-shimmer">
+                    ورود
                 </a>
-              <!-- دکمه توگل موبایل -->
-      <button id="menuBtn" class="md:hidden">
-        <!-- آیکن همبرگر -->
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-
+            </form>
         </div>
+        <!-- ستون تصویر) -->
+        <div class="relative w-full md:w-1/2 order-1 md:mt-0 min-h-[48vh] md:min-h-[450px] mb-0 pb-0 overflow-hidden img-reveal">
+            <img
+                src="https://i.postimg.cc/25hmvLFQ/222.jpg"
+                alt="phone"
+                class="absolute hidden sm:block inset-0 w-full h-auto md:h-full object-cover
+                md:rotate-0 origin-center anim-fade"
+            />
+            <img
+                src="https://i.postimg.cc/25hmvLFQ/222.jpg"
+                alt="phone mobile"
+                class="block md:hidden absolute inset-0 mt-[10px] w-full h-full md:h-full object-cover
+                md:rotate-0 origin-center anim-fade"
+            />
         </div>
     </div>
-
-     <div id="mobileMenu"
-         class="lg:hidden hidden border-t border-gray-200 bg-white">
-
-        <nav class="flex flex-col items-center justify-center p-4 space-y-4 text-gray-700">
-
-            <a href="{{ route('website.home') }}"
-            class="{{ $navBase }}  inline-block w-fit
-            {{ request()->routeIs('website.home')
-                    ? 'text-[#2F25FF] after:scale-x-100'
-                    : 'text-gray-700 hover:text-[#2F25FF] after:scale-x-0 hover:after:scale-x-100' }}">
-                صفحه اصلی
-            </a>
-             <a href="{{ route('website.about') }}"
-            class="{{ $navBase }}  inline-block w-fit
-            {{ request()->routeIs('website.about')
-                    ? 'text-[#2F25FF] after:scale-x-100'
-                    : 'text-gray-700 hover:text-[#2F25FF] after:scale-x-0 hover:after:scale-x-100' }}">
-               درباره ما
-            </a>
-             <a href="{{ route('website.register') }}"
-            class="{{ $navBase }}  inline-block w-fit
-            {{ request()->routeIs('website.register')
-                    ? 'text-[#2F25FF] after:scale-x-100'
-                    : 'text-gray-700 hover:text-[#2F25FF] after:scale-x-0 hover:after:scale-x-100' }}">
-             ثبت دستگاه/مفقودی
-            </a>
-             <a href="{{ route('website.services') }}"
-            class="{{ $navBase }}  inline-block w-fit
-            {{ request()->routeIs('website.services')
-                    ? 'text-[#2F25FF] after:scale-x-100'
-                    : 'text-gray-700 hover:text-[#2F25FF] after:scale-x-0 hover:after:scale-x-100' }}">
-            خدمات
-            </a>
-                 <a href="{{ route('website.contact') }}"
-            class="{{ $navBase }}  inline-block w-fit
-            {{ request()->routeIs('website.contact')
-                    ? 'text-[#2F25FF] after:scale-x-100'
-                    : 'text-gray-700 hover:text-[#2F25FF] after:scale-x-0 hover:after:scale-x-100' }}">
-          تماس با ما
-            </a>
-
-        </nav>
-
+    <div id="toast" class="fixed bottom-4 right-4 md:right-auto md:left-1/2 md:-translate-x-1/2 px-4 py-2 rounded-xl bg-blue-600 text-white text-sm shadow-xl opacity-0 pointer-events-none">
+        خوش آمدید!
     </div>
+    <script>
+       const form = document.getElementById('loginForm');
+const username = document.getElementById('username');
+const password = document.getElementById('password');
+const userError = document.getElementById('userError');
+const passError = document.getElementById('passError');
 
+function setError(inputEl, errorEl, hasError, message) {
+    if (hasError) {
+        errorEl.textContent = message;
+        errorEl.classList.remove('hidden');
+        inputEl.classList.remove('border-gray-300');
+        inputEl.classList.add('border-red-500');
+        inputEl.style.animation = 'pulse-border .6s ease-out';
+        setTimeout(() => inputEl.style.animation = '', 650);
+    } else {
+        errorEl.classList.add('hidden');
+        inputEl.classList.remove('border-red-500');
+        inputEl.classList.add('border-gray-300');
+    }
+}
 
-    <!-- خط زیر هدر -->
-    <div class="w-full h-[2px] bg-gradient-to-l from-blue-900 via-blue-500 to-blue-300"></div>
-</header>
+username.addEventListener('input', () => {
+    setError(username, userError, username.value.trim().length === 0, 'نام کاربری الزامی است.');
+});
+password.addEventListener('input', () => {
+    setError(password, passError, password.value.length < 6, 'رمز عبور باید حداقل ۶ کاراکتر باشد.');
+});
 
+form.addEventListener('submit', (e) => {
+    const u = username.value.trim();
+    const p = password.value;
+    const userInvalid = u.length === 0;
+    const passInvalid = p.length < 6;
 
+    setError(username, userError, userInvalid, 'نام کاربری الزامی است.');
+    setError(password, passError, passInvalid, 'رمز عبور باید حداقل ۶ کاراکتر باشد.');
 
+    if (userInvalid || passInvalid) {
+        e.preventDefault(); // مانع submit در صورت خطا
+    }
+});
 
-
-<script>
-  const btn = document.getElementById('menuBtn');
-  const menu = document.getElementById('mobileMenu');
-
-  btn.addEventListener('click', () => {
-    menu.classList.toggle('hidden');
-  });
-</script>
-
-
-
-
-
-    <main class="flex-1 main-content-container flex justify-center items-center  w-full   ">
-        @yield('content')
-
-    </main>
-
+    </script>
 </body>
 </html>

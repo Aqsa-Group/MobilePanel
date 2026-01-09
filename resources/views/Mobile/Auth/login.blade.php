@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>صفحه ورود </title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@30.1.0/dist/font-face.css" rel="stylesheet">
     <style>
         /* ======= Base Background ======= */
         body {
             background-color: rgba(0, 0, 255, 0.1);
             background-image: none;
+            font-family: 'Vazir', 'Poppins', sans-serif;
         }
         /* ======= Keyframes ======= */
         @keyframes fade-in{

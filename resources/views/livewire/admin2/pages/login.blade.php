@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@30.1.0/dist/font-face.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
+<style>
+    body{
+            font-family: 'Vazir', 'Poppins', sans-serif;
+    }
+</style>
 <body>
     <div class="bg-slate-200 max-w-7xl  h-screen sm:h-screen flex justify-center md:items-center">
         <div class="max-w-7xl  mx-auto flex ">

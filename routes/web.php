@@ -173,13 +173,20 @@ Route::get('/admin2/support', AdminSupport::class)
 use App\Livewire\Website\Home;
 use App\Livewire\Website\About;
 use App\Livewire\Website\Contact;
+use App\Livewire\Website\Register;
+use App\Livewire\Website\Services;
 
 Route::prefix('website')
     ->name('website.')
     ->group(function () {
 
         Route::get('/', Home::class)->name('home');
-        // Route::get('/about', About::class)->name('about');
-        // Route::get('/contact', Contact::class)->name('contact');
+        Route::get('/about', About::class)->name('about');
+        Route::get('/register', Register::class)->name('register');
+        Route::get('/services', Services::class)->name('services');
+        Route::get('/contact', Contact::class)->name('contact');
+Route::get('/login', function () {
+    return view('livewire.website.login');
+})->name('login');
 
     });
