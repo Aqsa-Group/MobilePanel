@@ -11,79 +11,32 @@ use App\Livewire\Mobile\UserEdit;
 use App\Http\Controllers\Auth\LoginController;
 use App\Livewire\Mobile\CustomerEdit;
 use App\Livewire\Mobile\Employe;
-// dashboard
-Route::get('/', Welcome::class)->name('welcome');
-// Login
-Route::get('/login', function () {
-    return view('Mobile.Auth.login');})->name('login');
-// Profile
-Route::get('/profile', function () {return view('Mobile.shop.profile');
-})->name('profile');
-// User List and forms
-Route::get('/userList', function () {return view('Mobile.shop.userList');
-})->name('user.list');
-Route::get('/user-edit/{id}', UserEdit::class)
-    ->name('user.edit');
-Route::get('/user-form', function () {
-    return view('Mobile.shop.userform');
-})->name('user.form');
-
-Route::get('/employe', function () {
-    return view('Mobile.shop.employe');
-})->name('employe');
-Route::get('/employe-edit', function () {
-    return view('Mobile.shop.employe-edit');
-})->name('employe.edit');
-// Customer list and forms
-Route::get('/customers', function () {
-    return view('Mobile.shop.customers');
-})->name('customers');
-Route::get('/customer', function () {
-    return view('Mobile.shop.customer');
-})->name('customer');
-Route::get('/customer-edit/{id}', CustomerEdit::class)
-    ->name('customer.edit');
-// Reports
-Route::get('/reports', function () {
-    return view('Mobile.shop.reports');
-})->name('reports');
-//Inventory
-Route::get('/inventory', function () {
-    return view('Mobile.shop.inventory');
-})->name('inventory');
-//Inventory2
-Route::get('/inventory2', function () {
-    return view('Mobile.shop.inventory2');
-})->name('inventory2');
-//Sell
-Route::get('/sell', function () {
-    return view('Mobile.shop.sell');
-})->name('sell');
-//SalaryWorkers
-Route::get('/salaryworkers', function () {
-    return view('Mobile.shop.salaryworkers');
-})->name('salaryworkers');
-// deviceForms
-Route::get('/device-Form', function () {
-    return view('Mobile.shop.deviceForm');
-})->name('device.form');
-Route::get('/device-form2', DeviceForm2::class)
-    ->name('device.form2');
-Route::get('/device-Information', function () {
-    return view('Mobile.shop.deviceInformation');
-})->name('device.form3');
-// borrowings
-Route::get('/borrowings-page', function () {
-    return view('Mobile.shop.borrowings-page');
-})->name('borrowings');
-// Repair
-Route::get('/device-repair', function () {
-    return view('Mobile.shop.device-repair');
-})->name('device.repair');
-// account_pages
-Route::get('/accounts-page', function () {
-    return view('Mobile.shop.accounts-page');
-})->name('accounts');
+use App\Http\Controllers\AuthController;
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::middleware('auth')->group(function () {
+    Route::get('/', Welcome::class)->name('welcome');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/userList', function () {return view('Mobile.shop.userList');})->name('user.list');
+    Route::get('/user-edit/{id}', UserEdit::class) ->name('user.edit');
+    Route::get('/user-form', function () { return view('Mobile.shop.userform');})->name('user.form');
+    Route::get('/employe', function () { return view('Mobile.shop.employe'); })->name('employe');
+    Route::get('/employe-edit/{id}', function($id) { return view('mobile.shop.employe-edit', compact('id'));})->name('employe.edit');
+    Route::get('/customers', function () { return view('Mobile.shop.customers');})->name('customers');
+    Route::get('/customer', function () { return view('Mobile.shop.customer');})->name('customer');
+    Route::get('/customer-edit/{id}', CustomerEdit::class)  ->name('customer.edit');
+    Route::get('/reports', function () { return view('Mobile.shop.reports');})->name('reports');
+    Route::get('/inventory', function () { return view('Mobile.shop.inventory');})->name('inventory');
+    Route::get('/inventory2', function () { return view('Mobile.shop.inventory2');})->name('inventory2');
+    Route::get('/sell', function () { return view('Mobile.shop.sell');})->name('sell');
+    Route::get('/salaryworkers', function () { return view('Mobile.shop.salaryworkers');})->name('salaryworkers');
+    Route::get('/device-Form', function () { return view('Mobile.shop.deviceForm');})->name('device.form');
+    Route::get('/device-form2', DeviceForm2::class) ->name('device.form2');
+    Route::get('/device-Information', function () {  return view('Mobile.shop.deviceInformation');})->name('device.form3');
+    Route::get('/borrowings-page', function () { return view('Mobile.shop.borrowings-page');})->name('borrowings');
+    Route::get('/device-repair', function () { return view('Mobile.shop.device-repair');})->name('device.repair');
+    Route::get('/accounts-page', function () { return view('Mobile.shop.accounts-page');})->name('accounts');
+});
 // management Panel
 use App\Livewire\Admin2\Dashboard;
 use App\Livewire\Admin2\Users;

@@ -2,8 +2,10 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-class UserForm extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class UserForm extends Authenticatable
 {
+    protected $table = 'user_forms';
     protected $fillable = [
         'name',
         'username',
@@ -15,4 +17,5 @@ class UserForm extends Model
         'number',
         'image',
     ];
+    protected $hidden = ['password'];
 }

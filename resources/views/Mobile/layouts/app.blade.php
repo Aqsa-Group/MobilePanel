@@ -10,15 +10,10 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <script src="{{ asset('js/js.js') }}"></script>
     @livewireStyles
-    <style>
-
-    </style>
 </head>
 <body class="bg-white">
     <div class="flex min-h-screen ">
-        <!-- Sidebar -->
         @include('Mobile.layouts.sidebar')
-        <!-- Main content -->
         <main class="flex-1 w-full px-3 sm:px-4 overflow-x-hidden mx-auto lg:px-6 pt-16 sm:pt-20 lg:pt-20">
             {{ $slot ?? '' }}
             @yield('content')

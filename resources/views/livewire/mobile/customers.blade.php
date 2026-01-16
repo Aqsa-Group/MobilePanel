@@ -1,7 +1,7 @@
 <div>
     <main class=" max-w-full mx-auto mt-2 ">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-2 md:gap-4 max-w-full h-auto  p-2 mx-auto items-center">
-            <div class="text-[#0746F7] card-anim  shadow-xl shadow-[0px_4px_4px_0px_#00000040] h-[80px]  md:h-[104px] md:w-full rounded-xl  border-r-[2px]     border-[#0746F7] bg-[#616161]/10 " >
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 max-w-full h-auto  p-2 mx-auto items-center">
+            <div class="text-[#0746F7] card-anim  shadow-xl shadow-[0px_4px_4px_0px_#00000040] h-[80px]  md:h-[115px] md:w-full rounded-xl  border-r-[2px]     border-[#0746F7] bg-[#616161]/10 " >
                 <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
                     <span class="text-[15px] font-semibold">
                         کل مشتریان
@@ -62,7 +62,7 @@
                     </div>
                 </div>
             </div>
-            <div class="text-[#0014AE] h-[80px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] card-anim  md:h-[104px] md:w-full rounded-xl border-r-[2px]  border-[#0014AE] bg-[#616161]/10 ">
+            <div class="text-[#0014AE] h-[80px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] card-anim  md:h-[115px] md:w-full rounded-xl border-r-[2px]  border-[#0014AE] bg-[#616161]/10 ">
                 <div class="flex flex-row gap-1 md:gap-2  w-full p-2 mx-auto justify-between">
                     <span class="text-[13px] md:text-[15px] font-semibold">
                         مشتریان همیشگی
@@ -105,10 +105,47 @@
                     </div>
                 </div>
             </div>
-            <div class="text-[#5100FF] h-[80px] card-anim md:h-[104px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] md:w-full rounded-xl  border-r-[2px]  border-[#5100FF] bg-[#616161]/10 ">
+            <div class="text-[#31009B] h-[80px] card-anim shadow-xl shadow-[0px_4px_4px_0px_#00000040]  md:h-[115px] md:w-full rounded-xl  border-r-[2px]   border-[#31009B] bg-[#616161]/10 ">
+                <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
+                    <span class="text-[13px] md:text-[15px] font-semibold">
+                        مشتریان امروز
+                    </span>
+                    <span class="rounded-full bg-[#0014AE] w-[30px] h-[28px] hidden md:flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z"
+                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M7.16021 14.56C4.74021 16.18 4.74021 18.82 7.16021 20.43C9.91021 22.27 14.4202 22.27 17.1702 20.43C19.5902 18.81 19.5902 16.17 17.1702 14.56C14.4302 12.73 9.92021 12.73 7.16021 14.56Z"
+                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    <span class=" rounded-full bg-[#0014AE] w-[22px] h-[22px] p-0.5 flex md:hidden items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z"
+                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M7.16021 14.56C4.74021 16.18 4.74021 18.82 7.16021 20.43C9.91021 22.27 14.4202 22.27 17.1702 20.43C19.5902 18.81 19.5902 16.17 17.1702 14.56C14.4302 12.73 9.92021 12.73 7.16021 14.56Z"
+                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </div>
+                <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between ">
+                    <span class="text-[16px] md:text-[24px] font-semibold ">
+                        500
+                    </span>
+                    <div class="font-semibold text-[7px]  flex items-center" >
+                        <span class=" p-1 mt-2 rounded-md bg-[#0746F71A]">
+                            30% +
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="text-[#5100FF] h-[80px] card-anim md:h-[115px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] md:w-full rounded-xl  border-r-[2px]  border-[#5100FF] bg-[#616161]/10 ">
                 <div class="flex items-center justify-between w-full p-1 md:p-2 mx-auto">
                     <span class="text-[13px] md:text-[15px] font-semibold">
-                        مشتریان جدید این ماه
+                        مشتریان این ماه
                     </span>
                     <span class="rounded-full bg-[#0014AE] w-[30px] h-[28px] hidden md:flex items-center justify-center">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -146,121 +183,6 @@
                 <div class="flex flex-row gap-4 w-full px-2 mx-auto justify-between ">
                     <span class="text-[16px] md:text-[24px] font-semibold ">
                         {{ $stats['مشتری جدید'] ?? 0 }}
-                    </span>
-                    <div class="font-semibold text-[7px]  flex items-center" >
-                        <span class=" p-1 mt-2 rounded-md bg-[#0746F71A]">
-                            30% +
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="text-[#31009B] h-[80px] card-anim shadow-xl shadow-[0px_4px_4px_0px_#00000040]  md:h-[104px] md:w-full rounded-xl  border-r-[2px]   border-[#31009B] bg-[#616161]/10 ">
-                <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
-                    <span class="text-[13px] md:text-[15px] font-semibold">
-                        مشتریان راضی
-                    </span>
-                    <span class="rounded-full bg-[#0014AE] w-[30px] h-[28px] hidden md:flex items-center justify-center">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z"
-                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                                d="M7.16021 14.56C4.74021 16.18 4.74021 18.82 7.16021 20.43C9.91021 22.27 14.4202 22.27 17.1702 20.43C19.5902 18.81 19.5902 16.17 17.1702 14.56C14.4302 12.73 9.92021 12.73 7.16021 14.56Z"
-                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                    <span class=" rounded-full bg-[#0014AE] w-[22px] h-[22px] p-0.5 flex md:hidden items-center justify-center">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z"
-                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                                d="M7.16021 14.56C4.74021 16.18 4.74021 18.82 7.16021 20.43C9.91021 22.27 14.4202 22.27 17.1702 20.43C19.5902 18.81 19.5902 16.17 17.1702 14.56C14.4302 12.73 9.92021 12.73 7.16021 14.56Z"
-                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                </div>
-                <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between ">
-                    <span class="text-[16px] md:text-[24px] font-semibold ">
-                        500
-                    </span>
-                    <div class="font-semibold text-[7px]  flex items-center" >
-                        <span class=" p-1 mt-2 rounded-md bg-[#0746F71A]">
-                            30% +
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="text-[#0099FF] shadow-xl shadow-[0px_4px_4px_0px_#00000040] h-[80px] card-anim md:h-[104px] md:w-full rounded-xl  border-r-[2px]   border-[#0099FF] bg-[#616161]/10 ">
-                <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
-                    <span class="text-[13px] md:text-[15px] font-semibold">
-                        مشتریان بدهکار
-                    </span>
-                    <span class="rounded-full bg-[#0014AE] w-[30px] h-[28px] hidden md:flex items-center justify-center">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18.4098 18.0898L15.5898 20.9098" stroke="white" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M18.4098 20.9098L15.5898 18.0898" stroke="white" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                                d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z"
-                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                                d="M11.9998 21.8102C10.1798 21.8102 8.3698 21.3502 6.9898 20.4302C4.5698 18.8102 4.5698 16.1702 6.9898 14.5602C9.7398 12.7202 14.2498 12.7202 16.9998 14.5602"
-                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                    <span class=" rounded-full bg-[#0014AE] w-[22px] h-[22px] p-0.5 flex md:hidden items-center justify-center">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18.4098 18.0898L15.5898 20.9098" stroke="white" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M18.4098 20.9098L15.5898 18.0898" stroke="white" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                                d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z"
-                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                                d="M11.9998 21.8102C10.1798 21.8102 8.3698 21.3502 6.9898 20.4302C4.5698 18.8102 4.5698 16.1702 6.9898 14.5602C9.7398 12.7202 14.2498 12.7202 16.9998 14.5602"
-                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                </div>
-                <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between ">
-                    <span class="text-[16px] md:text-[24px] font-semibold ">
-                        500
-                    </span>
-                    <div class="font-semibold text-[7px]  flex items-center" >
-                        <span class=" p-1 mt-2 rounded-md bg-[#0746F71A]">
-                            30% +
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="text-[#3A64D0] h-[80px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] card-anim  md:h-[104px] md:w-full rounded-xl  border-r-[2px]  border-[#3A64D0] bg-[#616161]/10 ">
-                <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
-                    <span class="text-[13px] md:text-[15px] font-semibold">
-                        تخفیفات
-                    </span>
-                    <span class="rounded-full bg-[#0014AE] w-[30px] h-[28px] hidden md:flex items-center justify-center">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M9 15L15 9" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M14.4945 14.5H14.5035" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M9.49451 9.5H9.50349" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </span>
-                    <span class=" rounded-full bg-[#0014AE] w-[22px] h-[22px] p-0.5 flex md:hidden items-center justify-center">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M9 15L15 9" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M14.4945 14.5H14.5035" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M9.49451 9.5H9.50349" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </span>
-                </div>
-                <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between ">
-                    <span class="text-[16px] md:text-[24px] font-semibold ">
-                        75000؋
                     </span>
                     <div class="font-semibold text-[7px]  flex items-center" >
                         <span class=" p-1 mt-2 rounded-md bg-[#0746F71A]">

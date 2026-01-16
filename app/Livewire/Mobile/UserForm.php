@@ -11,6 +11,13 @@ class UserForm extends Component
     public $name, $username, $email, $password;
     public $number, $address, $rule, $limit;
     public $image, $userId;
+     private function convertToEnglishNumber($value)
+{
+    $persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+    $english = ['0','1','2','3','4','5','6','7','8','9'];
+
+    return str_replace($persian, $english, $value);
+}
     protected $rules = [
         'name' => 'required|regex:/^[A-Za-z\x{0600}-\x{06FF}\s]+$/u',
         'username' => 'required|unique:user_forms',
