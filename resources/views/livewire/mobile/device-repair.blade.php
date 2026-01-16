@@ -20,16 +20,17 @@
         <!-- فرم -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input id="brand" placeholder=" انتخاب کتکوری" class="border border-gray-900 rounded-lg px-3 py-3 w-full">
-            <div class="relative">
-                <input
-                    id="model"
-                    placeholder="فورم تعمیرات"
-                    class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-20"
-                >
-                <button
-                    class="absolute top-1/2   -translate-y-1/2 left-2 bg-blue-600 text-white px-5 py-2 rounded-lg text-sm">
-                    خدمات نرم افزاری
-                </button>
+             <div   class="flex justify-between mb-2 shadow p-3 rounded-xl border border-black">
+                <div class="flex p-3  rounded-xl gap-2 items-center" id="btnLoan"
+                onclick="activeLoan()">
+                    <h2 class="text-bold text-[13px] cursor-pointer">تعمیرات سخت افزاری</h2>
+                </div>
+                <div >
+                    <button id="btnCash"
+                onclick="activeCash()"  class="bg-blue-700 text-[13px] p-3 rounded-xl text-white">
+                        خدمات سخت افزاری
+                    </button>
+                </div>
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
@@ -63,27 +64,20 @@
                 </svg>
             </div>
             <div class="relative">
-                <input
-                    id="type"
-                    placeholder="نوع تعمیر"
-                    class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right"
-                >
-                <!-- آیکن سمت چپ -->
-                <svg class="w-5 h-5 text-gray-600 absolute top-1/2  -translate-y-1/2 left-3" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.5999 7.45801L11.1666 12.8913C10.5249 13.533 9.4749 13.533 8.83324 12.8913L3.3999 7.45801" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <select name="" id="" class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right">
+                    <option value="">نوع تعمیر</option>
+                    <option value="">تعمیر ویندوز</option>
+                    <option value=""> برنامه ریزی</option>
+                    <option value="">بخش های نرم افزاری</option>
+                </select>
             </div>
             <div class="relative">
-                <input
-                    id="type"
-                    placeholder="نوع احتمالی"
-                    class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right"
-                >
-                <!-- آیکن سمت چپ -->
-                <svg class="w-5 h-5 text-gray-600 absolute top-1/2  -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2C17.52 2 22 6.48 22 12Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M15.7099 15.1798L12.6099 13.3298C12.0699 13.0098 11.6299 12.2398 11.6299 11.6098V7.50977" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <select name="" id="" class="border border-gray-900 rounded-lg px-3 py-3 w-full pl-10 text-right">
+                    <option value="">زمان احتمالی</option>
+                    <option value="">یک روز</option>
+                    <option value=""> دو روز</option>
+                    <option value="">یک هفته</option>
+                </select>
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
@@ -539,3 +533,27 @@
         </div>
     </div>
 </div>
+
+<script>
+function activeCash() {
+    const cash = document.getElementById('btnCash');
+    const loan = document.getElementById('btnLoan');
+
+    cash.classList.add('bg-blue-700', 'text-white');
+    cash.classList.remove('text-black');
+
+    loan.classList.remove('bg-blue-700', 'text-white');
+    loan.classList.add('text-black');
+}
+
+function activeLoan() {
+    const cash = document.getElementById('btnCash');
+    const loan = document.getElementById('btnLoan');
+
+    loan.classList.add('bg-blue-700', 'text-white');
+    loan.classList.remove('text-black');
+
+    cash.classList.remove('bg-blue-700', 'text-white');
+    cash.classList.add('text-black');
+}
+</script>

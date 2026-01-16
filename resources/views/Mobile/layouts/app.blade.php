@@ -7,11 +7,11 @@
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
     @include('Mobile.layouts.links')
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/js.js') }}"></script>
     @livewireStyles
     <style>
-        body {
-            font-family: 'Vazir', 'Poppins', sans-serif;
-        }
+
     </style>
 </head>
 <body class="bg-white">

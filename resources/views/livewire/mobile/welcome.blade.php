@@ -37,7 +37,6 @@
                         </div>
 
                     </div>
-
                     <div class="card-anim relative bg-[#616161]/5 shadow-xl p-4 pb-[70px] flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#00000040] overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>

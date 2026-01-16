@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Livewire\Admin2;
-
 use Livewire\Component;
-
 class DeviceList extends Component
 {
     public function render()

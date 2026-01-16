@@ -143,9 +143,9 @@
         transition-transform" aria-label="Sidebar">
         <div class="h-16 flex items-center justify-start ">
            <a id="closeSidebar" class="hidden" aria-label="بستن">
-   <i class="fa-solid fa-xmark"></i>
-</a>
-        </div>
+        <i class="fa-solid fa-xmark"></i>
+        </a>
+                </div>
         <nav id="menu" class="sm:p-7 mt-0  p-3  flex flex-col justify-start ">
             <div class="space-y-2 sm:mt-2 mt-0">
                 <a  href="{{ route('welcome') }}"  data-section="welcome"
@@ -167,6 +167,11 @@
                         <path d="M18.3401 20C19.0601 19.85 19.7401 19.56 20.3001 19.13C21.8601 17.96 21.8601 16.03 20.3001 14.86C19.7501 14.44 19.0801 14.16 18.3701 14" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <span class="text-[15px]">کاربران ها</span>
+                </a>
+                <a  href="{{ route('employe') }}" data-section="users"
+                    class="menu-btn group w-full text-right flex {{ request()->routeIs('employe') ? 'bg-blue-600 text-white' : 'text-gray-700' }} gap-3  rounded-xl px-2 py-2 text-sm  transition hover:bg-blue-600 hover:text-white">
+                   <svg xmlns="http://www.w3.org/2000/svg" class="icon-outline group-hover:fill-white" width="20" height="20" viewBox="0 0 448 512"><path fill="#fff" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128m95.8 32.6L272 480l-32-136l32-56h-96l32 56l-32 136l-47.8-191.4C56.9 292 0 350.3 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-72.1-56.9-130.4-128.2-133.8"/></svg>
+                    <span class="text-[15px] flex items-center">کارمندان </span>
                 </a>
                 <a data-section="customers"  href="{{ route('customers') }}"
                     class="menu-btn group w-full text-right flex  {{ request()->routeIs('customers') ? 'bg-blue-600 text-white' : 'text-gray-700' }} gap-3 rounded-xl px-2 py-2 text-sm  transition hover:bg-blue-600 hover:text-white"
@@ -274,16 +279,14 @@
                     class="w-full"
                     >
                     <!-- دکمه اصلی -->
-                    <button
-                        @click="open = !open"
+                  <button
+                        @click.prevent="open = !open"
                         type="button"
                         class="menu-btn group w-full text-right flex items-center gap-3 rounded-xl px-2 py-2 text-sm transition hover:text-white
-                        {{ request()->routeIs('sell') || request()->routeIs('inventory') || request()->routeIs('inventory2')
-                            ? 'bg-blue-600 text-white'
-                            : 'text-gray-700 hover:bg-blue-600 ' }}"
+                        {{ request()->routeIs('sell') || request()->routeIs('inventory') || request()->routeIs('inventory2') ? 'bg-blue-600 text-white' : 'text-gray-700 hover:bg-blue-600' }}"
                         style="cursor: pointer;"
                     >
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.5 22.0003H4.07997C2.91997 22.0003 1.96997 21.0703 1.96997 19.9303V5.09035C1.96997 2.47035 3.91997 1.28035 6.30997 2.45035L10.75 4.63035C11.71 5.10035 12.5 6.35035 12.5 7.41035V22.0003Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M21.97 15.0599V18.8399C21.97 20.9999 20.97 21.9999 18.81 21.9999H12.5V10.4199L12.97 10.5199L17.47 11.5299L19.5 11.9799C20.82 12.2699 21.9 12.9499 21.96 14.8699C21.97 14.9299 21.97 14.9899 21.97 15.0599Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M5.5 9H8.97" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -388,25 +391,9 @@
                     </svg>
                     <span class="text-[15px]">خدمات و تعمیرات</span>
                 </a>
-                <a data-section="support" href="{{ route('support') }}"
-                class="menu-btn group w-full text-right flex gap-3 rounded-xl px-2 py-2 text-sm transition hover:text-white
-                {{ request()->routeIs('support') ? 'bg-blue-600 text-white' : 'text-gray-700 hover:bg-blue-600 ' }}"
-                style="cursor: pointer;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20 12.2V13.9C20 17.05 18.2 18.4 15.5 18.4H6.5C3.8 18.4 2 17.05 2 13.9V8.5C2 5.35 3.8 4 6.5 4H9.2C9.07 4.38 9 4.8 9 5.25V9.15002C9 10.12 9.32 10.94 9.89 11.51C10.46 12.08 11.28 12.4 12.25 12.4V13.79C12.25 14.3 12.83 14.61 13.26 14.33L16.15 12.4H18.75C19.2 12.4 19.62 12.33 20 12.2Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M22 5.25V9.15002C22 10.64 21.24 11.76 20 12.2C19.62 12.33 19.2 12.4 18.75 12.4H16.15L13.26 14.33C12.83 14.61 12.25 14.3 12.25 13.79V12.4C11.28 12.4 10.46 12.08 9.89 11.51C9.32 10.94 9 10.12 9 9.15002V5.25C9 4.8 9.07 4.38 9.2 4C9.64 2.76 10.76 2 12.25 2H18.75C20.7 2 22 3.3 22 5.25Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M7.3999 22H14.5999" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M11 18.3999V21.9999" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M18.4955 7.25H18.5045" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M15.6957 7.25H15.7047" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M12.8954 7.25H12.9044" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span class="text-[15px]">پشتیبانی فنی</span>
-                </a>
             </div>
         </nav>
     </aside>
-    <!-- Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
         const openBtn  = document.getElementById('openSidebar');
@@ -485,5 +472,11 @@
         });
         });
     </script>
+    <style>
+        .icon-outline path {
+            stroke: black;
+            stroke-width: 30px;
+        }
+    </style>
 </body>
 </html>

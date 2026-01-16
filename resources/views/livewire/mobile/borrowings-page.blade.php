@@ -96,27 +96,29 @@
     <div class="grid grid-cols-1 max-w-full mx-auto lg:grid-cols-3 gap-3">
         <!-- فرم -->
         <div class="bg-[#616161]/5 rounded-2xl shadow-[0_4px_12px] shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
-            <div class="flex justify-between mb-2 shadow p-3 rounded-xl border border-black">
-                <div class="flex gap-2 mt-3">
+            <div   class="flex justify-between mb-2 shadow p-3 rounded-xl border border-black">
+                <div class="flex p-3  rounded-xl gap-2 items-center" id="btnLoan"
+                onclick="activeLoan()">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1.99609 8.5H11.4961" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M5.99609 16.5H7.99609" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M10.4961 16.5H14.4961" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M21.9961 12.03V16.11C21.9961 19.62 21.1061 20.5 17.5561 20.5H6.43609C2.88609 20.5 1.99609 19.62 1.99609 16.11V7.89C1.99609 4.38 2.88609 3.5 6.43609 3.5H14.4961" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M19.0764 4.13031L15.3664 7.84031C15.2264 7.98031 15.0864 8.26031 15.0564 8.46031L14.8564 9.88031C14.7864 10.3903 15.1464 10.7503 15.6564 10.6803L17.0764 10.4803C17.2764 10.4503 17.5564 10.3103 17.6964 10.1703L21.4064 6.46031C22.0464 5.82031 22.3464 5.08031 21.4064 4.14031C20.4564 3.19031 19.7164 3.49031 19.0764 4.13031Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M18.5459 4.66016C18.8659 5.79016 19.7459 6.67016 20.8659 6.98016" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1.99609 8.5H11.4961" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5.99609 16.5H7.99609" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10.4961 16.5H14.4961" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21.9961 12.03V16.11C21.9961 19.62 21.1061 20.5 17.5561 20.5H6.43609C2.88609 20.5 1.99609 19.62 1.99609 16.11V7.89C1.99609 4.38 2.88609 3.5 6.43609 3.5H14.4961" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19.0764 4.13031L15.3664 7.84031C15.2264 7.98031 15.0864 8.26031 15.0564 8.46031L14.8564 9.88031C14.7864 10.3903 15.1464 10.7503 15.6564 10.6803L17.0764 10.4803C17.2764 10.4503 17.5564 10.3103 17.6964 10.1703L21.4064 6.46031C22.0464 5.82031 22.3464 5.08031 21.4064 4.14031C20.4564 3.19031 19.7164 3.49031 19.0764 4.13031Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M18.5459 4.66016C18.8659 5.79016 19.7459 6.67016 20.8659 6.98016" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                     <h2 class="text-bold text-[13px]">فورم ثبت قرضه</h2>
                 </div>
-                <div>
-                    <button class="bg-blue-700 text-[13px] p-3 gap-2 rounded-xl text-white flex">
-                        <i class="bi bi-pencil-square text-blue-700 text-lg">
+                <div >
+                    <button id="btnCash"
+                onclick="activeCash()"  class="bg-blue-700 text-[13px] p-3 gap-2 rounded-xl text-white flex">
+                        <i class="bi bi-pencil-square  text-lg">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2 8.5H13.5" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M6 16.5H8" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M10.5 16.5H14.5" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M22 11.03V16.11C22 19.62 21.11 20.5 17.56 20.5H6.44C2.89 20.5 2 19.62 2 16.11V7.89C2 4.38 2.89 3.5 6.44 3.5H13.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M16.5 6L18 7.5L22 3.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 8.5H13.5" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 16.5H8" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10.5 16.5H14.5" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M22 11.03V16.11C22 19.62 21.11 20.5 17.56 20.5H6.44C2.89 20.5 2 19.62 2 16.11V7.89C2 4.38 2.89 3.5 6.44 3.5H13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16.5 6L18 7.5L22 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
 
                         </i>
@@ -187,7 +189,7 @@
             <div class="lg:hidden space-y-3 ">
                 <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
                 <!-- ستون لیست قرضه ها -->
-                <div class="flex items-center gap-1 flex-shrink-0">
+                <div  class="flex items-center gap-1 flex-shrink-0">
                     <i>
                         <svg width="20" height="20" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_1047_2670)">
@@ -204,7 +206,7 @@
                             </svg>
 
                     </i>
-                    <h2 class="font-bold text-[14px] mb-0">لیست قرضه ها:</h2>
+                    <h2 id="tableTitle"  class="font-bold text-[14px] mb-0">لیست قرضه ها:</h2>
                 </div>
 
                 <!-- ستون فیلتر و جستجو -->
@@ -353,7 +355,7 @@
                         </svg>
 
                         </i>
-                        <h2 class="font-bold text-[14px] mb-0">لیست قرضه ها:</h2>
+                        <h2 id="tableTitle"  class="font-bold text-[14px] mb-0">لیست قرضه ها:</h2>
                     </div>
                     <div class="flex flex-col lg:flex-row gap-1">
                         <!-- فیلتر -->
@@ -475,5 +477,30 @@
             overflow-x: hidden;
         }
         </style>
+<script>
+function activeCash() {
+    const cash = document.getElementById('btnCash');
+    const loan = document.getElementById('btnLoan');
+
+    cash.classList.add('bg-blue-700', 'text-white');
+    cash.classList.remove('text-black');
+
+    loan.classList.remove('bg-blue-700', 'text-white');
+    loan.classList.add('text-black');
+}
+
+function activeLoan() {
+    const cash = document.getElementById('btnCash');
+    const loan = document.getElementById('btnLoan');
+
+    loan.classList.add('bg-blue-700', 'text-white');
+    loan.classList.remove('text-black');
+
+    cash.classList.remove('bg-blue-700', 'text-white');
+    cash.classList.add('text-black');
+}
+</script>
+
+
     </div>
 </div>
