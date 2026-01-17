@@ -6,6 +6,16 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
+public function store(Request $request): RedirectResponse
+{
+    $request->authenticate();
+    $request->session()->regenerate();
+    session()->flash(
+        'welcome',
+        Auth::user()->name . '  به پنل بازار الکترونیک خوش آمدید'
+    );
+    return redirect()->intended(RouteServiceProvider::HOME);
+}
     public function showLogin()
     {
         return view('Mobile.Auth.login');
@@ -24,8 +34,13 @@ class AuthController extends Controller
         }
         Auth::login($user);
         $request->session()->regenerate();
+        session()->flash(
+            'welcome',
+            $user->name . ' به پنیل بازار الکترونیک خوش آمدید!'
+        );
         return redirect()->route('welcome');
     }
+    
     public function logout(Request $request)
     {
         Auth::logout();

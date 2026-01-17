@@ -122,7 +122,7 @@
                             مرحله بعدی
                         </button>
                         </div>
-                    </form>
+                    </form> 
                 </div>
             </div>
             <div class="flex-1 lg:w-5/12 flex items-center justify-center p-5 sm:p-5 order-2 lg:order-1   mt-6 lg:mt-0 animate-fade-in delay-400">
@@ -133,36 +133,4 @@
             </div>
         </div>
     </div>
-    <style>
-    @keyframes fade-slide {
-        0% { opacity: 0; transform: translateY(30px); }
-        100% { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fade-in {
-        0% { opacity: 0; transform: scale(0.98); }
-        100% { opacity: 1; transform: scale(1); }
-    }
-    .animate-fade-slide {
-        animation: fade-slide 0.9s ease-out forwards;
-    }
-    .animate-fade-in {
-        animation: fade-in 0.8s ease-out forwards;
-    }
-    .delay-200 { animation-delay: 0.2s; }
-    .delay-300 { animation-delay: 0.3s; }
-    .delay-400 { animation-delay: 0.4s; }
-    .delay-500 { animation-delay: 0.5s; }
-    .input-field {
-        width: 100%;
-        border: 1.5px solid #ccc;
-        border-radius: 12px;
-        padding: 0.75rem 0.75rem;
-        text-align: right;
-        transition: all 0.25s ease;
-        outline: none;
-    }
-    .input-field:focus {
-        box-shadow: 0 0 0 3px rgba(17, 0, 255, 0.2);
-    }
-    </style>
 </div>

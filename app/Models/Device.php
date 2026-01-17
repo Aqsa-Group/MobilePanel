@@ -1,16 +1,12 @@
 <?php
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class Device extends Model
 {
     use HasFactory;
- 
     protected $table = 'devices';
-     protected $fillable = [
+    protected $fillable = [
         'category',
         'brand',
         'status',
@@ -18,12 +14,11 @@ class Device extends Model
         'memory',
         'color',
         'image',
+        'profit',
         'buy_price',
         'sell_price',
         'stock',
         'imei',
         'warranty',
     ];
-
-
 }

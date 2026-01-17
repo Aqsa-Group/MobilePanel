@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Livewire\Mobile;
-
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Device;
-
 class DeviceForm extends Component
 {
     use WithFileUploads;
@@ -15,8 +12,6 @@ class DeviceForm extends Component
     public $model;
     public $memory;
     public $color;
-
-
     protected $rules = [
         'category' => 'required|string',
         'brand'    => 'required|string',
@@ -25,7 +20,7 @@ class DeviceForm extends Component
         'memory'   => 'required|string|max:50',
         'color'    => 'required|string|max:50',
     ];
-      protected $messages = [
+    protected $messages = [
         'category.required' => 'انتخاب کتگوری الزامی است',
         'brand.required'    => 'انتخاب برند الزامی است',
         'status.required'   => 'انتخاب وضعیت الزامی است',
@@ -37,29 +32,25 @@ class DeviceForm extends Component
 {
     $persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
     $english = ['0','1','2','3','4','5','6','7','8','9'];
-
     return str_replace($persian, $english, $value);
 }
+public function nextStep()
+{
+    $this->validate();
 
-     public function nextStep()
-    {
-        $this->validate();
+    $device = \App\Models\Device::create([
+        'category' => $this->category,
+        'brand'    => $this->brand,
+        'status'   => $this->status,
+        'model'    => $this->model,
+        'memory'   => $this->memory,
+        'color'    => $this->color,
+    ]);
 
+    session(['device-id' => $device->id]);
 
-            session([
-            'device-form' => [
-                'category' => $this->category,
-                'brand'    => $this->brand,
-                'status'   => $this->status,
-                'model'    => $this->model,
-                'memory'   => $this->memory,
-                'color'    => $this->color,
-            ]
-        ]);
-
-
-        return redirect()->to('/device-form2');
-    }
+    return redirect()->to('/device-form2');
+}
 
     public function render()
     {
