@@ -11,7 +11,7 @@ class UserForm extends Component
     public $name, $username, $email, $password;
     public $number, $address, $rule, $limit;
     public $image, $userId;
-     private function convertToEnglishNumber($value)
+    private function convertToEnglishNumber($value)
 {
     $persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
     $english = ['0','1','2','3','4','5','6','7','8','9'];
@@ -91,7 +91,7 @@ class UserForm extends Component
             'limit' => $this->limit,
             'image' => $imagePath,
         ]);
-          return redirect()->route('user.list')
+        return redirect()->route('user.list')
         ->with('success', 'اطلاعات با موفقیت ثبت شد ✅');
     }
     public function render()

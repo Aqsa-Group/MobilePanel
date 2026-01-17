@@ -10,11 +10,11 @@ class UserForm extends Authenticatable
         'name',
         'username',
         'email',
+        'password',
+        'number',
+        'address',
         'rule',
         'limit',
-        'password',
-        'address',
-        'number',
         'image',
     ];
     protected $hidden = ['password'];

@@ -103,7 +103,6 @@
                     @error('username')
                         <p class="text-red-600">{{ $message }}</p>
                     @enderror
-                    <p id="userError" class="hidden text-red-600 text-xs sm:text-sm mt-1">نام کاربری الزامی است.</p>
                 </div>
                 <div>
                     <div class="relative">
@@ -126,7 +125,6 @@
                     @error('password')
                         <p class="text-red-600">{{ $message }}</p>
                     @enderror
-                    <p id="passError" class="hidden text-red-600 text-xs sm:text-sm mt-1">رمز عبور باید حداقل ۶ کاراکتر باشد.</p>
                 </div>
                 @if ($errors->has('loginError'))
                     <p class="text-red-600 mt-1">{{ $errors->first('loginError') }}</p>

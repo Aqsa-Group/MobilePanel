@@ -1,21 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\UserForm;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
-public function store(Request $request): RedirectResponse
-{
-    $request->authenticate();
-    $request->session()->regenerate();
-    session()->flash(
-        'welcome',
-        Auth::user()->name . '  به پنل بازار الکترونیک خوش آمدید'
-    );
-    return redirect()->intended(RouteServiceProvider::HOME);
-}
     public function showLogin()
     {
         return view('Mobile.Auth.login');
@@ -26,21 +14,21 @@ public function store(Request $request): RedirectResponse
             'username' => 'required',
             'password' => 'required|min:6',
         ]);
-        $user = UserForm::where('username', $request->username)->first();
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return back()->withErrors([
-                'loginError' => 'نام کاربری یا رمز عبور اشتباه است',
-            ]);
+        if (Auth::attempt([
+            'username' => $request->username,
+            'password' => $request->password,
+        ])) {
+            $request->session()->regenerate();
+            session()->flash(
+                'welcome',
+                Auth::user()->name . ' به پنل بازار الکترونیک خوش آمدید'
+            );
+            return redirect()->route('welcome');
         }
-        Auth::login($user);
-        $request->session()->regenerate();
-        session()->flash(
-            'welcome',
-            $user->name . ' به پنیل بازار الکترونیک خوش آمدید!'
-        );
-        return redirect()->route('welcome');
+        return back()->withErrors([
+            'loginError' => 'نام کاربری یا رمز عبور اشتباه است',
+        ]);
     }
-    
     public function logout(Request $request)
     {
         Auth::logout();
