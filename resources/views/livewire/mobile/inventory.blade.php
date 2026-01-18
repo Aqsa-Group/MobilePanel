@@ -73,17 +73,14 @@
                             <div class="hidden md:grid grid-cols-12 items-center bg-[#0948EE] text-white rounded-t-md py-4 ">
                                 <div class="col-span-2 text-center"><p class="font-bold">مدل دستگاه</p></div>
                                 <div class="text-center"><p class="font-bold">حافظه</p></div>
-                                <div class="col-span-2 text-center"><p class="font-bold">شماره IMEI</p></div>
-                                <div class="col-span-3 text-center"><p class="font-bold">  حالت</p></div>
+                                <div class="col-span-3 text-center"><p class="font-bold">شماره IMEI</p></div>
+                                <div class="col-span-2 text-center"><p class="font-bold">  حالت</p></div>
                                 <div class="col-span-2 text-center"><p class="font-bold">حالت موجودی</p></div>
                                 <div class="text-center"><p class="font-bold">ادیت</p></div>
                                 <div class="text-center"><p class="font-bold">حذف</p></div>
                             </div>
                             @forelse($devices as $device)
-                            <div
-                                class="cursor-pointer md:grid grid-cols-11 items-center py-4 hover:bg-[#0948EE]/20 border-b border-dotted border-[#0948EE]"
-                                wire:click="selectDevice({{ $device->id }})"
-                                >
+                            <div  class="cursor-pointer md:grid grid-cols-11 items-center py-4 hover:bg-[#0948EE]/20 border-b border-dotted border-[#0948EE]" wire:click="selectDevice({{ $device->id }})" >
                                 <div class="col-span-2 text-center">
                                     <p class="text-sm">{{ $device->model }}</p>
                                 </div>
@@ -138,32 +135,19 @@
                             </div>
                             @endforelse
                             <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
-                                <button
-                                    wire:click="previousPage"
-                                    @disabled($devices->onFirstPage())
-                                    class="w-7 h-7 rounded-md border border-gray-300 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white disabled:opacity-50"
-                                >
+                                @if ($devices->lastPage() > 1)
+                                <button  wire:click="previousPage"   @disabled($devices->onFirstPage())   class="w-7 h-7 rounded-md border border-gray-300 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white disabled:opacity-50" >
                                     ‹
                                 </button>
                                 @foreach ($devices->links()->elements[0] as $page => $url)
-                                    <button
-                                        wire:click="gotoPage({{ $page }})"
-                                        @class([
-                                            'w-7 h-7 rounded-md border text-xs font-medium',
-                                            'border-blue-500 bg-[#0948EE]/60 text-white' => $devices->currentPage() == $page,
-                                            'border-transparent bg-[#0948EE]/60 text-white' => $devices->currentPage() != $page,
-                                        ])
-                                    >
+                                    <button  wire:click="gotoPage({{ $page }})"  @class([  'w-7 h-7 rounded-md border text-xs font-medium',   'border-blue-500 bg-[#0948EE]/60 text-white' => $devices->currentPage() == $page,   'border-transparent bg-[#0948EE]/60 text-white' => $devices->currentPage() != $page,    ])  >
                                         {{ $page }}
                                     </button>
                                 @endforeach
-                                <button
-                                    wire:click="nextPage"
-                                    @disabled($devices->onLastPage())
-                                    class="w-7 h-7 rounded-md border border-gray-300 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white disabled:opacity-50"
-                                >
+                                <button   wire:click="nextPage"  @disabled($devices->onLastPage())  class="w-7 h-7 rounded-md border border-gray-300 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white disabled:opacity-50"  >
                                     ›
                                 </button>
+                                @endif
                             </div>
                         </div>
                     </div>

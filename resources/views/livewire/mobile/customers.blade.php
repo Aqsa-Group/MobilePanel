@@ -1,7 +1,7 @@
 <div>
     <main class=" max-w-full mx-auto mt-2 ">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 max-w-full h-auto  p-2 mx-auto items-center">
-            <div class="text-[#0746F7] card-anim  shadow-xl shadow-[0px_4px_4px_0px_#00000040] h-[80px]  md:h-[115px] md:w-full rounded-xl  border-r-[2px]     border-[#0746F7] bg-[#616161]/10 " >
+            <div class="text-[#0746F7] card-anim  shadow-xl shadow-[0px_4px_4px_0px_#00000040] h-auto  md:h-[115px] md:w-full rounded-xl  border-r-[2px]     border-[#0746F7] bg-[#0746F7]/10 " >
                 <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
                     <span class="text-[15px] font-semibold">
                         کل مشتریان
@@ -51,61 +51,16 @@
                         </svg>
                     </span>
                 </div>
-                <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
-                    <span class="text-[16px] md:text-[24px] font-semibold ">
+                <div class="flex flex-col items-center justify-center gap-2 w-full p-2 mx-auto">
+                    <span class="text-[16px] md:text-[24px] font-semibold">
                         {{ $customerCount }}
                     </span>
-                    <div class="font-semibold text-[7px]  flex items-center" >
-                        <span class="p-1 mt-2 rounded-md bg-[#0746F71A]">
-                            30% +
-                        </span>
-                    </div>
+                    <p class="text-[14px] md:text-[13px] font-sm -mt-3">
+                       تعداد کل مشتریان
+                    </p>
                 </div>
             </div>
-            <div class="text-[#0014AE] h-[80px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] card-anim  md:h-[115px] md:w-full rounded-xl border-r-[2px]  border-[#0014AE] bg-[#616161]/10 ">
-                <div class="flex flex-row gap-1 md:gap-2  w-full p-2 mx-auto justify-between">
-                    <span class="text-[13px] md:text-[15px] font-semibold">
-                        مشتریان همیشگی
-                    </span>
-                    <span class="rounded-full bg-[#0014AE] w-[30px] h-[28px] hidden md:flex items-center justify-center">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14.4399 19.0498L15.9599 20.5698L18.9999 17.5298" stroke="white" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                                d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.4501 10.79 7.5601 8.84 7.5601 6.44C7.5501 3.99 9.5401 2 11.9901 2C14.4401 2 16.4301 3.99 16.4301 6.44C16.4301 8.84 14.5301 10.79 12.1601 10.87Z"
-                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                                d="M11.99 21.8102C10.17 21.8102 8.36004 21.3502 6.98004 20.4302C4.56004 18.8102 4.56004 16.1702 6.98004 14.5602C9.73004 12.7202 14.24 12.7202 16.99 14.5602"
-                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                    <span class=" rounded-full bg-[#0014AE] w-[22px] h-[22px] p-0.5 flex md:hidden items-center justify-center">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14.4399 19.0498L15.9599 20.5698L18.9999 17.5298" stroke="white" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                                d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.4501 10.79 7.5601 8.84 7.5601 6.44C7.5501 3.99 9.5401 2 11.9901 2C14.4401 2 16.4301 3.99 16.4301 6.44C16.4301 8.84 14.5301 10.79 12.1601 10.87Z"
-                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                                d="M11.99 21.8102C10.17 21.8102 8.36004 21.3502 6.98004 20.4302C4.56004 18.8102 4.56004 16.1702 6.98004 14.5602C9.73004 12.7202 14.24 12.7202 16.99 14.5602"
-                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                </div>
-                <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between ">
-                    <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between ">
-                        <span class="text-[16px] md:text-[24px] font-semibold ">
-                            {{ $stats['مشتری همیشه گی'] ?? 0 }}
-                        </span>
-                        <div class="font-semibold text-[7px]  flex items-center" >
-                            <span class=" p-1 mt-2 rounded-md bg-[#0746F71A]">
-                                30% +
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-[#31009B] h-[80px] card-anim shadow-xl shadow-[0px_4px_4px_0px_#00000040]  md:h-[115px] md:w-full rounded-xl  border-r-[2px]   border-[#31009B] bg-[#616161]/10 ">
+            <div class="text-[#31009B] h-auto card-anim shadow-xl shadow-[0px_4px_4px_0px_#00000040]  md:h-[115px] md:w-full rounded-xl  border-r-[2px]   border-[#31009B] bg-[#31009B]/10 ">
                 <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
                     <span class="text-[13px] md:text-[15px] font-semibold">
                         مشتریان امروز
@@ -131,18 +86,57 @@
                         </svg>
                     </span>
                 </div>
-                <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between ">
+                <div class="flex flex-col items-center justify-center gap-2 w-full p-2 mx-auto">
                     <span class="text-[16px] md:text-[24px] font-semibold ">
-                        500
+                        {{ $todayCustomers }}
                     </span>
-                    <div class="font-semibold text-[7px]  flex items-center" >
-                        <span class=" p-1 mt-2 rounded-md bg-[#0746F71A]">
-                            30% +
+                    <p class="text-[14px] md:text-[13px] font-sm -mt-3">
+                       تعداد مشتریان امروز
+                    </p>
+                </div>
+            </div>
+            <div class="text-[#0014AE] h-auto shadow-xl shadow-[0px_4px_4px_0px_#00000040] card-anim  md:h-[115px] md:w-full rounded-xl border-r-[2px]  border-[#0014AE] bg-[#0014AE]/10 ">
+                <div class="flex flex-row gap-1 md:gap-2  w-full p-2 mx-auto justify-between">
+                    <span class="text-[13px] md:text-[15px] font-semibold">
+                        مشتریان این هفته
+                    </span>
+                    <span class="rounded-full bg-[#0014AE] w-[30px] h-[28px] hidden md:flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.4399 19.0498L15.9599 20.5698L18.9999 17.5298" stroke="white" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.4501 10.79 7.5601 8.84 7.5601 6.44C7.5501 3.99 9.5401 2 11.9901 2C14.4401 2 16.4301 3.99 16.4301 6.44C16.4301 8.84 14.5301 10.79 12.1601 10.87Z"
+                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M11.99 21.8102C10.17 21.8102 8.36004 21.3502 6.98004 20.4302C4.56004 18.8102 4.56004 16.1702 6.98004 14.5602C9.73004 12.7202 14.24 12.7202 16.99 14.5602"
+                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    <span class=" rounded-full bg-[#0014AE] w-[22px] h-[22px] p-0.5 flex md:hidden items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.4399 19.0498L15.9599 20.5698L18.9999 17.5298" stroke="white" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.4501 10.79 7.5601 8.84 7.5601 6.44C7.5501 3.99 9.5401 2 11.9901 2C14.4401 2 16.4301 3.99 16.4301 6.44C16.4301 8.84 14.5301 10.79 12.1601 10.87Z"
+                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M11.99 21.8102C10.17 21.8102 8.36004 21.3502 6.98004 20.4302C4.56004 18.8102 4.56004 16.1702 6.98004 14.5602C9.73004 12.7202 14.24 12.7202 16.99 14.5602"
+                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </div>
+                <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-center ">
+                    <div class="flex flex-col items-center justify-center gap-2 w-full p-2 mx-auto ">
+                        <span class="text-[16px] md:text-[24px] font-semibold ">
+                            {{ $weekCustomers }}
                         </span>
+                        <p class="text-[14px] md:text-[13px] font-sm -mt-3">
+                         تعداد مشتریان این هفته
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="text-[#5100FF] h-[80px] card-anim md:h-[115px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] md:w-full rounded-xl  border-r-[2px]  border-[#5100FF] bg-[#616161]/10 ">
+            <div class="text-[#5100FF] h-auto card-anim md:h-[115px] shadow-xl shadow-[0px_4px_4px_0px_#00000040] md:w-full rounded-xl  border-r-[2px]  border-[#5100FF] bg-[#5100FF]/10 ">
                 <div class="flex items-center justify-between w-full p-1 md:p-2 mx-auto">
                     <span class="text-[13px] md:text-[15px] font-semibold">
                         مشتریان این ماه
@@ -180,15 +174,13 @@
                         </svg>
                     </span>
                 </div>
-                <div class="flex flex-row gap-4 w-full px-2 mx-auto justify-between ">
+                <div class="flex flex-col items-center justify-center gap-2 w-full p-2 mx-auto ">
                     <span class="text-[16px] md:text-[24px] font-semibold ">
-                        {{ $stats['مشتری جدید'] ?? 0 }}
+                         {{ $monthCustomers }}
                     </span>
-                    <div class="font-semibold text-[7px]  flex items-center" >
-                        <span class=" p-1 mt-2 rounded-md bg-[#0746F71A]">
-                            30% +
-                        </span>
-                    </div>
+                    <p class="text-[14px] md:text-[13px] font-sm -mt-3">
+                         تعداد مشتریان این ماه
+                    </p>
                 </div>
             </div>
         </div>
@@ -397,7 +389,6 @@
                             <th class="p-4 text-[12px] bg-[#0948EE]  text-white">نام کامل</th>
                             <th class="p-4 text-[12px] bg-[#0948EE]  text-white">شماره</th>
                             <th class="p-4 text-[12px] bg-[#0948EE]  text-white">آدرس</th>
-                            <th class="p-4 text-[12px] bg-[#0948EE]  text-white">نوع مشتری</th>
                             <th class="p-4 text-[12px] bg-[#0948EE]  text-white">آیدی شناسنامه</th>
                             <th class="p-4 text-[12px] bg-[#0948EE]  text-white">ادیت</th>
                             <th class="p-4 text-[12px] bg-[#0948EE] rounded-tl-xl text-white">حذف</th>
@@ -411,7 +402,6 @@
                                 <td>{{ $customer->fullname }}</td>
                                 <td>{{ $customer->customer_number }}</td>
                                 <td>{{ $customer->address }}</td>
-                                <td>{{ $customer->customer_type }}</td>
                                 <td>{{ $customer->id_card }}</td>
                                 <td>
                                     <a class="flex justify-center " href="{{ route('customer.edit', $customer->id) }}">
@@ -467,11 +457,9 @@
                             <td  class="text-[10px]">{{ $customer->id_card}}</td>
                         </tr>
                         <tr>
-                            <th class="pt-2">نوع مشتری</th>
                             <th>آدرس</th>
                         </tr>
                         <tr class="text-[#00000080]">
-                            <td  class="text-[10px]">{{ $customer->customer_type }}</td>
                             <td  class="text-[10px]">{{ $customer->address}}</td>
                         </tr>
                     </table>
@@ -514,7 +502,7 @@
                         </button>
                     </div>
                 @endif
-        </div>
+            </div>
         </section>
     </main>
 </div>

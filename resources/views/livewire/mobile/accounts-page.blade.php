@@ -1,81 +1,75 @@
 
 <div class="p-3 ">
     <div class="grid grid-cols-1 max-w-full mx-auto sm:grid-cols-1  lg:grid-cols-4 gap-4 mb-4 ">
-        <div class="bg-[#0948EE]/20 rounded-2xl  border-r-[2px] card-anim border-[#0B35CC] shadow-xl shadow-[0px_4px_4px_0px_#00000040] p-4 ">
-            <div class="flex  justify-between items-center mb-1">
-                <span class="text-sm text-gray-600 mb-6">   برداشت امروز</span>
-                <i class="bi bi-cash text-blue-600 text-xl mb-6 rounded-full bg-[#0B35CC]/20 w-8 h-8">
-                <svg class="w-6 h-6 m-auto mt-1"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 11.4002C8 12.1702 8.6 12.8002 9.33 12.8002H10.83C11.47 12.8002 11.99 12.2502 11.99 11.5802C11.99 10.8502 11.67 10.5902 11.2 10.4202L8.8 9.5802C8.32 9.4102 8 9.1502 8 8.4202C8 7.7502 8.52 7.2002 9.16 7.2002H10.66C11.4 7.2102 12 7.8302 12 8.6002" stroke="#0B35CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M10 12.8496V13.5896" stroke="#0B35CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M10 6.41016V7.19016" stroke="#0B35CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M9.99 17.98C14.4028 17.98 17.98 14.4028 17.98 9.99C17.98 5.57724 14.4028 2 9.99 2C5.57724 2 2 5.57724 2 9.99C2 14.4028 5.57724 17.98 9.99 17.98Z" stroke="#0B35CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M12.98 19.88C13.88 21.15 15.35 21.98 17.03 21.98C19.76 21.98 21.98 19.76 21.98 17.03C21.98 15.37 21.16 13.9 19.91 13" stroke="#0B35CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+        <div class="text-[#0746F7] h-auto card-anim shadow-xl shadow-[0px_4px_4px_0px_#00000040] md:w-full rounded-xl  border-r-[2px]  border-[#0746F7] bg-[#0746F7]/10 ">
+            <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
+                <span class="text-[15px] font-semibold"> برداشت کل  </span>
+                <i class="bi bi-people  mb-6 bg-[#0746F7] w-8 h-8 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-finance w-6 h-6 m-auto mt-1" viewBox="0 -960 960 960"  fill="none"><path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/></svg>
                 </i>
             </div>
-            <div class="flex justify-between items-center mb-1">
-                <p class="font-bold text-lg text-gray-800 inline-flex items-center">
+            <div class="flex flex-col items-center justify-center gap-2 w-full p-2 mx-auto">
+                <p class="text-[16px] md:text-[24px] font-semibold">
+                <span>{{ number_format($monthTotal) }}</span>
+                <span class="ml-1">؋</span>
+                </p>
+                <p class="text-[14px] md:text-[13px] font-sm -mt-3">
+                      مقدار برداشت کل
+                </p>
+            </div>
+        </div>
+        <div class="text-[#31009B] card-anim  shadow-xl shadow-[0px_4px_4px_0px_#00000040] h-auto  md:w-full rounded-xl  border-r-[2px]     border-[#31009B] bg-[#31009B]/10 " >
+            <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
+                <span class="text-[15px] font-semibold">   برداشت امروز</span>
+                <i class="bi bi-cash  mb-6 rounded-full bg-[#31009B] w-8 h-8">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon-finance w-6 h-6 m-auto mt-1" viewBox="0 -960 960 960"  fill="none"><path d="M336-120q-91 0-153.5-62.5T120-336q0-38 13-74t37-65l142-171-97-194h530l-97 194 142 171q24 29 37 65t13 74q0 91-63 153.5T624-120H336Zm144-200q-33 0-56.5-23.5T400-400q0-33 23.5-56.5T480-480q33 0 56.5 23.5T560-400q0 33-23.5 56.5T480-320Zm-95-360h190l40-80H345l40 80Zm-49 480h288q57 0 96.5-39.5T760-336q0-24-8.5-46.5T728-423L581-600H380L232-424q-15 18-23.5 41t-8.5 47q0 57 39.5 96.5T336-200Z"/></svg>
+                </i>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-2 w-full p-2 mx-auto">
+                <p class="text-[16px] md:text-[24px] font-semibold">
                 <span>{{ number_format($todayTotal) }}</span>
                 <span class="ml-1">؋</span>
                 </p>
-            <div class=""><p class=" text-[12px] text-[#0B35CC] text-center rounded-md bg-[#0B35CC]/20 w-8">25%</p> </div>
+                <p class="text-[14px] md:text-[13px] font-sm -mt-3">
+                      مقدار برداشت امروز
+                </p>
             </div>
         </div>
-        <div class="bg-[#0099FF]/10 rounded-2xl  border-r-[2px] card-anim border-[#0099FF] shadow-xl shadow-[0px_4px_4px_0px_#00000040] p-4  w-full max-w-full">
-            <div class="flex justify-between items-center mb-1">
-                <span class="text-sm text-gray-600 mb-6">    برداشت این هفته</span>
-                <i class="bi bi-clipboard-data text-purple-600 text-xl mb-6 bg-blue-300 w-8 h-8 rounded-full">
+        <div class="text-[#0014AE] h-auto card-anim shadow-xl shadow-[0px_4px_4px_0px_#00000040]  md:w-full rounded-xl  border-r-[2px]   border-[#0014AE] bg-[#0014AE]/10 ">
+            <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
+                <span class="text-[15px] font-semibold">    برداشت این هفته</span>
+                <i class="bi bi-clipboard-data text-purple-600 text-xl mb-6 bg-[#0014AE] w-8 h-8 rounded-full">
                     <svg class="w-6 h-6 m-auto mt-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4.16989 15.2998L8.69989 19.8298C10.5599 21.6898 13.5799 21.6898 15.4499 19.8298L19.8399 15.4398C21.6999 13.5798 21.6999 10.5598 19.8399 8.6898L15.2999 4.1698C14.3499 3.2198 13.0399 2.7098 11.6999 2.7798L6.69989 3.0198C4.69989 3.1098 3.10989 4.6998 3.00989 6.6898L2.76989 11.6898C2.70989 13.0398 3.21989 14.3498 4.16989 15.2998Z" stroke="#0099FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M9.5 12C10.8807 12 12 10.8807 12 9.5C12 8.11929 10.8807 7 9.5 7C8.11929 7 7 8.11929 7 9.5C7 10.8807 8.11929 12 9.5 12Z" stroke="#0099FF" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M4.16989 15.2998L8.69989 19.8298C10.5599 21.6898 13.5799 21.6898 15.4499 19.8298L19.8399 15.4398C21.6999 13.5798 21.6999 10.5598 19.8399 8.6898L15.2999 4.1698C14.3499 3.2198 13.0399 2.7098 11.6999 2.7798L6.69989 3.0198C4.69989 3.1098 3.10989 4.6998 3.00989 6.6898L2.76989 11.6898C2.70989 13.0398 3.21989 14.3498 4.16989 15.2998Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9.5 12C10.8807 12 12 10.8807 12 9.5C12 8.11929 10.8807 7 9.5 7C8.11929 7 7 8.11929 7 9.5C7 10.8807 8.11929 12 9.5 12Z" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
                     </svg>
                 </i>
             </div>
-            <div class="flex justify-between items-center mb-1">
-                <p class="font-bold text-lg text-gray-800 inline-flex items-center">
+            <div class="flex flex-col items-center justify-center gap-2 w-full p-2 mx-auto">
+                <p class="text-[16px] md:text-[24px] font-semibold">
                 <span>{{ number_format($weekTotal) }}</span>
                 <span class="ml-1">؋</span>
                 </p>
-            <p class="text-[12px] text-[#0099FF]  text-center rounded-md bg-blue-300 w-8">25%</p>
+                <p class="text-[14px] md:text-[13px] font-sm -mt-3">
+                      مقدار برداشت این هفته
+                </p>
             </div>
         </div>
-        <div class="bg-[#31009B]/10 rounded-2xl shadow-xl shadow-[0px_4px_4px_0px_#00000040]  p-4 border-r-[2px] card-anim      border-[#31009B] w-full max-w-full">
-            <div class="flex justify-between items-center mb-1">
-                <span class="text-sm text-gray-600 mb-6">    برداشت این ماه</span>
-                <i class="bi bi-journal-check text-blue-700 text-xl mb-6 bg-[#31009B]/20 w-8 h-8 rounded-full">
-                    <svg class="w-6 h-6 m-auto mt-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 7.04V16.96C20 18.48 19.86 19.56 19.5 20.33C19.5 20.34 19.49 20.36 19.48 20.37C19.26 20.65 18.97 20.79 18.63 20.79C18.1 20.79 17.46 20.44 16.77 19.7C15.95 18.82 14.69 18.89 13.97 19.85L12.96 21.19C12.56 21.73 12.03 22 11.5 22C10.97 22 10.44 21.73 10.04 21.19L9.02002 19.84C8.31002 18.89 7.05999 18.82 6.23999 19.69L6.22998 19.7C5.09998 20.91 4.10002 21.09 3.52002 20.37C3.51002 20.36 3.5 20.34 3.5 20.33C3.14 19.56 3 18.48 3 16.96V7.04C3 5.52 3.14 4.44 3.5 3.67C3.5 3.66 3.50002 3.65 3.52002 3.64C4.09002 2.91 5.09998 3.09 6.22998 4.3L6.23999 4.31C7.05999 5.18 8.31002 5.11 9.02002 4.16L10.04 2.81C10.44 2.27 10.97 2 11.5 2C12.03 2 12.56 2.27 12.96 2.81L13.97 4.15C14.69 5.11 15.95 5.18 16.77 4.3C17.46 3.56 18.1 3.21 18.63 3.21C18.97 3.21 19.26 3.36 19.48 3.64C19.5 3.65 19.5 3.66 19.5 3.67C19.86 4.44 20 5.52 20 7.04Z" stroke="#31009B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M8 10.25H16" stroke="#31009B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M8 13.75H14" stroke="#31009B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+        <div class="text-[#5100FF] h-auto shadow-xl shadow-[0px_4px_4px_0px_#00000040] card-anim  md:w-full rounded-xl border-r-[2px]  border-[#5100FF] bg-[#5100FF]/10 ">
+            <div class="flex flex-row gap-4 w-full p-2 mx-auto justify-between">
+                <span class="text-[15px] font-semibold">    برداشت این ماه</span>
+                <i class="bi bi-journal-check text-blue-700 text-xl mb-6 bg-[#5100FF] w-8 h-8 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-finance w-6 h-6 m-auto mt-1" viewBox="0 -960 960 960"  fill="none"><path d="M321-240h120v-40h-80v-40h80v-120H321v40h80v40h-80v120Zm280 0h40v-200h-40v80h-40v-80h-40v120h80v80Zm240-278v318q0 33-23.5 56.5T761-120H201q-33 0-56.5-23.5T121-200v-318q-23-21-35.5-54t-.5-72l42-136q8-26 28.5-43t47.5-17h556q27 0 47 16.5t29 43.5l42 136q12 39-.5 71T841-518Zm-272-42q27 0 41-18.5t11-41.5l-22-140h-78v148q0 21 14 36.5t34 15.5Zm-180 0q23 0 37.5-15.5T441-612v-148h-78l-22 140q-4 24 10.5 42t37.5 18Zm-178 0q18 0 31.5-13t16.5-33l22-154h-78l-40 134q-6 20 6.5 43t41.5 23Zm540 0q29 0 42-23t6-43l-42-134h-76l22 154q3 20 16.5 33t31.5 13ZM201-200h560v-282q-5 2-6.5 2H751q-27 0-47.5-9T663-518q-18 18-41 28t-49 10q-27 0-50.5-10T481-518q-17 18-39.5 28T393-480q-29 0-52.5-10T299-518q-21 21-41.5 29.5T211-480h-4.5q-2.5 0-5.5-2v282Zm560 0H201h560Z"/></svg>
                 </i>
             </div>
-            <div class="flex justify-between items-center mb-1">
-                <p class="font-bold text-lg text-gray-800 inline-flex items-center">
+            <div class="flex flex-col items-center justify-center gap-2 w-full p-2 mx-auto">
+                <p class="text-[16px] md:text-[24px] font-semibold">
                 <span>{{ number_format($monthTotal) }}</span>
                 <span class="ml-1">؋</span>
                 </p>
-            <p class=" text-[12px]  text-center rounded-md text-[#31009B] bg-[#31009B]/20 w-8 ">25%</p>
-            </div>
-        </div>
-        <div class="bg-[#3A64D0]/10 rounded-2xl shadow-xl shadow-[0px_4px_4px_0px_#00000040] p-4 border-r-[2px] card-anim      border-[#3A64D0] w-full max-w-full">
-            <div class="flex justify-between items-center mb-1">
-                <span class="text-sm text-gray-600 mb-6"> برداشت کل  </span>
-                <i class="bi bi-people text-indigo-700 text-xl mb-6 bg-[#3A64D0]/40 w-8 h-8 rounded-full">
-                    <svg class="w-6 h-6 m-auto mt-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#3A64D0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M15.75 9H8.25" stroke="#3A64D0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M15.75 15H8.25" stroke="#3A64D0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </i>
-            </div>
-            <div class="flex justify-between items-center mb-1">
-                <p class="font-bold text-lg text-gray-800 inline-flex items-center">
-                <span>{{ number_format($monthTotal) }}</span>
-                <span class="ml-1">؋</span>
+                <p class="text-[14px] md:text-[13px] font-sm -mt-3">
+                      مقدار برداشت این ماه
                 </p>
-                <p class=" text-[12px]  text-center rounded-md text-[#3A64D0] bg-[#3A64D0]/40 w-8">25%</p>
             </div>
         </div>
     </div>
@@ -132,7 +126,7 @@
                     </div>
                     <div class="flex flex-col">
                         <div class="border  box-border rounded-xl p-4 border-gray-900 flex items-center gap-2">
-                            <input  type="text"  id="withdrawal_date" wire:ignore   class="w-full bg-transparent focus:outline-none text-[15px]" placeholder="تاریخ">
+                            <input type="text" id="withdrawal_date" wire:model.defer="withdrawal_date" readonly  class="w-full bg-transparent focus:outline-none text-[15px]" placeholder="تاریخ">
                             <i>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentcolor" d="M7.75 2.5a.75.75 0 0 0-1.5 0v1.58c-1.44.115-2.384.397-3.078 1.092c-.695.694-.977 1.639-1.093 3.078h19.842c-.116-1.44-.398-2.384-1.093-3.078c-.694-.695-1.639-.977-3.078-1.093V2.5a.75.75 0 0 0-1.5 0v1.513C15.585 4 14.839 4 14 4h-4c-.839 0-1.585 0-2.25.013z"/><path fill="currentColor" fill-rule="evenodd" d="M22 12c0-.839 0-1.585-.013-2.25H2.013C2 10.415 2 11.161 2 12v2c0 3.771 0 5.657 1.172 6.828S6.229 22 10 22h4c3.771 0 5.657 0 6.828-1.172S22 17.771 22 14zm-8 .25A1.75 1.75 0 0 0 12.25 14v2a1.75 1.75 0 1 0 3.5 0v-2A1.75 1.75 0 0 0 14 12.25m0 1.5a.25.25 0 0 0-.25.25v2a.25.25 0 1 0 .5 0v-2a.25.25 0 0 0-.25-.25m-3.213-1.443a.75.75 0 0 1 .463.693v4a.75.75 0 0 1-1.5 0v-2.19l-.22.22a.75.75 0 0 1-1.06-1.06l1.5-1.5a.75.75 0 0 1 .817-.163" clip-rule="evenodd"/></svg>
                             </i>
@@ -434,6 +428,7 @@
                     </tbody>
                 </table>
             </div>
+            @if($withdrawals->total() > $withdrawals->perPage())
             <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
                 <button wire:click="previousPage" @disabled($withdrawals->onFirstPage())   class="w-7 h-7 rounded-md border border-gray-300 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white disabled:opacity-50"  >
                     ‹
@@ -447,6 +442,7 @@
                     ›
                 </button>
             </div>
+            @endif
         </div>
     </div>
 </div>

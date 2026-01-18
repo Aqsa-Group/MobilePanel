@@ -38,16 +38,16 @@ public function nextStep()
 {
     $this->validate();
 
-    $device = \App\Models\Device::create([
+    session(['device-form' => [
         'category' => $this->category,
         'brand'    => $this->brand,
         'status'   => $this->status,
         'model'    => $this->model,
         'memory'   => $this->memory,
         'color'    => $this->color,
-    ]);
 
-    session(['device-id' => $device->id]);
+    ]]);
+
 
     return redirect()->to('/device-form2');
 }

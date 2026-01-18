@@ -1,18 +1,28 @@
 <?php
 namespace App\Livewire\Mobile;
 use Livewire\Component;
-use App\Models\CustomerRecord;
 use Livewire\WithPagination;
+use App\Models\CustomerRecord;
+use Carbon\Carbon;
 class Customers extends Component
 {
-    public $search = '';
     use WithPagination;
     protected $paginationTheme = 'tailwind';
-    public $customerCount;
+    public $search = '';
     public $customer_type = '';
+    public $weekCustomers;
+    public $customerCount;
+    public $todayCustomers;
+    public $monthCustomers;
     public function mount()
     {
         $this->customerCount = CustomerRecord::count();
+        $this->todayCustomers = 0;
+        $this->monthCustomers = 0;
+        $this->weekCustomers = CustomerRecord::whereBetween('created_at', [
+    Carbon::now()->startOfWeek(),
+    Carbon::now()->endOfWeek(),
+])->count();
     }
     public function delete($id)
     {
@@ -21,16 +31,27 @@ class Customers extends Component
     }
     public function render()
     {
-        $customers = CustomerRecord::latest()->get();
-        $stats = CustomerRecord::select('customer_type')
-            ->selectRaw('COUNT(*) as total')
-            ->groupBy('customer_type')
-            ->pluck('total', 'customer_type');
+        $this->weekCustomers = CustomerRecord::whereBetween('created_at', [
+    Carbon::now()->startOfWeek(),
+    Carbon::now()->endOfWeek(),
+])->count();
+        $this->customerCount = CustomerRecord::count();
+        $this->todayCustomers = CustomerRecord::whereDate(
+            'created_at',
+            Carbon::today()
+        )->count();
+        $this->monthCustomers = CustomerRecord::whereYear(
+            'created_at',
+            Carbon::now()->year
+        )->whereMonth(
+            'created_at',
+            Carbon::now()->month
+        )->count();
         $customers = CustomerRecord::query()
             ->when($this->search, function ($q) {
                 $q->where(function ($q) {
                     $q->where('fullname', 'like', '%' . $this->search . '%')
-                        ->orWhere('customer_type', 'like', '%' . $this->search . '%');
+                      ->orWhere('customer_type', 'like', '%' . $this->search . '%');
                 });
             })
             ->when($this->customer_type, function ($q) {
@@ -38,10 +59,6 @@ class Customers extends Component
             })
             ->latest()
             ->paginate(5);
-        return view('livewire.mobile.customers', [
-            'customers' => $customers,
-            'customerCount' => $customers->count(),
-            'stats' => $stats,
-        ]);
+        return view('livewire.mobile.customers', compact('customers'));
     }
 }

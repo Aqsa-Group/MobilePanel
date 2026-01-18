@@ -55,3 +55,7 @@ main{
         width: 100%;
     }
 }
+.icon-finance path {
+    stroke: white;
+    stroke-width: 40px;
+}

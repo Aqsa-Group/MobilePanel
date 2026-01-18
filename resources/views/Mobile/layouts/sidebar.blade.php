@@ -205,7 +205,7 @@
                             </svg>
                             <span class="text-[14px]">فروشات</span>
                         </a>
-                        <a href="{{ route('inventory') }}" class="menu-btn group w-full flex  items-center gap-2 px-5 py-2  rounded-xl text-sm transition hover:text-white{{ request()->routeIs('inventory') ? 'bg-blue-400 text-white' : 'bg-gray-50 text-gray-700 hover:bg-blue-400 ' }}" >
+                        <a href="{{ route('inventory') }}" class="menu-btn group w-full flex  items-center gap-2 px-5 py-2 rounded-xl text-sm transition hover:text-white  {{ request()->routeIs('inventory') ? 'bg-blue-400 text-white' : 'bg-gray-50 text-gray-700 hover:bg-blue-400 ' }}" >
                             <svg class="w-5 h-5 transition" viewBox="0 0 24 24" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3.00999 11.22V15.71C3.00999 20.2 4.80999 22 9.29999 22H14.69C19.18 22 20.98 20.2 20.98 15.71V11.22" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M12 12C13.83 12 15.18 10.51 15 8.68L14.34 2H9.67L9 8.68C8.82 10.51 10.17 12 12 12Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

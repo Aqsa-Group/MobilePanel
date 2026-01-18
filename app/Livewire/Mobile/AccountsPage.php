@@ -23,11 +23,16 @@ class AccountsPage extends Component
     public $monthTotal;
     public $editing = false;
     public $editingId = null;
+protected $listeners = ['setWithdrawalDate'];
+
+public function setWithdrawalDate($date)
+{
+    $this->withdrawal_date = $date; // این به دیتابیس وصل می‌شود
+}
     public function mount()
     {
         $this->current_date = now();
-        $this->withdrawal_date = Jalalian::fromDateTime($this->current_date)
-            ->format('Y/m/d');
+        $this->withdrawal_date = Jalalian::now()->format('Y/m/d');
         $this->todayTotal = Withdrawal::whereDate(
             'withdrawal_date',
             now()->toDateString()

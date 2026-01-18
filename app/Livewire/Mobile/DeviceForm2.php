@@ -48,37 +48,45 @@ class DeviceForm2 extends Component
         $this->sell_price = $this->convertToEnglishNumber($this->sell_price);
         $this->stock      = $this->convertToEnglishNumber($this->stock);
         $this->imei       = $this->convertToEnglishNumber($this->imei);
-    
+
         $this->validate();
-    
-        $step1 = session('device-form');
-    
-        if (!$step1) {
-            session()->flash('error', 'لطفاً ابتدا فرم اول را تکمیل کنید.');
-            return redirect()->route('device.step1');
-        }
-    
-        $imagePath = null;
-        if ($this->image) {
-            $imagePath = $this->image->store('devices', 'public');
-        }
-    
-        Device::create(array_merge($step1, [
-            'image'      => $imagePath,
-            'buy_price'  => $this->buy_price,
-            'sell_price' => $this->sell_price,
-            'profit'     => $this->profit,
-            'stock'      => $this->stock,
-            'imei'       => $this->imei,
-            'warranty'   => $this->warranty,
-        ]));
-    
+
+       $step1 = session('device-form');
+
+if (!$step1) {
+    session()->flash('error', 'لطفاً ابتدا فرم اول را تکمیل کنید.');
+    return redirect()->route('device.step1');
+}
+
+$imagePath = $this->image ? $this->image->store('devices', 'public') : null;
+
+// اگر فیلدهای فرم دوم خالی بودند، مقدار پیش‌فرض بده
+$buy_price  = $this->buy_price ?? 0;
+$sell_price = $this->sell_price ?? 0;
+$stock      = $this->stock ?? 0;
+$imei       = $this->imei ?? null;
+$warranty   = $this->warranty ?? null;
+$profit     = $this->profit ?? ($sell_price - $buy_price);
+
+Device::create(array_merge($step1, [
+    'image'      => $imagePath,
+    'buy_price'  => $buy_price,
+    'sell_price' => $sell_price,
+    'profit'     => $profit,
+    'stock'      => $stock,
+    'imei'       => $imei,
+    'warranty'   => $warranty,
+]));
+
+session()->forget('device-form');
+
+
         session()->forget('device-form');
-    
+
         session()->flash('success', 'اطلاعات دستگاه با موفقیت ثبت شد');
         return redirect()->to('/device-information');
     }
-    
+
  private function convertToEnglishNumber($value)
 {
     $persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
