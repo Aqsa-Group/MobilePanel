@@ -3,6 +3,7 @@ namespace App\Livewire\Mobile;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Device;
+use Illuminate\Support\Facades\Auth;
 class DeviceForm extends Component
 {
     use WithFileUploads;

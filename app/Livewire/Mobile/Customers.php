@@ -3,6 +3,7 @@ namespace App\Livewire\Mobile;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\CustomerRecord;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 class Customers extends Component
 {

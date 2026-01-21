@@ -9,13 +9,12 @@
                     <p class="text-[10px] text-gray-500 text-center lg:text-right mb-6  flex items-center justify-center">
                        شما میتوانید اطلاعات تان را ایدیت کنید.
                     </p>
-                    <form wire:submit.prevent="update" action="" class="space-y-8">
+                    <form wire:submit.prevent="update" enctype="multipart/form-data" class="space-y-8">
                         @csrf
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-3">
                             <div class="flex flex-col ">
                             <div class="relative  w-full">
-                                <input type="text" wire:model.lazy="name" placeholder="نام کامل"  wire:model.lazy="name"  wire:model="name"
-                                    class="input-field ">
+                                <input type="text" wire:model.defer="name"  placeholder="نام کامل"    class="input-field ">
                                 <svg class="w-4 h-4 absolute left-2 top-1/2  -translate-y-1/2 text-gray-500" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10.0002 10.0001C12.3013 10.0001 14.1668 8.1346 14.1668 5.83341C14.1668 3.53223 12.3013 1.66675 10.0002 1.66675C7.69898 1.66675 5.8335 3.53223 5.8335 5.83341C5.8335 8.1346 7.69898 10.0001 10.0002 10.0001Z" stroke="#292D32" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M16.0085 13.1167L13.0585 16.0667C12.9418 16.1834 12.8335 16.4 12.8085 16.5584L12.6502 17.6833C12.5919 18.0917 12.8752 18.375 13.2835 18.3167L14.4085 18.1583C14.5668 18.1333 14.7919 18.025 14.9002 17.9084L17.8502 14.9584C18.3585 14.45 18.6002 13.8583 17.8502 13.1083C17.1085 12.3667 16.5169 12.6083 16.0085 13.1167Z" stroke="#292D32" stroke-opacity="0.8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -28,20 +27,35 @@
                             @enderror
                         </div>
                         <div class="flex flex-col">
-                            <div class="relative w-full">
-                                <label for="imageUpload" class="w-full  text-gray-500  input-field  bg-white cursor-pointer flex    ">
-                                    عکس
-                                </label>
-                                <input type="file" id="imageUpload" wire:model="image" wire:model.lazy="image" class="hidden">
-                                <svg class="w-4 h-4 absolute left-2 top-1/2  -translate-y-1/2 text-gray-500" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <div class="relative w-full flex items-center">
+                                <svg class="w-4 h-4 text-gray-500 flex-shrink-0 absolute left-2 top-1/2 -translate-y-1/2" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M7.49984 18.3333H12.4998C16.6665 18.3333 18.3332 16.6666 18.3332 12.5V7.49996C18.3332 3.33329 16.6665 1.66663 12.4998 1.66663H7.49984C3.33317 1.66663 1.6665 3.33329 1.6665 7.49996V12.5C1.6665 16.6666 3.33317 18.3333 7.49984 18.3333Z" stroke="#292D32" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M7.50016 8.33333C8.42064 8.33333 9.16683 7.58714 9.16683 6.66667C9.16683 5.74619 8.42064 5 7.50016 5C6.57969 5 5.8335 5.74619 5.8335 6.66667C5.8335 7.58714 6.57969 8.33333 7.50016 8.33333Z" stroke="#292D32" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M2.2251 15.7917L6.33343 13.0333C6.99176 12.5917 7.94176 12.6417 8.53343 13.15L8.80843 13.3917C9.45843 13.95 10.5084 13.95 11.1584 13.3917L14.6251 10.4167C15.2751 9.85834 16.3251 9.85834 16.9751 10.4167L18.3334 11.5833" stroke="#292D32" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
+                                <label for="imageUpload" class=" input-field  cursor-pointer flex items-center justify-start gap-2 px-3 py-1 rounded-lg bg-white">
+                                   @if ($image)
+                                        <img src="{{ $image->temporaryUrl() }}" class="w-10 h-10 rounded">
+                                    @elseif ($employee && $employee->image)
+                                        <img src="{{ asset('storage/'.$employee->image) }}" class="w-10 h-10 rounded">
+                                    @endif
+
+
+
+                                    {{-- @if($imagePreview)
+                                        <img src="{{ $imagePreview }}" alt="پیش‌نمایش" class="w-10 h-10 object-cover rounded border border-gray-300">
+                                    @else
+                                        <div class="w-10 h-10 bg-gray-200 rounded border border-gray-300 flex items-center justify-center text-gray-400 text-xs">
+                                            عکس
+                                        </div>
+                                    @endif --}}
+                                    <span class="text-gray-700 text-sm truncate">{{ $imageName ?? 'انتخاب عکس' }}</span>
+                                </label>
+                                <input type="file"  id="imageUpload" wire:model="image" class="hidden">
+                                @error('image')
+                                    <span class="text-red-500 text-xs px-2 mt-1">{{ $message }}</span>
+                                @enderror
                             </div>
-                            @error('image')
-                                <span class=" text-red-500 text-xs px-2 mt-1">{{ $message }}</span>
-                            @enderror
                         </div>
                         <div class="flex flex-col ">
                             <div class="relative  w-full">
@@ -110,8 +124,8 @@
                                 برگشت
                             </a>
                             <button type="submit" class="w-full sm:w-[48%] py-3 rounded-xl bg-blue-600 text-white text-base font-semibold flex items-center justify-center hover:bg-blue-700">
-            ثبت تغییرات
-        </button>
+                                ثبت تغییرات
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -125,3 +139,12 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script>
+    document.addEventListener('livewire:load', function () {
+        window.addEventListener('redirect', event => {
+            window.location.href = event.detail.url;
+        });
+    });
+</script>
+@endpush

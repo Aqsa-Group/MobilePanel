@@ -1,6 +1,7 @@
 <?php
 namespace App\Livewire\Mobile;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 class DeviceInformation extends Component
 {
     public function render()

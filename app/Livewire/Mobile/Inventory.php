@@ -3,6 +3,7 @@ namespace App\Livewire\Mobile;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Device;
+use Illuminate\Support\Facades\Auth;
 class Inventory extends Component
 {
     use WithPagination;

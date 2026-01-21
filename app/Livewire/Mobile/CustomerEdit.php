@@ -4,6 +4,7 @@ use Livewire\Component;
 use App\Models\CustomerRecord;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 class CustomerEdit extends Component
 {
     use WithFileUploads;

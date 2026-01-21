@@ -69,7 +69,7 @@
                                 <img src="{{ asset('storage/' . auth()->user()->image) }}"   alt="user avatar" class="w-16 h-16 rounded-full object-cover border border-[#0948EE]"  >
                             </div>
                             <div class="py-1">
-                                <a  href="{{ route('user.edit', auth()->id()) }}" class="flex items-center gap-2 px-3 py-1.5 text-[13px] text-gray-700 hover:bg-gray-100 transition">
+                                <a   class="flex items-center gap-2 px-3 py-1.5 text-[13px] text-gray-700 hover:bg-gray-100 transition">
                                     <i class="fa-regular fa-user text-[#0948EE]"></i>
                                     پروفایل من
                                 </a>

@@ -3,6 +3,7 @@ namespace App\Livewire\Mobile;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\CustomerRecord;
+use Illuminate\Support\Facades\Auth;
 class Customer extends Component
 {
     use WithFileUploads;
@@ -67,6 +68,8 @@ class Customer extends Component
             'address' => $this->address,
             'id_card' => $this->id_card,
             'image' => $imagePath,
+            'user_id'  => Auth::id(),
+            'admin_id' => Auth::user()->admin_id ?? Auth::id(),
         ]);
         $this->reset([
             'fullname',

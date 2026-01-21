@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Livewire\Mobile;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Device;
 use Livewire\Component;
 use Livewire\WithFileUploads;

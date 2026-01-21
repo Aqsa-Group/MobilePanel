@@ -4,6 +4,7 @@ use Morilog\Jalali\Jalalian;
 use Livewire\Component;
 use App\Models\Withdrawal;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 class AccountsPage extends Component
 {
@@ -27,7 +28,7 @@ protected $listeners = ['setWithdrawalDate'];
 
 public function setWithdrawalDate($date)
 {
-    $this->withdrawal_date = $date; // این به دیتابیس وصل می‌شود
+    $this->withdrawal_date = $date;
 }
     public function mount()
     {
@@ -124,6 +125,8 @@ public function setWithdrawalDate($date)
                 'amount' => $this->amount,
                 'description' => $this->description,
                 'withdrawal_date' => now()->toDateString(),
+                'user_id'  => Auth::id(),                         // کی ثبت کرده
+                'admin_id' => Auth::user()->admin_id ?? Auth::id(), // مربوط به کدام مدیر
             ]);
             $this->successMessage = 'برداشت با موفقیت ثبت شد';
             $this->reset([
