@@ -10,70 +10,70 @@ use Illuminate\Support\Facades\Storage;
 class UserList extends Component
 {
     use WithPagination, WithFileUploads;
-    use WithFileUploads;
     protected $paginationTheme = 'tailwind';
+    public $showMaxModal = false;
     public $image, $username, $email, $number, $address, $rule, $limit, $password;
-    public $editingUserId = null;
-    public $first_name;
-    public $last_name;
+    public $first_name, $last_name, $userId, $name;
     public $search = '';
-    public $userId;
-    public $name;
     public $confirmingDelete = false;
-    public $deleteUserId = null;
-    public function mount()
-    {
-        if (Auth::user()->rule === 'user') {
-            abort(403);
-        }
-    }
-    protected function rules()
-    {
-        $rules = [
-            'image'    => 'nullable|image|max:2048',
-            'name'     => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:user_forms,username,' . $this->editingUserId,
-            'email'    => 'nullable|email|unique:user_forms,email,' . $this->editingUserId,
-            'number'   => 'nullable|string|max:30',
-            'address'  => 'nullable|string|max:255',
-            'rule'     => 'required',
-            'limit'    => 'nullable|integer|min:1|max:5',
-        ];
-        if (!$this->editingUserId || $this->password) {
-            $rules['password'] = 'required|min:6';
-        }
-        return $rules;
-    }
-public function creator()
+    public $resetFile = false;
+    public $deleteUserId = null;protected function rules()
 {
-    return $this->belongsTo(User::class, 'creator_id');
+    $rules = [
+        'first_name' => 'required|string|max:255',
+        'last_name'  => 'required|string|max:255',
+        'username'   => 'required|string|max:255|unique:user_forms,username,' . $this->userId,
+        'email'      => 'required|email|unique:user_forms,email,' . $this->userId,
+        'number'     => ['required', 'regex:/^07\d{8}$/', 'unique:user_forms,number,' . $this->userId],
+        'address'    => 'required|string|max:255',
+        'rule'       => 'required',
+        'limit'      => 'required|integer|min:1|max:5',
+    ];
+    if (!$this->userId || $this->password) {
+        $rules['password'] = 'required|min:6';
+    }
+    return $rules;
 }
     public function updatingSearch()
     {
         $this->resetPage();
     }
+    protected function convertPersianNumbersToEnglish($input)
+{
+    $persianNumbers = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+    $englishNumbers = ['0','1','2','3','4','5','6','7','8','9'];
+    return str_replace($persianNumbers, $englishNumbers, $input);
+}
     public function submit()
 {
-    if (Auth::user()->rule === 'user') {
-        abort(403, 'شما اجازه اضافه کردن کاربر را ندارید');
-    }
-    if (Auth::user()->rule === 'admin' && !$this->userId) {
-        $count = UserForm::where('creator_id', Auth::id())->count();
+    $this->number = $this->convertPersianNumbersToEnglish($this->number);
+    $this->limit  = $this->convertPersianNumbersToEnglish($this->limit);
+    $this->validate($this->rules(), $this->messages());
+    $authUser = Auth::user();
+    if ($authUser->rule === 'admin') {
+        $count = UserForm::where('creator_id', $authUser->id)->count();
         if ($count >= 10) {
-            session()->flash('error', 'شما به سقف اضافه کردن کاربران رسیده‌اید (حداکثر ۱۰ کاربر)');
+            $this->showMaxModal = true;
             return;
         }
     }
-    $this->validate([
-        'first_name' => 'required',
-        'last_name'  => 'required',
-        'username'   => 'required',
-        'rule'       => 'required',
-        'password'   => $this->userId ? 'nullable|min:6' : 'required|min:6',
-        'image'      => 'nullable|image|max:2048',
-    ]);
+    if ($authUser->rule === 'admin' && $this->rule !== 'user') {
+        abort(403, 'شما اجازه ساخت این نقش را ندارید');
+    }
+    if ($authUser->rule === 'user') {
+        abort(403);
+    }
+    if ($authUser->rule === 'admin') {
+        $count = UserForm::where('creator_id', $authUser->id)->count();
+        if ($count >= 10) {
+            session()->flash('error', 'شما بیشتر از ۱۰ کاربر نمی‌توانید اضافه کنید');
+            return;
+        }
+    }
+    if ($authUser->rule !== 'super_admin') {
+        $this->limit = null;
+    }
     $name = trim($this->first_name . ' ' . $this->last_name);
-    $creatorId = Auth::id();
     $data = [
         'name'       => $name,
         'username'   => $this->username,
@@ -82,13 +82,19 @@ public function creator()
         'address'    => $this->address,
         'rule'       => $this->rule,
         'limit'      => $this->limit,
-        'creator_id' => $creatorId,
+        'creator_id' => Auth::id(),
     ];
-    if ($this->image) {
+    if ($this->image instanceof \Livewire\TemporaryUploadedFile) {
+        if ($this->userId) {
+            $oldUser = UserForm::find($this->userId);
+            if ($oldUser && $oldUser->image && Storage::disk('public')->exists($oldUser->image)) {
+                Storage::disk('public')->delete($oldUser->image);
+            }
+        }
         $data['image'] = $this->image->store('users', 'public');
     }
     if ($this->password) {
-        $data['password'] = bcrypt($this->password);
+        $data['password'] = Hash::make($this->password);
     }
     if ($this->userId) {
         UserForm::where('id', $this->userId)->update($data);
@@ -97,36 +103,75 @@ public function creator()
     }
     $this->resetForm();
     session()->flash('success', 'اطلاعات با موفقیت ذخیره شد');
+    $this->userId = null;
 }
-public function editUser($id)
+public function cancelForm()
 {
-    $user = UserForm::findOrFail($id);
-    $this->userId = $user->id;
-    $nameParts = explode(' ', $user->name, 2);
-    $this->first_name = $nameParts[0] ?? '';
-    $this->last_name  = $nameParts[1] ?? '';
-    $this->username = $user->username;
-    $this->email    = $user->email;
-    $this->number   = $user->number;
-    $this->address  = $user->address;
-    $this->rule     = $user->rule;
-    $this->limit    = $user->limit;
+    $this->resetForm();
+    $this->resetFile = true;
 }
+protected function messages()
+{
+    return [
+        'first_name.required' => 'لطفاً نام را وارد کنید',
+        'last_name.required'  => 'لطفاً نام خانوادگی را وارد کنید',
+        'username.required'   => 'نام کاربری الزامی است',
+        'username.unique'     => 'این نام کاربری قبلاً استفاده شده است',
+        'email.required'      => 'لطفاً ایمیل را وارد کنید',
+        'email.email'         => 'ایمیل معتبر نیست',
+        'email.unique'        => 'این ایمیل قبلاً استفاده شده است',
+        'number.required'     => 'شماره تماس الزامی است',
+        'number.unique'       => 'این شماره قبلاً استفاده شده است',
+        'number.regex'        => 'شماره تماس باید با 07 شروع شود و ۱۰ رقم باشد',
+        'address.required'    => 'لطفاً آدرس را وارد کنید',
+        'address.max'         => 'آدرس طولانی است',
+        'rule.required'       => 'انتخاب نقش کاربر الزامی است',
+        'password.required'   => 'رمز عبور الزامی است',
+        'password.min'        => 'رمز عبور باید حداقل 6 کاراکتر باشد',
+    ];
+}
+    public function editUser($id)
+    {
+        $user = UserForm::findOrFail($id);
+        $this->userId = $user->id;
+        $nameParts = explode(' ', $user->name, 2);
+        $this->first_name = $nameParts[0] ?? '';
+        $this->last_name  = $nameParts[1] ?? '';
+        $this->username = $user->username;
+        $this->email    = $user->email;
+        $this->number   = $user->number;
+        $this->address  = $user->address;
+        $this->rule     = $user->rule;
+        $this->limit    = $user->limit;
+        $this->image    = $user->image;
+        $this->password = null;
+    }
+   public function showMaxModal()
+    {
+        $this->showMaxModal = true;
+        $this->dispatchBrowserEvent('autoCloseModal');
+    }
+    public function hideMaxModal()
+    {
+        $this->showMaxModal = false;
+    }
+    public function cancel()
+{
+    $this->resetForm();
+}
+    public function resetForm()
+    {
+        $this->reset([
+            'userId', 'first_name', 'last_name', 'username',
+            'email', 'number', 'address', 'rule', 'limit', 'password', 'image'
+        ]);
+        $this->resetValidation();
+    }
     public function confirmDelete($id)
     {
         $this->deleteUserId = $id;
         $this->confirmingDelete = true;
     }
-    public function resetForm()
-{
-    $this->reset([
-        'editingUserId', 'image', 'name', 'username',
-        'email', 'number', 'address', 'rule', 'limit', 'password',
-        'first_name', 'last_name', 'userId',
-    ]);
-    $this->image = null;
-    $this->resetValidation();
-}
     public function deleteConfirmed()
     {
         $user = UserForm::findOrFail($this->deleteUserId);
@@ -140,16 +185,18 @@ public function editUser($id)
     }
     public function render()
 {
-    if (Auth::user()->rule === 'super_admin') {
+    $authUser = Auth::user();
+    if ($authUser->rule === 'super_admin') {
         $users = UserForm::query()
             ->where('name', 'like', "%{$this->search}%")
             ->orWhere('username', 'like', "%{$this->search}%")
             ->orWhere('email', 'like', "%{$this->search}%")
             ->oldest()
             ->paginate(5);
-    } elseif (Auth::user()->rule === 'admin') {
+        $canEdit = true;
+    } elseif ($authUser->rule === 'admin') {
         $users = UserForm::query()
-            ->where('creator_id', Auth::id())
+            ->where('creator_id', $authUser->id)
             ->where(function($q) {
                 $q->where('name', 'like', "%{$this->search}%")
                   ->orWhere('username', 'like', "%{$this->search}%")
@@ -157,11 +204,14 @@ public function editUser($id)
             })
             ->oldest()
             ->paginate(5);
+        $canEdit = true;
     } else {
-        $users = collect();
+        $users = UserForm::query()
+            ->oldest()
+            ->paginate(5);
+        $canEdit = false;
     }
     $user = $this->userId ? UserForm::find($this->userId) : null;
-    return view('livewire.mobile.user-list', compact('users', 'user'));
+    return view('livewire.mobile.user-list', compact('users', 'user', 'canEdit'));
 }
-
 }

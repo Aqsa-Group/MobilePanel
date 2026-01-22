@@ -1,5 +1,6 @@
 <div>
     <main class="max-w-full p-4 mx-auto  mt-2 ">
+        @if($canEdit)
         <div class=" w-full mx-auto shadow-[0px_4px_4px_0px_#00000040] border  border-gray-300 rounded-lg  flex flex-col lg:flex-row">
             <div class="flex-1 lg:w-1/2 flex items-center justify-center p-3 sm:p-4 order-1 ">
                 <div class="w-full max-w-full mx-auto">
@@ -42,14 +43,13 @@
                                     <path d="M2.8418 18.3333C2.8418 15.1083 6.05015 12.5 10.0002 12.5C10.8668 12.5 11.7001 12.625 12.4751 12.8583" stroke="#292D32" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </div>
-                                @error('name')
+                                @error('first_name')
                                     <span class=" text-red-500 text-xs px-2 mt-1">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="flex flex-col ">
                                 <div class="relative  w-full">
-                                    <input type="text" placeholder="نام فامیلی"   wire:model="last_name"
-                                        class="input-field ">
+                                    <input type="text" placeholder="نام فامیلی"   wire:model="last_name"  class="input-field ">
                                     <svg class="w-4 h-4 absolute left-2 top-1/2  -translate-y-1/2 text-gray-500" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M10.0002 10.0001C12.3013 10.0001 14.1668 8.1346 14.1668 5.83341C14.1668 3.53223 12.3013 1.66675 10.0002 1.66675C7.69898 1.66675 5.8335 3.53223 5.8335 5.83341C5.8335 8.1346 7.69898 10.0001 10.0002 10.0001Z" stroke="#292D32" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M16.0085 13.1167L13.0585 16.0667C12.9418 16.1834 12.8335 16.4 12.8085 16.5584L12.6502 17.6833C12.5919 18.0917 12.8752 18.375 13.2835 18.3167L14.4085 18.1583C14.5668 18.1333 14.7919 18.025 14.9002 17.9084L17.8502 14.9584C18.3585 14.45 18.6002 13.8583 17.8502 13.1083C17.1085 12.3667 16.5169 12.6083 16.0085 13.1167Z" stroke="#292D32" stroke-opacity="0.8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -57,7 +57,7 @@
                                     <path d="M2.8418 18.3333C2.8418 15.1083 6.05015 12.5 10.0002 12.5C10.8668 12.5 11.7001 12.625 12.4751 12.8583" stroke="#292D32" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </div>
-                                @error('name')
+                                @error('last_name')
                                     <span class=" text-red-500 text-xs px-2 mt-1">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -148,7 +148,7 @@
                             </div>
                         </div>
                         <div class="md:col-span-2 flex flex-col md:flex-row gap-2">
-                            <button  wire:click="resetForm" type="button" class="w-full md:w-auto flex-1 bg-red-800 hover:bg-red-700 text-white font-semibold py-3 rounded-md transition">
+                            <button   wire:click="cancelForm"  type="button" class="w-full md:w-auto flex-1 bg-red-800 hover:bg-red-700 text-white font-semibold py-3 rounded-md transition">
                                 لغو
                             </button>
                             <button  type="submit" class="w-full bg-blue-800 md:w-auto flex-1 hover:bg-blue-700 text-white font-semibold py-3 rounded-md transition">
@@ -159,12 +159,13 @@
                 </div>
             </div>
         </div>
+        @endif
         <section class=" w-full  mt-2   mx-auto h-full flex flex-col border  border-gray-300  rounded-lg  shadow-[0px_4px_4px_0px_#00000040] p-2  items-center">
             <div class="flex flex-col md:flex-row justify-between items-center w-full mt-1 gap-1 md:gap-2">
                 <div class="flex gap-2 w-full ">
-                    <div class="relative  w-full  md:w-1/4  ">
-                        <input type="text"  wire:model.live="search" class="w-full h-full block rounded-md md:rounded-lg bg-[#1E40AF]/20 absolute top-0 right-0 pr-2 text-[7px] sm:p-6 p-4  md:text-[10px]" placeholder="جستجو">
-                        <span class="absolute md:hidden left-1  top-2">
+                    <div class="relative   w-full  md:w-1/4  ">
+                        <input type="text"  wire:model.live="search" class="w-full h-full block rounded-md md:rounded-lg bg-[#1E40AF]/20 md:absolute md:top-0 md:right-0 pr-2 text-[7px] sm:p-6 p-4  md:text-[10px]" placeholder="جستجو">
+                        <span class="absolute md:hidden left-1  top-3">
                             <svg  width="14" height="14" viewBox="0 0 19 19" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -197,7 +198,7 @@
                             <th class="p-4 text-[12px] bg-blue-800 text-white">عکس</th>
                             <th class="p-4 text-[12px] bg-blue-800 text-white">نام کامل</th>
                             <th class="p-4 text-[12px] bg-blue-800 text-white">اسم کاربری</th>
-                            <th class="p-4 text-[12px] bg-blue-800 text-white"> ثبت‌کننده</th>
+                            <th class="p-4 text-[12px] bg-blue-800 text-white"> ادمین</th>
                             <th class="p-4 text-[12px] bg-blue-800 text-white">شماره</th>
                             <th class="p-4 text-[12px] bg-blue-800 text-white">ایمیل</th>
                             <th class="p-4 text-[12px] bg-blue-800 text-white">آدرس</th>
@@ -205,6 +206,7 @@
                             @if(auth()->user()->rule !== 'user')
                                 <th class="p-4 text-[12px] bg-blue-800 text-white">وضعیت</th>
                             @endif
+                            <th class="p-4 text-[12px] bg-blue-800 text-white">چاپ</th>
                             <th class="p-4 text-[12px] bg-blue-800 text-white">ادیت</th>
                             <th class="p-4 text-[12px] bg-blue-800 text-white">حذف</th>
                         </tr>
@@ -249,13 +251,18 @@
                                 </td>
                                 @if(auth()->user()->rule !== 'user')
                                 <td>
-                                    @if($user->rule === 'user')
+                                    @if($user->isOnline())
                                         <span class="px-2 py-1 rounded-full text-xs bg-green-100 text-green-700">فعال</span>
                                     @else
                                         <span class="px-2 py-1 rounded-full text-xs bg-red-100 text-red-700">غیرفعال</span>
                                     @endif
                                 </td>
                                 @endif
+                                <td class="text-center">
+                                    <button type="button" wire:click="editUser({{ $user->id }})" class="flex items-center justify-center mx-auto h-full">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+                                    </button>
+                                </td>
                                 <td class="text-center">
                                     <button type="button" wire:click="editUser({{ $user->id }})" class="flex items-center justify-center mx-auto h-full">
                                         <svg width="20"  height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -287,25 +294,40 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="print-area  md:hidden flex flex-col  px-2 gap-2 w-full">
+                <div class="print-area mt-2 md:hidden flex flex-col  px-2 gap-2 w-full">
                     @foreach($users as $user)
                     <div class="rounded-xl flex   flex-col items-center  border border-[#1E40AF66] h-auto w-full">
                         <table dir="ltr" class="w-full table-fixed  items-center font-semibold justify-center text-center mx-auto">
                             <tr>
                                 <td colspan="3" class="text-center pt-2">
-                                    <img src="{{ $user->image ? asset('storage/'.$user->image) . '?t=' . now()->timestamp : asset('default.png') }}"  alt="{{ $user->name }}" class="w-[50px] h-[50px] mx-auto rounded-md">
+                                    @if($user->image)
+                                        <img
+                                            src="{{ asset('storage/'.$user->image) . '?t=' . now()->timestamp }}"
+                                            alt="{{ $user->name }}"
+                                            class="w-[50px] h-[50px] mx-auto rounded-full object-cover"
+                                        >
+                                    @else
+                                        <div class="w-[50px] h-[50px] mx-auto rounded-full bg-blue-800 flex items-center justify-center text-white font-bold text-[14px]">
+                                            {{
+                                                mb_strtoupper(
+                                                    mb_substr(explode(' ', $user->name)[0], 0, 1) .
+                                                    mb_substr(explode(' ', $user->name)[1] ?? '', 0, 1)
+                                                )
+                                            }}
+                                        </div>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
                                 <th colspan="3" class="text-center text-[13px]">{{ $user->name }}</th>
                             </tr>
                             <tr>
-                                <th class="pt-2 text-[13px]">شماره</th>
+                                <th class="pt-2 text-center align-middle text-[13px]">آدرس</th>
                                 <th class="pt-3 text-[13px]">نقش</th>
-                                <th class="pt-3 text-[13px]">ثبت‌کننده</th>
+                                <th class="pt-3 text-[13px]">ادمین</th>
                             </tr>
                             <tr class="text-[#00000080]">
-                                <td  class="text-[10px]">{{ $user->number }}</td>
+                                <td  class="text-[10px] text-center align-middle">{{ $user->address }}</td>
                                 <td  class="text-[10px]">
                                     @if($user->rule === 'user') کاربر
                                     @elseif($user->rule === 'admin') ادمین
@@ -327,32 +349,36 @@
                             </tr>
                             <tr>
                                 <th class="pt-2 text-[13px]">نام کاربری</th>
-                                @if(auth()->user()->rule !== 'user')
-                                    <th class="pt-3 text-[13px]">وضعیت</th>
-                                @endif
+                                <th class="pt-2 text-[13px]">شماره</th>
+                                <th class="pt-2 text-[13px]">ایمیل</th>
                             </tr>
                             <tr class="text-[#00000080]">
                                 <td class="text-[10px]">{{ $user->username }}</td>
-                                @if(auth()->user()->rule !== 'user')
-                                <td class="text-[10px]">
-                                   ‍ @if($user->rule === 'user')
-                                        <span class="px-2 py-1 rounded-full text-xs bg-green-100 text-green-700">فعال</span>
-                                    @else
-                                        <span class="px-2 py-1 rounded-full text-xs bg-red-100 text-red-700">غیرفعال</span>
-                                    @endif
-                                </td>
-                                @endif
+                                <td  class="text-[10px]">{{ $user->number }}</td>
+                                <td  class="text-[10px]">{{ $user->email}}</td>
                             </tr>
                             <tr>
-                                <th class="pt-2 text-[13px]">ایمیل</th>
-                                <th class="pt-2 text-[13px]">آدرس</th>
+                                @if(auth()->user()->rule !== 'user')
+                                    <th colspan="3" class="pt-3 text-center text-[13px]">وضعیت</th>
+                                @endif
                             </tr>
                             <tr class="text-[#00000080]">
-                                <td  class="text-[10px]">{{ $user->email}}</td>
-                                <td  class="text-[10px]">{{ $user->address }}</td>
+                                @if(auth()->user()->rule !== 'user')
+                                    <td colspan="3" class="text-[10px] text-center align-middle">
+                                        @if($user->isOnline())
+                                            <span class="text-green-600 font-bold">فعال</span>
+                                        @else
+                                            <span class="text-gray-400">غیرفعال</span>
+                                        @endif
+                                    </td>
+                                @endif
                             </tr>
                         </table>
                         <div  class="flex flex-row gap-2 my-2 w-full px-4 mt-4">
+                            <button type="button" wire:click="editUser({{ $user->id }})" class="flex justify-center items-center gap-1 border rounded-lg border-[#000] w-1/2 h-[30px] text-black text-[10px]">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+                                <span>چاپ</span>
+                            </button>
                             <button type="button" wire:click="editUser({{ $user->id }})" class="flex justify-center items-center gap-1 border rounded-lg border-[#0033BB] w-1/2 h-[30px] text-[#0033BB] text-[10px]">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -375,7 +401,7 @@
                     </div>
                     @endforeach
                 </div>
-                <div class="flex flex-wrap gap-1 justify-start items-center mt-3 text-[10px]">
+                <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
                     @if ($users->lastPage() > 1)
                     <button
                         wire:click="previousPage"
@@ -427,6 +453,43 @@
                     </div>
                 </div>
             </div>
+        @endif
+        <div>
+            @if($showMaxModal)
+                <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div class="bg-white rounded-lg shadow-lg p-6 w-80 max-w-full text-center relative">
+                        <h2 class="text-lg font-bold mb-3">تعداد کاربران به حداکثر رسیده!</h2>
+                        <p class="text-gray-600 mb-4 text-sm">دیگر نمی‌توانید کاربر جدید اضافه کنید.</p>
+                        <button
+                            wire:click="hideMaxModal"
+                            class="bg-blue-800 hover:bg-blue-700 text-white px-4 py-2 rounded"
+                        >
+                            باشه
+                        </button>
+                    </div>
+                </div>
+            @endif
+        </div>
+        <script>
+            document.addEventListener('livewire:load', function () {
+                window.addEventListener('autoCloseModal', () => {
+                    setTimeout(() => {
+                        @this.hideMaxModal();
+                    }, 3000);
+                });
+                });
+            window.addEventListener('reset-file-input', event => {
+                let input = document.getElementById('profile_image');
+                if(input) {
+                    input.value = null;
+                }
+            });
+        </script>
+        @if($resetFile)
+        <script>
+            document.getElementById('profile_image').value = '';
+        </script>
+        @php $resetFile = false; @endphp
         @endif
     </main>
 </div>

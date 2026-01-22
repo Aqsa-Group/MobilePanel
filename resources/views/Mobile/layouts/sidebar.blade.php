@@ -31,7 +31,7 @@
     }
 </style>
 <body>
-    <header class="fixed top-0 inset-x-0 w-full bg-white z-[60] shadow shadow-[#0B35CC] p-2">
+    <header class="fixed top-0 inset-x-0 w-full bg-white z-[60] shadow shadow-blue-800 p-2">
         <div class="w-full  lg:px-2">
             <div class="h-16 flex items-center justify-between">
                 <div class="flex items-center">
@@ -44,33 +44,21 @@
                 </div>
                 <div class="flex-1"></div>
                 <div class="flex items-center gap-2 sm:gap-3">
-                    <div class="flex items-center gap-2 sm:gap-3">
-                        <div class="w-8 sm:w-44 md:w-60">
-                            <div class="flex items-center h-8 rounded-full sm:rounded-lg border border-gray-500 bg-gray-50 overflow-hidden justify-center sm:justify-start sm:pl-2">
-                                <span class="flex items-center gap-2 text-gray-600 shrink-0 sm:flex-row-reverse">
-                                    <svg width="20" height="20" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20.8621 12.3747C20.5137 17.333 16.2118 21.0701 11.2534 20.7218C6.2951 20.3734 2.55797 16.0715 2.90634 11.1131C3.2547 6.15478 7.55664 2.41766 12.515 2.76602C17.4733 3.11439 21.2104 7.41632 20.8621 12.3747Z" stroke="#292D32" stroke-opacity="0.7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M20.9943 20.3334C22.5533 20.9742 22.6281 22.1924 21.1663 23.022C19.8299 23.7802 18.8217 23.148 18.9297 21.6118C18.9996 20.4739 19.9323 19.8979 20.9943 20.3334Z" stroke="#292D32" stroke-opacity="0.7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </span>
-                                <input type="text" placeholder="جستجو" class="w-full h-full bg-transparent outline-none px-3 text-sm placeholder-gray-400 hidden sm:block" />
-                            </div>
-                        </div>
-                    <button class="rounded-full bg-gray-100  w-8 h-8  transition relative">
-                        <i class="fa-regular fa-bell"></i>
-                        <span class="absolute -top-1 -right-1 bg-blue-500 text-white text-[10px] rounded-full px-1.5">3</span>
+                    <button class="rounded-full bg-gray-100  w-10 h-10  transition relative">
+                        <i class="fa-regular text-lg fa-bell"></i>
+                        <span class="absolute -top-1 -right-1 bg-blue-800 text-white text-[10px] rounded-full px-1.5">3</span>
                     </button>
                     <div class="relative">
                         <button id="profileButton" class="flex items-center border border-gray-600 rounded-full p-0.5 gap-2 focus:outline-none" aria-expanded="false" aria-haspopup="true">
-                            <img   src="{{ asset('storage/' . auth()->user()->image) }}" alt="user avatar"  class="w-7 h-7 rounded-full object-cover border border-[#0948EE]" >
+                            <img   src="{{ asset('storage/' . auth()->user()->image) }}" alt="user avatar"  class="w-10 h-10 rounded-full object-cover border border-blue-800" >
                         </button>
-                        <div id="profileMenu" class="hidden absolute left-0  mt-2 w-[150px] bg-white border border-[#0948EE] rounded-xl shadow shadow-[#0B35CC] overflow-hidden z-50 text-right">
-                            <div class="p-3 border-b border-dashed border-[#0948EE] flex items-center justify-center">
-                                <img src="{{ asset('storage/' . auth()->user()->image) }}"   alt="user avatar" class="w-16 h-16 rounded-full object-cover border border-[#0948EE]"  >
+                        <div id="profileMenu" class="hidden absolute left-0  mt-2 w-[150px] bg-white border border-blue-800 rounded-xl shadow shadow-[#0B35CC] overflow-hidden z-50 text-right">
+                            <div class="p-3 border-b border-dashed border-blue-800 flex items-center justify-center">
+                                <img src="{{ asset('storage/' . auth()->user()->image) }}"   alt="user avatar" class="w-16 h-16 rounded-full object-cover border border-blue-800"  >
                             </div>
                             <div class="py-1">
                                 <a   class="flex items-center gap-2 px-3 py-1.5 text-[13px] text-gray-700 hover:bg-gray-100 transition">
-                                    <i class="fa-regular fa-user text-[#0948EE]"></i>
+                                    <i class="fa-regular fa-user text-blue-800"></i>
                                     پروفایل من
                                 </a>
                                 <a href="#" class="flex  items-center gap-2 px-3 py-1.5 text-[13px] text-gray-700 hover:bg-gray-100 transition">
@@ -89,7 +77,7 @@
             </div>
         </div>
     </header>
-    <aside id="sidebar"   class="fixed lg:static  sm:top-20 lg:top-0 top-5  right-0  h-[calc(100vh-5rem)] lg:h-auto  w-56  bg-white  shadow shadow-[#0B35CC]    duration-200 ease-out  z-40  overflow-y-auto transform translate-x-full lg:translate-x-0  transition-transform" aria-label="Sidebar">
+    <aside id="sidebar"   class="fixed lg:static  sm:top-20 lg:top-0 top-5  right-0  h-[calc(100vh-5rem)] lg:h-auto  w-56  bg-white  shadow shadow-blue-800    duration-200 ease-out  z-40  overflow-y-auto transform translate-x-full lg:translate-x-0  transition-transform" aria-label="Sidebar">
         <div class="h-16 flex items-center justify-start ">
             <a id="closeSidebar" class="hidden" aria-label="بستن">
                 <i class="fa-solid fa-xmark"></i>

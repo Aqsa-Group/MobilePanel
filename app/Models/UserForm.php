@@ -21,6 +21,13 @@ class UserForm extends Authenticatable
         'password',
         'remember_token',
     ];
+    public function isOnline()
+{
+    return \DB::table('sessions')
+        ->where('user_id', $this->id)
+        ->where('last_activity', '>=', now()->subMinutes(30)->timestamp)
+        ->exists();
+}
     public function creator()
     {
         return $this->belongsTo(UserForm::class, 'creator_id');
