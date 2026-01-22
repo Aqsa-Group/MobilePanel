@@ -17,7 +17,8 @@ class UserList extends Component
     public $search = '';
     public $confirmingDelete = false;
     public $resetFile = false;
-    public $deleteUserId = null;protected function rules()
+    public $deleteUserId = null;
+    protected function rules()
 {
     $rules = [
         'first_name' => 'required|string|max:255',
@@ -27,8 +28,10 @@ class UserList extends Component
         'number'     => ['required', 'regex:/^07\d{8}$/', 'unique:user_forms,number,' . $this->userId],
         'address'    => 'required|string|max:255',
         'rule'       => 'required',
-        'limit'      => 'required|integer|min:1|max:5',
     ];
+    if (auth()->user()->rule === 'super_admin' && $this->rule === 'admin') {
+        $rules['limit'] = 'required|integer|in:5,10';
+    }
     if (!$this->userId || $this->password) {
         $rules['password'] = 'required|min:6';
     }
@@ -46,6 +49,18 @@ class UserList extends Component
 }
     public function submit()
 {
+    $authUser = auth()->user();
+    if ($authUser->rule === 'admin') {
+    $maxLimit = $authUser->limit;
+    $count = UserForm::where('creator_id', $authUser->id)->count();
+    if ($count >= $maxLimit) {
+        session()->flash(
+            'error',
+            "شما فقط اجازه ساخت {$maxLimit} کاربر را دارید"
+        );
+        return;
+    }
+}
     $this->number = $this->convertPersianNumbersToEnglish($this->number);
     $this->limit  = $this->convertPersianNumbersToEnglish($this->limit);
     $this->validate($this->rules(), $this->messages());

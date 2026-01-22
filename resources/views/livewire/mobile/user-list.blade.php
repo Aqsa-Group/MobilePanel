@@ -137,9 +137,10 @@
                             </div>
                             <div class="flex flex-col ">
                                 @if(auth()->user()->rule === 'super_admin' && $rule === 'admin')
-                                    <select wire:model="limit" class="  text-gray-500 input-field cursor-pointer flex   ">
-                                        <option value="">تعداد مجاز</option>
-                                        <option value="5">۵ کاربر</option>
+                                    <select class="text-gray-500 input-field cursor-pointer flex " wire:model="limit">
+                                        <option value="">انتخاب حد مجاز</option>
+                                        <option value="5">5 کاربر</option>
+                                        <option value="10">10 کاربر</option>
                                     </select>
                                 @endif
                                 @error('limit')
@@ -362,13 +363,13 @@
                                     <th colspan="3" class="pt-3 text-center text-[13px]">وضعیت</th>
                                 @endif
                             </tr>
-                            <tr class="text-[#00000080]">
+                            <tr class="text-[#00000080] mt-2">
                                 @if(auth()->user()->rule !== 'user')
                                     <td colspan="3" class="text-[10px] text-center align-middle">
                                         @if($user->isOnline())
-                                            <span class="text-green-600 font-bold">فعال</span>
+                                            <span class=" px-2 py-1 rounded-full text-xs bg-green-100 text-green-700 font-bold">فعال</span>
                                         @else
-                                            <span class="text-gray-400">غیرفعال</span>
+                                            <span class="px-2 py-1 rounded-full text-xs bg-red-100 text-red-700">غیرفعال</span>
                                         @endif
                                     </td>
                                 @endif
