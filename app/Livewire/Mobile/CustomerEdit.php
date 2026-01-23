@@ -21,7 +21,7 @@ class CustomerEdit extends Component
         'customer_number.regex' => 'شماره تماس باید با 07 شروع شود و 10 رقم باشد',
         'id_card.required' => '*وارد کردن آیدی تذکره الزامی میباشد',
         'id_card.regex' => 'فرمت نادرست!',
-        'image.max' => ' * حجم تصویر نباید بیشتر از ۲ مگابایت باشد',
+        'image.max' => ' * حجم تصویر نباید بیشتر از ۵ مگابایت باشد',
     ];
     public function mount($id)
     {
@@ -33,34 +33,43 @@ class CustomerEdit extends Component
         $this->id_card = $this->customer->id_card;
         $this->oldImage = $this->customer->image;
     }
+    private function convertToEnglishNumber($value)
+{
+    $persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+    $english = ['0','1','2','3','4','5','6','7','8','9'];
+    return str_replace($persian, $english, $value);
+}
     public function update()
-    {
-        $this->validate([
-            'fullname' => 'required|regex:/^[A-Za-z\x{0600}-\x{06FF}\s]+$/u',
-            'address' => 'required|regex:/^[A-Za-z\x{0600}-\x{06FF}\s]+$/u',
-            'customer_type' => 'required|in:مشتری جدید,مشتری همیشه گی',
-            'customer_number' => 'required|regex:/^07[0-9]{8}$/',
-            'id_card' => 'required|regex:/^\d{5}[-\s]?\d{5}$/',
-            'image' => 'nullable|image|max:2048',
-        ]);
-        $imagePath = $this->oldImage;
-        if ($this->image) {
-            if ($this->oldImage && Storage::disk('public')->exists($this->oldImage)) {
-                Storage::disk('public')->delete($this->oldImage);
-            }
-            $imagePath = $this->image->store('customers', 'public');
+{
+    $this->validate([
+        'first_name' => 'required|regex:/^[A-Za-z\x{0600}-\x{06FF}\s]+$/u',
+        'last_name'  => 'required|regex:/^[A-Za-z\x{0600}-\x{06FF}\s]+$/u',
+        'address' => 'required',
+        'customer_type' => 'required|in:مشتری جدید,مشتری همیشه گی',
+        'customer_number' => 'required|regex:/^07[0-9]{8}$/',
+        'id_card' => 'required',
+        'image' => 'nullable|image|max:2048',
+    ]);
+    $imagePath = $this->oldImage;
+    if ($this->image) {
+        if ($this->oldImage && Storage::disk('public')->exists($this->oldImage)) {
+            Storage::disk('public')->delete($this->oldImage);
         }
-        $this->customer->update([
-            'fullname' => $this->fullname,
-            'address' => $this->address,
-            'customer_number' => $this->customer_number,
-            'customer_type' => $this->customer_type,
-            'id_card' => $this->id_card,
-            'image' => $imagePath,
-        ]);
-        session()->flash('success', 'اطلاعات مشتری با موفقیت ویرایش شد');
-        return redirect()->route('customers');
+        $imagePath = $this->image->store('customers', 'public');
     }
+    $this->customer->update([
+        'first_name' => $this->first_name,
+        'last_name'  => $this->last_name,
+        'fullname' => trim($this->first_name . ' ' . $this->last_name),
+        'address' => $this->address,
+        'customer_number' => $this->convertToEnglishNumber($this->customer_number),
+        'customer_type' => $this->customer_type,
+        'id_card' => $this->convertToEnglishNumber($this->id_card),
+        'image' => $imagePath,
+    ]);
+    session()->flash('success', 'اطلاعات مشتری با موفقیت ویرایش شد');
+    return redirect()->route('customers');
+}
     public function render()
     {
        return view('livewire.mobile.customer-edit')

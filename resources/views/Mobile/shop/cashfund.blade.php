@@ -1,7 +1,4 @@
 @extends('Mobile.layouts.app')
 @section('content')
-@livewire('mobile.customer-edit')
+@livewire('mobile.cashfund')
 @endsection
-
-
-

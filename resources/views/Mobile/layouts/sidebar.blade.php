@@ -123,6 +123,25 @@
                     </svg>
                     <span class="text-[15px]">مشتریان</span>
                 </a>
+                <a data-section="customers"  href="{{ route('cashfund') }}"  class="menu-btn group w-full text-right flex  {{ request()->routeIs('cashfund') ? 'bg-[#1E40AF] text-white' : 'text-gray-700' }} gap-3 rounded-xl px-2 py-2 text-sm  transition hover:bg-[#1E40AF] hover:text-white"  style="cursor: pointer;">
+                    <svg  width="24"  height="24"  viewBox="0 0 60 60"  fill="white" stroke="black" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"   xmlns="http://www.w3.org/2000/svg" >
+                        <g id="SVGRepo_iconCarrier" stroke="black" stroke-width="1.2">
+                            <g>
+                                <path d="M0,4v48h2v4h10v-4h36v4h10v-4h2v-8v-6V18v-6V4H0z"/>
+                                <path d="M10,54H4v-2h6V54z"/>
+                                <path d="M56,54h-6v-2h6V54z"/>
+                                <path d="M54,12h-4v6h4v20h-4v6h3.997 l-0.005,2L6,45.992L6.008,10L54,10.008V12z"/>
+                                <path d="M56,14h2v2h-2h-4v-2H56z"/>
+                                <path d="M52,42v-2h4h2v2h-2H52z"/>
+                                <path d="M58,38h-2V18h2V38z"/>
+                                <path d="M56,12v-1.992 C56,8.9,55.1,8,53.992,8H6.008C4.901,8,4,8.9,4,10.008v35.984C4,47.1,4.901,48,6.008,48h47.984C55.1,48,56,47.1,56,45.992V44h2v6 H48H12H2V6h56v6H56z"/>
+                                <circle cx="20" cy="28" r="1"/>
+                                <path d="M9,29h4.08c0.17,1.183,0.636,2.269,1.322,3.184l-2.887,2.887c-0.391,0.391-0.391,1.023,0,1.414 c0.195,0.195,0.451,0.293,0.707,0.293s0.512-0.098,0.707-0.293l2.887-2.887c0.915,0.686,2.001,1.152,3.185,1.322V39 c0,0.553,0.448,1,1,1s1-0.447,1-1v-4.08c1.183-0.17,2.269-0.636,3.185-1.322l2.887,2.887c0.195,0.195,0.451,0.293,0.707,0.293 s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414l-2.887-2.887c0.686-0.916,1.151-2.001,1.322-3.184H31 c0.552,0,1-0.447,1-1s-0.448-1-1-1h-4.08c-0.17-1.183-0.636-2.269-1.322-3.184l2.887-2.887c0.391-0.391,0.391-1.023,0-1.414 s-1.023-0.391-1.414,0l-2.887,2.887C23.269,21.716,22.183,21.25,21,21.08V17c0-0.553-0.448-1-1-1s-1,0.447-1,1v4.08 c-1.183,0.17-2.269,0.636-3.185,1.322l-2.887-2.887c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.887,2.887 C13.716,24.731,13.25,25.817,13.08,27H9c-0.552,0-1,0.447-1,1S8.448,29,9,29z"/>
+                            </g>
+                        </g>
+                    </svg>
+                    <span class="text-[15px]">موجودی صندوق</span>
+                </a>
                 <div x-data="{  open: @js(      request()->routeIs('accounts') ||      request()->routeIs('salaryworkers') ||      request()->routeIs('borrowings')  )   }"  class="w-full">
                     <button  @click.prevent="open = !open" :class="{ 'bg-[#1E40AF] text-white': open }"
                         class="menu-btn group w-full text-right flex items-center gap-3 rounded-xl px-2 py-2 text-sm  transition hover:bg-[#1E40AF] hover:text-white"  style="cursor: pointer;"  >

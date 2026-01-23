@@ -136,9 +136,7 @@
                                                 محدودیت:
                                             </span>
                                             <div class="relative w-full">
-                                <input type="text"  wire:model.defer="warranty"
- placeholder="گارانتی"
-                                    class="input-field">
+                                <input type="text"  wire:model.defer="warranty" placeholder="گارانتی"   class="input-field">
                                        <svg class="w-4 h-4 absolute left-2 top-1/2  -translate-y-1/2 text-gray-500" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M20 9.6C20 5.6 18.4 4 14.4 4H9.6C5.6 4 4 5.6 4 9.6V14.4C4 18.4 5.6 20 9.6 20" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M16.35 8C15.8 7.3 14.88 7 13.5 7H10.5C8 7 7 8 7 10.5V13.5C7 14.88 7.3 15.8 7.99 16.35" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

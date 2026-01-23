@@ -1,12 +1,19 @@
 body {
     font-family: 'Vazir', 'Poppins', sans-serif;
 }
-.card-anim {
-    transition: all 0.4s ease;
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.card-anim:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+.card-anim {
+  animation: fadeUp 0.7s ease forwards;
+  opacity: 0;
 }
 main{
     overflow-x: hidden;
