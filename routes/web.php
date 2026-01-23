@@ -19,7 +19,6 @@ Route::get('/', Welcome::class)->name('welcome');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/userList', function () {return view('Mobile.shop.userList');})->name('user.list');
 Route::get('/employe', function () { return view('Mobile.shop.employe'); })->name('employe');
-Route::get('/employe-edit/{id}', function($id) { return view('mobile.shop.employe-edit', compact('id'));})->name('employe.edit');
 Route::get('/customers', function () { return view('Mobile.shop.customers');})->name('customers');
 Route::get('/customer', function () { return view('Mobile.shop.customer');})->name('customer');
 Route::get('/customer-edit/{id}', CustomerEdit::class)  ->name('customer.edit');

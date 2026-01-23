@@ -1,5 +1,5 @@
 <div class="w-full p-4 max-w-full mx-auto">
-    <div class="rounded-xl shadow-xl w-full shadow-[0px_4px_4px_0px_#00000040]  border  border-gray-300 px-2 py-4">
+    <div class="rounded-lg shadow-xl w-full shadow-[0px_4px_4px_0px_#00000040]  border  border-gray-300 px-2 py-4">
         <h2 class="text-2xl text-center font-bold mb-2">اطلاعات کارمند </h2>
         <p class="text-gray-500 text-center text-[12px]">شما می‌توانید کارمند جدید ثبت کنید.</p>
         <form  wire:submit.prevent="{{ $editMode ? 'update' : 'save' }}"  wire:key="{{ $formKey }}"    enctype="multipart/form-data" class=" mt-3 ">
@@ -112,7 +112,7 @@
         </form>
     </div>
     <div class="grid grid-cols-1 w-full lg:grid-cols-2 gap-3 pt-2">
-        <div class="lg:col-span-2 border  border-gray-300  rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl  w-full lg:max-w-full p-3">
+        <div class="lg:col-span-2 border  border-gray-300  rounded-lg shadow-[0px_4px_4px_0px_#00000040] shadow-xl  w-full lg:max-w-full p-3">
             <div class="flex flex-col md:flex-row justify-between items-center w-full mt-1 gap-1 md:gap-2">
                 <div class="flex gap-2 w-full ">
                     <div class="relative   w-full  md:w-1/4  ">
@@ -277,7 +277,7 @@
                             $parts = preg_split('/\s+/', trim($employee->name));
                             $initials = mb_substr($parts[0], 0, 1) . (isset($parts[1]) ? mb_substr($parts[1], 0, 1) : '');
                         @endphp
-                        <div class="w-20 h-20 rounded-full mx-auto bg-blue-600 text-white flex items-center justify-center font-bold text-xl">
+                        <div class="w-20 h-20 rounded-full mx-auto bg-blue-800 text-white flex items-center justify-center font-bold text-xl">
                             {{ mb_strtoupper($initials) }}
                         </div>
                     @else
@@ -320,8 +320,7 @@
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                             چاپ
                         </a>
-                        <a wire:click="edit({{ $employee->id }})"
-                            class="flex items-center gap-1 border-blue-600 border border-2 py-2 px-3 rounded-lg text-xs">
+                        <a wire:click="edit({{ $employee->id }})"   class="flex items-center gap-1 border-[#1E40AF] border border-2 py-2 px-3 rounded-lg text-xs">
                             <i class="bi bi-pencil-square">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -381,12 +380,12 @@
         </div>
     </div>
     @push('scripts')
-<script>
-window.addEventListener('scroll-to-form', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-</script>
-@endpush
+    <script>
+    window.addEventListener('scroll-to-form', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    </script>
+    @endpush
     @if ($confirmingDelete)
             <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
                 <div class="bg-white rounded-2xl shadow-xl w-[90%] max-w-sm p-6 animate-fade-in">

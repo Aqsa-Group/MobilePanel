@@ -86,7 +86,7 @@
         <nav id="menu" class="sm:p-7 mt-0  p-3  flex flex-col justify-start ">
             <div class="space-y-2 sm:mt-2 mt-0">
                 <a  href="{{ route('welcome') }}"  data-section="welcome"
-                    class="menu-btn group  w-full  {{ request()->routeIs('welcome') ? 'bg-blue-600 text-white' : 'text-gray-700' }} text-right flex  gap-3 rounded-xl px-2 py-2 text-sm transition hover:bg-blue-600 hover:text-white ">
+                    class="menu-btn group  w-full  {{ request()->routeIs('welcome') ? 'bg-[#1E40AF] text-white' : 'text-gray-700' }} text-right flex  gap-3 rounded-xl px-2 py-2 text-sm transition hover:bg-[#1E40AF] hover:text-white ">
                     <svg class="group-hover:fill-white" width="22" height="22" viewBox="0 0 22 22" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3.75 8.64844H5.75C7.75 8.64844 8.75 7.66113 8.75 5.68652V3.71191C8.75 1.7373 7.75 0.75 5.75 0.75H3.75C1.75 0.75 0.75 1.7373 0.75 3.71191V5.68652C0.75 7.66113 1.75 8.64844 3.75 8.64844Z" stroke="black" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M15.75 8.64844H17.75C19.75 8.64844 20.75 7.66113 20.75 5.68652V3.71191C20.75 1.7373 19.75 0.75 17.75 0.75H15.75C13.75 0.75 12.75 1.7373 12.75 3.71191V5.68652C12.75 7.66113 13.75 8.64844 15.75 8.64844Z" stroke="black" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -96,7 +96,7 @@
                     <span class="text-[15px]">داشبورد</span>
                 </a>
                 <a  href="{{ route('user.list') }}" data-section="users"
-                    class="menu-btn group w-full text-right flex {{ request()->routeIs('user.list') ? 'bg-blue-600 text-white' : 'text-gray-700' }} gap-3 rounded-xl px-2 py-2 text-sm  transition hover:bg-blue-600 hover:text-white">
+                    class="menu-btn group w-full text-right flex {{ request()->routeIs('user.list') ? 'bg-[#1E40AF] text-white' : 'text-gray-700' }} gap-3 rounded-xl px-2 py-2 text-sm  transition hover:bg-[#1E40AF] hover:text-white">
                     <svg class="group-hover:fill-white" width="20" height="20" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9.16006 10.87C9.06006 10.86 8.94006 10.86 8.83006 10.87C6.45006 10.79 4.56006 8.84 4.56006 6.44C4.56006 3.99 6.54006 2 9.00006 2C11.4501 2 13.4401 3.99 13.4401 6.44C13.4301 8.84 11.5401 10.79 9.16006 10.87Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M16.41 4C18.35 4 19.91 5.57 19.91 7.5C19.91 9.39 18.41 10.93 16.54 11C16.46 10.99 16.37 10.99 16.28 11" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -106,12 +106,12 @@
                     <span class="text-[15px]">کاربران ها</span>
                 </a>
                 <a  href="{{ route('employe') }}" data-section="users"
-                    class="menu-btn group w-full text-right flex {{ request()->routeIs('employe') ? 'bg-blue-600 text-white' : 'text-gray-700' }} gap-3  rounded-xl px-2 py-2 text-sm  transition hover:bg-blue-600 hover:text-white">
+                    class="menu-btn group w-full text-right flex {{ request()->routeIs('employe') ? 'bg-[#1E40AF] text-white' : 'text-gray-700' }} gap-3  rounded-xl px-2 py-2 text-sm  transition hover:bg-[#1E40AF] hover:text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon-outline group-hover:fill-white" width="20" height="20" viewBox="0 0 448 512"><path fill="#fff" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128m95.8 32.6L272 480l-32-136l32-56h-96l32 56l-32 136l-47.8-191.4C56.9 292 0 350.3 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-72.1-56.9-130.4-128.2-133.8"/></svg>
                     <span class="text-[15px] flex items-center">کارمندان </span>
                 </a>
                 <a data-section="customers"  href="{{ route('customers') }}"
-                    class="menu-btn group w-full text-right flex  {{ request()->routeIs('customers') ? 'bg-blue-600 text-white' : 'text-gray-700' }} gap-3 rounded-xl px-2 py-2 text-sm  transition hover:bg-blue-600 hover:text-white"
+                    class="menu-btn group w-full text-right flex  {{ request()->routeIs('customers') ? 'bg-[#1E40AF] text-white' : 'text-gray-700' }} gap-3 rounded-xl px-2 py-2 text-sm  transition hover:bg-[#1E40AF] hover:text-white"
                     style="cursor: pointer;">
                     <svg class="group-hover:fill-white" width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.0001 7.16C17.9401 7.15 17.8701 7.15 17.8101 7.16C16.4301 7.11 15.3301 5.98 15.3301 4.58C15.3301 3.15 16.4801 2 17.9101 2C19.3401 2 20.4901 3.16 20.4901 4.58C20.4801 5.98 19.3801 7.11 18.0001 7.16Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -124,8 +124,8 @@
                     <span class="text-[15px]">مشتریان</span>
                 </a>
                 <div x-data="{  open: @js(      request()->routeIs('accounts') ||      request()->routeIs('salaryworkers') ||      request()->routeIs('borrowings')  )   }"  class="w-full">
-                    <button  @click.prevent="open = !open" :class="{ 'bg-blue-600 text-white': open }"
-                        class="menu-btn group w-full text-right flex items-center gap-3 rounded-xl px-2 py-2 text-sm  transition hover:bg-blue-600 hover:text-white"  style="cursor: pointer;"  >
+                    <button  @click.prevent="open = !open" :class="{ 'bg-[#1E40AF] text-white': open }"
+                        class="menu-btn group w-full text-right flex items-center gap-3 rounded-xl px-2 py-2 text-sm  transition hover:bg-[#1E40AF] hover:text-white"  style="cursor: pointer;"  >
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 7V17C21 20 19.5 22 16 22H8C4.5 22 3 20 3 17V7C3 4 4.5 2 8 2H16C19.5 2 21 4 21 7Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M16.25 11H7.75C6.79 11 6 10.21 6 9.25V6.75C6 5.79 6.79 5 7.75 5H16.25C17.21 5 18 5.79 18 6.75V9.25C18 10.21 17.21 11 16.25 11Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -139,7 +139,7 @@
                         ></i>
                     </button>
                     <div x-show="open" x-transition class="w-full mt-1 space-y-1">
-                        <a href="{{ route('accounts') }}" :class="{ 'bg-blue-400 text-white': @js(request()->routeIs('accounts')) }" class="menu-btn bg-gray-50 group w-full text-left flex  items-center gap-3 rounded-xl px-5 py-2 text-sm  transition hover:bg-blue-400 hover:text-white" >
+                        <a href="{{ route('accounts') }}" :class="{ 'bg-[#1E40AF]/50 text-white': @js(request()->routeIs('accounts')) }" class="menu-btn bg-gray-50 group w-full text-left flex  items-center gap-3 rounded-xl px-5 py-2 text-sm  transition hover:bg-[#1E40AF]/50 hover:text-white" >
                             <svg class="w-5 h-5 transition " viewBox="0 0 17 17" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.07609 12.7357C10.2018 12.7357 12.7357 10.2018 12.7357 7.07609C12.7357 3.95039 10.2018 1.4165 7.07609 1.4165C3.95039 1.4165 1.4165 3.95039 1.4165 7.07609C1.4165 10.2018 3.95039 12.7357 7.07609 12.7357Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M5.6665 8.0751C5.6665 8.62051 6.0915 9.06676 6.60859 9.06676H7.67109C8.12442 9.06676 8.49275 8.67718 8.49275 8.2026C8.49275 7.68551 8.26609 7.50135 7.93317 7.38093L6.23317 6.78593C5.89317 6.66551 5.6665 6.48135 5.6665 5.96426C5.6665 5.48968 6.03484 5.1001 6.48817 5.1001H7.55067C8.07484 5.10718 8.49984 5.54635 8.49984 6.09176" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -149,7 +149,7 @@
                             </svg>
                             <span class="text-[14px]">برداشت ها</span>
                         </a>
-                        <a  href="{{ route('salaryworkers') }}"  :class="{ 'bg-blue-400 text-white': @js(request()->routeIs('salaryworkers')) }"  class="menu-btn bg-gray-50 group w-full text-left flex  items-center gap-2 rounded-xl px-5 py-2  text-sm  transition hover:bg-blue-400 hover:text-white" >
+                        <a  href="{{ route('salaryworkers') }}"  :class="{ 'bg-[#1E40AF]/50 text-white': @js(request()->routeIs('salaryworkers')) }"  class="menu-btn bg-gray-50 group w-full text-left flex  items-center gap-2 rounded-xl px-5 py-2  text-sm  transition hover:bg-[#1E40AF]/50 hover:text-white" >
                             <svg class="w-5 h-5 transition" viewBox="0 0 17 17" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9.2085 6.375H4.9585" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M15.5833 7.77032V9.22953C15.5833 9.61911 15.2717 9.93783 14.875 9.952H13.4866C12.7216 9.952 12.0204 9.39242 11.9567 8.62742C11.9142 8.18117 12.0841 7.76325 12.3816 7.47283C12.6437 7.20367 13.005 7.04785 13.4016 7.04785H14.875C15.2717 7.06202 15.5833 7.38074 15.5833 7.77032Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -157,7 +157,7 @@
                                 </svg>
                             <span class="text-[14px]">معاش ها</span>
                         </a>
-                        <a href="{{ route('borrowings') }}" :class="{ 'bg-blue-400 text-white': @js(request()->routeIs('borrowings')) }" class="menu-btn bg-gray-50 group w-full text-left flex  items-center gap-2 rounded-xl px-5 py-2 text-sm  transition hover:bg-blue-400 hover:text-white" >
+                        <a href="{{ route('borrowings') }}" :class="{ 'bg-[#1E40AF]/50 text-white': @js(request()->routeIs('borrowings')) }" class="menu-btn bg-gray-50 group w-full text-left flex  items-center gap-2 rounded-xl px-5 py-2 text-sm  transition hover:bg-[#1E40AF]/50 hover:text-white" >
                             <svg class="w-5 h-5 transition" viewBox="0 0 17 17" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8.31567 12.5728H12.509C12.4453 12.6295 12.3815 12.6791 12.3178 12.7357L9.29317 15.0024C8.29442 15.7461 6.66526 15.7461 5.65942 15.0024L2.62776 12.7357C1.96193 12.2399 1.4165 11.142 1.4165 10.3132V5.06446C1.4165 4.2003 2.07526 3.24405 2.88276 2.93946L6.41026 1.61488C6.99109 1.3953 7.95442 1.3953 8.53526 1.61488L12.0557 2.93946C12.7286 3.19446 13.3023 3.9028 13.4794 4.6253H8.30858C8.15275 4.6253 8.01108 4.63239 7.8765 4.63239C6.56608 4.71031 6.22608 5.18488 6.22608 6.67946V10.5257C6.23317 12.1549 6.65109 12.5728 8.31567 12.5728Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M6.2334 7.94727H15.5834" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -170,7 +170,7 @@
                     </div>
                 </div>
                 <div  x-data="{ open: {{ request()->routeIs('sell') || request()->routeIs('inventory') || request()->routeIs('inventory2') ? 'true' : 'false' }} }"class="w-full" >
-                    <button @click.prevent="open = !open" type="button" class="menu-btn group w-full text-right flex items-center gap-3 rounded-xl px-2 py-2 text-sm transition hover:text-white {{ request()->routeIs('sell') || request()->routeIs('inventory') || request()->routeIs('inventory2') ? 'bg-blue-600 text-white' : 'text-gray-700 hover:bg-blue-600' }}" style="cursor: pointer;" >
+                    <button @click.prevent="open = !open" type="button" class="menu-btn group w-full text-right flex items-center gap-3 rounded-xl px-2 py-2 text-sm transition hover:text-white {{ request()->routeIs('sell') || request()->routeIs('inventory') || request()->routeIs('inventory2') ? 'bg-[#1E40AF] text-white' : 'text-gray-700 hover:bg-[#1E40AF]' }}" style="cursor: pointer;" >
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.5 22.0003H4.07997C2.91997 22.0003 1.96997 21.0703 1.96997 19.9303V5.09035C1.96997 2.47035 3.91997 1.28035 6.30997 2.45035L10.75 4.63035C11.71 5.10035 12.5 6.35035 12.5 7.41035V22.0003Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M21.97 15.0599V18.8399C21.97 20.9999 20.97 21.9999 18.81 21.9999H12.5V10.4199L12.97 10.5199L17.47 11.5299L19.5 11.9799C20.82 12.2699 21.9 12.9499 21.96 14.8699C21.97 14.9299 21.97 14.9899 21.97 15.0599Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -183,7 +183,7 @@
                         <i class="fa-solid fa-chevron-down transition ml-auto" :class="open ? 'rotate-180' : ''"></i>
                     </button>
                     <div x-show="open" x-transition class="w-full mt-1 space-y-1">
-                        <a  href="{{ route('sell') }}"  class="menu-btn group w-full flex  items-center gap-2 px-5 py-2 rounded-xl text-sm transition hover:text-white  {{ request()->routeIs('sell') ? 'bg-blue-400 text-white' : 'bg-gray-50 text-gray-700 hover:bg-blue-400 ' }}" >
+                        <a  href="{{ route('sell') }}"  class="menu-btn group w-full flex  items-center gap-2 px-5 py-2 rounded-xl text-sm transition hover:text-white  {{ request()->routeIs('sell') ? 'bg-[#1E40AF]/50 text-white' : 'bg-gray-50 text-gray-700 hover:bg-[#1E40AF]/50 ' }}" >
                             <svg class="w-5 h-5 transition" viewBox="0 0 17 17" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M13.671 5.6098V9.25774C13.671 11.4394 12.4243 12.3744 10.5543 12.3744H4.32809C4.00934 12.3744 3.70476 12.3461 3.42142 12.2823C3.24434 12.254 3.07434 12.2044 2.91851 12.1478C1.85601 11.7511 1.21143 10.8302 1.21143 9.25774V5.6098C1.21143 3.42814 2.45809 2.49316 4.32809 2.49316H10.5543C12.141 2.49316 13.2814 3.16608 13.586 4.70316C13.6356 4.98649 13.671 5.27689 13.671 5.6098Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M15.7969 7.73477V11.3827C15.7969 13.5644 14.5503 14.4993 12.6803 14.4993H6.45403C5.92986 14.4993 5.45529 14.4285 5.04445 14.2727C4.20154 13.961 3.62778 13.3165 3.42236 12.2823C3.7057 12.3461 4.01028 12.3743 4.32903 12.3743H10.5553C12.4253 12.3743 13.6719 11.4394 13.6719 9.2577V5.60977C13.6719 5.27685 13.6436 4.97937 13.587 4.70312C14.9328 4.98646 15.7969 5.9356 15.7969 7.73477Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -193,7 +193,7 @@
                             </svg>
                             <span class="text-[14px]">فروشات</span>
                         </a>
-                        <a href="{{ route('inventory') }}" class="menu-btn group w-full flex  items-center gap-2 px-5 py-2 rounded-xl text-sm transition hover:text-white  {{ request()->routeIs('inventory') ? 'bg-blue-400 text-white' : 'bg-gray-50 text-gray-700 hover:bg-blue-400 ' }}" >
+                        <a href="{{ route('inventory') }}" class="menu-btn group w-full flex  items-center gap-2 px-5 py-2 rounded-xl text-sm transition hover:text-white  {{ request()->routeIs('inventory') ? 'bg-[#1E40AF]/50 text-white' : 'bg-gray-50 text-gray-700 hover:bg-[#1E40AF]/50 ' }}" >
                             <svg class="w-5 h-5 transition" viewBox="0 0 24 24" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3.00999 11.22V15.71C3.00999 20.2 4.80999 22 9.29999 22H14.69C19.18 22 20.98 20.2 20.98 15.71V11.22" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M12 12C13.83 12 15.18 10.51 15 8.68L14.34 2H9.67L9 8.68C8.82 10.51 10.17 12 12 12Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -203,7 +203,7 @@
                             </svg>
                             <span class="text-[14px]">موجودی دوکان</span>
                         </a>
-                        <a  href="{{ route('inventory2') }}" class="menu-btn group w-full flex  items-center gap-2 px-5 py-2  rounded-xl text-sm transition hover:text-white {{ request()->routeIs('inventory2') ? 'bg-blue-400 text-white' : 'bg-gray-50 text-gray-700 hover:bg-blue-400 ' }}" >
+                        <a  href="{{ route('inventory2') }}" class="menu-btn group w-full flex  items-center gap-2 px-5 py-2  rounded-xl text-sm transition hover:text-white {{ request()->routeIs('inventory2') ? 'bg-[#1E40AF]/50 text-white' : 'bg-gray-50 text-gray-700 hover:bg-[#1E40AF]/50 ' }}" >
                             <svg class="w-5 h-5 transition" viewBox="0 0 17 17" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1.4165 15.5835H15.5832" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M12.0417 1.4165H4.95833C2.83333 1.4165 2.125 2.68442 2.125 4.24984V15.5832H14.875V4.24984C14.875 2.68442 14.1667 1.4165 12.0417 1.4165Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -220,7 +220,7 @@
                 </div>
                 <a data-section="reports" href="{{ route('reports') }}"
                     class="menu-btn group w-full text-right flex gap-3 rounded-xl px-2 py-2 text-sm transition hover:text-white
-                    {{ request()->routeIs('reports') ? 'bg-blue-600 text-white' : 'text-gray-700 hover:bg-blue-600 ' }}">
+                    {{ request()->routeIs('reports') ? 'bg-[#1E40AF] text-white' : 'text-gray-700 hover:bg-[#1E40AF] ' }}">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" fill="#fff" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M10.11 11.1501H7.46005C6.83005 11.1501 6.32007 11.6601 6.32007 12.2901V17.4101H10.11V11.1501V11.1501Z" fill="#fff" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -231,7 +231,7 @@
                 </a>
                 <a data-section="fix" href="{{ route('device.repair') }}"
                     class="menu-btn group w-full text-right flex gap-3 rounded-xl px-2 py-2 text-sm transition hover:text-white
-                    {{ request()->routeIs('device.repair') ? 'bg-blue-600 text-white' : 'text-gray-700 hover:bg-blue-600 ' }}"
+                    {{ request()->routeIs('device.repair') ? 'bg-[#1E40AF] text-white' : 'text-gray-700 hover:bg-[#1E40AF] ' }}"
                     style="cursor: pointer;">
                     <svg width="26" height="23" viewBox="0 0 26 23" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21.6666 9.20016C21.6666 5.36683 19.9333 3.8335 15.5999 3.8335H10.3999C6.06659 3.8335 4.33325 5.36683 4.33325 9.20016V13.8002C4.33325 17.6335 6.06659 19.1668 10.3999 19.1668" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -291,8 +291,8 @@
         // Active state
         menuButtons.forEach(btn => {
             btn.addEventListener('click', () => {
-            menuButtons.forEach(b => b.classList.remove('active', 'bg-blue-600', 'text-white'));
-            btn.classList.add('active', 'bg-blue-600', 'text-white');
+            menuButtons.forEach(b => b.classList.remove('active', 'bg-[#1E40AF]', 'text-white'));
+            btn.classList.add('active', 'bg-[#1E40AF]', 'text-white');
             if (window.innerWidth < 1024) close();
             });
         });
