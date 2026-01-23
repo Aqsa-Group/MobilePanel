@@ -10,32 +10,39 @@
                     <p class="text-[10px] text-gray-500 text-center lg:text-right mt-2 flex items-center justify-center">
                         لطفا اطلاعات را واضح و دقیق وارد کنید.
                     </p>
-                    <form wire:submit.prevent="submit" enctype="multipart/form-data"  class="space-y-3">
+                    <form wire:submit.prevent="{{ $editMode ? 'update' : 'submit' }}"  enctype="multipart/form-data"  class="space-y-3">
                         @csrf
                         <div class="relative mx-auto w-24 h-24">
-                            <div id="profileWrapper" onclick="document.getElementById('profile_image').click()"
+                            <div id="profileWrapper"
+                                onclick="document.getElementById('profile_image').click()"
                                 class="w-full h-full rounded-full border flex items-center justify-center cursor-pointer bg-blue-800 overflow-hidden relative text-white font-bold text-xl">
                                 @if ($image)
-                                    <img id="profilePreview" class="w-full h-full object-cover" src="{{ $image->temporaryUrl() }}">
+                                    <img class="w-full h-full object-cover"   src="{{ $image->temporaryUrl() }}">
                                 @elseif($user && $user->image)
-                                    <img id="profilePreview" class="w-full h-full object-cover" src="{{ asset('storage/'.$user->image) }}">
-                                @else
+                                    <img class="w-full h-full object-cover" src="{{ asset('storage/'.$user->image) }}">
+                                @elseif($first_name || $last_name)
                                     <span id="avatarText">
-                                        {{ mb_strtoupper(mb_substr($first_name, 0, 1) . mb_substr($last_name, 0, 1)) }}
+                                        {{ mb_strtoupper(
+                                            mb_substr($first_name, 0, 1) .
+                                            mb_substr($last_name, 0, 1)
+                                        ) }}
                                     </span>
-                                    <svg height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 487.678 487.678" xml:space="preserve" fill="#fafafa"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path style="fill:#fafafa;" d="M377.996,282.347c-56.201-18.357-79.563-41.185-79.563-41.185l-1.881,1.793 c-16.69,15.709-35.149,24.944-51.965,24.944H243c-16.815,0-35.274-9.235-51.964-24.944l-1.882-1.793 c0,0-23.36,22.827-79.562,41.185c-82.964,30.992-58.053,157.119-58.077,158.096c2.613,14.047,4.136,18.875,5.463,19.417 c83.314,37.091,290.319,37.091,373.634,0c1.327-0.542,2.85-5.37,5.463-19.417C436.051,439.466,461.295,313.84,377.996,282.347z"></path> <path style="fill:#fafafa;" d="M330.924,121.441l-0.696-0.755c-4.668-4.274-4.303-4.029-4.303-4.029s8.142-41.083,1.613-60.511 c-10.25-31.027-71.475-51.822-83.755-54.239c0.002-0.023-7.469-1.518-7.946-1.521c0,0-9.659-1.953-20.854,2.93 c-7.291,2.805-45.408,20.09-56.227,52.83c-6.528,19.428,1.614,60.511,1.614,60.511s0.365-0.245-4.304,4.029l-0.695,0.755 c-3.158,3.586-2.378,14.806,1.074,26.479c3.128,11.695,7.205,14.838,8.182,17.577c9.903,46.497,44.338,86.197,79.429,86.197 s67.707-39.7,77.61-86.197c0.978-2.738,5.055-5.882,8.183-17.577C333.301,136.246,334.172,124.256,330.924,121.441z"></path> </g> </g> </g></svg>
+                                @else
+                                    <svg height="48px" width="48px"  viewBox="0 0 487.678 487.678"  fill="#fafafa">
+                                        <path d="M377.996,282.347c-56.201-18.357-79.563-41.185-79.563-41.185l-1.881,1.793c-16.69,15.709-35.149,24.944-51.965,24.944H243c-16.815,0-35.274-9.235-51.964-24.944l-1.882-1.793s-23.36,22.827-79.562,41.185c-82.964,30.992-58.053,157.119-58.077,158.096c2.613,14.047,4.136,18.875,5.463,19.417c83.314,37.091,290.319,37.091,373.634,0c1.327-0.542,2.85-5.37,5.463-19.417C436.051,439.466,461.295,313.84,377.996,282.347z"/>
+                                        <path d="M330.924,121.441l-0.696-0.755c-4.668-4.274-4.303-4.029-4.303-4.029s8.142-41.083,1.613-60.511c-10.25-31.027-71.475-51.822-83.755-54.239c0.002-0.023-7.469-1.518-7.946-1.521c0,0-9.659-1.953-20.854,2.93c-7.291,2.805-45.408,20.09-56.227,52.83c-6.528,19.428,1.614,60.511,1.614,60.511s0.365-0.245-4.304,4.029l-0.695,0.755c-3.158,3.586-2.378,14.806,1.074,26.479c3.128,11.695,7.205,14.838,8.182,17.577c9.903,46.497,44.338,86.197,79.429,86.197s67.707-39.7,77.61-86.197c0.978-2.738,5.055-5.882,8.183-17.577C333.301,136.246,334.172,124.256,330.924,121.441z"/>
+                                    </svg>
                                 @endif
                             </div>
-                            <input type="file" wire:model="image" id="profile_image" class="hidden" accept="image/*">
+                            <input type="file"  wire:model="image"  id="profile_image"  class="hidden"  accept="image/*">
                         </div>
-                        <p class="text-[12px] text-gray-500 text-center lg:text-right flex items-center justify-center">
+                        <p class="text-[12px] text-gray-500 text-center flex items-center justify-center">
                          برای آپلود عکس روی قسمت بالا کلید کنید.
                         </p>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-3">
                             <div class="flex flex-col ">
                                 <div class="relative  w-full">
-                                    <input type="text" placeholder="نام "  wire:model="first_name"
-                                        class="input-field ">
+                                    <input type="text" placeholder="نام "  wire:model="first_name"    class="input-field ">
                                     <svg class="w-4 h-4 absolute left-2 top-1/2  -translate-y-1/2 text-gray-500" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M10.0002 10.0001C12.3013 10.0001 14.1668 8.1346 14.1668 5.83341C14.1668 3.53223 12.3013 1.66675 10.0002 1.66675C7.69898 1.66675 5.8335 3.53223 5.8335 5.83341C5.8335 8.1346 7.69898 10.0001 10.0002 10.0001Z" stroke="#292D32" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M16.0085 13.1167L13.0585 16.0667C12.9418 16.1834 12.8335 16.4 12.8085 16.5584L12.6502 17.6833C12.5919 18.0917 12.8752 18.375 13.2835 18.3167L14.4085 18.1583C14.5668 18.1333 14.7919 18.025 14.9002 17.9084L17.8502 14.9584C18.3585 14.45 18.6002 13.8583 17.8502 13.1083C17.1085 12.3667 16.5169 12.6083 16.0085 13.1167Z" stroke="#292D32" stroke-opacity="0.8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -64,7 +71,7 @@
                             <div class="flex flex-col ">
                                 <div class="relative w-full">
                                     <input type="text" placeholder="نام کاربری" wire:model="username"  class="input-field ">
-                                    <svg class="w-4 h-4 absolute left-2 top-1/2 -translate-y-1/2 text-gray-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5 21C5 17.134 8.13401 14 12 14C15.866 14 19 17.134 19 21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                                    <svg class="w-4 h-4 absolute left-2 top-1/2 -translate-y-1/2 text-gray-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5 21C5 17.134 8.13401 14 12 14C15.866 14 19 17.134 19 21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                                 </div>
                                 @error('username')
                                     <span class=" text-red-500 text-xs px-2 mt-1">{{ $message }}</span>
@@ -72,8 +79,7 @@
                             </div>
                             <div class="flex flex-col">
                                 <div class="relative  w-full">
-                                    <input type="text" placeholder="آدرس" wire:model="address"
-                                        class="input-field ">
+                                    <input type="text" placeholder="آدرس" wire:model="address" class="input-field ">
                                     <svg  class="w-4 h-4 absolute left-2 top-1/2  -translate-y-1/2 text-gray-500" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.6665 18.3333H18.3332" stroke="#292D32" stroke-opacity="0.8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M2.4585 18.3334L2.50017 8.30836C2.50017 7.80003 2.74183 7.31674 3.14183 7.00008L8.97516 2.4584C9.57516 1.99173 10.4168 1.99173 11.0252 2.4584L16.8585 6.99173C17.2668 7.3084 17.5002 7.7917 17.5002 8.30836V18.3334" stroke="#292D32" stroke-opacity="0.8" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"/>
@@ -149,7 +155,7 @@
                             </div>
                         </div>
                         <div class="md:col-span-2 flex flex-col md:flex-row gap-2">
-                            <button   wire:click="cancelForm"  type="button" class="w-full md:w-auto flex-1 bg-red-800 hover:bg-red-700 text-white font-semibold py-3 rounded-md transition">
+                            <button   wire:click="resetForm" type="button" class="w-full md:w-auto flex-1 bg-red-800 hover:bg-red-700 text-white font-semibold py-3 rounded-md transition">
                                 لغو
                             </button>
                             <button  type="submit" class="w-full bg-blue-800 md:w-auto flex-1 hover:bg-blue-700 text-white font-semibold py-3 rounded-md transition">
@@ -486,11 +492,5 @@
                 }
             });
         </script>
-        @if($resetFile)
-        <script>
-            document.getElementById('profile_image').value = '';
-        </script>
-        @php $resetFile = false; @endphp
-        @endif
     </main>
 </div>

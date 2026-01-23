@@ -31,6 +31,26 @@ class Employe extends Component
 
     session()->flash('success', 'کارمند با موفقیت حذف شد');
 }
+public function edit($id)
+{
+    $employee = Employee::findOrFail($id);
+    $this->editMode   = true;
+    $this->employeeId = $employee->id;
+    $this->name    = $employee->name;
+    $this->nid     = $employee->nid;
+    $this->number  = $employee->number;
+    $this->address = $employee->address;
+    $this->salary  = $employee->salary;
+    $this->job     = $employee->job;
+    $this->image = null;
+    $this->imagePreview = $employee->image
+        ? asset('storage/'.$employee->image)
+        : null;
+    $this->imageName = $employee->image
+        ? basename($employee->image)
+        : null;
+    $this->dispatch('scroll-to-form');
+}
     public function confirmDelete($id)
     {
         $this->deleteemployeeId = $id;
@@ -55,7 +75,6 @@ public function mount()
     {
     $this->formKey = uniqid();
     $this->editMode = false;
-
     }
     private function convertToEnglishNumber($value)
     {
@@ -83,51 +102,22 @@ public function mount()
             'address' => $this->address,
             'salary' => $salary,
             'job' => $this->job,
-            'user_id'  => Auth::id(),                         // کی ثبت کرده
-            'admin_id' => Auth::user()->admin_id ?? Auth::id(), // مربوط به کدام مدیر
-        ]);
+            'user_id'  => Auth::id(),
+            'admin_id' => Auth::id(),
+]);
         $this->resetForm();
 $this->resetPage();
 session()->flash('success', 'کارمند با موفقیت ثبت شد');
         }
-    public function resetForm()
+public function updatedImage()
 {
-    $this->reset([
-        'name',
-        'image',
-        'nid',
-        'number',
-        'address',
-        'salary',
-        'job',
-        'editMode',
-        'employeeId',
-    ]);
-    $this->resetErrorBag();
-    $this->resetValidation();
-    $this->formKey = uniqid();
-    $this->dispatch('reset-file-input');
-}
-    public function edit($id)
-{
-    $this->editMode = true;
-
-    $this->employee = Employee::findOrFail($id); // ⭐⭐⭐ مهم
-
-    $this->employeeId = $id;
-    $this->name = $this->employee->name;
-    $this->nid = $this->employee->nid;
-    $this->number = $this->employee->number;
-    $this->address = $this->employee->address;
-    $this->salary = $this->employee->salary;
-    $this->job = $this->employee->job;
-    $this->image = null;
+    $this->imageName = $this->image->getClientOriginalName();
+    $this->imagePreview = $this->image->temporaryUrl();
 }
 public function update()
 {
     $this->salary = $this->convertToEnglishNumber($this->salary);
     $this->number = $this->convertToEnglishNumber($this->number);
-
     $this->validate([
         'name' => 'required|string|max:255',
         'nid' => ['required','regex:/^\d{4}-\d{4}-\d{5}$/','unique:employees,nid,' . $this->employeeId],
@@ -137,19 +127,14 @@ public function update()
         'job' => 'required|string|max:100',
         'image' => 'nullable|image|max:2048',
     ]);
-
     $employee = Employee::findOrFail($this->employeeId);
     $imagePath = $employee->image;
-
     if ($this->image) {
-
         if ($employee->image && \Storage::disk('public')->exists($employee->image)) {
             \Storage::disk('public')->delete($employee->image);
         }
-
         $imagePath = $this->image->store('employees', 'public');
     }
-
     $employee->update([
         'name' => $this->name,
         'nid' => $this->nid,
@@ -159,12 +144,20 @@ public function update()
         'job' => $this->job,
         'image' => $imagePath,
     ]);
-
     session()->flash('success', 'اطلاعات با موفقیت بروزرسانی شد');
-    return redirect()->route('employe');
+    $this->resetForm();
 }
-
-
+public function resetForm()
+{
+    $this->reset([
+        'name','nid','number','address','salary','job',
+        'image','employeeId','editMode',
+        'imagePreview','imageName'
+    ]);
+    $this->editMode = false;
+    $this->formKey = uniqid();
+    $this->resetErrorBag();
+}
     public function delete($id)
     {
         Employee::findOrFail($id)->delete();
@@ -185,15 +178,15 @@ public function getEmployeesCountProperty()
 }
 public function render()
 {
-    $employees = Employee::query()
-        ->when($this->search, fn($q) => $q->where('name', 'like', "%{$this->search}%"))
-        ->when($this->filter, fn($q) => $q->where('job', $this->filter))
-        ->orderBy('id', 'desc')
-        ->paginate(5);
-    $this->employeesCount = $employees->count();
-    return view('livewire.mobile.employe', [
-        'employees' => $employees,
-        'employeesCount' => Employee::count(),
-    ]);
+  $employees = Employee::with('admin')
+    ->when($this->search, fn($q) => $q->where('name', 'like', "%{$this->search}%"))
+    ->when($this->filter, fn($q) => $q->where('job', $this->filter))
+    ->orderBy('id', 'asc')
+    ->paginate(5);
+$this->employeesCount = $employees->count();
+return view('livewire.mobile.employe', [
+    'employees' => $employees,
+    'employeesCount' => Employee::count(),
+]);
 }
 }
