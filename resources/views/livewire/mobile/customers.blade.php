@@ -366,7 +366,15 @@
                     <table dir="ltr" class="w-full table-fixed items-center font-semibold justify-center text-center mx-auto">
                         <tr>
                             <td colspan="2" class="text-center pt-2">
-                                <img src="{{ asset('storage/' . $customer->image) }}"   class="w-[50px] h-[50px] mx-auto rounded-md">
+                                @if($customer->image && file_exists(public_path('storage/'.$customer->image)))
+                                    <div class="flex items-center justify-center">
+                                        <img src="{{ asset('storage/' . $customer->image) }}" class="w-[50px] h-[50px]  rounded-full object-cover" alt="عکس کارمند">
+                                    </div>
+                                @else
+                                    <div class="flex items-center justify-center w-[50px] h-[50px] mx-auto rounded-full bg-blue-800 text-white font-bold">
+                                        {{ mb_strtoupper(mb_substr($customer->first_name,0,1) . mb_substr($customer->last_name,0,1), 'UTF-8') }}
+                                    </div>
+                                @endif
                             </td>
                         </tr>
                         <tr>

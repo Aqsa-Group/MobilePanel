@@ -14,7 +14,7 @@ class UserList extends Component
     use WithPagination, WithFileUploads;
     protected $paginationTheme = 'tailwind';
     public $showMaxModal = false;
-     public $image;
+    public $image;
     public $oldImage;
     public $first_name;
     public $last_name;

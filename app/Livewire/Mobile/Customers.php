@@ -3,11 +3,15 @@ namespace App\Livewire\Mobile;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\CustomerRecord;
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 use Carbon\Carbon;
 class Customers extends Component
 {
-    use WithPagination;
+    use WithPagination, WithFileUploads;
     protected $paginationTheme = 'tailwind';
     public $search = '';
     public $customer_type = '';
@@ -25,6 +29,18 @@ class Customers extends Component
     Carbon::now()->endOfWeek(),
 ])->count();
     }
+protected function compressAndStoreImage($image)
+{
+    $manager = new ImageManager(['driver' => 'gd']);
+    $img = $manager->make($image->getRealPath());
+    $img->resize(800, null, function ($constraint) {
+        $constraint->aspectRatio();
+        $constraint->upsize();
+    });
+    $filename = 'users/' . uniqid() . '.jpg';
+    Storage::disk('public')->put($filename, (string) $img->encode('jpg', 85));
+    return $filename;
+}
     public function delete($id)
     {
         CustomerRecord::findOrFail($id)->delete();
