@@ -2,13 +2,14 @@
 namespace App\Livewire\Mobile;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\CustomerRecord;
+use App\Models\Customer as CustomerModel;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 use Carbon\Carbon;
+use Livewire\TemporaryUploadedFile;
 class Customers extends Component
 {
     use WithPagination, WithFileUploads;
@@ -21,61 +22,50 @@ class Customers extends Component
     public $monthCustomers;
     public function mount()
     {
-        $this->customerCount = CustomerRecord::count();
+        $this->customerCount = CustomerModel::count();
         $this->todayCustomers = 0;
         $this->monthCustomers = 0;
-        $this->weekCustomers = CustomerRecord::whereBetween('created_at', [
-    Carbon::now()->startOfWeek(),
-    Carbon::now()->endOfWeek(),
-])->count();
+        $this->weekCustomers = CustomerModel::whereBetween('created_at', [
+            Carbon::now()->startOfWeek(),
+            Carbon::now()->endOfWeek(),
+        ])->count();
     }
-protected function compressAndStoreImage($image)
-{
-    $manager = new ImageManager(['driver' => 'gd']);
-    $img = $manager->make($image->getRealPath());
-    $img->resize(800, null, function ($constraint) {
-        $constraint->aspectRatio();
-        $constraint->upsize();
-    });
-    $filename = 'users/' . uniqid() . '.jpg';
-    Storage::disk('public')->put($filename, (string) $img->encode('jpg', 85));
-    return $filename;
-}
     public function delete($id)
     {
-        CustomerRecord::findOrFail($id)->delete();
+        CustomerModel::findOrFail($id)->delete();
         session()->flash('success', 'کاربر با موفقیت حذف شد');
     }
     public function render()
     {
-        $this->weekCustomers = CustomerRecord::whereBetween('created_at', [
-    Carbon::now()->startOfWeek(),
-    Carbon::now()->endOfWeek(),
-])->count();
-        $this->customerCount = CustomerRecord::count();
-        $this->todayCustomers = CustomerRecord::whereDate(
+        $this->weekCustomers = CustomerModel::whereBetween('created_at', [
+            Carbon::now()->startOfWeek(),
+            Carbon::now()->endOfWeek(),
+        ])->count();
+        $this->customerCount = CustomerModel::count();
+        $this->todayCustomers = CustomerModel::whereDate(
             'created_at',
             Carbon::today()
         )->count();
-        $this->monthCustomers = CustomerRecord::whereYear(
+        $this->monthCustomers = CustomerModel::whereYear(
             'created_at',
             Carbon::now()->year
         )->whereMonth(
             'created_at',
             Carbon::now()->month
         )->count();
-        $customers = CustomerRecord::query()
-            ->when($this->search, function ($q) {
-                $q->where(function ($q) {
-                    $q->where('fullname', 'like', '%' . $this->search . '%')
-                      ->orWhere('customer_type', 'like', '%' . $this->search . '%');
-                });
-            })
-            ->when($this->customer_type, function ($q) {
-                $q->where('customer_type', $this->customer_type);
-            })
-            ->latest()
-            ->paginate(5);
-        return view('livewire.mobile.customers', compact('customers'));
+        $customers = CustomerModel::query()
+        ->with('admin')
+        ->when($this->search, function ($q) {
+            $q->where(function ($q) {
+                $q->where('fullname', 'like', '%' . $this->search . '%')
+                ->orWhere('customer_type', 'like', '%' . $this->search . '%');
+            });
+        })
+        ->when($this->customer_type, function ($q) {
+            $q->where('customer_type', $this->customer_type);
+        })
+        ->oldest()
+        ->paginate(5);
+    return view('livewire.mobile.customers', compact('customers'));
     }
 }

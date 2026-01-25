@@ -304,7 +304,7 @@
                             <tr class="pt-4 text-[10px]">
                                 <td class="p-2 font-bold border-b-2 border-blue-800 ">{{ ($customers->currentPage() - 1) * $customers->perPage() + $index + 1 }}</td>
                                 <td class="text-center border-b-2 border-blue-800">
-                                    @if($customer->image && file_exists(public_path('storage/'.$customer->image)))
+                                    @if($customer->image && Storage::disk('public')->exists($customer->image))
                                         <div class="flex items-center justify-center">
                                             <img src="{{ asset('storage/' . $customer->image) }}" class="w-10 h-10 h-10 rounded-full object-cover" alt="عکس کارمند">
                                         </div>
@@ -314,14 +314,14 @@
                                         </div>
                                     @endif
                                 </td>
-                                <td class="border-b-2 border-blue-800 ">{{ $customer->fullname }}</td>
+                                <td class="border-b-2 border-blue-800 ">{{ $customer->first_name }} {{ $customer->last_name }}</td>
                                 <td class="border-b-2 border-blue-800 ">{{ $customer->customer_number }}</td>
                                 <td class="border-b-2 border-blue-800 ">{{ $customer->address }}</td>
                                 <td class="border-b-2 border-blue-800 ">{{ $customer->id_card }}</td>
                                 <td class="border-b-2 border-blue-800 ">{{ $customer->customer_type }}</td>
                                 <td class="border-b-2 border-blue-800 ">@if($customer->admin)     {{ $customer->admin->name }} ({{ $customer->admin->rule }})  @else     -- @endif</td>
                                 <td class="border-b-2 border-blue-800 ">
-                                    <a class="flex justify-center " href="{{ route('customer', $customer->id) }}">
+                                    <a class="flex justify-center " href="{{ route('customer', ['id' => $customer->id]) }}">
                                         <svg width="20"  height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                             <path d="M16.0399 3.02001L8.15988 10.9C7.85988 11.2 7.55988 11.79 7.49988 12.22L7.06988 15.23C6.90988 16.32 7.67988 17.08 8.76988 16.93L11.7799 16.5C12.1999 16.44 12.7899 16.14 13.0999 15.84L20.9799 7.96001C22.3399 6.60001 22.9799 5.02001 20.9799 3.02001C18.9799 1.02001 17.3999 1.66001 16.0399 3.02001Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -330,7 +330,7 @@
                                     </a>
                                 </td>
                                 <td class="border-b-2 border-blue-800 ">
-                                    <a class="flex justify-center ">
+                                    <a href="{{ route('customer.pdf', $customer->id) }}" target="_blank" class="flex justify-center ">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                                     </a>
                                 </td>
@@ -378,7 +378,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th colspan="2" class="text-center text-[14px] pb-1">{{ $customer->fullname }}</th>
+                            <th colspan="2" class="text-center text-[14px] pb-1">{{ $customer->first_name }} {{ $customer->last_name }}</th>
                         </tr>
                         <tr>
                             <th class="pt-2">
@@ -416,7 +416,7 @@
                             </svg>
                             <span>ویرایش</span>
                         </a>
-                        <a class="flex justify-center border items-center rounded-lg border-[#1C274C] w-1/2 h-[25px] text-[#1C274C] text-[10px]">
+                        <a href="{{ route('customer.pdf', $customer->id) }}" target="_blank" class="flex justify-center border items-center rounded-lg border-[#1C274C] w-1/2 h-[25px] text-[#1C274C] text-[10px]">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                             <span>چاپ</span>
                         </a>

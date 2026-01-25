@@ -12,6 +12,7 @@ use App\Livewire\Mobile\UserEdit;
 use App\Http\Controllers\Auth\LoginController;
 use App\Livewire\Mobile\CustomerEdit;
 use App\Livewire\Mobile\Cushfund;
+use App\Http\Controllers\CustomerController;
 use App\Livewire\Mobile\Employe;
 use App\Http\Controllers\AuthController;
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -23,7 +24,8 @@ Route::get('/userList', function () {return view('Mobile.shop.userList');})->nam
 Route::get('/cashfund', function () {return view('Mobile.shop.cashfund');})->name('cashfund');
 Route::get('/employe', function () { return view('Mobile.shop.employe'); })->name('employe');
 Route::get('/customers', function () { return view('Mobile.shop.customers');})->name('customers');
-Route::get('/customer/{id?}', function($id = null) { return view('Mobile.shop.customer', ['id' => $id]);})->name('customer');;
+Route::get('/customer/{id?}', function($id = null) { return view('Mobile.shop.customer', ['id' => $id]);})->name('customer');
+Route::get('/customer/{id}/pdf', [CustomerController::class, 'generatePDF'])->name('customer.pdf');
 Route::get('/reports', function () { return view('Mobile.shop.reports');})->name('reports');
 Route::get('/inventory', function () { return view('Mobile.shop.inventory');})->name('inventory');
 Route::get('/inventory2', function () { return view('Mobile.shop.inventory2');})->name('inventory2');

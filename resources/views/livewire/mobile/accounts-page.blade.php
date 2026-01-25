@@ -74,8 +74,8 @@
         </div>
     </div>
     <div class="grid grid-cols-1 max-w-full mx-auto lg:grid-cols-3 gap-3">
-        <form wire:submit.prevent="save" class="h-full mb-6 space-y-2">
-            <div class="bg-[#616161]/5  rounded-2xl shadow-xl shadow-[0px_4px_4px_0px_#00000040] border border-gray-200 w-full lg:max-w-full p-3">
+        <form wire:submit.prevent="save" class="h-full  mb-6 space-y-2">
+            <div class=" rounded-2xl shadow-xl border  border-gray-300 shadow-[0px_4px_4px_0px_#00000040] border border-gray-200 w-full lg:max-w-full p-3">
                 <div class="flex justify-between mb-2 shadow p-3 rounded-xl border border-black">
                     <div class="flex gap-2 mt-3">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -138,8 +138,8 @@
                     <span class=" text-red-500 text-[8px] px-2 mt-1">{{ $message }}</span>
                 @enderror
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
-                    <button type="button" wire:click.prevent="resetForm" class="bg-red-600 hover:bg-red-700 text-white rounded-xl py-3 text-sm">انصراف</button>
-                    <button type="submit" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-3 text-sm">{{ $editing ? 'ویرایش برداشت' : 'ثبت برداشت' }}</button>
+                    <button type="button" wire:click.prevent="resetForm" class="bg-red-800 hover:bg-red-700 text-white rounded-xl py-3 text-sm">انصراف</button>
+                    <button type="submit" class="btn btn-primary bg-blue-800 hover:bg-blue-700 text-white rounded-xl py-3 text-sm">{{ $editing ? 'ویرایش برداشت' : 'ثبت برداشت' }}</button>
                 </div>
                 @if($successMessage)
                     <div class="bg-green-100 text-green-700 p-2 my-4 rounded-xl">
@@ -148,17 +148,17 @@
                 @endif
             </div>
         </form>
-        <div class="lg:col-span-2 bg-[#616161]/5  rounded-2xl shadow-[0_4px_12px] shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
+        <div class="lg:col-span-2 border  border-gray-300 rounded-2xl shadow-[0_4px_12px] shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
             <div class="lg:hidden space-y-3 ">
                 <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
                     <div class="flex items-center gap-1 flex-shrink-0">
                         <i>
                             <svg width="20" height="20" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_1047_2670)">
-                            <path d="M34.4314 16.596L32.8736 23.2407C31.5383 28.9792 28.8995 31.3001 23.9398 30.8232C23.145 30.7596 22.2866 30.6166 21.3646 30.394L18.694 29.7582C12.0652 28.1844 10.0146 24.9098 11.5725 18.2651L13.1303 11.6045C13.4482 10.2533 13.8297 9.07698 14.3066 8.1073C16.1665 4.26038 19.3299 3.22712 24.6393 4.48293L27.294 5.10289C33.9545 6.66073 35.9893 9.95128 34.4314 16.596Z" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M23.9399 30.8233C22.9543 31.491 21.7144 32.0474 20.2043 32.5401L17.6926 33.3668C11.3818 35.4015 8.05944 33.7006 6.00881 27.3897L3.97408 21.1107C1.93934 14.7998 3.62436 11.4616 9.93522 9.42682L12.4468 8.60021C13.0986 8.39356 13.7186 8.2187 14.3067 8.10742C13.8298 9.0771 13.4483 10.2534 13.1304 11.6046L11.5725 18.2652C10.0147 24.9099 12.0653 28.1845 18.6941 29.7583L21.3647 30.3941C22.2867 30.6167 23.1451 30.7598 23.9399 30.8233Z" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M20.093 13.5596L27.8028 15.5148" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M18.5352 19.7119L23.1451 20.8882" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M34.4314 16.596L32.8736 23.2407C31.5383 28.9792 28.8995 31.3001 23.9398 30.8232C23.145 30.7596 22.2866 30.6166 21.3646 30.394L18.694 29.7582C12.0652 28.1844 10.0146 24.9098 11.5725 18.2651L13.1303 11.6045C13.4482 10.2533 13.8297 9.07698 14.3066 8.1073C16.1665 4.26038 19.3299 3.22712 24.6393 4.48293L27.294 5.10289C33.9545 6.66073 35.9893 9.95128 34.4314 16.596Z" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M23.9399 30.8233C22.9543 31.491 21.7144 32.0474 20.2043 32.5401L17.6926 33.3668C11.3818 35.4015 8.05944 33.7006 6.00881 27.3897L3.97408 21.1107C1.93934 14.7998 3.62436 11.4616 9.93522 9.42682L12.4468 8.60021C13.0986 8.39356 13.7186 8.2187 14.3067 8.10742C13.8298 9.0771 13.4483 10.2534 13.1304 11.6046L11.5725 18.2652C10.0147 24.9099 12.0653 28.1845 18.6941 29.7583L21.3647 30.3941C22.2867 30.6167 23.1451 30.7598 23.9399 30.8233Z" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M20.093 13.5596L27.8028 15.5148" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M18.5352 19.7119L23.1451 20.8882" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </g>
                             <defs>
                             <clipPath id="clip0_1047_2670">
@@ -169,80 +169,13 @@
                         </i>
                         <h2 class="font-bold text-lg mb-0">لیست برداشت ها:</h2>
                     </div>
-                    <div class="flex gap-2 flex-1 min-w-[100px]">
-                        <div
-                            class="flex flex-row justify-center rounded-md md:rounded-xl  bg-[#0948EE]/20   gap-1  items-center px-1 md:px-3 ">
-                            <span class="block md:hidden">
-                                <svg width="10" height="10" viewBox="0 0 14 14" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <g clip-path="url(#clip0_464_1127)">
-                                        <path d="M10.73 12.424V6.21191" stroke="#292D32" stroke-width="1.5"
-                                            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M10.73 3.95309V1.12939" stroke="#292D32" stroke-width="1.5"
-                                            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M6.77686 12.4243V9.60059" stroke="#292D32" stroke-width="1.5"
-                                            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M6.77686 7.34153V1.12939" stroke="#292D32" stroke-width="1.5"
-                                            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M2.82373 12.424V6.21191" stroke="#292D32" stroke-width="1.5"
-                                            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M2.82373 3.95309V1.12939" stroke="#292D32" stroke-width="1.5"
-                                            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M1.69434 6.21191H3.95329" stroke="#292D32" stroke-width="1.5"
-                                            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M9.60059 6.21191H11.8595" stroke="#292D32" stroke-width="1.5"
-                                            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M5.64746 7.3418H7.90642" stroke="#292D32" stroke-width="1.5"
-                                            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_464_1127">
-                                            <rect width="13.5537" height="13.5537" fill="white" />
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                            </span>
-                            <select
-                                wire:model.live="filterType"
-                                class=" bg-transparent py-1 text-[9px] md:text-sm">
-                                <option value="">همه </option>
-                                <option value="کرایه">کرایه</option>
-                                <option value="مصارف">مصارف</option>
-                                <option value="معاش">معاش </option>
-                                <option value="تعمیرکاری">تعمیرکاری </option>
-                            </select>
-                        </div>
-                        <button onclick="window.print()"
-                            class="flex flex-row justify-center rounded-md md:rounded-xl  bg-[#0948EE]/20   gap-1  items-center px-1 md:px-3 ">
-                            <span >
-                                <svg width="12" height="12" viewBox="0 0 14 14" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6.21191 11.0122H11.8593" stroke="#292D32" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M6.21191 7.05908H11.8593" stroke="#292D32" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M6.21191 3.10596H11.8593" stroke="#292D32" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M1.69434 3.10604L2.25908 3.67078L3.95329 1.97656" stroke="#292D32"
-                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M1.69434 7.05917L2.25908 7.62391L3.95329 5.92969" stroke="#292D32"
-                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M1.69434 11.0123L2.25908 11.577L3.95329 9.88281" stroke="#292D32"
-                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
-                            <span class="text-[10px] md:text-[10px]">
-                                چاپ کردن
-                            </span>
-                        </button>
-                    </div>
                 </div>
                 <div>
                     <div class="print-area  md:hidden flex flex-col gap-2 w-full">
-                        <div class="rounded-2xl flex flex-col items-center mt-2 border border-[#0948EE] h-auto w-full my-4">
+                        <div class="rounded-2xl flex flex-col items-center mt-2 border border-[#1E40AF] h-auto w-full my-4">
                             <table dir="ltr" class="w-full table-fixed items-center font-semibold justify-center text-center mx-auto">
                                 @foreach($withdrawals as $withdrawal)
-                                <tbody class="{{ !$loop->last ? 'border-b border-[#0948EE]' : '' }}">
+                                <tbody class="{{ !$loop->last ? 'border-b border-[#1E40AF]' : '' }}">
                                     <tr>
                                         <th class="pt-2 text-[13px]">مبلغ</th>
                                         <th class="pt-2 text-[13px]">نوع برداشت</th>
@@ -252,39 +185,47 @@
                                         <td  class="text-[10px]">{{ $withdrawal->withdrawal_type }}</td>
                                     </tr>
                                     <tr>
-                                        <th class="pt-2 text-[13px]">توضیحات</th>
+                                        <th class="pt-2 text-[13px]">ادمین</th>
                                         <th class="pt-2 text-[13px]">تاریخ</th>
                                     </tr>
                                     <tr class="text-[#00000080]">
-                                        <td  class="text-[10px] pb-4">{{ $withdrawal->description}}</td>
+                                        <td  class="text-[10px] pb-4">{{ $withdrawal->withdrawal_date }}</td>
                                         <td  class="text-[10px] pb-4">{{ $withdrawal->withdrawal_date }}</td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <button wire:click="edit({{ $withdrawal->id }})">
-                                                <svg width="20" class="mr-8" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#0948EE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path d="M16.0399 3.02001L8.15988 10.9C7.85988 11.2 7.55988 11.79 7.49988 12.22L7.06988 15.23C6.90988 16.32 7.67988 17.08 8.76988 16.93L11.7799 16.5C12.1999 16.44 12.7899 16.14 13.0999 15.84L20.9799 7.96001C22.3399 6.60001 22.9799 5.02001 20.9799 3.02001C18.9799 1.02001 17.3999 1.66001 16.0399 3.02001Z" stroke="#0948EE" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path d="M14.9102 4.15002C15.5802 6.54002 17.4502 8.41002 19.8502 9.09002" stroke="#0948EE" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button wire:click="delete({{ $withdrawal->id }})"
-                                            onclick="return confirm('حذف شود؟')">
-                                                <svg width="20" class="mr-8" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path d="M18.8499 9.14001L18.1999 19.21C18.0899 20.78 17.9999 22 15.2099 22H8.7899C5.9999 22 5.9099 20.78 5.7999 19.21L5.1499 9.14001" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            </button>
-                                        </td>
+                                        <th colspan="2" class="pt-2 text-[13px]">توضیحات</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="text-[10px] pb-4">{{ $withdrawal->description}}</td>
                                     </tr>
                                 </tbody>
                                 @endforeach
                             </table>
+                            <div  class="flex flex-row gap-2 my-2 w-full px-4 mt-4">
+                                <button class="flex justify-center border items-center rounded-lg border-[#1C274C] w-1/2 h-[25px] text-[#1C274C] text-[10px]">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+                                    <span>چاپ</span>
+                                </button>
+                                <button wire:click="edit({{ $withdrawal->id }})" class="flex justify-center border items-center rounded-lg border-[#1E40AF] w-1/2 h-[25px] text-[#1E40AF] text-[10px]">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M16.0399 3.02001L8.15988 10.9C7.85988 11.2 7.55988 11.79 7.49988 12.22L7.06988 15.23C6.90988 16.32 7.67988 17.08 8.76988 16.93L11.7799 16.5C12.1999 16.44 12.7899 16.14 13.0999 15.84L20.9799 7.96001C22.3399 6.60001 22.9799 5.02001 20.9799 3.02001C18.9799 1.02001 17.3999 1.66001 16.0399 3.02001Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M14.9102 4.15002C15.5802 6.54002 17.4502 8.41002 19.8502 9.09002" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span>ویرایش</span>
+                                </button>
+                                <button wire:click="delete({{ $withdrawal->id }})"
+                                    onclick="return confirm('حذف شود؟')" class="flex justify-center border items-center rounded-lg border-[#FF0000] w-1/2 h-[25px] text-[#FF0000] text-[10px]">
+                                    <svg width="20"  height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M18.8499 9.14001L18.1999 19.21C18.0899 20.78 17.9999 22 15.2099 22H8.7899C5.9999 22 5.9099 20.78 5.7999 19.21L5.1499 9.14001" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span>حذف</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -295,10 +236,10 @@
                         <i>
                         <svg width="25" height="25" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_1047_2670)">
-                        <path d="M34.4314 16.596L32.8736 23.2407C31.5383 28.9792 28.8995 31.3001 23.9398 30.8232C23.145 30.7596 22.2866 30.6166 21.3646 30.394L18.694 29.7582C12.0652 28.1844 10.0146 24.9098 11.5725 18.2651L13.1303 11.6045C13.4482 10.2533 13.8297 9.07698 14.3066 8.1073C16.1665 4.26038 19.3299 3.22712 24.6393 4.48293L27.294 5.10289C33.9545 6.66073 35.9893 9.95128 34.4314 16.596Z" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M23.9399 30.8233C22.9543 31.491 21.7144 32.0474 20.2043 32.5401L17.6926 33.3668C11.3818 35.4015 8.05944 33.7006 6.00881 27.3897L3.97408 21.1107C1.93934 14.7998 3.62436 11.4616 9.93522 9.42682L12.4468 8.60021C13.0986 8.39356 13.7186 8.2187 14.3067 8.10742C13.8298 9.0771 13.4483 10.2534 13.1304 11.6046L11.5725 18.2652C10.0147 24.9099 12.0653 28.1845 18.6941 29.7583L21.3647 30.3941C22.2867 30.6167 23.1451 30.7598 23.9399 30.8233Z" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M20.093 13.5596L27.8028 15.5148" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M18.5352 19.7119L23.1451 20.8882" stroke="#0948EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M34.4314 16.596L32.8736 23.2407C31.5383 28.9792 28.8995 31.3001 23.9398 30.8232C23.145 30.7596 22.2866 30.6166 21.3646 30.394L18.694 29.7582C12.0652 28.1844 10.0146 24.9098 11.5725 18.2651L13.1303 11.6045C13.4482 10.2533 13.8297 9.07698 14.3066 8.1073C16.1665 4.26038 19.3299 3.22712 24.6393 4.48293L27.294 5.10289C33.9545 6.66073 35.9893 9.95128 34.4314 16.596Z" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M23.9399 30.8233C22.9543 31.491 21.7144 32.0474 20.2043 32.5401L17.6926 33.3668C11.3818 35.4015 8.05944 33.7006 6.00881 27.3897L3.97408 21.1107C1.93934 14.7998 3.62436 11.4616 9.93522 9.42682L12.4468 8.60021C13.0986 8.39356 13.7186 8.2187 14.3067 8.10742C13.8298 9.0771 13.4483 10.2534 13.1304 11.6046L11.5725 18.2652C10.0147 24.9099 12.0653 28.1845 18.6941 29.7583L21.3647 30.3941C22.2867 30.6167 23.1451 30.7598 23.9399 30.8233Z" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20.093 13.5596L27.8028 15.5148" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M18.5352 19.7119L23.1451 20.8882" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </g>
                         <defs>
                         <clipPath id="clip0_1047_2670">
@@ -310,71 +251,8 @@
                         <h2 class="font-bold text-[14px] mb-0">  لیست برداشت ها  :</h2>
                     </div>
                     <div class="flex flex-col lg:flex-row gap-1">
-                        <div class="relative mb-1 flex flex-row justify-center rounded-md md:rounded-xl bg-[#0948EE]/20  gap-1  items-center px-2 md:px-3 ">
-                            <span class="absolute right-2 top-1.5 mt-1">
-                                <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g clip-path="url(#clip0_1047_2643)">
-                                <path d="M10.2915 12.8337V6.41699" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M10.2915 4.08366V1.16699" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M6.5 12.8337V9.91699" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M6.5 7.58366V1.16699" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M2.7085 12.8337V6.41699" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M2.7085 4.08366V1.16699" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M1.625 6.41699H3.79167" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M9.2085 6.41699H11.3752" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M5.4165 7.58301H7.58317" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                </g>
-                                <defs>
-                                <clipPath id="clip0_1047_2643">
-                                <rect width="13" height="14" fill="white"/>
-                                </clipPath>
-                                </defs>
-                                </svg>
-                            </span>
-                            <select
-                                wire:model.live="filterType"
-                                class=" bg-transparent py-1 text-sm pr-4">
-                                <option value="">همه </option>
-                                <option value="کرایه">   کرایه </option>
-                                <option value="مصارف"> مصارف </option>
-                                <option value="معاش">  معاش  </option>
-                                <option value="تعمیرکاری">  تعمیرکاری  </option>
-                            </select>
-                        </div>
-                        <button onclick="window.print()"
-                            class="flex flex-row justify-center rounded-md md:rounded-xl bg-[#0948EE]/20  gap-1  items-center px-1 md:px-3 ">
-                            <span class="block md:hidden">
-                                <svg width="10" height="10" viewBox="0 0 14 14" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6.21191 11.0122H11.8593" stroke="#292D32" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M6.21191 7.05908H11.8593" stroke="#292D32" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M6.21191 3.10596H11.8593" stroke="#292D32" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M1.69434 3.10604L2.25908 3.67078L3.95329 1.97656" stroke="#292D32"
-                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M1.69434 7.05917L2.25908 7.62391L3.95329 5.92969" stroke="#292D32"
-                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M1.69434 11.0123L2.25908 11.577L3.95329 9.88281" stroke="#292D32"
-                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
-                            <span class="hidden md:block">
-                                <svg width="17" height="17" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6.0415 5.83317H13.9582V4.1665C13.9582 2.49984 13.3332 1.6665 11.4582 1.6665H8.5415C6.6665 1.6665 6.0415 2.49984 6.0415 4.1665V5.83317Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M13.3332 12.5V15.8333C13.3332 17.5 12.4998 18.3333 10.8332 18.3333H9.1665C7.49984 18.3333 6.6665 17.5 6.6665 15.8333V12.5H13.3332Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M17.5 8.3335V12.5002C17.5 14.1668 16.6667 15.0002 15 15.0002H13.3333V12.5002H6.66667V15.0002H5C3.33333 15.0002 2.5 14.1668 2.5 12.5002V8.3335C2.5 6.66683 3.33333 5.8335 5 5.8335H15C16.6667 5.8335 17.5 6.66683 17.5 8.3335Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M14.1668 12.5H13.1585H5.8335" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M5.8335 9.1665H8.3335" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </span>
-                            <span class="text-[10px] md:text-[10px]">
-                                چاپ کردن
-                            </span>
-                        </button>
                         <div class="relative mb-1">
-                            <input type="text"  wire:model.live="search"  class="p-2 w-[100px]  bg-[#0948EE]/20 text-[13px]  rounded-xl" placeholder="جستجو....">
+                            <input type="text"  wire:model.live="search"  class="p-2 w-[100px]  bg-[#1E40AF]/20 text-[13px]  rounded-xl" placeholder="جستجو....">
                             <span class="absolute left-1 mt-1 top-1.5 ">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" class="w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
@@ -383,38 +261,46 @@
                         </div>
                     </div>
                 </div>
-                <table class="w-full text-center  border-2 border-[#0948EE] text-sm border-collapse">
-                    <thead class="bg-[#0948EE] text-white">
+                <table class="w-full text-center  text-sm border-collapse">
+                    <thead class="bg-[#1E40AF] text-white">
                         <tr>
                             <th class="p-2 text-[12px]">شماره</th>
                             <th class="p-2 text-[12px]"> نوع برداشت</th>
                             <th class="p-2 text-[12px]">تاریخ</th>
                             <th class="p-2 text-[12px]">مبلغ</th>
                             <th class="p-2 text-[12px]">توضیحات</th>
+                            <th class="p-2 text-[12px]">ادمین</th>
+                            <th class="p-2 text-[12px]">چاپ</th>
                             <th class="p-2 text-[12px]">ویرایش</th>
                             <th class="p-2 text-[12px]">حذف</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($withdrawals as $withdrawal)
-                        <tr class="hover:bg-gray-200 text-[11px]  border-b-2 border-[#0948EE]">
-                            <td class="p-2"> {{ $counter++ }}</td>
+                        <tr class="text-[11px]  border-b-2 border-[#1E40AF]">
+                            <td class="p-2 font-bold"> {{ $counter++ }}</td>
                             <td class="p-2"> {{$withdrawal->withdrawal_type}} </td>
                             <td class="p-2"> {{ \Morilog\Jalali\Jalalian::fromDateTime($withdrawal->withdrawal_date)->format('Y/m/d') }} </td>
                             <td class="p-2"> {{$withdrawal->amount}} </td>
                             <td class="p-2"> {{$withdrawal->description}} </td>
+                            <td class="p-2"> {{$withdrawal->description}} </td>
                             <td class="p-2 text-center ">
-                                <button wire:click="edit({{ $withdrawal->id }})" class="flex justify-center ">
-                                    <svg width="20" class="mr-8" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#0948EE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M16.0399 3.02001L8.15988 10.9C7.85988 11.2 7.55988 11.79 7.49988 12.22L7.06988 15.23C6.90988 16.32 7.67988 17.08 8.76988 16.93L11.7799 16.5C12.1999 16.44 12.7899 16.14 13.0999 15.84L20.9799 7.96001C22.3399 6.60001 22.9799 5.02001 20.9799 3.02001C18.9799 1.02001 17.3999 1.66001 16.0399 3.02001Z" stroke="#0948EE" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M14.9102 4.15002C15.5802 6.54002 17.4502 8.41002 19.8502 9.09002" stroke="#0948EE" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <button wire:click="edit({{ $withdrawal->id }})" class="mx-auto block ">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+                                </button>
+                            </td>
+                            <td class="p-2 text-center">
+                                <button wire:click="edit({{ $withdrawal->id }})" class="mx-auto block">
+                                    <svg width="20"  height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M16.0399 3.02001L8.15988 10.9C7.85988 11.2 7.55988 11.79 7.49988 12.22L7.06988 15.23C6.90988 16.32 7.67988 17.08 8.76988 16.93L11.7799 16.5C12.1999 16.44 12.7899 16.14 13.0999 15.84L20.9799 7.96001C22.3399 6.60001 22.9799 5.02001 20.9799 3.02001C18.9799 1.02001 17.3999 1.66001 16.0399 3.02001Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M14.9102 4.15002C15.5802 6.54002 17.4502 8.41002 19.8502 9.09002" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </button>
                             </td>
                             <td class="p-2 text-center">
-                                <button class="flex justify-center" wire:click="delete({{ $withdrawal->id }})" onclick="return confirm('حذف شود؟')">
-                                    <svg width="20" class="mr-8" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <button class="mx-auto block" wire:click="delete({{ $withdrawal->id }})" onclick="return confirm('حذف شود؟')">
+                                    <svg width="20"  height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M18.8499 9.14001L18.1999 19.21C18.0899 20.78 17.9999 22 15.2099 22H8.7899C5.9999 22 5.9099 20.78 5.7999 19.21L5.1499 9.14001" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -428,21 +314,25 @@
                     </tbody>
                 </table>
             </div>
-            @if($withdrawals->total() > $withdrawals->perPage())
-            <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
-                <button wire:click="previousPage" @disabled($withdrawals->onFirstPage())   class="w-7 h-7 rounded-md border border-gray-300 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white disabled:opacity-50"  >
-                    ‹
+            <div class="flex flex-wrap gap-1 justify-center sm:hidden items-center mt-3 text-[10px]">
+                @if ($withdrawals->lastPage() > 1)
+                <button
+                    wire:click="previousPage"
+                    @disabled($withdrawals->onFirstPage())
+                    class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                    قبلی
                 </button>
-                @foreach ($withdrawals->links()->elements[0] as $page => $url)
-                    <button wire:click="gotoPage({{ $page }})"  @class([  'w-7 h-7 rounded-md border text-xs font-medium', 'border-blue-500 bg-[#0948EE]/60 text-white' => $withdrawals->currentPage() == $page, 'border-transparent bg-[#0948EE]/60 text-white' => $withdrawals->currentPage() != $page,  ]) >
-                        {{ $page }}
-                    </button>
-                @endforeach
-                <button wire:click="nextPage" @disabled($withdrawals->onLastPage()) class="w-7 h-7 rounded-md border border-gray-300 bg-[#0948EE]/60 hover:bg-[#0948EE] text-white disabled:opacity-50">
-                    ›
+                <span class="mx-2 text-sm font-medium">
+                    {{ $withdrawals->currentPage() }} از {{ $withdrawals->lastPage() }}
+                </span>
+                <button
+                    wire:click="nextPage"
+                    @disabled($withdrawals->onLastPage())
+                    class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                    بعدی
                 </button>
+                @endif
             </div>
-            @endif
         </div>
     </div>
 </div>
