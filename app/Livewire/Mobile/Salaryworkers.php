@@ -143,48 +143,38 @@ public function edit($id)
         session()->flash('message', 'پرداخت حذف شد');
     }public function render()
 {
-    $payments = SalaryPayment::with(['employee', 'admin'])
-        ->when($this->search, function($query) {
-            $query->whereHas('employee', function($q) {
-                $q->where('name', 'like', '%' . $this->search . '%');
-            });
-        })
-        ->orderBy('payment_date', 'asc')
-        ->paginate(3);
-
-    // اطلاعات دقیق هر کارمند با افزودن attribute
+$payments = SalaryPayment::with(['employee', 'admin'])
+    ->when($this->employee_id, function ($query) {
+        $query->where('employee_id', $this->employee_id);
+    })
+    ->when($this->search, function($query) {
+        $query->whereHas('employee', function($q) {
+            $q->where('name', 'like', '%' . $this->search . '%');
+        });
+    })
+    ->orderBy('payment_date', 'asc')
+    ->paginate(3);
     $employees = Employee::all();
-
     foreach ($employees as $employee) {
-        // جمع پرداخت‌های ماه جاری
         $employee->paid_this_month = SalaryPayment::where('employee_id', $employee->id)
             ->whereMonth('payment_date', Carbon::now()->month)
             ->whereYear('payment_date', Carbon::now()->year)
             ->sum('amount');
-
-        // باقی‌مانده ماه جاری
         $employee->remaining_this_month = max(0, $employee->salary - $employee->paid_this_month);
-
-        // جمع کل پرداخت شده
         $employee->paid_total = SalaryPayment::where('employee_id', $employee->id)->sum('amount');
-
-        // باقی‌مانده کل حقوق
         $employee->remaining_total = max(0, $employee->salary - $employee->paid_total);
     }
-
     $totalSalary = Employee::sum('salary');
     $totalPaid   = SalaryPayment::sum('amount');
     $paymentPercentage = $totalSalary > 0
         ? round(($totalPaid / $totalSalary) * 100, 2)
         : 0;
-
     $monthlySalary = $totalSalary / 12;
     $last30DaysPayment = SalaryPayment::where('payment_date', '>=', Carbon::now()->subDays(30))->sum('amount');
     $remainingMonthlySalary = $monthlySalary - $last30DaysPayment;
     $monthlyPaymentPercentage = $monthlySalary > 0
         ? round(($last30DaysPayment / $monthlySalary) * 100, 2)
         : 0;
-
     return view('livewire.mobile.salaryworkers', [
         'payments' => $payments,
         'employees' => $employees,
