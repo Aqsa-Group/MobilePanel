@@ -104,8 +104,15 @@ public function setWithdrawalDate($date)
         $this->withdrawal_date = Jalalian::fromDateTime(now())
             ->format('Y/m/d');
     }
+        private function convertToEnglishNumbers($string)
+{
+    $faNumbers = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+    $enNumbers = ['0','1','2','3','4','5','6','7','8','9'];
+    return str_replace($faNumbers, $enNumbers, $string);
+}
     public function save()
     {
+        $this->amount = $this->convertToEnglishNumbers($this->amount);
         $this->validate();
         if ($this->editing) {
             Withdrawal::findOrFail($this->editingId)->update([
@@ -125,8 +132,8 @@ public function setWithdrawalDate($date)
                 'amount' => $this->amount,
                 'description' => $this->description,
                 'withdrawal_date' => now()->toDateString(),
-                'user_id'  => Auth::id(),                         // کی ثبت کرده
-                'admin_id' => Auth::user()->admin_id ?? Auth::id(), // مربوط به کدام مدیر
+                'user_id'  => Auth::id(),
+                'admin_id' => Auth::user()->admin_id ?? Auth::id(),
             ]);
             $this->successMessage = 'برداشت با موفقیت ثبت شد';
             $this->reset([
@@ -140,17 +147,17 @@ public function setWithdrawalDate($date)
     public function render()
     {
         $withdrawals = Withdrawal::query()
-            ->when($this->search !== '', function ($q) {
-                $q->where(function ($qq) {
-                    $qq->where('withdrawal_type', 'like', "%{$this->search}%")
-                        ->orWhere('amount', 'like', "%{$this->search}%");
-                });
-            })
-            ->when($this->filterType !== '', function ($q) {
-                $q->where('withdrawal_type', $this->filterType);
-            })
-            ->latest()
-            ->paginate(5);
+        ->when($this->search !== '', function ($q) {
+            $q->where(function ($qq) {
+                $qq->where('withdrawal_type', 'like', "%{$this->search}%")
+                ->orWhere('amount', 'like', "%{$this->search}%");
+            });
+        })
+        ->when($this->filterType !== '', function ($q) {
+            $q->where('withdrawal_type', $this->filterType);
+        })
+        ->orderBy('created_at', 'asc')
+        ->paginate(7);
         return view('livewire.mobile.accounts-page', compact('withdrawals'));
     }
 }

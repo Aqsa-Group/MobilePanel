@@ -90,7 +90,7 @@ public function mount()
         if ($this->image) {
         $imagePath = $this->image->store('employees', 'public');
     }
-        $this->validate([ 'name' => 'required', 'image' => 'nullable|image|max:1024', 'nid' => ['required', 'regex:/^\d{4}-\d{4}-\d{5}$/'],    'number' => ['required', 'digits:10'], 'address' => 'required', 'salary' => 'required', 'job' => 'required' ],
+        $this->validate([ 'name' => 'required', 'image' => 'nullable|image|max:1024', 'nid' => ['required', 'regex:/^\d{4}-\d{4}-\d{5}$/'],    'number' => ['required', 'digits:10'], 'address' => 'required', 'salary' => 'required|numeric', 'job' => 'required' ],
         [ 'name.required' => 'لطفاً نام کارمند را وارد کنید', 'image.image' => 'فایل انتخابی باید تصویر باشد', 'image.max' => 'حداکثر حجم تصویر 1 مگابایت است', 'number.digits' => 'شماره تماس باید  ۱۰ رقم باشد و با 07شروع شود.','nid.regex' => 'شماره تذکره باید به فرم 41234-1245-1234 باشد.', 'nid.required' => 'شماره آیدی الزامی است', 'number.required' => 'شماره تماس را وارد کنید', 'address.required' => 'آدرس را وارد کنید', 'salary.required' => 'معاش را وارد کنید', 'job.required' => 'شغل کارمند الزامی است' ]);
         $imagePath = $this->image ? $this->image->store('employees', 'public') : null;
         $salary = (float) $this->convertToEnglishNumber($this->salary);

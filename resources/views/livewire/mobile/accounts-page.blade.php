@@ -94,7 +94,6 @@
                         <option  value="" class="bg-gray-100">نوع برداشت</option>
                         <option  value="کرایه" class="bg-gray-100">کرایه</option>
                         <option  value="مصارف" class="bg-gray-100">مصارف</option>
-                        <option  value="معاش" class="bg-gray-100">معاش</option>
                         <option  value="تعمیرکاری" class="bg-gray-100">تعمیرکاری</option>
                     </select>
                     @error('withdrawal_type')
@@ -104,7 +103,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
                     <div class="flex flex-col">
                         <div class="border box-border rounded-xl p-4 border-gray-900 flex items-center gap-2">
-                            <input wire:model.defer="amount" type="number" placeholder="مبلغ" class="w-full bg-transparent focus:outline-none text-sm">
+                            <input wire:model.defer="amount" type="text" placeholder="مبلغ" class="w-full bg-transparent focus:outline-none no-spinner text-sm">
                             <i>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_974_3657)">
@@ -149,7 +148,7 @@
             </div>
         </form>
         <div class="lg:col-span-2 border  border-gray-300 rounded-2xl shadow-[0_4px_12px] shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
-            <div class="lg:hidden space-y-3 ">
+            <div class="lg:hidden  space-y-3 ">
                 <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
                     <div class="flex items-center gap-1 flex-shrink-0">
                         <i>
@@ -189,7 +188,7 @@
                                         <th class="pt-2 text-[13px]">تاریخ</th>
                                     </tr>
                                     <tr class="text-[#00000080]">
-                                        <td  class="text-[10px] pb-4">{{ $withdrawal->withdrawal_date }}</td>
+                                        <td  class="text-[10px] pb-4">@if($withdrawal->admin)     {{ $withdrawal->admin->name }} ({{ $withdrawal->admin->rule }})  @else     -- @endif</td>
                                         <td  class="text-[10px] pb-4">{{ $withdrawal->withdrawal_date }}</td>
                                     </tr>
                                     <tr>
@@ -206,24 +205,13 @@
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                                     <span>چاپ</span>
                                 </button>
-                                <button wire:click="edit({{ $withdrawal->id }})" class="flex justify-center border items-center rounded-lg border-[#1E40AF] w-1/2 h-[25px] text-[#1E40AF] text-[10px]">
+                                <button  class="flex justify-center border items-center rounded-lg border-[#1E40AF] w-1/2 h-[25px] text-[#1E40AF] text-[10px]">
                                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M16.0399 3.02001L8.15988 10.9C7.85988 11.2 7.55988 11.79 7.49988 12.22L7.06988 15.23C6.90988 16.32 7.67988 17.08 8.76988 16.93L11.7799 16.5C12.1999 16.44 12.7899 16.14 13.0999 15.84L20.9799 7.96001C22.3399 6.60001 22.9799 5.02001 20.9799 3.02001C18.9799 1.02001 17.3999 1.66001 16.0399 3.02001Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M14.9102 4.15002C15.5802 6.54002 17.4502 8.41002 19.8502 9.09002" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                     <span>ویرایش</span>
-                                </button>
-                                <button wire:click="delete({{ $withdrawal->id }})"
-                                    onclick="return confirm('حذف شود؟')" class="flex justify-center border items-center rounded-lg border-[#FF0000] w-1/2 h-[25px] text-[#FF0000] text-[10px]">
-                                    <svg width="20"  height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M18.8499 9.14001L18.1999 19.21C18.0899 20.78 17.9999 22 15.2099 22H8.7899C5.9999 22 5.9099 20.78 5.7999 19.21L5.1499 9.14001" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                    <span>حذف</span>
                                 </button>
                             </div>
                         </div>
@@ -272,7 +260,6 @@
                             <th class="p-2 text-[12px]">ادمین</th>
                             <th class="p-2 text-[12px]">چاپ</th>
                             <th class="p-2 text-[12px]">ویرایش</th>
-                            <th class="p-2 text-[12px]">حذف</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -281,31 +268,20 @@
                             <td class="p-2 font-bold"> {{ $counter++ }}</td>
                             <td class="p-2"> {{$withdrawal->withdrawal_type}} </td>
                             <td class="p-2"> {{ \Morilog\Jalali\Jalalian::fromDateTime($withdrawal->withdrawal_date)->format('Y/m/d') }} </td>
-                            <td class="p-2"> {{$withdrawal->amount}} </td>
+                            <td class="p-2"> {{$withdrawal->amount}}؋ </td>
                             <td class="p-2"> {{$withdrawal->description}} </td>
-                            <td class="p-2"> {{$withdrawal->description}} </td>
+                            <td class="p-2"> @if($withdrawal->admin)     {{ $withdrawal->admin->name }} ({{ $withdrawal->admin->rule }})  @else     -- @endif </td>
                             <td class="p-2 text-center ">
-                                <button wire:click="edit({{ $withdrawal->id }})" class="mx-auto block ">
+                                <button  class="mx-auto block ">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                                 </button>
                             </td>
                             <td class="p-2 text-center">
-                                <button wire:click="edit({{ $withdrawal->id }})" class="mx-auto block">
+                                <button  class="mx-auto block">
                                     <svg width="20"  height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M16.0399 3.02001L8.15988 10.9C7.85988 11.2 7.55988 11.79 7.49988 12.22L7.06988 15.23C6.90988 16.32 7.67988 17.08 8.76988 16.93L11.7799 16.5C12.1999 16.44 12.7899 16.14 13.0999 15.84L20.9799 7.96001C22.3399 6.60001 22.9799 5.02001 20.9799 3.02001C18.9799 1.02001 17.3999 1.66001 16.0399 3.02001Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M14.9102 4.15002C15.5802 6.54002 17.4502 8.41002 19.8502 9.09002" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </button>
-                            </td>
-                            <td class="p-2 text-center">
-                                <button class="mx-auto block" wire:click="delete({{ $withdrawal->id }})" onclick="return confirm('حذف شود؟')">
-                                    <svg width="20"  height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M18.8499 9.14001L18.1999 19.21C18.0899 20.78 17.9999 22 15.2099 22H8.7899C5.9999 22 5.9099 20.78 5.7999 19.21L5.1499 9.14001" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </button>
                             </td>
@@ -314,7 +290,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="flex flex-wrap gap-1 justify-center sm:hidden items-center mt-3 text-[10px]">
+            <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
                 @if ($withdrawals->lastPage() > 1)
                 <button
                     wire:click="previousPage"

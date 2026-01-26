@@ -17,6 +17,18 @@ class Employee extends Model
         ];
         return $jobs[$this->job] ?? $this->job;
     }
+     public function salaryPayments()
+    {
+        return $this->hasMany(SalaryPayment::class);
+    }
+    public function totalPaid()
+    {
+        return $this->salaryPayments()->sum('amount');
+    }
+    public function remainingSalary()
+    {
+        return $this->salary - $this->totalPaid();
+    }
     public function admin()
     {
         return $this->belongsTo(UserForm::class, 'admin_id');

@@ -11,7 +11,7 @@ return new class extends Migration {
         $table->string('nid')->nullable();
         $table->string('number')->nullable();
         $table->string('address')->nullable();
-        $table->string('salary')->nullable();
+        $table->decimal('salary', 12, 2);
         $table->string('job')->nullable();
         $table->string('image')->nullable();
         $table->timestamps();

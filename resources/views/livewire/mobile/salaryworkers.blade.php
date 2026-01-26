@@ -1,7 +1,7 @@
 <div class="w-full">
     <div class="py-4 px-4 max-w-full mx-auto md:px-0">
         <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full">
-            <div class="bg-[#0B35CC]/10 w-full rounded-2xl space-y-3 p-4 border-r-[3px] border-[#0B35CC] shadow-xl shadow-[0px_4px_4px_0px_#00000040] transition-all duration-200 hover:scale-105 cursor-pointer">
+            <div class="bg-[#0B35CC]/10 w-full rounded-2xl space-y-3 p-4 border-r-[3px] border-[#0B35CC] shadow-xl shadow-[0px_4px_4px_0px_#00000040] ">
                 <div class="flex justify-between items-center">
                     <h1 class="font-bold text-sm md:text-base">کل معاش سالانه</h1>
                     <div class="bg-[#0B35CC33] rounded-full p-2">
@@ -17,11 +17,11 @@
                     </div>
                 </div>
                 <div class="flex flex-col justify-center items-center">
-                    <h1 class="font-bold text-lg md:text-xl">75,000؋</h1>
+                    <h1 class="font-bold text-lg md:text-xl">{{ number_format($totalSalary) }}؋</h1>
                     <h1 class="text-xs md:text-sm">معاش سالانه کارمند</h1>
                 </div>
             </div>
-            <div class="bg-[#0099FF]/10 w-full rounded-2xl space-y-3 p-4 border-r-[3px] border-[#0099FF] shadow-xl shadow-[0px_4px_4px_0px_#00000040] transition-all duration-200 hover:scale-105 cursor-pointer">
+            <div class="bg-[#0099FF]/10 w-full rounded-2xl space-y-3 p-4 border-r-[3px] border-[#0099FF] shadow-xl shadow-[0px_4px_4px_0px_#00000040] ">
                 <div class="flex justify-between items-center">
                     <h1 class="font-bold text-sm md:text-base">کل مبلغ پرداختی</h1>
                     <div class="bg-[#0099FF33] rounded-full p-2">
@@ -34,11 +34,11 @@
                     </div>
                 </div>
                 <div class="flex flex-col justify-center items-center">
-                    <h1 class="font-bold text-lg md:text-xl">75,000؋</h1>
+                    <h1 class="font-bold text-lg md:text-xl">{{ number_format($totalPaid) }}؋</h1>
                     <h1 class="text-xs md:text-sm">کل پرداخت انجام شده</h1>
                 </div>
             </div>
-            <div class="bg-[#31009B]/10 w-full rounded-2xl space-y-3 p-4 border-r-[3px] border-[#31009B] shadow-xl shadow-[0px_4px_4px_0px_#00000040] transition-all duration-200 hover:scale-105 cursor-pointer">
+            <div class="bg-[#31009B]/10 w-full rounded-2xl space-y-3 p-4 border-r-[3px] border-[#31009B] shadow-xl shadow-[0px_4px_4px_0px_#00000040] ">
                 <div class="flex justify-between items-center">
                     <h1 class="font-bold text-sm md:text-base">مانده معاش سالانه</h1>
                     <div class="bg-[#31009B33] rounded-full p-2">
@@ -51,11 +51,11 @@
                     </div>
                 </div>
                 <div class="flex flex-col justify-center items-center">
-                    <h1 class="font-bold text-lg md:text-xl">75,000؋</h1>
+                    <h1 class="font-bold text-lg md:text-xl">{{ number_format($remainingSalary) }}؋</h1>
                     <h1 class="text-xs md:text-sm">مبلغ باقی مانده برای پرداخت</h1>
                 </div>
             </div>
-            <div class="bg-[#3A64D0]/10 w-full rounded-2xl space-y-3 p-4 border-r-[3px] border-[#3A64D0] shadow-xl shadow-[0px_4px_4px_0px_#00000040] transition-all duration-200 hover:scale-105 cursor-pointer">
+            <div class="bg-[#3A64D0]/10 w-full rounded-2xl space-y-3 p-4 border-r-[3px] border-[#3A64D0] shadow-xl shadow-[0px_4px_4px_0px_#00000040] ">
                 <div class="flex justify-between items-center">
                     <h1 class="font-bold text-sm md:text-base">درصد پرداخت سالانه</h1>
                     <div class="bg-[#3A64D033] rounded-full p-2">
@@ -69,11 +69,11 @@
                     </div>
                 </div>
                 <div class="flex flex-col justify-center items-center">
-                    <h1 class="font-bold text-lg md:text-xl">30%</h1>
+                    <h1 class="font-bold text-lg md:text-xl">{{ $paymentPercentage }}%</h1>
                     <h1 class="text-xs md:text-sm">درصد پرداخت شده از کل معاش</h1>
                 </div>
             </div>
-            <div class="bg-[#0066E4]/10 w-full rounded-2xl space-y-3 p-4 border-r-[3px] border-[#0066E4] shadow-xl shadow-[0px_4px_4px_0px_#00000040] transition-all duration-200 hover:scale-105 cursor-pointer">
+            <div class="bg-[#0066E4]/10 w-full rounded-2xl space-y-3 p-4 border-r-[3px] border-[#0066E4] shadow-xl shadow-[0px_4px_4px_0px_#00000040] ">
                 <div class="flex justify-between items-center">
                     <h1 class="font-bold text-sm md:text-base">معاش ماهانه</h1>
                     <div class="bg-[#0066E433] rounded-full p-2">
@@ -87,11 +87,11 @@
                     </div>
                 </div>
                 <div class="flex flex-col justify-center items-center">
-                    <h1 class="font-bold text-lg md:text-xl">75,000؋</h1>
+                    <h1 class="font-bold text-lg md:text-xl">{{ number_format($monthlySalary) }}؋</h1>
                     <h1 class="text-xs md:text-sm">معاش ماهوار کارمند</h1>
                 </div>
             </div>
-            <div class="bg-[#00DFAE]/10 w-full rounded-2xl space-y-3 p-4 border-r-[3px] border-[#00DFAE] shadow-xl shadow-[0px_4px_4px_0px_#00000040] transition-all duration-200 hover:scale-105 cursor-pointer">
+            <div class="bg-[#00DFAE]/10 w-full rounded-2xl space-y-3 p-4 border-r-[3px] border-[#00DFAE] shadow-xl shadow-[0px_4px_4px_0px_#00000040] ">
                 <div class="flex justify-between items-center">
                     <h1 class="font-bold text-sm md:text-base">پرداختی 30گذشته</h1>
                     <div class="bg-[#00DFAE33] rounded-full p-2">
@@ -104,11 +104,11 @@
                     </div>
                 </div>
                 <div class="flex flex-col justify-center items-center">
-                    <h1 class="font-bold text-lg md:text-xl">75,000؋</h1>
+                    <h1 class="font-bold text-lg md:text-xl">{{ number_format($last30DaysPayment) }}؋</h1>
                     <h1 class="text-xs md:text-sm">پرداختی 30روز گذشته</h1>
                 </div>
             </div>
-            <div class="bg-[#009B10]/10 w-full rounded-2xl space-y-3 p-4 border-r-[3px] border-[#009B10] shadow-xl shadow-[0px_4px_4px_0px_#00000040] transition-all duration-200 hover:scale-105 cursor-pointer">
+            <div class="bg-[#009B10]/10 w-full rounded-2xl space-y-3 p-4 border-r-[3px] border-[#009B10] shadow-xl shadow-[0px_4px_4px_0px_#00000040] ">
                 <div class="flex justify-between items-center">
                     <h1 class="font-bold text-sm md:text-base">مانده معاش ماهانه</h1>
                     <div class="bg-[#009B1033] rounded-full p-2">
@@ -121,11 +121,11 @@
                     </div>
                 </div>
                 <div class="flex flex-col justify-center items-center">
-                    <h1 class="font-bold text-lg md:text-xl">75,000؋</h1>
+                    <h1 class="font-bold text-lg md:text-xl">{{ number_format($remainingMonthlySalary) }}؋</h1>
                     <h1 class="text-xs md:text-sm">مبلغ باقی مانده این ماه</h1>
                 </div>
             </div>
-            <div class="bg-[#1D4385]/10 w-full rounded-2xl space-y-3 p-4 border-r-[3px] border-[#1D4385] shadow-xl shadow-[0px_4px_4px_0px_#00000040] transition-all duration-200 hover:scale-105 cursor-pointer">
+            <div class="bg-[#1D4385]/10 w-full rounded-2xl space-y-3 p-4 border-r-[3px] border-[#1D4385] shadow-xl shadow-[0px_4px_4px_0px_#00000040] ">
                 <div class="flex justify-between items-center">
                     <h1 class="font-bold text-sm md:text-base">درصد پرداخت ماهانه</h1>
                     <div class="bg-[#1D438533] rounded-full p-2">
@@ -138,16 +138,21 @@
                     </div>
                 </div>
                 <div class="flex flex-col justify-center items-center">
-                    <h1 class="font-bold text-lg md:text-xl">75,000؋</h1>
+                    <h1 class="font-bold text-lg md:text-xl">{{ $monthlyPaymentPercentage }}%</h1>
                     <h1 class="text-xs md:text-sm">درصد پرداخت شده این ماه</h1>
                 </div>
             </div>
         </div>
         <div class="grid grid-cols-1  lg:grid-cols-3 gap-3 pt-2">
             <div class="border  border-gray-300 rounded-2xl shadow-xl p-3">
-                @if (session()->has('message'))
-                    <div class="bg-green-500 text-white p-2 rounded mb-3 text-sm">
-                        {{ session('message') }}
+                 @if (session()->has('message'))
+                <div class="bg-green-500 text-white px-4 py-2 rounded mb-3">
+                    {{ session('message') }}
+                </div>
+                @endif
+                @if (session()->has('error'))
+                    <div class="bg-red-500 text-white px-4 py-2 rounded mb-3">
+                        {{ session('error') }}
                     </div>
                 @endif
                 <select wire:model="employee_id"
@@ -160,21 +165,40 @@
                 @error('employee_id') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
                     <div class="border rounded-xl p-4 border-gray-900 flex items-center gap-2">
-                        <input wire:model="amount" type="number" class="w-full bg-transparent focus:outline-none text-sm" placeholder="مبلغ">
+                        <input wire:model="amount" type="text" class="w-full bg-transparent focus:outline-none text-sm no-spinner" placeholder="مبلغ">
+                        <i>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_974_3657)">
+                                    <path d="M7.22656 11.9412C7.22656 13.0162 8.05156 13.8829 9.07656 13.8829H11.1682C12.0599 13.8829 12.7849 13.1245 12.7849 12.1912C12.7849 11.1745 12.3432 10.8162 11.6849 10.5829L8.32656 9.41621C7.66823 9.18288 7.22656 8.82454 7.22656 7.80788C7.22656 6.87454 7.95156 6.11621 8.84323 6.11621H10.9349C11.9599 6.11621 12.7849 6.98288 12.7849 8.05788" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M10 5V15" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9.99984 18.3337C14.6022 18.3337 18.3332 14.6027 18.3332 10.0003C18.3332 5.39795 14.6022 1.66699 9.99984 1.66699C5.39746 1.66699 1.6665 5.39795 1.6665 10.0003C1.6665 14.6027 5.39746 18.3337 9.99984 18.3337Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_974_3657">
+                                        <rect width="20" height="20" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </i>
                     </div>
                     <div class="border rounded-xl p-4 border-gray-900 flex items-center gap-2">
-                        <input wire:model="payment_date" type="date"  class="w-full bg-transparent focus:outline-none text-sm">
+                        <input wire:model="payment_date" readonly type="text"  class="w-full bg-transparent focus:outline-none text-sm">
+                        <i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentcolor" d="M7.75 2.5a.75.75 0 0 0-1.5 0v1.58c-1.44.115-2.384.397-3.078 1.092c-.695.694-.977 1.639-1.093 3.078h19.842c-.116-1.44-.398-2.384-1.093-3.078c-.694-.695-1.639-.977-3.078-1.093V2.5a.75.75 0 0 0-1.5 0v1.513C15.585 4 14.839 4 14 4h-4c-.839 0-1.585 0-2.25.013z"/><path fill="currentColor" fill-rule="evenodd" d="M22 12c0-.839 0-1.585-.013-2.25H2.013C2 10.415 2 11.161 2 12v2c0 3.771 0 5.657 1.172 6.828S6.229 22 10 22h4c3.771 0 5.657 0 6.828-1.172S22 17.771 22 14zm-8 .25A1.75 1.75 0 0 0 12.25 14v2a1.75 1.75 0 1 0 3.5 0v-2A1.75 1.75 0 0 0 14 12.25m0 1.5a.25.25 0 0 0-.25.25v2a.25.25 0 1 0 .5 0v-2a.25.25 0 0 0-.25-.25m-3.213-1.443a.75.75 0 0 1 .463.693v4a.75.75 0 0 1-1.5 0v-2.19l-.22.22a.75.75 0 0 1-1.06-1.06l1.5-1.5a.75.75 0 0 1 .817-.163" clip-rule="evenodd"/></svg>
+                        </i>
                     </div>
+                    @error('amount') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                 </div>
-                @error('amount') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                @error('payment_date') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                 <textarea wire:model="description"  class="w-full rounded-xl border border  border-gray-300 border-gray-900 p-2 text-sm h-28 mb-3"   placeholder="توضیحات..."></textarea>
+                    @error('description')
+                        <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span>
+                    @enderror
                 <div class="grid grid-cols-2 gap-2">
                     <button wire:click="resetForm" class="bg-red-800 hover:bg-red-700 text-white  rounded-xl py-3 text-sm">
                     انصراف
                     </button>
                     <button wire:click.prevent="submit"  class="bg-blue-800 hover:bg-blue-700 text-white rounded-xl py-3 text-sm ">
-                        ثبت
+                       {{ $edit_id ? 'بروزرسانی' : 'ثبت' }}
                     </button>
                 </div>
             </div>
@@ -201,7 +225,7 @@
                         </div>
                         <div class="flex gap-2 flex-1 min-w-[100px]">
                             <div class="relative flex-1">
-                                <input type="text"  wire:model="search" class="p-1 w-full  bg-[#1E40AF] text-white rounded-xl" placeholder="جستجو....">
+                                <input type="text"  wire:model="search" class="p-1 w-full  bg-[#1E40AF]/20 text-white rounded-md" placeholder="جستجو....">
                                 <span class="absolute left-1 top-1.5 text-gray-600">
                                     <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6.46875 15.3184C9.42002 15.3184 11.8125 12.793 11.8125 9.67773C11.8125 6.5625 9.42002 4.03711 6.46875 4.03711C3.51748 4.03711 1.125 6.5625 1.125 9.67773C1.125 12.793 3.51748 15.3184 6.46875 15.3184Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -220,19 +244,27 @@
                                 <div class="grid grid-cols-2  gap-5 text-sm">
                                     <div>
                                         <div class="text-gray-600 text-xs font-semibold mb-1">تاریخ</div>
-                                        <div class="text-gray-900 font-bold">{{ $payment->payment_date }}</div>
+                                        <div class="text-gray-900 font-bold"  >  {{ $payment->shamsi_payment_date }}</div>
                                     </div>
                                     <div>
-                                        <div class="text-gray-600 text-xs font-semibold mb-1">مبلغ</div>
-                                        <div class="text-gray-900 font-bold">{{ number_format($payment->amount) }}؋</div>
+                                        <div class="text-gray-600 text-xs font-semibold mb-1">حقوق کل</div>
+                                        <div class="text-gray-900 font-bold">{{ number_format($employee->salary) }}؋</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-gray-600 text-xs font-semibold mb-1"> مبلغ پرداختی</div>
+                                        <div class="text-gray-900 font-bold">{{ number_format($employee->paid_this_month) }}؋</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-gray-600 text-xs font-semibold mb-1">مبلغ باقی</div>
+                                        <div class="text-gray-900 font-bold">{{ number_format($employee->remaining_this_month) }}؋</div>
                                     </div>
                                     <div class="">
                                         <div class="text-gray-600 text-xs font-semibold mb-1">توضیحات</div>
-                                        <div class="text-gray-900 font-bold">{{ $payment->$description }}</div>
+                                        <div class="text-gray-900 font-bold">{{ $payment->description }}</div>
                                     </div>
                                     <div class="">
                                         <div class="text-gray-600 text-xs font-semibold mb-1">ادمین</div>
-                                        <div class="text-gray-900 font-bold">{{ $payment->$description }}</div>
+                                        <div class="text-gray-900 font-bold">@if($payment->admin)     {{ $payment->admin->name }} ({{ $payment->admin->rule }})  @else     -- @endif</div>
                                     </div>
                                 </div>
                                 <div class="flex justify-center gap-3 mt-5">
@@ -244,17 +276,6 @@
                                         <path d="M14.9102 4.15039C15.5802 6.54039 17.4502 8.41039 19.8502 9.09039" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                         </i> ویرایش
-                                    </button>
-                                    <button wire:click="delete({{ $payment->id }})"  class="flex items-center gap-1 text-[#FF0000] border-red-600 border border-2   py-2 px-3 rounded-lg text-xs">
-                                        <i class="bi bi-trash">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M21 5.98047C17.67 5.65047 14.32 5.48047 10.98 5.48047C9 5.48047 7.02 5.58047 5.04 5.78047L3 5.98047" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M18.8499 9.13965L18.1999 19.2096C18.0899 20.7796 17.9999 21.9996 15.2099 21.9996H8.7899C5.9999 21.9996 5.9099 20.7796 5.7999 19.2096L5.1499 9.13965" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                        </i> حذف
                                     </button>
                                     <button  onclick="window.print()" class="flex items-center gap-1 text-[#1C274C] border-gray-700 border border-2  py-2 px-3 rounded-lg text-xs">
                                         <i class="bi bi-printer">
@@ -304,23 +325,26 @@
                             <th class="p-2">آیدی</th>
                             <th class="p-2"> نام کارمند </th>
                             <th class="p-2">تاریخ</th>
-                            <th class="p-2">مبلغ</th>
+                            <th class="p-2"> حقوق کل</th>
+                            <th class="p-2">مبلغ پرداختی</th>
+                            <th class="p-2">مبلغ باقی</th>
                             <th class="p-2">توضیحات</th>
                             <th class="p-2">ادمین</th>
                             <th class="p-2">چاپ</th>
                             <th class="p-2">ویرایش</th>
-                            <th class="p-2">حذف</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($payments as $payment)
                         <tr class=" border-b-2 border-[#1E40AF]">
-                            <td class="p-2">{{  $loop->iteration}}</td>
+                            <td class="p-2 font-bold" >   {{ ($payments->currentPage() - 1) * $payments->perPage() + $loop->iteration }}</td>
                             <td class="p-2">{{ $payment->employee->name }}</td>
-                            <td class="p-2">{{ $payment->payment_date }}</td>
-                            <td class="p-2">{{ number_format($payment->amount) }}؋</td>
-                            <td class="p-2">  {{ $payment->$description }}</td>
-                            <td class="p-2">  {{ $payment->$description }}</td>
+                            <td class="p-2" >  {{ $payment->shamsi_payment_date }}</td>
+                            <td class="p-2">{{ number_format($employee->salary) }}؋</td>
+                            <td class="p-2">{{ number_format($employee->paid_this_month) }}؋</td>
+                            <td class="p-2">{{ number_format($employee->remaining_this_month) }}؋</td>
+                            <td class="p-2">  {{ $payment->description }}</td>
+                            <td class="p-2">  @if($payment->admin)     {{ $payment->admin->name }} ({{ $payment->admin->rule }})  @else     -- @endif</td>
                             <td class="p-2 text-center">
                                 <i  onclick="window.print()" class="flex justify-center text-blue-600 text-lg cursor-pointer">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
@@ -335,21 +359,29 @@
                                 </svg>
                                 </i>
                             </td>
-                            <td class="p-2">
-                                <i  wire:click="delete({{ $payment->id }})" class="flex justify-center text-blue-600 text-lg cursor-pointer">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M18.8499 9.14014L18.1999 19.2101C18.0899 20.7801 17.9999 22.0001 15.2099 22.0001H8.7899C5.9999 22.0001 5.9099 20.7801 5.7999 19.2101L5.1499 9.14014" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                </i>
-                            </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
+                <div class="flex flex-wrap gap-1 justify-start  items-center mt-3 text-[10px]">
+                    @if ($payments->total() > $payments->perPage())
+                        <button
+                            wire:click="previousPage"
+                            @disabled($payments->onFirstPage())
+                            class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                            قبلی
+                        </button>
+                        <span class="mx-2 text-sm font-medium">
+                            {{ $payments->currentPage() }} از {{ $payments->lastPage() }}
+                        </span>
+                        <button
+                            wire:click="nextPage"
+                            @disabled($payments->onLastPage())
+                            class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                            بعدی
+                        </button>
+                    @endif
+                </div>
             </div>
             <div class="flex flex-wrap gap-1 justify-center sm:hidden items-center mt-3 text-[10px]">
                 @if ($payments->lastPage() > 1)

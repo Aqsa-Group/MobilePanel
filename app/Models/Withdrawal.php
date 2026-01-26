@@ -5,5 +5,9 @@ use Illuminate\Database\Eloquent\Model;
 class Withdrawal extends Model
 {
     use HasFactory;
-    protected $fillable = ['withdrawal_type', 'amount', 'description', 'withdrawal_date'];
+    protected $fillable = ['withdrawal_type', 'amount', 'description', 'withdrawal_date','admin_id'];
+     public function admin()
+    {
+        return $this->belongsTo(UserForm::class, 'admin_id');
+    }
 }
