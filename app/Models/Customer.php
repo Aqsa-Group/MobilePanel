@@ -14,6 +14,7 @@ class Customer extends Model
         'address',
         'id_card',
         'image',
+        'phone',
         'admin_id'
     ];
     public function admin()

@@ -66,8 +66,7 @@ class UserList extends Component
     }
     public function submit()
     {
-        dd($this->first_name, $this->last_name, $this->username, $this->email);
-        $authUser = auth()->user();
+        $authUser = Auth::user();
         if ($authUser->rule === 'admin') {
             $maxLimit = $authUser->limit;
             $count = UserForm::where('creator_id', $authUser->id)->count();
@@ -76,6 +75,9 @@ class UserList extends Component
                 return;
             }
         }
+        $this->validate([
+            'image' => 'nullable|image|max:2048|mimes:jpg,jpeg,png,webp'
+        ]);
         $this->number = $this->convertPersianNumbersToEnglish($this->number);
         $this->limit  = $this->convertPersianNumbersToEnglish($this->limit);
         $this->validate($this->rules(), $this->messages());

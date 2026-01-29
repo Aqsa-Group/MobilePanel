@@ -5,18 +5,9 @@ class UserForm extends Authenticatable
 {
     protected $table = 'user_forms';
     protected $fillable = [
-        'name',
-        'username',
-        'email',
-        'number',
-        'address',
-        'rule',
-        'limit',
-        'password',
-        'image',
-        'creator_id',
-        'admin_id',
-    ];
+ 'first_name','last_name','username','email','number',
+ 'address','password','rule','limit','image','creator_id'
+];
     protected $hidden = [
         'password',
         'remember_token',
