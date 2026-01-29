@@ -324,18 +324,6 @@
                 <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">›</button>
             </div>
         </div>
-        <style>
-            .card-anim {
-                transition: all 0.4s ease;
-            }
-            .card-anim:hover {
-                transform: translateY(-6px) scale(1.02);
-                box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-            }
-            main{
-                overflow-x: hidden;
-            }
-        </style>
         <script>
         function activeCash() {
             const cash = document.getElementById('btnCash');
