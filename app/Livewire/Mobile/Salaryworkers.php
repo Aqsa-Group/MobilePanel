@@ -5,6 +5,7 @@ use Livewire\WithPagination;
 use App\Models\SalaryPayment;
 use App\Models\Employee;
 use Carbon\Carbon;
+use App\Models\CashFund;
 use Morilog\Jalali\Jalalian;
 use Illuminate\Support\Facades\Auth;
 class Salaryworkers extends Component
@@ -80,21 +81,31 @@ public function remainingAmount($employee_id)
     $this->amount = $this->convertToEnglishNumbers($this->amount);
     $this->validate([
         'employee_id' => 'required|exists:employees,id',
-        'amount' => 'required|numeric',
-        'description' => 'nullable|string',
+        'amount' => 'required|numeric|min:1',
+        'description' => 'nullable|string|max:255',
     ]);
-    if (!is_numeric($this->amount)) {
-        session()->flash('error', 'مقدار باید عدد باشد');
+    $employee = Employee::find($this->employee_id);
+    if (!$employee) {
+        session()->flash('error', 'کارمند انتخاب شده معتبر نیست');
         return;
     }
-    $employee = Employee::find($this->employee_id);
-    $paidThisMonth = SalaryPayment::where('employee_id', $employee->id)
-        ->whereMonth('payment_date', Carbon::now()->month)
-        ->whereYear('payment_date', Carbon::now()->year)
-        ->sum('amount');
-    $remainingThisMonth = $employee->salary - $paidThisMonth;
-    if ($this->amount > $remainingThisMonth) {
-        session()->flash('error', 'مقدار پرداخت بیشتر از مانده حقوق ماه جاری است');
+    $fund = CashFund::first();
+    if (!$fund || $fund->afn_balance <= 0) {
+        session()->flash('error', 'موجودی صندوق کافی نیست');
+        return;
+    }
+    $totalPaid = SalaryPayment::where('employee_id', $employee->id)->sum('amount');
+    $remaining = max(0, $employee->salary - $totalPaid);
+    if ($remaining <= 0) {
+        session()->flash('error', 'حقوق این کارمند کامل پرداخت شده و مانده‌ای وجود ندارد');
+        return;
+    }
+    if ($this->amount > $remaining) {
+        session()->flash('error', "مبلغ وارد شده بیشتر از مانده حقوق است. مانده: {$remaining}");
+        return;
+    }
+    if ($this->amount > $fund->afn_balance) {
+        session()->flash('error', 'موجودی صندوق کافی نیست');
         return;
     }
     $carbonDate = now();
@@ -109,14 +120,26 @@ public function remainingAmount($employee_id)
         ]);
         session()->flash('message', 'پرداخت بروزرسانی شد');
     } else {
+        $fund->afn_balance -= $this->amount;
+        $fund->save();
         SalaryPayment::create([
             'employee_id' => $this->employee_id,
             'amount' => $this->amount,
             'payment_date' => $carbonDate,
             'description' => $this->description,
             'admin_id' => Auth::user()->admin_id ?? Auth::id(),
+            'currency' => 'AFN',
         ]);
-        session()->flash('message', 'پرداخت ثبت شد');
+        Withdrawal::create([
+            'withdrawal_type' => 'حقوق کارکنان',
+            'amount' => $this->amount,
+            'currency' => 'AFN',
+            'withdrawal_date' => $carbonDate->toDateString(),
+            'description' => "برداشت حقوق {$employee->name}",
+            'user_id' => Auth::id(),
+            'admin_id' => Auth::user()->admin_id ?? Auth::id(),
+        ]);
+        session()->flash('message', 'پرداخت ثبت شد و در برداشت کل صندوق ذخیره شد');
     }
     $this->resetForm();
 }

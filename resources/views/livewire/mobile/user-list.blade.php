@@ -10,7 +10,7 @@
                     <p class="text-[10px] text-gray-500 text-center lg:text-right mt-2 flex items-center justify-center">
                         لطفا اطلاعات را واضح و دقیق وارد کنید.
                     </p>
-                    <form wire:submit.prevent="{{ $editMode ? 'update' : 'submit' }}"  enctype="multipart/form-data"  class="space-y-3">
+                    <form wire:submit.prevent="submit"  enctype="multipart/form-data"  class="space-y-3">
                         @csrf
                         <div class="relative mx-auto w-24 h-24">
                             <div id="profileWrapper"
@@ -233,19 +233,19 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->username }}</td>
                                 <td>
-                                    {{ $user->creator?->name ?? '—' }}
+                                    {{ $user->admin?->name ?? '—' }}
                                     <span class="text-[9px] text-gray-500 block">
-                                        (
-                                        @if($user->creator?->rule === 'super_admin')
-                                            سوپر ادمین
-                                        @elseif($user->creator?->rule === 'admin')
-                                            ادمین
-                                        @elseif($user->creator?->rule === 'user')
-                                            کاربر
-                                        @else
-                                            —
-                                        @endif
-                                        )
+                                    (
+                                    @if($user->admin?->rule === 'super_admin')
+                                        سوپر ادمین
+                                    @elseif($user->admin?->rule === 'admin')
+                                        ادمین
+                                    @elseif($user->admin?->rule === 'user')
+                                        کاربر
+                                    @else
+                                        —
+                                    @endif
+                                    )
                                     </span>
                                 </td>
                                 <td>{{ $user->number }}</td>
@@ -342,11 +342,11 @@
                                     @endif
                                 </td>
                                 <td class="text-[10px]">
-                                    {{ $user->creator?->name }}
+                                    {{ $user->admin?->name ?? '—' }}
                                     <span class="block text-[9px] text-gray-500">
-                                        @if($user->creator?->rule === 'super_admin')
+                                        @if($user->admin?->rule === 'super_admin')
                                             سوپر ادمین
-                                        @elseif($user->creator?->rule === 'admin')
+                                        @elseif($user->admin?->rule === 'admin')
                                             ادمین
                                         @else
                                             کاربر

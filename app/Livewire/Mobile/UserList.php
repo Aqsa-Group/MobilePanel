@@ -46,9 +46,12 @@ class UserList extends Component
         if (auth()->user()->rule === 'super_admin' && $this->rule === 'admin') {
             $rules['limit'] = 'required|integer|in:5,10';
         }
-        if (!$this->userId || $this->password) {
-            $rules['password'] = 'required|min:6';
-        }
+       if (!$this->userId) {
+    $rules['password'] = 'required|min:6';
+} elseif ($this->password) {
+    $rules['password'] = 'min:6';
+}
+
         return $rules;
     }
     public function updatingSearch()
@@ -63,6 +66,7 @@ class UserList extends Component
     }
     public function submit()
     {
+        dd($this->first_name, $this->last_name, $this->username, $this->email);
         $authUser = auth()->user();
         if ($authUser->rule === 'admin') {
             $maxLimit = $authUser->limit;
@@ -76,11 +80,15 @@ class UserList extends Component
         $this->limit  = $this->convertPersianNumbersToEnglish($this->limit);
         $this->validate($this->rules(), $this->messages());
         if ($authUser->rule === 'admin' && $this->rule !== 'user') {
-            abort(403, 'شما اجازه ساخت این نقش را ندارید');
-        }
-        if ($authUser->rule === 'user') {
-            abort(403);
-        }
+    session()->flash('error', 'شما اجازه ساخت این نقش را ندارید');
+    return;
+}
+
+if ($authUser->rule === 'user') {
+    session()->flash('error', 'شما اجازه انجام این عملیات را ندارید');
+    return;
+}
+
         if ($authUser->rule !== 'super_admin') {
             $this->limit = null;
         }
@@ -93,7 +101,10 @@ class UserList extends Component
             'address'    => $this->address,
             'rule'       => $this->rule,
             'limit'      => $this->limit,
-            'creator_id' => Auth::id(),
+               'creator_id' => Auth::id(),
+    'admin_id'   => auth()->user()->rule === 'super_admin'
+                    ? Auth::id()
+                    : auth()->user()->id,
         ];
 if ($this->image instanceof \Livewire\TemporaryUploadedFile) {
     if ($this->userId && $this->oldImage && Storage::disk('public')->exists($this->oldImage)) {
@@ -168,7 +179,7 @@ public function update()
         $this->reset(['image', 'oldImage']);
         $this->resetValidation();
     }
-   public function resetForm()
+  public function resetForm()
 {
     $this->reset([
         'first_name',
@@ -184,7 +195,10 @@ public function update()
         'userId',
         'editMode',
     ]);
+
+    $this->resetValidation();
 }
+
     public function confirmDelete($id)
     {
         $this->deleteUserId = $id;

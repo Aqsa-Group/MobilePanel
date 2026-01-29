@@ -76,6 +76,36 @@
     <div class="grid grid-cols-1 max-w-full mx-auto lg:grid-cols-3 gap-3">
         <form wire:submit.prevent="save" class="h-full  mb-6 space-y-2">
             <div class=" rounded-2xl shadow-xl border  border-gray-300 shadow-[0px_4px_4px_0px_#00000040] border border-gray-200 w-full lg:max-w-full p-3">
+                <div x-data="{ show: @entangle('successMessage').defer }"
+                    x-show="show"
+                    x-transition.opacity
+                    x-init="if(show){ setTimeout(()=> show = false, 5000) }"
+                    class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"
+                    role="alert"
+                    style="display: none;">
+                    <strong class="font-bold">موفقیت</strong>
+                    <span class="block sm:inline" x-text="show"></span>
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
+                        @click="show = false">
+                        &times;
+                    </span>
+                </div>
+                @if($errors->has('amount'))
+                <div x-data="{ show: true }"
+                    x-show="show"
+                    x-transition.opacity
+                    x-init="setTimeout(()=> show = false, 5000)"
+                    class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+                    role="alert"
+                    style="display: none;">
+                    <strong class="font-bold">خطا</strong>
+                    <span class="block sm:inline">{{ $errors->first('amount') }}</span>
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
+                        @click="show = false">
+                        &times;
+                    </span>
+                </div>
+                @endif
                 <div class="flex justify-between mb-2 shadow p-3 rounded-xl border border-black">
                     <div class="flex gap-2 mt-3">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -252,7 +282,7 @@
                 <table class="w-full text-center  text-sm border-collapse">
                     <thead class="bg-[#1E40AF] text-white">
                         <tr>
-                            <th class="p-2 text-[12px]">شماره</th>
+                            <th class="p-2 text-[12px]">آیدی</th>
                             <th class="p-2 text-[12px]"> نوع برداشت</th>
                             <th class="p-2 text-[12px]">تاریخ</th>
                             <th class="p-2 text-[12px]">مبلغ</th>

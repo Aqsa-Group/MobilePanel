@@ -6,6 +6,7 @@ use App\Models\Withdrawal;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Models\CashFund as CashFundModel;
 class AccountsPage extends Component
 {
     use WithPagination;
@@ -110,40 +111,51 @@ public function setWithdrawalDate($date)
     $enNumbers = ['0','1','2','3','4','5','6','7','8','9'];
     return str_replace($faNumbers, $enNumbers, $string);
 }
-    public function save()
-    {
-        $this->amount = $this->convertToEnglishNumbers($this->amount);
-        $this->validate();
-        if ($this->editing) {
-            Withdrawal::findOrFail($this->editingId)->update([
-                'withdrawal_type' => $this->withdrawal_type,
-                'amount' => $this->amount,
-                'description' => $this->description,
-            ]);
-            $this->reset([
-                'withdrawal_type',
-                'amount',
-                'description',
-            ]);
-            $this->successMessage = 'ویرایش با موفقیت انجام شد';
-        } else {
-            Withdrawal::create([
-                'withdrawal_type' => $this->withdrawal_type,
-                'amount' => $this->amount,
-                'description' => $this->description,
-                'withdrawal_date' => now()->toDateString(),
-                'user_id'  => Auth::id(),
-                'admin_id' => Auth::user()->admin_id ?? Auth::id(),
-            ]);
-            $this->successMessage = 'برداشت با موفقیت ثبت شد';
-            $this->reset([
-                'withdrawal_type',
-                'amount',
-                'description',
-            ]);
-        }
-        $this->resetForm();
+   public function save()
+{
+    $this->amount = $this->convertToEnglishNumbers($this->amount);
+    $this->validate();
+    $fund = CashFundModel::first();
+    if (!$fund) {
+        $this->addError('amount', 'صندوق هنوز موجودی ندارد');
+        return;
     }
+    $currency = $this->currency ?? 'AFN';
+    if ($currency === 'AFN' && ($fund->afn_balance <= 0 || $fund->afn_balance < $this->amount)) {
+        $this->addError('amount', 'موجودی صندوق کافی نیست');
+        return;
+    }
+    if ($currency === 'USD' && ($fund->usd_balance <= 0 || $fund->usd_balance < $this->amount)) {
+        $this->addError('amount', 'موجودی صندوق کافی نیست');
+        return;
+    }
+    if ($this->editing) {
+        Withdrawal::findOrFail($this->editingId)->update([
+            'withdrawal_type' => $this->withdrawal_type,
+            'amount' => $this->amount,
+            'description' => $this->description,
+        ]);
+        $this->successMessage = 'ویرایش با موفقیت انجام شد';
+    } else {
+        if ($currency === 'AFN') {
+            $fund->afn_balance -= $this->amount;
+        } else {
+            $fund->usd_balance -= $this->amount;
+        }
+        $fund->save();
+        Withdrawal::create([
+            'withdrawal_type' => $this->withdrawal_type,
+            'amount' => $this->amount,
+            'description' => $this->description,
+            'currency' => $currency,
+            'withdrawal_date' => now()->toDateString(),
+            'user_id'  => Auth::id(),
+            'admin_id' => Auth::user()->admin_id ?? Auth::id(),
+        ]);
+        $this->successMessage = 'برداشت با موفقیت ثبت شد';
+    }
+    $this->resetForm();
+}
     public function render()
     {
         $withdrawals = Withdrawal::query()

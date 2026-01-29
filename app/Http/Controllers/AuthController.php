@@ -12,7 +12,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'username' => 'required',
-            'password' => 'required|min:6',
+            'password' => 'required',
         ]);
         if (Auth::attempt([
             'username' => $request->username,
@@ -26,7 +26,7 @@ class AuthController extends Controller
             return redirect()->route('welcome');
         }
         return back()->withErrors([
-            'loginError' => 'نام کاربری یا رمز عبور اشتباه است',
+            'loginError' => 'نام کاربری یا رمز عبور اشتباه است.',
         ]);
     }
     public function logout(Request $request)

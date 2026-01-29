@@ -126,12 +126,12 @@
                         <p class="text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
-                @if ($errors->has('loginError'))
-                    <p class="text-red-600 mt-1">{{ $errors->first('loginError') }}</p>
-                @endif
                 <button type="submit" class="w-full bg-[#0B35CC] hover:bg-blue-800 text-white font-bold py-6 sm:py-3.5  rounded-lg transition text-sm sm:text-base hover-lift btn-shimmer">
                     ورود
                 </button>
+                @if ($errors->has('loginError'))
+                    <p class="text-red-600 mt-1 text-sm text-center">{{ $errors->first('loginError') }}</p>
+                @endif
             </form>
         </div>
         <div class="relative w-full md:w-1/2 order-1 md:mt-0 min-h-[48vh] md:min-h-[450px] mb-0 pb-0 overflow-hidden img-reveal">

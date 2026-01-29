@@ -100,18 +100,36 @@
         </div>
         <div class="grid grid-cols-1  lg:grid-cols-3 gap-3 pt-2">
             <div class="border  border-gray-300 rounded-2xl shadow-xl p-3">
-                 @if (session()->has('message'))
-                <div class="bg-green-500 text-white px-4 py-2 rounded mb-3">
-                    {{ session('message') }}
+                @if(session()->has('message'))
+                <div x-data="{ show: true }"
+                    x-show="show"
+                    x-transition.opacity
+                    x-init="setTimeout(()=> show = false, 5000)"
+                    class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"
+                    role="alert"
+                    style="display: none;">
+                    <strong class="font-bold">موفقیت!</strong>
+                    <span class="block sm:inline">{{ session('message') }}</span>
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
+                        @click="show = false">&times;</span>
                 </div>
                 @endif
-                @if (session()->has('error'))
-                    <div class="bg-red-500 text-white px-4 py-2 rounded mb-3">
-                        {{ session('error') }}
-                    </div>
+                @if(session()->has('error'))
+                <div x-data="{ show: true }"
+                    x-show="show"
+                    x-transition.opacity
+                    x-init="setTimeout(()=> show = false, 5000)"
+                    class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+                    role="alert"
+                    style="display: none;">
+                    <strong class="font-bold">خطا!</strong>
+                    <span class="block sm:inline">{{ session('error') }}</span>
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
+                        @click="show = false">&times;</span>
+                </div>
                 @endif
                 <select wire:model="employee_id"
-                        class="w-full rounded-xl border border  border-gray-300 border-gray-900 p-4 text-sm mb-3">
+                        class="w-full rounded-xl border  border-gray-300 p-4 text-sm mb-3">
                     <option value="">انتخاب کارمند</option>
                     @foreach($employees as $employee)
                         <option value="{{ $employee->id }}">{{ $employee->name }}</option>

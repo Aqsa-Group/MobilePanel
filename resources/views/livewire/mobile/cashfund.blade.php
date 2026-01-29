@@ -14,11 +14,11 @@
             <div class="space-y-10">
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-[#0B35CC]">افغانی:</span>
-                    <span class="text-lg font-bold">0</span>
+                    <span class="text-lg font-bold">{{ number_format($afnBalance) }} ؋</span>
                 </div>
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-[#0B35CC]">دالر:</span>
-                    <span class="text-lg font-bold">0</span>
+                    <span class="text-lg font-bold"> {{ number_format($usdBalance) }} $</span>
                 </div>
             </div>
         </div>
@@ -37,11 +37,11 @@
             <div class="space-y-10">
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-green-700">افغانی:</span>
-                    <span class="text-lg font-bold">0</span>
+                    <span class="text-lg font-bold">{{ number_format($profitAFN) }} ؋</span>
                 </div>
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-green-700">دالر:</span>
-                    <span class="text-lg font-bold">0</span>
+                    <span class="text-lg font-bold">${{ number_format($profitUSD) }}</span>
                 </div>
             </div>
         </div>
@@ -61,11 +61,11 @@
             <div class="space-y-10">
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-[#FF0000]">افغانی:</span>
-                    <span class="text-lg font-bold">0</span>
+                    <span class="text-lg font-bold">{{ number_format($lossAFN) }}؋</span>
                 </div>
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-[#FF0000]">دالر:</span>
-                    <span class="text-lg font-bold">0</span>
+                    <span class="text-lg font-bold">${{ number_format($lossUSD) }}</span>
                 </div>
             </div>
         </div>
@@ -87,11 +87,11 @@
             <div class="space-y-10">
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-[#3A64D0]">افغانی:</span>
-                    <span class="text-lg font-bold">0</span>
+                    <span class="text-lg font-bold"> {{ number_format($totalSalesAFN) }} ؋</span>
                 </div>
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-[#3A64D0]">دالر:</span>
-                    <span class="text-lg font-bold">0</span>
+                    <span class="text-lg font-bold">$0</span>
                 </div>
             </div>
         </div>
@@ -107,11 +107,11 @@
             <div class="space-y-10">
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-[#0099FF]">افغانی:</span>
-                    <span class="text-lg font-bold">0</span>
+                    <span class="text-lg font-bold">{{ number_format($totalSalesAFN) }}؋</span>
                 </div>
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-[#0099FF]">دالر:</span>
-                    <span class="text-lg font-bold">0</span>
+                    <span class="text-lg font-bold">${{ number_format($totalSalesUSD) }}</span>
                 </div>
             </div>
         </div>
@@ -127,11 +127,11 @@
             <div class="space-y-10">
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-[#31009B]">افغانی:</span>
-                    <span class="text-lg font-bold">0</span>
+                    <span class="text-lg font-bold">{{ number_format($totalLoansAFN) }}؋</span>
                 </div>
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-[#31009B]">دالر:</span>
-                    <span class="text-lg font-bold">0</span>
+                    <span class="text-lg font-bold">${{ number_format($totalLoansUSD) }}</span>
                 </div>
             </div>
         </div>

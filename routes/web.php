@@ -2,7 +2,6 @@
 // Seller Panel
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Mobile\UserForm2;
-use App\Livewire\Mobile\DeviceForm2;
 use App\Livewire\Mobile\Profile;
 use App\Livewire\Mobile\Welcome;
 use App\Livewire\Mobile\Support;
@@ -32,8 +31,6 @@ Route::get('/inventory2', function () { return view('Mobile.shop.inventory2');})
 Route::get('/sell', function () { return view('Mobile.shop.sell');})->name('sell');
 Route::get('/salaryworkers', function () { return view('Mobile.shop.salaryworkers');})->name('salaryworkers');
 Route::get('/device-Form', function () { return view('Mobile.shop.deviceForm');})->name('device.form');
-Route::get('/device-form2', DeviceForm2::class) ->name('device.form2');
-Route::get('/device-Information', function () {  return view('Mobile.shop.deviceInformation');})->name('device.form3');
 Route::get('/borrowings-page', function () { return view('Mobile.shop.borrowings-page');})->name('borrowings');
 Route::get('/device-repair', function () { return view('Mobile.shop.device-repair');})->name('device.repair');
 Route::get('/accounts-page', function () { return view('Mobile.shop.accounts-page');})->name('accounts');
