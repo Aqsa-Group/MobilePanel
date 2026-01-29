@@ -161,8 +161,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if($employees && $employees->count())
-                        @foreach($employees as $index => $employee)
+                        @forelse($employees as $index => $employee)
                         <tr class=" text-[10px] border-b-2 border-blue-800">
                             <td class="p-2 font-bold">{{ $index + 1 }}</td>
                             <td class="p-2 text-center">
@@ -239,8 +238,13 @@
                                 </button>
                             </td>
                         </tr>
-                        @endforeach
-                        @endif
+                        @empty
+                            <tr>
+                                <td colspan="12" class="p-4 text-center text-gray-400">
+                                    هیچ کارمندی ثبت نشده
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
                 <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
@@ -266,8 +270,7 @@
         </div>
     </div>
     <div class="grid grid-cols-1 w-full lg:grid-cols-2 gap-3 pt-2 mt-4">
-        @if($employees && $employees->count())
-        @foreach($employees as $index => $employee)
+        @forelse($employees as $index => $employee)
             <div class=" rounded-2xl shadow-xl sm:hidden block p-3">
                 <div>
                     @if($employee->image)
@@ -357,8 +360,11 @@
                 </div>
                 <div class="border-b border-gray-300 mt-5"></div>
             </div>
-        @endforeach
-        @endif
+            @empty
+            <div class="flex justify-center gap-3 mt-5">
+                    هیچ کارمندی ثبت نشده
+            </div>
+        @endforelse
         <div class="flex flex-wrap gap-1 justify-center sm:hidden items-center mt-3 text-[10px]">
             @if ($employees->lastPage() > 1)
             <button

@@ -300,7 +300,7 @@
                             <th class="p-4 text-[12px]  text-white">چاپ</th>
                         </tr>
                         <tbody>
-                            @foreach($customers as $index =>  $customer)
+                            @forelse($customers as $index =>  $customer)
                             <tr class="pt-4 text-[10px]">
                                 <td class="p-2 font-bold border-b-2 border-blue-800 ">{{ ($customers->currentPage() - 1) * $customers->perPage() + $index + 1 }}</td>
                                 <td class="text-center border-b-2 border-blue-800">
@@ -335,7 +335,13 @@
                                     </a>
                                 </td>
                             </tr>
-                            @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="10" class="p-4 text-center text-gray-400">
+                                    هیچ مشتری ثبت نشده
+                                </td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -360,7 +366,7 @@
                 </div>
             </div>
             <div class="container flex flex-col gap-2 md:hidden text-[10px] w-full bg-white" >
-                @foreach($customers as $customer)
+                @forelse($customers as $customer)
                 <hr class="w-full  mt-3">
                 <div class="rounded-2xl flex flex-col items-center mt-1 border border-[#1E40AF66] h-auto w-full">
                     <table dir="ltr" class="w-full table-fixed items-center font-semibold justify-center text-center mx-auto">
@@ -422,7 +428,11 @@
                         </a>
                     </div>
                 </div>
-                @endforeach
+                @empty
+                <div class="flex justify-center gap-3 mt-5">
+                     هیچ مشتری ثبت نشده
+                </div>
+                @endforelse
             </div>
             <div class="flex flex-wrap gap-1 justify-center sm:hidden items-center mt-3 text-[10px]">
                 @if ($customers->lastPage() > 1)

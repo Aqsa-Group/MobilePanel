@@ -43,6 +43,10 @@ class Device extends Model
             default   => '--',
         };
     }
+    public function sale()
+{
+    return $this->belongsTo(Sale::class);
+}
     public function getCategoryFaAttribute()
     {
         return match ($this->category) {

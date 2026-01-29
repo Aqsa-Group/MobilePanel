@@ -208,7 +208,7 @@
                             </div>
                         </div>
                     </div>
-                    @foreach($payments as $payment)
+                    @forelse($payments as $payment)
                         <div class="p-4 ">
                             <div class="">
                                 <div class="text-center flex items-center justify-center font-bold text-lg text-[#1E40AF] mb-4">
@@ -272,7 +272,11 @@
                             </div>
                             <div class="border-b border-gray-300 mt-5"></div>
                         </div>
-                    @endforeach
+                    @empty
+                    <div class="flex justify-center gap-3 mt-5">
+                        هیچ معاشی ثبت نشده
+                    </div>
+                    @endforelse
                 </div>
                 <div class="hidden lg:block overflow-x-auto ">
                 <div class="flex justify-between mb-3">
@@ -321,7 +325,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($payments as $payment)
+                        @forelse($payments as $payment)
                         <tr class=" border-b-2 border-[#1E40AF]">
                             <td class="p-2 font-bold" >   {{ ($payments->currentPage() - 1) * $payments->perPage() + $loop->iteration }}</td>
                             <td class="p-2"> {{ $payment->employee->name }}</td>
@@ -355,7 +359,13 @@
                                 </i>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="11" class="p-4 text-center text-gray-400">
+                                هیچ معاشی ثبت نشده
+                            </td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
                 <div class="flex flex-wrap gap-1 justify-start  items-center mt-3 text-[10px]">

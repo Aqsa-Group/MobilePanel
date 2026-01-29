@@ -218,7 +218,7 @@
                             <th class="p-4 text-[12px] bg-blue-800 text-white">حذف</th>
                         </tr>
                         <tbody class="[&>tr:not(:last-child)>td]:border-b [&>tr:not(:last-child)>td]:border-blue-800 text-[10px]">
-                            @foreach($users as $index => $user)
+                            @forelse($users as $index => $user)
                             <tr>
                                 <td class="font-bold">{{ $users->firstItem() + $index }}</td>
                                 <td class="text-center" >
@@ -297,12 +297,18 @@
                                     </button>
                                 </td>
                             </tr>
-                            @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="13" class="p-4 text-center text-gray-400">
+                                    هیچ کاربری ثبت نشده
+                                </td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
                 <div class="print-area mt-2 md:hidden flex flex-col  px-2 gap-2 w-full">
-                    @foreach($users as $user)
+                    @forelse($users as $user)
                     <div class="rounded-xl flex   flex-col items-center  border border-[#1E40AF66] h-auto w-full">
                         <table dir="ltr" class="w-full table-fixed  items-center font-semibold justify-center text-center mx-auto">
                             <tr>
@@ -406,7 +412,11 @@
                             </button>
                         </div>
                     </div>
-                    @endforeach
+                    @empty
+                    <div class="flex justify-center gap-3 mt-5">
+                            هیچ کاربری ثبت نشده
+                    </div>
+                    @endforelse
                 </div>
                 <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
                     @if ($users->lastPage() > 1)

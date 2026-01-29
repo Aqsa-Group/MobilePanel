@@ -1,5 +1,4 @@
 <?php
-// Seller Panel
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Mobile\UserForm2;
 use App\Livewire\Mobile\Profile;
@@ -13,6 +12,8 @@ use App\Livewire\Mobile\CustomerEdit;
 use App\Livewire\Mobile\Cushfund;
 use App\Http\Controllers\CustomerController;
 use App\Livewire\Mobile\Employe;
+use App\Livewire\Mobile\Sell;
+use App\Livewire\Mobile\SellForm;
 use App\Http\Controllers\AuthController;
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
@@ -29,6 +30,7 @@ Route::get('/reports', function () { return view('Mobile.shop.reports');})->name
 Route::get('/inventory', function () { return view('Mobile.shop.inventory');})->name('inventory');
 Route::get('/inventory2', function () { return view('Mobile.shop.inventory2');})->name('inventory2');
 Route::get('/sell', function () { return view('Mobile.shop.sell');})->name('sell');
+Route::get('/sellform', function () { return view('Mobile.shop.sellform');})->name('sellform');
 Route::get('/salaryworkers', function () { return view('Mobile.shop.salaryworkers');})->name('salaryworkers');
 Route::get('/device-Form', function () { return view('Mobile.shop.deviceForm');})->name('device.form');
 Route::get('/borrowings-page', function () { return view('Mobile.shop.borrowings-page');})->name('borrowings');

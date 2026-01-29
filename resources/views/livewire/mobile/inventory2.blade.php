@@ -164,7 +164,7 @@
                                 </div>
                             </div>
                         </div>
-                        @foreach($products as $product)
+                        @forelse($products as $product)
                         <div class="p-4">
                             <div class="">
                                 <div class="grid grid-cols-2 gap-5 text-sm">
@@ -248,7 +248,11 @@
                             </div>
                             <div class="border-b border-gray-300 mt-5"></div>
                         </div>
-                    @endforeach
+                        @empty
+                        <div class="flex justify-center gap-3 mt-5">
+                            هیچ محصولی ثبت نشده
+                        </div>
+                    @endforelse
                         <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
                             @if ($products->lastPage() > 1)
                             <button
@@ -306,7 +310,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="w-full text-center border-2 border-[#1E40AF] text-sm border-collapse">
+                        <table class="w-full text-center text-sm border-collapse">
                             <thead class=" bg-[#1E40AF] text-white  border-b-2 border-[#1E40AF] text-center">
                                 <tr>
                                     <th class="p-2 text-[12px]">آیدی</th>
@@ -329,7 +333,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($products as $i => $product)
+                            @forelse($products as $i => $product)
                                 <tr class="hover:bg-gray-200 text-[10px] border-b-2 border-[#1E40AF]">
                                     <td class="p-2">{{ $i + 1 }}</td>
                                     <td class="p-2">
@@ -362,7 +366,13 @@
                                         </i>
                                     </td>
                                 </tr>
-                            @endforeach
+                                @empty
+                                <tr>
+                                    <td colspan="17" class="p-4 text-center text-gray-400">
+                                        هیچ محصولی ثبت نشده
+                                    </td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                         <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
