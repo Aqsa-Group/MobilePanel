@@ -47,12 +47,16 @@ class DeviceForm extends Component
         'imei.required'       => 'شماره IMEI الزامی است',
         'imei.unique'         => 'این IMEI قبلاً ثبت شده است',
     ];
-    private function convertToEnglishNumber($value)
-    {
-        $persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
-        $english = ['0','1','2','3','4','5','6','7','8','9'];
-        return str_replace($persian, $english, $value);
-    }
+   private function convertToEnglishNumber($value)
+{
+    if ($value === null) return null;
+    $persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+    $arabic  = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+    $english = ['0','1','2','3','4','5','6','7','8','9'];
+    $value = str_replace($persian, $english, $value);
+    $value = str_replace($arabic,  $english, $value);
+    return $value;
+}
     public function updatedBuyPrice($value)
     {
         $this->buy_price = $this->convertToEnglishNumber($value);

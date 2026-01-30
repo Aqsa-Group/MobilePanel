@@ -4,7 +4,7 @@
     <style>
         [x-cloak] { display: none !important; }
     </style>
-    <div x-data="{ tab: 'invoice' }" class="max-w-full ">
+    <div x-data="{ tab: 'invoice', counts: { invoice: {{ $sales->total() }},  debts: {{ $borrowings->total() }}, stock: {{ $products->total() }},  salary: {{ $salaryPayments->total() }},    withdraw: {{ $withdrawals->total() }}  }}" class="max-w-full">
         <section class="p-4 border mt-3 border-gray-300 rounded-xl">
             <span class="font-bold block mb-4">نوع گزارش:</span>
             <div class="hidden md:grid grid-cols-7 gap-4">
@@ -13,9 +13,7 @@
                     {id:'debts', label:'قرض‌ها'},
                     {id:'stock', label:'موجودی دستگاه‌ها'},
                     {id:'salary', label:'معاش کارمندان'},
-                    {id:'sold', label:'دستگاه‌های فروخته شده'},
                     {id:'withdraw', label:'برداشت‌ها'},
-                    {id:'sales', label:'گزارش فروشات'}
                 ]">
                     <button
                         @click="tab=item.id"
@@ -31,9 +29,7 @@
                     {id:'debts', label:'قرض‌ها'},
                     {id:'stock', label:'موجودی'},
                     {id:'salary', label:'معاش'},
-                    {id:'sold', label:'فروخته شده'},
                     {id:'withdraw', label:'برداشت'},
-                    {id:'sales', label:'فروشات'}
                 ]">
                     <button
                         @click="tab=item.id"
@@ -48,8 +44,7 @@
             <div class="w-full h-auto p-2 flex flex-row justify-between text-[20px]">
                 <div>
                     <span class="my-2 mb-6 font-bold">نتایج گزارش:</span>
-                    <span class=" text-[12px] text-center px-3 py-1 rounded-md bg-blue-800 text-white">
-                        20 مورد
+                    <span class=" text-[12px] text-center px-3 py-1 rounded-md bg-blue-800 text-white" x-text="counts[tab] + ' مورد'">
                     </span>
                 </div>
                 <div class="flex flex-wrap md:flex-nowrap gap-3 text-[10px]">
@@ -70,30 +65,8 @@
             <div x-show="tab==='invoice'" x-cloak>
                 <h2 class="font-bold mb-3">فاکتور فروش</h2>
                 <div class="bg-white p-4 rounded-xl shadow">
-                    <div x-show="tab==='one'" x-cloak class="hidden md:flex flex-col justify-center w-full h-auto gap-1 mt-2 ">
-                        <table class="w-full text-center border-separate border-spacing-0">
-                            <tr>
-                                <th class="p-2 text-[14px] bg-[#1E40AF] text-white ">آیدی</th>
-                                <th class="p-2 text-[14px] bg-[#1E40AF] text-white">نام مشتری</th>
-                                <th class="p-2 text-[14px] bg-[#1E40AF] text-white">مدل دستگاه</th>
-                                <th class="p-2 text-[14px] bg-[#1E40AF] text-white">قیمت</th>
-                                <th class="p-2 text-[14px] bg-[#1E40AF] text-white">شماره IMEI</th>
-                                <th class="p-2 text-[14px] bg-[#1E40AF] text-white ">تاریخ فروش</th>
-                            </tr>
-                            <tbody class="text-[13px] font-semibold">
-                                <tr>
-                                    <td>1</td>
-                                    <td>احمد عزیزی</td>
-                                    <td>سامسونگ A20</td>
-                                    <td>15000.000؋</td>
-                                    <td>0767567567</td>
-                                    <td>1404/2/30</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                     <div  class="hidden md:flex flex-col justify-center w-full h-auto gap-1 mt-2 ">
-                        <table class="w-full text-center border-b border-[#1E40AF] border-separate border-spacing-0">
+                        <table class="w-full text-center  border-collapse">
                             <tr>
                                 <th class="p-2 text-[12px] bg-[#1E40AF] text-white ">آیدی</th>
                                 <th class="p-2 text-[12px] bg-[#1E40AF] text-white">نام مشتری</th>
@@ -103,48 +76,73 @@
                                 <th class="p-2 text-[12px] bg-[#1E40AF] text-white ">تاریخ فروش</th>
                             </tr>
                             <tbody class="text-[13px] ">
-                                <tr >
-                                    <td class="p-2 font-bold text-[11px]">1</td>
-                                    <td class="p-2 font-bold text-[11px]">احمد عزیزی</td>
-                                    <td class="p-2 font-bold text-[11px]">سامسونگ A20</td>
-                                    <td class="p-2 font-bold text-[11px]">15000.000؋</td>
-                                    <td class="p-2 font-bold text-[11px]">0767567567</td>
-                                    <td class="p-2 font-bold text-[11px]">1404/2/30</td>
+                                @forelse($sales as $index => $sale)
+                                <tr class="border-b border-[#1E40AF]">
+                                    <td class="p-2 font-bold text-[11px]"> {{ $sales->firstItem() + $index }}</td>
+                                    <td class="p-2 font-bold text-[11px]"> {{ $sale->customer->name ?? '-' }}</td>
+                                    <td class="p-2 font-bold text-[11px]">{{ $sale->device_model }} </td>
+                                    <td class="p-2 font-bold text-[11px]">{{ number_format($sale->total_price) }}؋</td>
+                                    <td class="p-2 font-bold text-[11px]">{{ $sale->imei }}</td>
+                                    <td class="p-2 font-bold text-[11px]">{{ \Carbon\Carbon::parse($sale->created_at)->format('Y/m/d') }}</td>
                                 </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="6" class="p-4 text-center text-gray-400">
+                                        هیچ فروشی ثبت نشده
+                                    </td>
+                                </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
                     <div class="md:hidden mt-3 space-y-3">
+                        @forelse($sales as $sale)
                         <div class="grid  text-center grid-cols-2 gap-3 border border-[#1E40AF] rounded-xl p-3 text-[12px]">
                             <div>
                                 <span class="text-gray-500">نام مشتری</span>
-                                <div class="font-semibold mt-1">احمد عزیزی</div>
+                                <div class="font-semibold mt-1"> {{ $sale->customer->name ?? '-' }}</div>
                             </div>
                             <div>
                                 <span class="text-gray-500">مدل دستگاه</span>
-                                <div class="font-semibold mt-1">سامسونگ A20</div>
+                                <div class="font-semibold mt-1">{{ $sale->device_model }} </div>
                             </div>
                             <div>
                                 <span class="text-gray-500">قیمت</span>
-                                <div class="font-semibold mt-1">15000.000؋</div>
+                                <div class="font-semibold mt-1">{{ number_format($sale->total_price) }}؋</div>
                             </div>
                             <div>
                                 <span class="text-gray-500">شماره IMEI</span>
-                                <div class="font-semibold mt-1">0767567567</div>
+                                <div class="font-semibold mt-1">{{ $sale->imei }}</div>
                             </div>
                             <div  class="text-center col-span-2">
                                 <span class="text-gray-500">تاریخ فروش</span>
-                                <div class="font-semibold mt-1">1404/2/30</div>
+                                <div class="font-semibold mt-1">{{ \Carbon\Carbon::parse($sale->created_at)->format('Y/m/d') }}</div>
                             </div>
                         </div>
+                        @empty
+                        <div class="flex justify-center gap-3 mt-5">
+                            هیچ فروشی ثبت نشده
+                        </div>
+                        @endforelse
                     </div>
-                    <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
-                        <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">‹</button>
-                        <button class="w-7 h-7 rounded-md border border-blue-500 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs font-medium">1</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">2</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">...</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">25</button>
-                        <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">›</button>
+                    <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
+                        @if ($sales->lastPage() > 1)
+                            <button
+                                wire:click="previousPage"
+                                @disabled($sales->onFirstPage())
+                                class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                                قبلی
+                            </button>
+                            <span class="mx-2 text-sm font-medium">
+                                {{ $sales->currentPage() }} از {{ $sales->lastPage() }}
+                            </span>
+                            <button
+                                wire:click="nextPage"
+                                @disabled($sales->onLastPage())
+                                class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                                بعدی
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -152,58 +150,83 @@
                 <h2 class="font-bold mb-3">قرض‌ها</h2>
                 <div class="bg-white p-4 rounded-xl shadow">
                     <div  class="hidden md:flex flex-col justify-center w-full h-auto gap-1 mt-2  rounded-xl">
-                        <table class="w-full text-center border-separate border-b border-[#1E40AF] border-spacing-0">
+                        <table class="w-full text-center border-collapse">
                             <tr>
                                 <th class="p-2 text-[12px] bg-[#1E40AF] text-white">آیدی</th>
                                 <th class="p-2 text-[12px] bg-[#1E40AF] text-white">نام مشتری</th>
-                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white">قرض‌ها </th>
+                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white">قرض </th>
                                 <th class="p-2 text-[12px] bg-[#1E40AF] text-white">مبلغ کل</th>
                                 <th class="p-2 text-[12px] bg-[#1E40AF] text-white"> مبلغ دریافت </th>
                                 <th class="p-2 text-[12px] bg-[#1E40AF] text-white ">تاریخ </th>
                             </tr>
                             <tbody class="text-[13px] ">
-                                <tr>
-                                    <td class="p-2 text-[11px] font-bold">1</td>
-                                    <td class="p-2 text-[11px] font-bold">احمد عزیزی</td>
-                                    <td class="p-2 text-[11px] font-bold">سامسونگ </td>
-                                    <td class="p-2 text-[11px] font-bold">15000.000؋</td>
-                                    <td class="p-2 text-[11px] font-bold">15000.000؋</td>
-                                    <td class="p-2 text-[11px] font-bold">1404/2/30</td>
+                                @forelse($borrowings as $index => $borrowing)
+                                <tr class="border-b-2 border-[#1E40AF] ">
+                                    <td class="p-2 text-[11px] font-bold">{{ $borrowings->firstItem() + $index }}</td>
+                                    <td class="p-2 text-[11px] font-bold">{{ $borrowing->customer->name ?? '-' }} </td>
+                                    <td class="p-2 text-[11px] font-bold">{{ $borrowing->item_name ?? '-' }} </td>
+                                    <td class="p-2 text-[11px] font-bold">{{ number_format($borrowing->total_amount) }}؋</td>
+                                    <td class="p-2 text-[11px] font-bold">{{ number_format($borrowing->paid_amount) }}؋</td>
+                                    <td class="p-2 text-[11px] font-bold">{{ \Carbon\Carbon::parse($borrowing->created_at)->format('Y/m/d') }}</td>
                                 </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="6" class="p-4 text-center text-gray-400">
+                                        هیچ قرضی ثبت نشده
+                                    </td>
+                                </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
                     <div class="md:hidden mt-3 space-y-3">
+                        @forelse($borrowings as $borrowing)
                         <div class="grid text-center grid-cols-2 gap-3 border border-[#1E40AF] rounded-xl p-3 text-[12px]">
                             <div>
                                 <span class="text-gray-500">نام مشتری</span>
-                                <div class="font-semibold mt-1">احمد عزیزی</div>
+                                <div class="font-semibold mt-1">{{ $borrowing->customer->name ?? '-' }} </div>
                             </div>
                             <div>
                                 <span class="text-gray-500"> قرض</span>
-                                <div class="font-semibold mt-1">سامسونگ </div>
+                                <div class="font-semibold mt-1">{{ $borrowing->item_name ?? '-' }} </div>
                             </div>
                             <div>
                                 <span class="text-gray-500">قیمت کل</span>
-                                <div class="font-semibold mt-1">15000.000؋</div>
+                                <div class="font-semibold mt-1">{{ number_format($borrowing->total_amount) }}؋</div>
                             </div>
                             <div>
                                 <span class="text-gray-500"> قیمت پرداخت شده</span>
-                                <div class="font-semibold mt-1">0767567567</div>
+                                <div class="font-semibold mt-1">{{ number_format($borrowing->paid_amount) }}؋</div>
                             </div>
                             <div  class="text-center col-span-2">
                                 <span class="text-gray-500">تاریخ فروش</span>
-                                <div class="font-semibold mt-1">1404/2/30</div>
+                                <div class="font-semibold mt-1">{{ \Carbon\Carbon::parse($borrowing->created_at)->format('Y/m/d') }}</div>
                             </div>
                         </div>
+                        @empty
+                        <div class="flex justify-center gap-3 mt-5">
+                            هیچ قرضی ثبت نشده
+                        </div>
+                        @endforelse
                     </div>
-                    <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
-                        <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">‹</button>
-                        <button class="w-7 h-7 rounded-md border border-blue-500 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs font-medium">1</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">2</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">...</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">25</button>
-                        <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">›</button>
+                    <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
+                        @if ($borrowings->lastPage() > 1)
+                            <button
+                                wire:click="previousPage"
+                                @disabled($borrowings->onFirstPage())
+                                class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                                قبلی
+                            </button>
+                            <span class="mx-2 text-sm font-medium">
+                                {{ $borrowings->currentPage() }} از {{ $borrowings->lastPage() }}
+                            </span>
+                            <button
+                                wire:click="nextPage"
+                                @disabled($borrowings->onLastPage())
+                                class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                                بعدی
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -211,64 +234,97 @@
                 <h2 class="font-bold mb-3">موجودی دستگاه‌ها</h2>
                 <div class="bg-white p-4 rounded-xl shadow">
                     <div  class="hidden md:flex flex-col justify-center w-full h-auto gap-1 mt-2  rounded-xl">
-                        <table class="w-full text-center border-b border-[#1E40AF] border-separate border-spacing-0">
+                        <table class="w-full text-center border-collapse">
                             <tr>
                                 <th class="p-2 text-[12px] bg-[#1E40AF] text-white ">آیدی</th>
-                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white">عنوان </th>
-                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white">مدل دستگاه </th>
-                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white"> موجودی کل</th>
+                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white">نام دستگاه </th>
+                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white">کتگوری </th>
+                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white"> تعداد </th>
+                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white">  قیمت خرید</th>
+                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white">  قیمت فروش</th>
                                 <th class="p-2 text-[12px] bg-[#1E40AF] text-white">  حالت  </th>
                             </tr>
-                            <tbody class="text-[13px] ">
-                                <tr>
-                                    <td class="p-2 text-[11px] font-bold">1</td>
-                                    <td class="p-2 text-[11px] font-bold">احمد عزیزی</td>
-                                    <td class="p-2 text-[11px] font-bold">سامسونگ </td>
-                                    <td class="p-2 text-[11px] font-bold">15000.000؋</td>
-                                    <td class="p-2 text-[11px] font-bold">15000.000؋</td>
+                            <tbody >
+                                @forelse($products as $index => $product)
+                                <tr class="border-b-2 border-[#1E40AF] ">
+                                    <td class="p-2 text-[11px] font-bold">{{ $products->firstItem() + $index }}</td>
+                                    <td class="p-2 text-[11px] font-bold">{{ $product->name }}</td>
+                                    <td class="p-2 text-[11px] font-bold">{{ $product->category }} </td>
+                                    <td class="p-2 text-[11px] font-bold">{{ $product->quantity }}</td>
+                                    <td class="p-2 text-[11px] font-bold">{{ number_format($product->buy_price) }}؋</td>
+                                    <td class="p-2 text-[11px] font-bold">{{ number_format($product->sell_price_retail) }}؋</td>
+                                    <td class="p-2 text-[11px] font-bold">{{ $product->status }}</td>
                                 </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="7" class="p-4 text-center text-gray-400">
+                                        هیچ دستگاهی ثبت نشده
+                                    </td>
+                                </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
                     <div class="md:hidden mt-3 space-y-3">
+                        @forelse($products as $product)
                         <div class="grid text-center grid-cols-2 gap-3 border border-[#1E40AF] rounded-xl p-3 text-[12px]">
                             <div>
-                                <span class="text-gray-500">نام مشتری</span>
-                                <div class="font-semibold mt-1">احمد عزیزی</div>
+                                <span class="text-gray-500">نام دستگاه</span>
+                                <div class="font-semibold mt-1">{{ $product->name }} </div>
                             </div>
                             <div>
-                                <span class="text-gray-500"> قرض</span>
-                                <div class="font-semibold mt-1">سامسونگ </div>
+                                <span class="text-gray-500"> کتگوری</span>
+                                <div class="font-semibold mt-1">>{{ $product->category }} </div>
                             </div>
                             <div>
-                                <span class="text-gray-500">قیمت کل</span>
-                                <div class="font-semibold mt-1">15000.000؋</div>
+                                <span class="text-gray-500"> تعداد</span>
+                                <div class="font-semibold mt-1">{{ $product->quantity }}</div>
                             </div>
                             <div>
-                                <span class="text-gray-500"> قیمت پرداخت شده</span>
-                                <div class="font-semibold mt-1">0767567567</div>
+                                <span class="text-gray-500"> قیمت  خرید</span>
+                                <div class="font-semibold mt-1">{{ number_format($product->buy_price) }}؋</div>
                             </div>
-                            <div  class="text-center col-span-2">
-                                <span class="text-gray-500">تاریخ فروش</span>
-                                <div class="font-semibold mt-1">1404/2/30</div>
+                            <div>
+                                <span class="text-gray-500"> قیمت  فروش</span>
+                                <div class="font-semibold mt-1">{{ number_format($product->sell_price_retail) }}؋</div>
+                            </div>
+                            <div  class="text-center ">
+                                <span class="text-gray-500"> حالت</span>
+                                <div class="font-semibold mt-1">{{ $product->status }}</div>
                             </div>
                         </div>
+                        @empty
+                        <div class="flex justify-center gap-3 mt-5">
+                            هیچ دستگاهی ثبت نشده
+                        </div>
+                        @endforelse
                     </div>
-                    <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
-                        <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">‹</button>
-                        <button class="w-7 h-7 rounded-md border border-blue-500 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs font-medium">1</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">2</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">...</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">25</button>
-                        <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">›</button>
-                    </div>
-                </div>
+                    <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
+                    @if ($products->lastPage() > 1)
+                        <button
+                            wire:click="previousPage"
+                            @disabled($products->onFirstPage())
+                            class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                            قبلی
+                        </button>
+                        <span class="mx-2 text-sm font-medium">
+                            {{ $products->currentPage() }} از {{ $products->lastPage() }}
+                        </span>
+                        <button
+                            wire:click="nextPage"
+                            @disabled($products->onLastPage())
+                            class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                            بعدی
+                        </button>
+                    @endif
+            </div>
+            </div>
             </div>
             <div x-show="tab==='salary'" x-cloak>
                 <h2 class="font-bold mb-3">معاش کارمندان</h2>
                 <div class="bg-white p-4 rounded-xl shadow">
                 <div  class="hidden md:flex flex-col justify-center w-full h-auto gap-1 mt-2 rounded-xl">
-                    <table class="w-full text-center border-b border-[#1E40AF]  border-separate border-spacing-0">
+                    <table class="w-full text-center   border-collapse">
                         <tr>
                             <th class="p-2 text-[12px] bg-[#1E40AF] text-white">آیدی</th>
                             <th class="p-2 text-[12px] bg-[#1E40AF] text-white">نام کارمند</th>
@@ -277,224 +333,147 @@
                             <th class="p-2 text-[12px] bg-[#1E40AF] text-white ">شغل </th>
                         </tr>
                         <tbody class="text-[13px] ">
-                            <tr>
-                                <td  class="p-2 text-[11px] font-bold ">1</td>
-                                <td  class="p-2 text-[11px] font-bold ">احمد عزیزی</td>
-                                <td  class="p-2 text-[11px] font-bold ">سامسونگ </td>
-                                <td  class="p-2 text-[11px] font-bold ">15000.000؋</td>
-                                <td  class="p-2 text-[11px] font-bold ">15000.000؋</td>
+                            @forelse($salaryPayments as $index => $payment)
+                            <tr class="border-b-2 border-[#1E40AF]">
+                                <td  class="p-2 text-[11px] font-bold ">{{ $salaryPayments->firstItem() + $index }}</td>
+                                <td  class="p-2 text-[11px] font-bold ">{{ $payment->employee->name }} </td>
+                                <td  class="p-2 text-[11px] font-bold ">{{ \Morilog\Jalali\Jalalian::fromDateTime($payment->payment_date)->format('Y/m/d') }} </td>
+                                <td  class="p-2 text-[11px] font-bold ">{{ number_format($payment->amount) }}؋</td>
+                                <td  class="p-2 text-[11px] font-bold "> {{ $payment->employee->position ?? '—' }}</td>
                             </tr>
+                            @empty
+                            <tr>
+                                <td colspan="5" class="p-4 text-center text-gray-400">
+                                    هیچ پرداخت معاشی ثبت نشده
+                                </td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
                 <div class="md:hidden mt-3 space-y-3">
+                    @forelse($salaryPayments as $payment)
                     <div class="grid text-center grid-cols-2 gap-3 border border-[#1E40AF] rounded-xl p-3 text-[12px]">
                         <div>
-                            <span class="text-gray-500">نام مشتری</span>
-                            <div class="font-semibold mt-1">احمد عزیزی</div>
+                            <span class="text-gray-500">نام کارمند</span>
+                            <div class="font-semibold mt-1"> {{ $payment->employee->name }}</div>
                         </div>
                         <div>
-                            <span class="text-gray-500"> قرض</span>
-                            <div class="font-semibold mt-1">سامسونگ </div>
+                            <span class="text-gray-500"> تاریخ دریافت</span>
+                            <div class="font-semibold mt-1">{{ \Morilog\Jalali\Jalalian::fromDateTime($payment->payment_date)->format('Y/m/d') }}  </div>
                         </div>
                         <div>
-                            <span class="text-gray-500">قیمت کل</span>
-                            <div class="font-semibold mt-1">15000.000؋</div>
+                            <span class="text-gray-500">مبلغ کل</span>
+                            <div class="font-semibold mt-1">{{ number_format($payment->amount) }}؋</div>
                         </div>
-                        <div>
-                            <span class="text-gray-500"> قیمت پرداخت شده</span>
-                            <div class="font-semibold mt-1">0767567567</div>
-                        </div>
-                        <div  class="text-center col-span-2">
-                            <span class="text-gray-500">تاریخ فروش</span>
-                            <div class="font-semibold mt-1">1404/2/30</div>
+                        <div  class="text-center ">
+                            <span class="text-gray-500"> شغل</span>
+                            <div class="font-semibold mt-1">{{ $payment->employee->position ?? '—' }}</div>
                         </div>
                     </div>
+                    @empty
+                    <div class="flex justify-center gap-3 mt-5">
+                        هیچ پرداخت معاشی ثبت نشده
+                    </div>
+                    @endforelse
                 </div>
-                <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
-                    <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">‹</button>
-                    <button class="w-7 h-7 rounded-md border border-blue-500 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs font-medium">1</button>
-                    <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">2</button>
-                    <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">...</button>
-                    <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">25</button>
-                    <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">›</button>
-                </div>
+                <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
+                @if ($salaryPayments->lastPage() > 1)
+                    <button
+                        wire:click="previousPage"
+                        @disabled($salaryPayments->onFirstPage())
+                        class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                        قبلی
+                    </button>
+                    <span class="mx-2 text-sm font-medium">
+                        {{ $salaryPayments->currentPage() }} از {{ $salaryPayments->lastPage() }}
+                    </span>
+                    <button
+                        wire:click="nextPage"
+                        @disabled($salaryPayments->onLastPage())
+                        class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                        بعدی
+                    </button>
+                @endif
             </div>
             </div>
-            <div x-show="tab==='sold'" x-cloak>
-                <h2 class="font-bold mb-3">دستگاه‌های فروخته شده</h2>
-                <div class="bg-white p-4 rounded-xl shadow">
-                    <div  class="hidden md:flex flex-col justify-center w-full h-auto gap-1 mt-2 rounded-xl">
-                        <table class="w-full text-center border-b border-[#1E40AF]  border-separate border-spacing-0">
-                            <tr>
-                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white ">آیدی</th>
-                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white">نام مشتری</th>
-                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white">قرض‌ها </th>
-                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white">مبلغ کل</th>
-                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white"> مبلغ دریافت </th>
-                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white ">تاریخ </th>
-                            </tr>
-                            <tbody class="text-[11px] font-bold">
-                                <tr>
-                                    <td class="p-2">1</td>
-                                    <td class="p-2">احمد عزیزی</td>
-                                    <td class="p-2">سامسونگ </td>
-                                    <td class="p-2">15000.000؋</td>
-                                    <td class="p-2">15000.000؋</td>
-                                    <td class="p-2">1404/2/30</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="md:hidden mt-3 space-y-3">
-                        <div class="grid text-center grid-cols-2 gap-3 border border-[#1E40AF] rounded-xl p-3 text-[12px]">
-                            <div>
-                                <span class="text-gray-500">نام مشتری</span>
-                                <div class="font-semibold mt-1">احمد عزیزی</div>
-                            </div>
-                            <div>
-                                <span class="text-gray-500"> قرض</span>
-                                <div class="font-semibold mt-1">سامسونگ </div>
-                            </div>
-                            <div>
-                                <span class="text-gray-500">قیمت کل</span>
-                                <div class="font-semibold mt-1">15000.000؋</div>
-                            </div>
-                            <div>
-                                <span class="text-gray-500"> قیمت پرداخت شده</span>
-                                <div class="font-semibold mt-1">0767567567</div>
-                            </div>
-                            <div  class="text-center col-span-2">
-                                <span class="text-gray-500">تاریخ فروش</span>
-                                <div class="font-semibold mt-1">1404/2/30</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
-                        <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">‹</button>
-                        <button class="w-7 h-7 rounded-md border border-blue-500 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs font-medium">1</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">2</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">...</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">25</button>
-                        <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">›</button>
-                    </div>
-                </div>
             </div>
             <div x-show="tab==='withdraw'" x-cloak>
                 <h2 class="font-bold mb-3">برداشت‌ها</h2>
                 <div class="bg-white p-4 rounded-xl shadow">
                     <div  class="hidden md:flex flex-col justify-center w-full h-auto gap-1 mt-2  rounded-xl">
-                        <table class="w-full text-center border-b border-[#1E40AF] border-separate border-spacing-0">
+                        <table class="w-full text-center  border-collapse">
                             <tr>
                                 <th class="p-2 text-[12px] bg-[#1E40AF] text-white ">آیدی</th>
-                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white">نام مشتری</th>
-                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white">قرض‌ها </th>
-                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white">مبلغ کل</th>
-                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white"> مبلغ دریافت </th>
+                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white"> نوع برداشت</th>
+                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white">مبلغ </th>
+                                <th class="p-2 text-[12px] bg-[#1E40AF] text-white"> توضیحات</th>
                                 <th class="p-2 text-[12px] bg-[#1E40AF] text-white ">تاریخ </th>
                             </tr>
                             <tbody class="text-[11px] font-bold">
-                                <tr>
-                                    <td class="p-2">1</td>
-                                    <td class="p-2">احمد عزیزی</td>
-                                    <td class="p-2">سامسونگ </td>
-                                    <td class="p-2">15000.000؋</td>
-                                    <td class="p-2">15000.000؋</td>
-                                    <td class="p-2">1404/2/30</td>
+                                @forelse($withdrawals as $index => $withdrawal)
+                                <tr class="border-b border-[#1E40AF]">
+                                    <td class="p-2">{{ $withdrawals->firstItem() + $index }}</td>
+                                    <td class="p-2">{{ $withdrawal->withdrawal_type }} </td>
+                                    <td class="p-2">{{ number_format($withdrawal->amount) }}؋ </td>
+                                    <td class="p-2">{{ $withdrawal->description }}</td>
+                                    <td class="p-2">{{ \Morilog\Jalali\Jalalian::fromDateTime($withdrawal->withdrawal_date)->format('Y/m/d') }}</td>
                                 </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="5" class="p-4 text-center text-gray-400">
+                                        هیچ برداشتی ثبت نشده
+                                    </td>
+                                </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
                     <div class="md:hidden mt-3 space-y-3">
+                        @forelse($withdrawals as $withdrawal)
                         <div class="grid text-center grid-cols-2 gap-3 border border-[#1E40AF] rounded-xl p-3 text-[12px]">
                             <div>
-                                <span class="text-gray-500">نام مشتری</span>
-                                <div class="font-semibold mt-1">احمد عزیزی</div>
+                                <span class="text-gray-500">نوع برداشت</span>
+                                <div class="font-semibold mt-1">{{ $withdrawal->withdrawal_type }} </div>
                             </div>
                             <div>
-                                <span class="text-gray-500"> قرض</span>
-                                <div class="font-semibold mt-1">سامسونگ </div>
+                                <span class="text-gray-500"> مبلغ</span>
+                                <div class="font-semibold mt-1">{{ number_format($withdrawal->amount) }}؋ </div>
                             </div>
                             <div>
-                                <span class="text-gray-500">قیمت کل</span>
-                                <div class="font-semibold mt-1">15000.000؋</div>
+                                <span class="text-gray-500"> توضیحات</span>
+                                <div class="font-semibold mt-1">{{ $withdrawal->description }}</div>
                             </div>
                             <div>
-                                <span class="text-gray-500"> قیمت پرداخت شده</span>
-                                <div class="font-semibold mt-1">0767567567</div>
-                            </div>
-                            <div  class="text-center col-span-2">
-                                <span class="text-gray-500">تاریخ فروش</span>
-                                <div class="font-semibold mt-1">1404/2/30</div>
+                                <span class="text-gray-500">   تاریخ برداشت</span>
+                                <div class="font-semibold mt-1">{{ \Morilog\Jalali\Jalalian::fromDateTime($withdrawal->withdrawal_date)->format('Y/m/d') }}</div>
                             </div>
                         </div>
+                        @empty
+                        <div class="text-center text-gray-400 text-sm">
+                            هیچ برداشتی ثبت نشده
+                        </div>
+                        @endforelse
                     </div>
-                    <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
-                        <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">‹</button>
-                        <button class="w-7 h-7 rounded-md border border-blue-500 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs font-medium">1</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">2</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">...</button>
-                        <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">25</button>
-                        <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">›</button>
+                    <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
+                        @if ($withdrawals->lastPage() > 1)
+                            <button
+                                wire:click="previousPage"
+                                @disabled($withdrawals->onFirstPage())
+                                class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                                قبلی
+                            </button>
+                            <span class="mx-2 text-sm font-medium">
+                                {{ $withdrawals->currentPage() }} از {{ $withdrawals->lastPage() }}
+                            </span>
+                            <button
+                                wire:click="nextPage"
+                                @disabled($withdrawals->onLastPage())
+                                class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                                بعدی
+                            </button>
+                        @endif
                     </div>
-                </div>
-            </div>
-            <div x-show="tab==='sales'" x-cloak>
-                <h2 class="font-bold mb-3">گزارش فروشات</h2>
-                <div class="bg-white p-4 rounded-xl shadow">
-                <div  class="hidden md:flex flex-col justify-center w-full h-auto gap-1 mt-2  rounded-xl">
-                    <table class="w-full text-center border-b border-[#1E40AF] border-separate border-spacing-0">
-                        <tr>
-                            <th class="p-2 text-[12px] bg-[#1E40AF] text-white ">آیدی</th>
-                            <th class="p-2 text-[12px] bg-[#1E40AF] text-white">نام مشتری</th>
-                            <th class="p-2 text-[12px] bg-[#1E40AF] text-white">قرض‌ها </th>
-                            <th class="p-2 text-[12px] bg-[#1E40AF] text-white">مبلغ کل</th>
-                            <th class="p-2 text-[12px] bg-[#1E40AF] text-white"> مبلغ دریافت </th>
-                            <th class="p-2 text-[12px] bg-[#1E40AF] text-white ">تاریخ </th>
-                        </tr>
-                        <tbody class="text-[11px] font-bold">
-                            <tr>
-                                <td class="p-2">1</td>
-                                <td class="p-2">احمد عزیزی</td>
-                                <td class="p-2">سامسونگ </td>
-                                <td class="p-2">15000.000؋</td>
-                                <td class="p-2">15000.000؋</td>
-                                <td class="p-2">1404/2/30</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="md:hidden mt-3 space-y-3">
-                    <div class="grid text-center grid-cols-2 gap-3 border border-[#1E40AF] rounded-xl p-3 text-[12px]">
-                        <div>
-                            <span class="text-gray-500">نام مشتری</span>
-                            <div class="font-semibold mt-1">احمد عزیزی</div>
-                        </div>
-                        <div>
-                            <span class="text-gray-500"> قرض</span>
-                            <div class="font-semibold mt-1">سامسونگ </div>
-                        </div>
-                        <div>
-                            <span class="text-gray-500">قیمت کل</span>
-                            <div class="font-semibold mt-1">15000.000؋</div>
-                        </div>
-                        <div>
-                            <span class="text-gray-500"> قیمت پرداخت شده</span>
-                            <div class="font-semibold mt-1">0767567567</div>
-                        </div>
-                        <div  class="text-center col-span-2">
-                            <span class="text-gray-500">تاریخ فروش</span>
-                            <div class="font-semibold mt-1">1404/2/30</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
-                    <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">‹</button>
-                    <button class="w-7 h-7 rounded-md border border-blue-500 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs font-medium">1</button>
-                    <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">2</button>
-                    <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">...</button>
-                    <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">25</button>
-                    <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">›</button>
                 </div>
             </div>
         </section>

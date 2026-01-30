@@ -268,6 +268,20 @@
                     </svg>
                     <span class="text-[15px]">خدمات و تعمیرات</span>
                 </a>
+                <a data-section="fix" href="{{ route('register') }}"
+                    class="menu-btn group w-full text-right flex gap-3 rounded-xl px-2 py-2 text-sm transition hover:text-white
+                    {{ request()->routeIs('register') ? 'bg-[#1E40AF] text-white' : 'text-gray-700 hover:bg-[#1E40AF] ' }}"
+                    style="cursor: pointer;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 16.95H6.21C2.84 16.95 2 16.11 2 12.74V6.74003C2 3.37003 2.84 2.53003 6.21 2.53003H16.74C20.11 2.53003 20.95 3.37003 20.95 6.74003" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10 21.4699V16.95" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12.95H10" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6.73999 21.47H9.99999" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 12.8V18.51C22 20.88 21.41 21.47 19.04 21.47H15.49C13.12 21.47 12.53 20.88 12.53 18.51V12.8C12.53 10.43 13.12 9.83997 15.49 9.83997H19.04C21.41 9.83997 22 10.43 22 12.8Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17.2445 18.25H17.2535" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="text-[15px]">ثبت دستگاه  </span>
+                </a>
             </div>
         </nav>
     </aside>
@@ -277,7 +291,6 @@
         const sidebar  = document.getElementById('sidebar');
         const closeBtn = document.getElementById('closeSidebar');
         const menuButtons = document.querySelectorAll('.menu-btn');
-        // بک‌دراپ (موبایل)
         let backdrop = document.getElementById('sidebarBackdrop');
         if (!backdrop) {
             backdrop = document.createElement('div');
@@ -297,7 +310,6 @@
             document.documentElement.classList.remove('overflow-hidden');
             openBtn?.setAttribute('aria-expanded', 'false');
         };
-        // Toggle فقط در موبایل
         const toggle = () => {
             if (window.innerWidth >= 1024) return;
             if (sidebar.classList.contains('translate-x-full')) open();
@@ -307,7 +319,6 @@
         closeBtn?.addEventListener('click', close);
         backdrop.addEventListener('click', close);
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
-        // Active state
         menuButtons.forEach(btn => {
             btn.addEventListener('click', () => {
             menuButtons.forEach(b => b.classList.remove('active', 'bg-[#1E40AF]', 'text-white'));
@@ -315,7 +326,6 @@
             if (window.innerWidth < 1024) close();
             });
         });
-        // ریسایز به دسکتاپ
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 1024) {
             backdrop.classList.add('hidden');
@@ -325,7 +335,6 @@
         });
         const profileBtn  = document.getElementById('profileButton');
         const profileMenu = document.getElementById('profileMenu');
-
         profileBtn?.addEventListener('click', (e) => {
             e.stopPropagation();
             profileMenu?.classList.toggle('hidden');

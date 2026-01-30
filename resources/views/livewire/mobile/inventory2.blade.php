@@ -103,7 +103,7 @@
                         <div class="relative">
                             <h1>آپلود عکس محصول:</h1>
                             <div class="relative w-full">
-                                <input   wire:model="image"   type="file"   id="imageInput"  class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"   >
+                                <input   wire:model.defer="image"   type="file"   id="imageInput"  class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"   >
                                 <div class="w-full text-xs input-field rounded-lg  py-3 mt-1 flex items-center border h-12">
                                     <div class="flex-1 flex justify-start items-center space-x-2">
                                         @if($image)
@@ -167,11 +167,11 @@
                         @forelse($products as $product)
                         <div class="p-4">
                             <div class="">
-                                <div class="grid grid-cols-2 gap-5 text-sm">
+                                <div class="grid grid-cols-2 gap-5 text-center text-sm">
                                     <div>
                                         <div class="text-gray-600 text-xs font-semibold mb-1"> عکس </div>
-                                        <div class="text-gray-900 font-bold"> @if($product->image)
-                                            <img src="{{ asset('storage/'.$product->image) }}" class="w-10">
+                                        <div class="text-gray-900 font-bold flex justify-center"> @if($product->image)
+                                            <img src="{{ asset('storage/'.$product->image) }}" class="w-10 h-10  rounded-full">
                                         @endif </div>
                                     </div>
                                     <div>
@@ -196,7 +196,7 @@
                                     </div>
                                     <div class="">
                                         <div class="text-gray-600 text-xs font-semibold mb-1">ادمین </div>
-                                        <div class="text-gray-900 font-bold">  {{ $product->company  }}</div>
+                                        <div class="text-gray-900 font-bold">  @if($product->admin)   {{ $product->admin->name }} ({{ $product->admin->rule }})   @else     --  @endif</div>
                                     </div>
                                     <div class="">
                                         <div class="text-gray-600 text-xs font-semibold mb-1">قیمت خرید </div>
@@ -228,14 +228,12 @@
                                     </div>
                                 </div>
                                 <div class="flex justify-center gap-3 mt-5">
-                                    <button wire:click="edit({{ $product->id }})" class="flex items-center gap-1  border-blue-600 border border-2 e py-2 px-3 rounded-lg text-xs">
+                                    <button wire:click="edit({{ $product->id }})" class="flex items-center gap-1 text-[#1C274C] border-[#1C274C] border border-2 e py-2 px-3 rounded-lg text-xs">
                                         <i class="bi bi-pencil-square">
                                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                                         </i> چاپ
                                     </button>
-                                </div>
-                                <div class="flex justify-center gap-3 mt-5">
-                                    <button wire:click="edit({{ $product->id }})" class="flex items-center gap-1  border-blue-600 border border-2 e py-2 px-3 rounded-lg text-xs">
+                                    <button wire:click="edit({{ $product->id }})" class="flex items-center gap-1 text-[#1E40AF]  border-blue-800 border border-2 e py-2 px-3 rounded-lg text-xs">
                                         <i class="bi bi-pencil-square">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -334,30 +332,31 @@
                             </thead>
                             <tbody>
                             @forelse($products as $i => $product)
-                                <tr class="hover:bg-gray-200 text-[10px] border-b-2 border-[#1E40AF]">
-                                    <td class="p-2">{{ $i + 1 }}</td>
+                                <tr class=" text-[10px] border-b-2 border-[#1E40AF]">
+                                    <td class="p-2 font-bold">{{ $products->firstItem() + $i }}</td>
                                     <td class="p-2">
-                                        @if($product->image) <img src="{{ asset('storage/'.$product->image) }}" class="w-10">   @endif
+                                        @if($product->image) <img src="{{ asset('storage/'.$product->image) }}" class="w-10 block mx-auto  h-10 rounded-full">   @endif
                                     </td>
                                     <td class="p-2">{{ $product->barcode }}</td>
                                     <td class="p-2">{{ $product->name }}</td>
                                     <td class="p-2">{{ $product->category }}</td>
                                     <td class="p-2">{{ $product->status }}</td>
-                                    <td class="p-2">{{ $product->status }}</td>
+                                    <td class="p-2">@if($product->admin)   {{ $product->admin->name }} ({{ $product->admin->rule }})   @else     --  @endif</td>
                                     <td class="p-2">{{ $product->company }}</td>
                                     <td class="p-2">{{ ($product->buy_price) }}؋</td>
                                     <td class="p-2">{{ ($product->sell_price_retail) }}؋</td>
                                     <td class="p-2">{{ ($product->sell_price_wholesale) }}؋</td>
                                     <td class="p-2">{{ ($product->total_buy) }}؋</td>
+                                    <td class="p-2">{{ ($product->total_buy) }}؋</td>
                                     <td class="p-2">{{ ($product->profit_total) }}؋</td>
                                     <td class="p-2">{{ $product->quantity }}</td>
                                     <td class="p-2">
-                                        <i  wire:click="$emit('editProduct', {{ $product->id }})" class="text-blue-600 text-lg cursor-pointer">
+                                        <i  wire:click="$emit('editProduct', {{ $product->id }})" class="text-blue-800 flex justify-center text-lg cursor-pointer">
                                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                                         </i>
                                     </td>
                                     <td class="p-2">
-                                        <i  wire:click="$emit('editProduct', {{ $product->id }})" class="text-blue-600 text-lg cursor-pointer">
+                                        <i  wire:click="$emit('editProduct', {{ $product->id }})" class="text-blue-800 flex justify-center text-lg cursor-pointer">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M16.0399 3.01976L8.15988 10.8998C7.85988 11.1998 7.55988 11.7898 7.49988 12.2198L7.06988 15.2298C6.90988 16.3198 7.67988 17.0798 8.76988 16.9298L11.7799 16.4998C12.1999 16.4398 12.7899 16.1398 13.0999 15.8398L20.9799 7.95976C22.3399 6.59976 22.9799 5.01976 20.9799 3.01976C18.9799 1.01976 17.3999 1.65976 16.0399 3.01976Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>

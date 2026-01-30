@@ -274,7 +274,7 @@
                         </div>
                     @empty
                     <div class="flex justify-center gap-3 mt-5">
-                        هیچ معاشی ثبت نشده
+                        هیچ پرداخت معاشی ثبت نشده
                     </div>
                     @endforelse
                 </div>
@@ -362,7 +362,7 @@
                         @empty
                         <tr>
                             <td colspan="11" class="p-4 text-center text-gray-400">
-                                هیچ معاشی ثبت نشده
+                                هیچ پرداخت معاشی ثبت نشده
                             </td>
                         </tr>
                         @endforelse

@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 return new class extends Migration
 {
   public function up()
@@ -15,7 +13,6 @@ return new class extends Migration
         $table->text('note')->nullable();
         $table->timestamps();
     });
-
     Schema::create('inventories', function (Blueprint $table) {
         $table->id();
         $table->string('category');
@@ -27,11 +24,9 @@ return new class extends Migration
         $table->timestamps();
     });
 }
-
 public function down()
 {
     Schema::dropIfExists('inventories');
     Schema::dropIfExists('sales');
 }
-
 };

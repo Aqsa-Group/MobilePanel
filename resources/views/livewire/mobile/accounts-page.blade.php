@@ -323,7 +323,7 @@
                         @empty
                         <tr>
                             <td colspan="11" class="p-4 text-center text-gray-400">
-                                هیچ فروشی ثبت نشده
+                                هیچ برداشتی ثبت نشده
                             </td>
                         </tr>
                         @endforelse

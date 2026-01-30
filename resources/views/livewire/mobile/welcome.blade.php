@@ -7,7 +7,7 @@
                         <div class="flex items-start justify-between">
                             <div>
                                 <h3 class="text-3xl text-[#1E40AF] sm:text-3xl lg:text-3xl font-bold leading-none">
-                                    10
+                                     {{ $totalUsers }}
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
                                     تعداد کاربران
@@ -27,7 +27,7 @@
                         </div>
                         <div class="absolute bottom-0 left-0 w-full h-[55px] bg-[#1E40AF] flex items-center px-4">
                             <span class="text-sm font-semibold text-white">
-                                کاربران فعال:10
+                                کاربران فعال:{{ $activeUsers }}
                             </span>
                         </div>
                     </div>
@@ -35,35 +35,17 @@
                         <div class="flex items-start justify-between">
                             <div>
                                 <h3 class="text-3xl sm:text-3xl lg:text-3xl font-bold leading-none text-[#1E40AF]">
-                                    10
+                                    {{ $totalCustomers }}
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
                                     تعداد مشتریان
                                 </p>
                             </div>
-                            <svg width="50" height="50"
-                                class="  p-2 ml-2"
-                                viewBox="0 0 35 35" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <g clip-path="url(#clip0_317_253)">
-                                    <path d="M26.2502 10.4415C26.1627 10.4269 26.0606 10.4269 25.9731 10.4415C23.9606 10.3686 22.3564 8.72067 22.3564 6.67901C22.3564 4.59359 24.0335 2.9165 26.1189 2.9165C28.2044 2.9165 29.8814 4.60817 29.8814 6.67901C29.8669 8.72067 28.2627 10.3686 26.2502 10.4415Z"
-                                        stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M24.7483 21.0584C26.7463 21.3938 28.9483 21.0438 30.4942 20.0084C32.5504 18.6376 32.5504 16.3917 30.4942 15.0209C28.9338 13.9855 26.7025 13.6355 24.7046 13.9855"
-                                        stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M8.70645 10.4415C8.79395 10.4269 8.89603 10.4269 8.98353 10.4415C10.996 10.3686 12.6002 8.72067 12.6002 6.67901C12.6002 4.59359 10.9231 2.9165 8.8377 2.9165C6.75228 2.9165 5.0752 4.60817 5.0752 6.67901C5.08978 8.72067 6.69395 10.3686 8.70645 10.4415Z"
-                                        stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M10.2084 21.0584C8.21051 21.3938 6.00843 21.0438 4.4626 20.0084C2.40635 18.6376 2.40635 16.3917 4.4626 15.0209C6.02301 13.9855 8.25426 13.6355 10.2522 13.9855"
-                                        stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M17.4997 21.3356C17.4122 21.321 17.3101 21.321 17.2226 21.3356C15.2101 21.2626 13.606 19.6147 13.606 17.573C13.606 15.4876 15.283 13.8105 17.3685 13.8105C19.4539 13.8105 21.131 15.5022 21.131 17.573C21.1164 19.6147 19.5122 21.2772 17.4997 21.3356Z"
-                                        stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M13.2561 25.9294C11.1998 27.3002 11.1998 29.5461 13.2561 30.9169C15.5894 32.4773 19.4102 32.4773 21.7436 30.9169C23.7998 29.5461 23.7998 27.3002 21.7436 25.9294Z"
-                                        stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </g>
-                            </svg>
+                            <svg fill="#1E40AF" class="  p-2 ml-2" width="50px" height="50px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 484.191 484.191" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M227.535,294.249v16.117h28.822v-16.117c-4.753,0.908-9.557,1.415-14.404,1.415 C237.107,295.665,232.289,295.157,227.535,294.249z"></path> <path d="M377.016,271.181l-59.18-17.648c-3.816,4.777-7.819,9.141-11.932,13.153l15.404,4.598 c-10.291,40.96-38.191,152.836-46.042,192.794c-6.304,1.526-12.716,2.745-19.3,3.393l16.657-39.332L256.609,321.04h-29.027 l-16.015,107.099l16.655,39.332c-6.71-0.656-13.215-1.915-19.611-3.478c-7.866-39.991-35.705-151.625-46.012-192.624l15.482-4.62 c-4.129-4.012-8.115-8.368-11.948-13.153l-58.96,17.586c-13.23,3.941-22.286,16.093-22.286,29.887v25.915 c0,86.822,70.377,157.207,157.208,157.207c86.83,0,157.207-70.385,157.207-157.207v-25.915 C399.303,287.275,390.248,275.123,377.016,271.181z"></path> <path d="M343.555,125.97c2.908-18.317,1.611-37.976-0.93-53.339C337.198,39.797,324.17,16.69,324.17,16.69l-6.084,25.516 l-0.594,2.51c-0.047-1.025-0.203-2.159-0.313-3.261c-1.454-13.919-7.695-32.772-7.695-32.772 c-14.012,6.67-37.002,6.005-37.002,6.005c6.365-4.676,22.99-9.337,22.99-9.337C254.06-7.7,227.582,5.953,214.695,16.228 c-2.785,2.229-4.942,4.27-6.475,5.872l4.723-5.45l9.807-11.3c-19.77,1.939-34.174,15.295-42.932,26.204 c-6.318,7.867-9.789,14.498-9.789,14.498l1.689-8.688l3.643-18.673c-13.59,10.869-21.785,26.673-26.806,42.789 c-7.566,24.331-8.354,53.946-8.094,64.443c-7.877,3.256-13.807,10.607-16.397,20.385c-2.455,9.33-1.814,20.207,1.814,30.615 c5.724,16.436,17.906,28.518,31.17,31.224c16.468,35.329,46.762,71.502,84.904,71.502c38.114,0,68.408-36.118,84.876-71.424 c13.058-2.557,25.445-14.71,31.231-31.302C365.816,154.57,359.438,132.572,343.555,125.97z M342.938,171.661 c-4.77,13.669-14.466,21.042-21.347,21.042c-3.833,0.469-6.21,1.847-7.491,4.809c-13.936,31.967-40.209,66.124-72.146,66.124 c-31.934,0-58.209-34.156-72.145-66.124c-1.267-2.924-4.486-4.809-7.678-4.809c-6.693,0-16.374-7.373-21.129-21.042 c-2.55-7.335-3.082-15.084-1.454-21.262c0.798-2.979,2.8-8.218,7.46-9.837c0.501-0.172,1.486-0.273,1.969-0.32 c3.957-0.383,7.039-3.613,7.227-7.585c0.173-3.699,0.615-7.269,1.502-10.768c11.936-47.109,52.986-50.476,52.986-50.476 c-7.383,17.352-19.314,24.687-19.314,24.687c39.363-16.015,51.625-33.367,51.625-33.367c26.197,36.369,62.292,52.149,83.139,58.616 c0.609,3.738,1.377,7.421,1.564,11.308c0.188,3.972,3.269,7.202,7.227,7.585c0.482,0.047,1.469,0.148,1.984,0.32 C344.002,143.032,348.225,156.42,342.938,171.661z"></path> </g> </g></svg>
                         </div>
                         <div class="absolute bottom-0 left-0 w-full h-[55px] bg-[#1E40AF] flex items-center px-4">
                             <span class="text-sm font-semibold text-white">
-                                مشتریان فعال: 10
+                                مشتریان فعال: {{ $activeCustomers }}
                             </span>
                         </div>
                     </div>
@@ -71,35 +53,17 @@
                         <div class="flex items-start justify-between">
                             <div>
                                 <h3 class="text-3xl sm:text-3xl lg:text-3xl font-bold leading-none text-[#1E40AF]">
-                                    75,000؋
+                                    {{ number_format($todaySalesAmount) }}؋
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
                                     فروش روزانه
                                 </p>
                             </div>
-                            <svg
-                                class=" p-2 ml-2"
-                                width="50"
-                                height="50"
-                                viewBox="0 0 35 35"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path d="M13.854 20.0522C13.854 21.4668 14.9478 22.6043 16.2894 22.6043H19.0311C20.1977 22.6043 21.1457 21.6126 21.1457 20.373C21.1457 19.0459 20.5624 18.5647 19.7019 18.2584L15.3123 16.7272C14.4519 16.4209 13.8686 15.9543 13.8686 14.6126C13.8686 13.3876 14.8165 12.3813 15.9832 12.3813H18.7248C20.0665 12.3813 21.1603 13.5188 21.1603 14.9334"
-                                    stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M17.5 10.9375V24.0625"
-                                    stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M32.0832 17.4998C32.0832 25.5498 25.5498 32.0832 17.4998 32.0832C9.44984 32.0832 2.9165 25.5498 2.9165 17.4998C2.9165 9.44984 9.44984 2.9165 17.4998 2.9165"
-                                    stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M24.7915 4.375V10.2083H30.6248"
-                                    stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M32.0832 2.9165L24.7915 10.2082"
-                                    stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                            <svg class=" p-2 ml-2"  width="50px" height="50px"viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#1E40AF"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M914.29 438.86v-84.87L512 72.92 109.72 353.99v84.87h73.14V768h-73.14v182.86h804.57V768h-73.14V438.86h73.14zM512 162.15L803.06 365.5H220.95L512 162.15z m256 276.71V768h-36.57V438.86H768zM542.12 630.75c10.73 0 19.46 8.73 19.46 19.48 0 10.73-8.73 19.46-19.46 19.46h-57v-38.95h57z m-57-54.86v-38.95h57c10.73 0 19.46 8.73 19.46 19.48 0 10.73-8.73 19.46-19.46 19.46h-57z m-0.54-93.8h-54.32V724.55h54.32V768H365.72V438.86h118.86v43.23z m54.86 242.46h2.68c40.98 0 74.32-33.34 74.32-74.32 0-17.87-6.6-34.07-17.15-46.91 10.55-12.83 17.15-29.03 17.15-46.9 0-40.98-33.34-74.34-74.32-74.34h-2.68v-43.23h118.85V768H539.44v-43.45zM292.57 438.86V768H256V438.86h36.57z m548.57 438.85H182.86v-36.57h658.29v36.57z" fill="#1E40AF"></path></g></svg>
                         </div>
                         <div class="absolute bottom-0 left-0 w-full h-[55px] bg-[#1E40AF] flex items-center px-4">
                             <span class="text-sm font-semibold text-white">
-                                درصد فروش امروز: %30
+                                درصد فروش امروز: %{{ $todaySalesPercent }}
                             </span>
                         </div>
                     </div>
@@ -107,31 +71,17 @@
                         <div class="flex items-start justify-between">
                             <div>
                                 <h3 class="text-3xl sm:text-3xl lg:text-3xl font-bold leading-none text-[#1E40AF]">
-                                    75,074؋
+                                   {{ number_format($todayProfitAmount) }}؋
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
                                     فایده روزانه
                                 </p>
                             </div>
-                            <svg
-                                class=" p-2 ml-2"
-                                width="50"
-                                height="50"
-                                viewBox="0 0 35 35"
-                                fill="none"
-                                xmlns="http://www.w3.org/21E40AF/svg"
-                            >
-                                <path d="M12.6465 20.8979C12.6465 22.7791 14.0902 24.2958 15.884 24.2958H19.5444C21.1048 24.2958 22.3736 22.9687 22.3736 21.3354C22.3736 19.5562 21.6007 18.9291 20.4486 18.5208L14.5715 16.4791C13.4194 16.0708 12.6465 15.4437 12.6465 13.6645C12.6465 12.0312 13.9152 10.7041 15.4757 10.7041H19.1361C20.9298 10.7041 22.3736 12.2208 22.3736 14.102"
-                                    stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M17.5 8.75V26.25"
-                                    stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M17.4998 32.0832C25.554 32.0832 32.0832 25.554 32.0832 17.4998C32.0832 9.44568 25.554 2.9165 17.4998 2.9165C9.44568 2.9165 2.9165 9.44568 2.9165 17.4998C2.9165 25.554 9.44568 32.0832 17.4998 32.0832Z"
-                                    stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                            <svg  class=" p-2 ml-2" width="50"  height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#1E40AF"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11.9426 1.25H13.5C13.9142 1.25 14.25 1.58579 14.25 2C14.25 2.41421 13.9142 2.75 13.5 2.75H12C9.62178 2.75 7.91356 2.75159 6.61358 2.92637C5.33517 3.09825 4.56445 3.42514 3.9948 3.9948C3.42514 4.56445 3.09825 5.33517 2.92637 6.61358C2.75159 7.91356 2.75 9.62178 2.75 12C2.75 14.3782 2.75159 16.0864 2.92637 17.3864C3.09825 18.6648 3.42514 19.4355 3.9948 20.0052C4.56445 20.5749 5.33517 20.9018 6.61358 21.0736C7.91356 21.2484 9.62178 21.25 12 21.25C14.3782 21.25 16.0864 21.2484 17.3864 21.0736C18.6648 20.9018 19.4355 20.5749 20.0052 20.0052C20.5749 19.4355 20.9018 18.6648 21.0736 17.3864C21.2484 16.0864 21.25 14.3782 21.25 12V10.5C21.25 10.0858 21.5858 9.75 22 9.75C22.4142 9.75 22.75 10.0858 22.75 10.5V12.0574C22.75 14.3658 22.75 16.1748 22.5603 17.5863C22.366 19.031 21.9607 20.1711 21.0659 21.0659C20.1711 21.9607 19.031 22.366 17.5863 22.5603C16.1748 22.75 14.3658 22.75 12.0574 22.75H11.9426C9.63423 22.75 7.82519 22.75 6.41371 22.5603C4.96897 22.366 3.82895 21.9607 2.93414 21.0659C2.03933 20.1711 1.63399 19.031 1.43975 17.5863C1.24998 16.1748 1.24999 14.3658 1.25 12.0574V11.9426C1.24999 9.63423 1.24998 7.82519 1.43975 6.41371C1.63399 4.96897 2.03933 3.82895 2.93414 2.93414C3.82895 2.03933 4.96897 1.63399 6.41371 1.43975C7.82519 1.24998 9.63423 1.24999 11.9426 1.25Z" fill="#1C274C"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M15.25 5C15.25 2.92893 16.9289 1.25 19 1.25C21.0711 1.25 22.75 2.92893 22.75 5C22.75 7.07107 21.0711 8.75 19 8.75C16.9289 8.75 15.25 7.07107 15.25 5ZM19 2.75C17.7574 2.75 16.75 3.75736 16.75 5C16.75 6.24264 17.7574 7.25 19 7.25C20.2426 7.25 21.25 6.24264 21.25 5C21.25 3.75736 20.2426 2.75 19 2.75Z" fill="#1C274C"></path> <path d="M13.75 10C13.75 10.4142 14.0858 10.75 14.5 10.75H15.1893L13.1768 12.7626C13.0791 12.8602 12.9209 12.8602 12.8232 12.7626L11.2374 11.1768C10.554 10.4934 9.44598 10.4934 8.76256 11.1768L6.46967 13.4697C6.17678 13.7626 6.17678 14.2374 6.46967 14.5303C6.76256 14.8232 7.23744 14.8232 7.53033 14.5303L9.82322 12.2374C9.92085 12.1398 10.0791 12.1398 10.1768 12.2374L11.7626 13.8232C12.446 14.5066 13.554 14.5066 14.2374 13.8232L16.25 11.8107V12.5C16.25 12.9142 16.5858 13.25 17 13.25C17.4142 13.25 17.75 12.9142 17.75 12.5V10C17.75 9.58579 17.4142 9.25 17 9.25H14.5C14.0858 9.25 13.75 9.58579 13.75 10Z" fill="#1C274C"></path> </g></svg>
                         </div>
                         <div class="absolute bottom-0 left-0 w-full h-[55px] bg-[#1E40AF] flex items-center px-4">
                             <span class="text-sm font-semibold text-white">
-                                سود امروز: %30
+                                سود امروز: %{{ $todayProfitPercent }}
                             </span>
                         </div>
                     </div>
@@ -139,42 +89,17 @@
                         <div class="flex items-start justify-between">
                             <div>
                                 <h3 class="text-3xl sm:text-3xl lg:text-3xl font-bold leading-none text-[#1E40AF]">
-                                    75,000
+                                    {{ number_format($grandTotal) }} ؋
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
                                     موجودی کل اجناس
                                 </p>
                             </div>
-                            <svg
-                                class=" p-2 ml-2"
-                                width="50"
-                                height="50"
-                                viewBox="0 0 35 35"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <g clip-path="url(#clip0_860_1990)">
-                                    <path d="M4.38965 16.3623V22.9102C4.38965 29.4581 7.01465 32.0831 13.5626 32.0831H21.423C27.9709 32.0831 30.5959 29.4581 30.5959 22.9102V16.3623"
-                                        stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M17.5 17.4998C20.1688 17.4998 22.1375 15.3269 21.875 12.6582L20.9125 2.9165H14.1021L13.125 12.6582C12.8625 15.3269 14.8313 17.4998 17.5 17.4998Z"
-                                        stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M26.7022 17.4998C29.648 17.4998 31.8063 15.1082 31.5147 12.1769L31.1063 8.1665C30.5813 4.37484 29.123 2.9165 25.3022 2.9165H20.8542L21.8751 13.1394C22.123 15.5457 24.2959 17.4998 26.7022 17.4998Z"
-                                        stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M8.22489 17.4998C10.6311 17.4998 12.8041 15.5457 13.0374 13.1394L13.3582 9.9165L14.0582 2.9165H9.61031C5.78947 2.9165 4.33114 4.37484 3.80614 8.1665L3.41239 12.1769C3.12072 15.1082 5.27906 17.4998 8.22489 17.4998Z"
-                                        stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M17.5001 24.7915C15.0647 24.7915 13.8542 26.0019 13.8542 28.4373V32.0832H21.1459V28.4373C21.1459 26.0019 19.9355 24.7915 17.5001 24.7915Z"
-                                        stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_860_1990">
-                                        <rect width="35" height="35" fill="white"/>
-                                    </clipPath>
-                                </defs>
-                            </svg>
+                            <svg fill="#1E40AF"  class=" p-2 ml-2"  width="50" height="50" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 256 253" enable-background="new 0 0 256 253" xml:space="preserve" stroke="                          #1E40AF"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M122,219H76v-45h18v14h10v-14h18V219z M182,219h-46v-45h18v14h10v-14h18V219z M152,160h-46v-45h18v14h10v-14h18V160z M2,69 c0,13.678,9.625,25.302,22,29.576V233H2v18h252v-18h-22V98.554c12.89-3.945,21.699-15.396,22-29.554v-8H2V69z M65.29,68.346 c0,6.477,6.755,31.47,31.727,31.47c21.689,0,31.202-19.615,31.202-31.47c0,11.052,7.41,31.447,31.464,31.447 c21.733,0,31.363-20.999,31.363-31.447c0,14.425,9.726,26.416,22.954,30.154V233H42V98.594C55.402,94.966,65.29,82.895,65.29,68.346 z M222.832,22H223V2H34v20L2,54h252L222.832,22z"></path> </g></svg>
                         </div>
                         <div class="absolute bottom-0 left-0 w-full h-[55px] bg-[#1E40AF] flex items-center px-4">
                             <span class="text-sm font-semibold text-white">
-                                موجودی انبار : %30
+                                موجودی انبار :%{{ $warehousePercent }}
                             </span>
                         </div>
                     </div>
@@ -182,39 +107,17 @@
                         <div class="flex items-start justify-between">
                             <div>
                                 <h3 class="text-3xl sm:text-3xl lg:text-3xl font-bold leading-none text-[#1E40AF]">
-                                    75,000؋
+                                    {{ number_format($totalBorrowings) }} ؋
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
                                     مجموعه قرضه ها
                                 </p>
                             </div>
-                            <svg
-                                class="p-2 ml-2"
-                                width="50"
-                                height="50"
-                                viewBox="0 0 35 35"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <g clip-path="url(#clip0_862_2016)">
-                                    <path d="M30.6397 16.3623V22.9102C30.6397 29.4581 28.0292 32.0832 21.4667 32.0832H13.6063C12.7605 32.0832 11.9875 32.0395 11.2729 31.9374" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M4.43311 22.6332V16.3623" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M17.5438 17.4998C20.2125 17.4998 22.1813 15.327 21.9188 12.6582L20.9416 2.9165H14.1313L13.1542 12.6582C12.8917 15.327 14.875 17.4998 17.5438 17.4998Z" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M26.7312 17.4998C29.6771 17.4998 31.8354 15.1081 31.5437 12.1769L31.1353 8.16647C30.6103 4.3748 29.152 2.9165 25.3312 2.9165H20.8833L21.9042 13.1394C22.1667 15.5457 24.325 17.4998 26.7312 17.4998Z" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M8.26886 17.4998C10.6751 17.4998 12.848 15.5457 13.0813 13.1394L13.4022 9.91657L14.1022 2.9165H9.65429C5.83346 2.9165 4.37515 4.3748 3.85015 8.16647L3.44178 12.1769C3.15011 15.1081 5.32302 17.4998 8.26886 17.4998Z" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M13.1252 27.7083C13.1252 28.8021 12.8189 29.8376 12.2793 30.7126C12.0022 31.1793 11.6668 31.6021 11.2731 31.9375C11.2293 31.9959 11.1856 32.0396 11.1273 32.0833C10.1064 33.0021 8.76475 33.5417 7.29183 33.5417C5.51266 33.5417 3.92304 32.7395 2.87304 31.4854C2.84387 31.4416 2.8002 31.4125 2.77103 31.3688C2.59603 31.1646 2.4356 30.9459 2.30435 30.7126C1.76477 29.8376 1.4585 28.8021 1.4585 27.7083C1.4585 25.8708 2.30433 24.2229 3.646 23.1583C3.89391 22.9542 4.15638 22.7792 4.43346 22.6334C5.2793 22.1521 6.25641 21.875 7.29183 21.875C8.75016 21.875 10.0626 22.4 11.0835 23.2895C11.2585 23.4208 11.4189 23.5813 11.5647 23.7417C12.5272 24.7917 13.1252 26.1771 13.1252 27.7083Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M9.46446 27.6792H5.11865" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_862_2016">
-                                        <rect width="35" height="35" fill="white"/>
-                                    </clipPath>
-                                </defs>
-                            </svg>
+                            <svg class="p-2 ml-2" width="50" height="50" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#1E40AF"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="layer1"> <path d="M 9.5 0 L 9.5 1 C 8.6774954 1 8 1.677495 8 2.5 C 8 3.322505 8.6774954 4 9.5 4 L 10.5 4 C 10.782065 4 11 4.217935 11 4.5 C 11 4.782065 10.782065 5 10.5 5 L 9.5 5 L 8 5 L 8 6 L 9.5 6 L 9.5 7 L 10.5 7 L 10.5 6 C 11.322504 6 12 5.322505 12 4.5 C 12 3.677495 11.322504 3 10.5 3 L 9.5 3 C 9.2179352 3 9 2.782065 9 2.5 C 9 2.217935 9.2179352 2 9.5 2 L 10.5 2 L 12 2 L 12 1 L 10.5 1 L 10.5 0 L 9.5 0 z M 7 3.9238281 L 0 6.1328125 L 0 6.5 L 0 9 L 1 9 L 1 17 L 0 17 L 0 20 L 20 20 L 20 17 L 19.5 17 L 19 17 L 19 9 L 20 9 L 20 6.1328125 L 13 3.9238281 L 13 4.9707031 L 19 6.8671875 L 19 8 L 1 8 L 1 6.8652344 L 7 4.9707031 L 7 3.9238281 z M 2 9 L 3 9 L 3 17 L 2 17 L 2 9 z M 4 9 L 6 9 L 6 17 L 4 17 L 4 9 z M 7 9 L 8 9 L 8 17 L 7 17 L 7 9 z M 9 9 L 11 9 L 11 17 L 9 17 L 9 9 z M 12 9 L 13 9 L 13 17 L 12 17 L 12 9 z M 14 9 L 16 9 L 16 17 L 14 17 L 14 9 z M 17 9 L 18 9 L 18 17 L 17 17 L 17 9 z M 1 18 L 4 18 L 6 18 L 9 18 L 11 18 L 14 18 L 16 18 L 19 18 L 19 19 L 1 19 L 1 18 z " style="fill:#1E40AF; fill-opacity:1; stroke:none; stroke-width:0px;"></path> </g> </g></svg>
                         </div>
                         <div class="absolute bottom-0 left-0 w-full h-[55px] bg-[#1E40AF] flex items-center px-4">
                             <span class="text-sm font-semibold text-white">
-                                درصد قرضها :%30
+                                درصد قرضها :%{{ $borrowingsPercent }}
                             </span>
                         </div>
                     </div>
@@ -222,37 +125,17 @@
                         <div class="flex items-start justify-between">
                             <div>
                                 <h3 class="text-3xl sm:text-3xl lg:text-3xl font-bold leading-none text-[#1E40AF]">
-                                    75,000؋
+                                   {{ number_format($this->totalSalaryPaid + $this->totalWithdrawals) }}؋
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
                                     مصارف امروز
                                 </p>
                             </div>
-                            <svg
-                                class="p-2 ml-2"
-                                width="50"
-                                height="50"
-                                viewBox="0 0 35 35"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <g clip-path="url(#clip0_862_2006)">
-                                    <path d="M28.1457 11.5499V19.0604C28.1457 23.552 25.5791 25.477 21.7291 25.477H8.91031C8.25406 25.477 7.62698 25.4187 7.04365 25.2875C6.67906 25.2291 6.32907 25.1271 6.00824 25.0104C3.82074 24.1937 2.49365 22.2979 2.49365 19.0604V11.5499C2.49365 7.05825 5.06031 5.1333 8.91031 5.1333H21.7291C24.9957 5.1333 27.3437 6.51871 27.9707 9.68329C28.0728 10.2666 28.1457 10.8645 28.1457 11.5499Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M32.5225 15.9252V23.4357C32.5225 27.9273 29.9558 29.8523 26.1058 29.8523H13.2871C12.2079 29.8523 11.2308 29.7065 10.385 29.3857C8.64959 28.744 7.46833 27.4169 7.04541 25.2878C7.62874 25.419 8.25583 25.4773 8.91208 25.4773H21.7308C25.5808 25.4773 28.1475 23.5523 28.1475 19.0607V11.5502C28.1475 10.8648 28.0892 10.2523 27.9725 9.68359C30.7433 10.2669 32.5225 12.221 32.5225 15.9252Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M15.31 19.1624C17.4363 19.1624 19.16 17.4387 19.16 15.3124C19.16 13.1861 17.4363 11.4624 15.31 11.4624C13.1837 11.4624 11.46 13.1861 11.46 15.3124C11.46 17.4387 13.1837 19.1624 15.31 19.1624Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M6.9707 12.104V18.5207" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M23.6567 12.1045V18.5212" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_862_2006">
-                                        <rect width="35" height="35" fill="white"/>
-                                    </clipPath>
-                                </defs>
-                            </svg>
+                            <svg fill="#1E40AF" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="p-2 ml-2"   width="50"    height="50" viewBox="0 0 31.521 31.522" xml:space="preserve" stroke="#1E40AF"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M12.204,8.502L9.517,1.407h12.479l-2.688,7.095H12.204z M10.648,9.782h10.225v-1H10.648V9.782z M24.029,12.801 l-1.604-4.242h7.545l-1.604,4.242H24.029z M23.869,9.559l0.851,2.242h2.953l0.851-2.242H23.869z M3.154,12.801L1.55,8.559h7.545 L7.49,12.801H3.154z M2.995,9.559l0.85,2.242h2.953l0.85-2.242H2.995z M17.617,20.792c-0.217-0.146-0.669-0.219-1.355-0.219v2.381 h0.22c0.976,0,1.463-0.418,1.463-1.256C17.945,21.24,17.836,20.936,17.617,20.792z M13.668,18.066c0,0.745,0.448,1.118,1.344,1.118 c0.009,0,0.084,0.004,0.226,0.013V16.99l-0.22,0.006C14.118,16.997,13.668,17.352,13.668,18.066z M31.521,17.193v6.17 c0,1.76-1.434,3.19-3.193,3.19H24.09c-0.701,2.062-2.635,3.562-4.932,3.562h-6.699c-2.299,0-4.235-1.5-4.936-3.567 c-0.022,0-0.046,0.008-0.07,0.008H3.191C1.43,26.555,0,25.123,0,23.364v-6.17c0-1.762,1.432-3.192,3.191-3.192h4.186 c0.005-0.022,0.016-0.042,0.021-0.065H2.07v-1h5.697c0.844-1.754,2.617-2.978,4.69-2.978h6.698c2.074,0,3.85,1.223,4.69,2.978 h5.603v1h-5.23c0.006,0.022,0.018,0.042,0.021,0.065h4.09C30.088,13.999,31.521,15.43,31.521,17.193z M7.294,25.553 c-0.028-0.223-0.067-0.438-0.067-0.67v-9.696c0-0.064,0.017-0.125,0.021-0.188H3.191C1.982,15,1,15.983,1,17.192v6.17 c0,1.209,0.982,2.191,2.191,2.191H7.294L7.294,25.553z M19.482,21.672c0-0.885-0.197-1.49-0.595-1.822 c-0.396-0.332-1.157-0.526-2.288-0.59l-0.338-0.014v-2.25H16.5c0.833,0,1.25,0.332,1.25,1l0.006,0.162h1.469v-0.207 c0-0.883-0.209-1.486-0.628-1.812c-0.419-0.324-1.196-0.487-2.335-0.487v-0.875h-1.024v0.875c-1.191,0-2.008,0.17-2.447,0.51 c-0.438,0.341-0.66,0.97-0.66,1.892c0,0.949,0.221,1.599,0.656,1.943c0.438,0.346,1.256,0.52,2.451,0.52v2.438l-0.226-0.006 c-0.612,0-1.008-0.08-1.185-0.242c-0.178-0.158-0.268-0.518-0.268-1.07v-0.156H12.04l-0.007,0.306c0,0.91,0.219,1.547,0.654,1.914 c0.434,0.367,1.188,0.549,2.26,0.549l0.287,0.007v1.006h1.026v-1.006l0.313-0.008c1.076,0,1.828-0.191,2.26-0.574 S19.482,22.622,19.482,21.672z M30.521,17.193c0-1.209-0.984-2.192-2.193-2.192h-3.959c0.002,0.064,0.02,0.124,0.02,0.188v9.697 c0,0.229-0.039,0.446-0.066,0.67h4.008c1.209,0,2.191-0.982,2.191-2.191V17.193L30.521,17.193z"></path> </g> </g></svg>
                         </div>
                         <div class="absolute bottom-0 left-0 w-full h-[55px] bg-[#1E40AF] flex items-center px-4">
                             <span class="text-sm font-semibold text-white">
-                                درصد مصارف؛ %30
+                               درصد مصارف:%{{ $expensesPercent }}
                             </span>
                         </div>
                     </div>
@@ -260,36 +143,20 @@
                         <div class="flex items-start justify-between">
                             <div>
                                 <h3 class="text-3xl sm:text-3xl lg:text-3xl font-bold leading-none text-[#1E40AF]">
-                                    75,000؋
+                                    {{ number_format($totalShopStock) }}؋
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
                                     مجموعه سرمایه دوکان
                                 </p>
                             </div>
-                            <svg
-                                class="p-2 ml-2"
-                                width="50"
-                                height="50"
-                                viewBox="0 0 35 35"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <g clip-path="url(#clip0_862_1994)">
-                                    <path d="M5.104 26.2498V10.2082C5.104 4.37484 6.56234 2.9165 12.3957 2.9165H22.604C28.4373 2.9165 29.8957 4.37484 29.8957 10.2082V24.7915C29.8957 24.9957 29.8957 25.1998 29.8811 25.404" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M9.26025 21.875H29.8957V26.9792C29.8957 29.7937 27.6061 32.0833 24.7915 32.0833H10.2082C7.39359 32.0833 5.104 29.7937 5.104 26.9792V26.0313C5.104 23.7417 6.97067 21.875 9.26025 21.875Z" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M11.6665 10.2085H23.3332" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M11.6665 15.3125H18.9582" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_862_1994">
-                                        <rect width="35" height="35" fill="white"/>
-                                    </clipPath>
-                                </defs>
-                            </svg>
+                            <svg class="p-2 ml-2"  width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M3.17157 20.8284C4.34315 22 6.22876 22 10 22H14C17.7712 22 19.6569 22 20.8284 20.8284C22 19.6569 22 17.7712 22 14C22 12.8302 22 11.8419 21.965 11M20.8284 7.17157C19.6569 6 17.7712 6 14 6H10C6.22876 6 4.34315 6 3.17157 7.17157C2 8.34315 2 10.2288 2 14C2 15.1698 2 16.1581 2.03496 17" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round"></path> <path d="M12 2C13.8856 2 14.8284 2 15.4142 2.58579C16 3.17157 16 4.11438 16 6M8.58579 2.58579C8 3.17157 8 4.11438 8 6" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round"></path> <path d="M12 17.3333C13.1046 17.3333 14 16.5871 14 15.6667C14 14.7462 13.1046 14 12 14C10.8954 14 10 13.2538 10 12.3333C10 11.4129 10.8954 10.6667 12 10.6667M12 17.3333C10.8954 17.3333 10 16.5871 10 15.6667M12 17.3333V18M12 10V10.6667M12 10.6667C13.1046 10.6667 14 11.4129 14 12.3333" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                         </div>
                         <div class="absolute bottom-0 left-0 w-full h-[55px] bg-[#1E40AF] flex items-center px-4">
                             <span class="text-sm font-semibold text-white">
-                                درصد سرمایه : %30
+                                درصد سرمایه :  @php
+                                $shopPercent = $totalShopStock > 0 ? 100 : 0;
+                                @endphp
+                                {{ $shopPercent }}%
                             </span>
                         </div>
                     </div>

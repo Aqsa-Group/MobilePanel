@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
-
 class DeviceRepairForm extends Model
 {
     protected $fillable = [
@@ -23,5 +20,14 @@ class DeviceRepairForm extends Model
         'delivery_date',
         'visit_date',
         'repair_cost',
+        'user_id','admin_id',
     ];
+    public function admin()
+    {
+        return $this->belongsTo(UserForm::class, 'admin_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(UserForm::class, 'user_id');
+    }
 }

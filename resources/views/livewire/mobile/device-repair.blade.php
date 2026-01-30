@@ -23,7 +23,6 @@
                         <select wire:model="category"  class="bg-white border border-gray-900 rounded-xl px-3 py-5 w-full pl-10 text-right">
                             <option value="">انتخاب کتگوری</option>
                             <option value="مبایل">مبایل</option>
-                            <option value="دیسک تاپ">دیسک تاپ</option>
                             <option value="تبلیت">تبلیت</option>
                             <option value="لپتاپ">لپتاپ</option>
                         </select>
@@ -176,7 +175,6 @@
                             <option value="">شرایط دستگاه</option>
                             <option value="شکسته">شکسته</option>
                             <option value="خوب">خوب</option>
-                            <option value="نسبتاٌ خوب">نسبتاٌ خوب</option>
                         </select>
                     </div>
                     @error('device_status')
@@ -289,7 +287,7 @@
         <div class="lg:col-span-2 border  border-gray-300 rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
             <div class="container print-area flex flex-col gap-2 md:hidden text-[10px] w-full bg-white" >
                 @forelse($DeviceRepair as $a)
-                <div class="rounded-2xl flex flex-col items-center mt-1 border border-[#0948EE66] h-auto w-full">
+                <div class="rounded-2xl flex flex-col items-center mt-1 border border-[#1E40AF66] h-auto w-full">
                     <table dir="ltr"
                         class="w-full table-fixed items-center font-semibold justify-center text-center mx-auto">
                         <tr>
@@ -326,7 +324,7 @@
                         </tr>
                         <tr class="text-[#00000080]">
                             <td  class="text-[10px]">{{ $a->repair_type }}</td>
-                            <td  class="text-[10px]">{{ $a->repair_cost}}</td>
+                            <td  class="text-[10px]">{{ $a->repair_cost}}؋</td>
                         </tr>
                         <tr>
                             <th class="pt-2">توضیحات</th>
@@ -356,19 +354,19 @@
                             <th colspan="2" class="pt-2">ادمین </th>
                         </tr>
                         <tr class="text-[#00000080]">
-                            <td colspan="2"  class="text-[10px]">{{ $a->delivery_date }}</td>
+                            <td colspan="2"  class="text-[10px]"> @if($a->admin)   {{ $a->admin->name }} ({{ $a->admin->rule }})   @else     --  @endif</td>
                         </tr>
                     </table>
                     <div class="flex flex-row gap-2 my-2 w-full px-4 mt-4">
-                        <a href="{{ route('customer.edit', $a->id) }}" class="curser-pointer flex justify-center items-center gap-1 border rounded-lg border-[#0033BB] w-1/2 h-[30px] text-[#0033BB] text-[10px]">
+                        <a wire:click="edit({{ $a->id }})" class="curser-pointer text-[#1C274C] flex justify-center items-center gap-1 border rounded-lg border-[#1C274C] w-1/2 h-[30px] text-[#0033BB] text-[10px]">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                             <span>چاپ</span>
                         </a>
-                        <a href="{{ route('customer.edit', $a->id) }}" class="curser-pointer flex justify-center items-center gap-1 border rounded-lg border-[#0033BB] w-1/2 h-[30px] text-[#0033BB] text-[10px]">
+                        <a wire:click="edit({{ $a->id }})" class="curser-pointer flex justify-center items-center gap-1 border rounded-lg border-[#0033BB] w-1/2 h-[30px] text-[#0033BB] text-[10px]">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#0948EE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M16.0399 3.02001L8.15988 10.9C7.85988 11.2 7.55988 11.79 7.49988 12.22L7.06988 15.23C6.90988 16.32 7.67988 17.08 8.76988 16.93L11.7799 16.5C12.1999 16.44 12.7899 16.14 13.0999 15.84L20.9799 7.96001C22.3399 6.60001 22.9799 5.02001 20.9799 3.02001C18.9799 1.02001 17.3999 1.66001 16.0399 3.02001Z" stroke="#0948EE" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M14.9102 4.15002C15.5802 6.54002 17.4502 8.41002 19.8502 9.09002" stroke="#0948EE" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M16.0399 3.02001L8.15988 10.9C7.85988 11.2 7.55988 11.79 7.49988 12.22L7.06988 15.23C6.90988 16.32 7.67988 17.08 8.76988 16.93L11.7799 16.5C12.1999 16.44 12.7899 16.14 13.0999 15.84L20.9799 7.96001C22.3399 6.60001 22.9799 5.02001 20.9799 3.02001C18.9799 1.02001 17.3999 1.66001 16.0399 3.02001Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14.9102 4.15002C15.5802 6.54002 17.4502 8.41002 19.8502 9.09002" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <span>ویرایش</span>
                         </a>
@@ -434,18 +432,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($DeviceRepair as $a)
-                        <tr class="hover:bg-gray-50 text-[11px]  border-b-2 border-blue-200">
-                            <td class="p-2"> {{ $counter++ }}</td>
+                        @forelse($DeviceRepair as $index => $a)
+                        <tr class="text-[11px]  border-b-2 border-blue-800">
+                            <td class="p-2 font-bold">  {{ $DeviceRepair->firstItem() + $index }}</td>
                             <td class="p-2"> {{$a->name}} {{$a->last_name}}</td>
                             <td class="p-2"> {{$a->brand_name}}  {{$a->device_model}} </td>
                             <td class="p-2"> {{$a->category}}</td>
-                            <td class="p-2"> {{$a->category}}</td>
+                            <td class="p-2">  @if($a->admin)   {{ $a->admin->name }} ({{ $a->admin->rule }})   @else     --  @endif</td>
                             <td class="p-2"> {{$a->imei_number}}</td>
                             <td class="p-2"> {{$a->device_color}}</td>
                             <td class="p-2"> {{$a->phone_number}}</td>
                             <td class="p-2"> {{$a->repair_type}}</td>
-                            <td class="p-2"> {{$a->repair_cost}}</td>
+                            <td class="p-2"> {{$a->repair_cost}}؋</td>
                             <td class="p-2"> {{$a->description}}</td>
                             <td class="p-2"> {{$a->device_status}}</td>
                             <td class="p-2"> {{$a->device_mode}}</td>
@@ -459,10 +457,10 @@
                             </td>
                             <td class="p-2  ">
                                 <button wire:click="edit({{ $a->id }})">
-                                    <svg width="20" class="mr-8" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#0948EE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M16.0399 3.02001L8.15988 10.9C7.85988 11.2 7.55988 11.79 7.49988 12.22L7.06988 15.23C6.90988 16.32 7.67988 17.08 8.76988 16.93L11.7799 16.5C12.1999 16.44 12.7899 16.14 13.0999 15.84L20.9799 7.96001C22.3399 6.60001 22.9799 5.02001 20.9799 3.02001C18.9799 1.02001 17.3999 1.66001 16.0399 3.02001Z" stroke="#0948EE" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M14.9102 4.15002C15.5802 6.54002 17.4502 8.41002 19.8502 9.09002" stroke="#0948EE" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <svg width="20"  height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M16.0399 3.02001L8.15988 10.9C7.85988 11.2 7.55988 11.79 7.49988 12.22L7.06988 15.23C6.90988 16.32 7.67988 17.08 8.76988 16.93L11.7799 16.5C12.1999 16.44 12.7899 16.14 13.0999 15.84L20.9799 7.96001C22.3399 6.60001 22.9799 5.02001 20.9799 3.02001C18.9799 1.02001 17.3999 1.66001 16.0399 3.02001Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M14.9102 4.15002C15.5802 6.54002 17.4502 8.41002 19.8502 9.09002" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </button>
                             </td>
@@ -477,7 +475,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="flex flex-wrap gap-1 justify-center sm:hidden items-center mt-3 text-[10px]">
+            <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
                 @if ($DeviceRepair->lastPage() > 1)
                 <button
                     wire:click="previousPage"

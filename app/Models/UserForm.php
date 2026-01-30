@@ -5,8 +5,9 @@ class UserForm extends Authenticatable
 {
     protected $table = 'user_forms';
     protected $fillable = [
- 'first_name','last_name','username','email','number',
- 'address','password','rule','limit','image','creator_id'
+    'first_name','last_name','username','email',
+    'number','address','rule','limit','password',
+    'image','creator_id'
 ];
     protected $hidden = [
         'password',
@@ -18,6 +19,10 @@ class UserForm extends Authenticatable
         ->where('user_id', $this->id)
         ->where('last_activity', '>=', now()->subMinutes(30)->timestamp)
         ->exists();
+}
+public function getNameAttribute()
+{
+    return $this->first_name . ' ' . $this->last_name;
 }
     public function creator()
     {

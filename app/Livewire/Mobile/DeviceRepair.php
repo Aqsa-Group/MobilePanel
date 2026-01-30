@@ -4,14 +4,12 @@ use App\Models\DeviceRepairForm;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 class DeviceRepair extends Component
 {
 use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
     public $category, $name, $last_name, $brand_name, $device_model;
     public $imei_number, $device_color, $device_status, $device_mode;
     public $repair_type, $description, $possible_time, $phone_number;
@@ -25,7 +23,6 @@ use WithPagination;
     public array $deviceStatuses = [
         'خوب' => 'ok',
         'شکسته' => 'broken',
-        'نسبتاٌخوب' => 'goodish'
     ];
     public array $repairTypes = [
         'نرم‌افزاری'         => 'software',
@@ -54,6 +51,16 @@ use WithPagination;
         'خاکستری'     => 'gray',
         'رنگی' => 'colorful'
     ];
+    private function convertToEnglishNumber($value)
+    {
+        if ($value === null) return null;
+        $persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+        $arabic  = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+        $english = ['0','1','2','3','4','5','6','7','8','9'];
+        $value = str_replace($persian, $english, $value);
+        $value = str_replace($arabic,  $english, $value);
+        return $value;
+    }
     protected function rules()
     {
         return [
@@ -101,22 +108,10 @@ use WithPagination;
     public function resetForm()
     {
         $this->reset([
-            'category',
-            'name',
-            'last_name',
-            'brand_name',
-            'phone_number',
-            'device_model',
-            'imei_number',
-            'device_color',
-            'device_status',
-            'device_mode',
-            'repair_type',
-            'description',
-            'possible_time',
-            'delivery_date',
-            'visit_date',
-            'repair_cost',
+            'category','name','last_name','brand_name','phone_number',
+            'device_model','imei_number','device_color','device_status',
+            'device_mode','repair_type','description','possible_time',
+            'delivery_date','visit_date','repair_cost',
         ]);
         $this->resetErrorBag();
         $this->editing = false;
@@ -125,28 +120,23 @@ use WithPagination;
     public function save()
     {
         $this->validate();
-        $this->visit_date = Carbon::parse($this->visit_date)->format('Y-m-d');
+        $this->repair_cost = $this->convertToEnglishNumber($this->repair_cost);
+        $this->visit_date  = Carbon::parse($this->visit_date)->format('Y-m-d');
         $this->delivery_date = Carbon::parse($this->delivery_date)->format('Y-m-d');
         DeviceRepairForm::updateOrCreate(
             ['id' => $this->editingId],
-            $this->only([
-                'category',
-                'name',
-                'last_name',
-                'brand_name',
-                'phone_number',
-                'device_model',
-                'imei_number',
-                'device_color',
-                'device_status',
-                'device_mode',
-                'repair_type',
-                'description',
-                'possible_time',
-                'delivery_date',
-                'visit_date',
-                'repair_cost',
-            ])
+            array_merge(
+                $this->only([
+                    'category','name','last_name','brand_name','phone_number',
+                    'device_model','imei_number','device_color','device_status',
+                    'device_mode','repair_type','description','possible_time',
+                    'delivery_date','visit_date','repair_cost',
+                ]),
+                [
+                    'user_id'  => Auth::id(),
+                    'admin_id' => Auth::id(),
+                ]
+            )
         );
         session()->flash('success', 'اطلاعات با موفقیت ذخیره شد');
         $this->resetForm();
@@ -175,14 +165,14 @@ use WithPagination;
     public function render()
     {
         $DeviceRepair = DeviceRepairForm::query()
-    ->when($this->search !== '', function ($q) {
-        $q->where(function ($qq) {
-            $qq->where('name', 'like', "%{$this->search}%")
-               ->orWhere('last_name', 'like', "%{$this->search}%");
-        });
-    })
-    ->latest()
-    ->paginate(10);
+            ->when($this->search !== '', function ($q) {
+                $q->where(function ($qq) {
+                    $qq->where('name', 'like', "%{$this->search}%")
+                       ->orWhere('last_name', 'like', "%{$this->search}%");
+                });
+            })
+            ->oldest()
+            ->paginate(4);
         return view('livewire.mobile.device-repair', compact('DeviceRepair'))
             ->layout('Mobile.layouts.app');
     }

@@ -76,8 +76,9 @@
     <div class="grid grid-cols-1 max-w-full mx-auto lg:grid-cols-3 gap-3">
         <div class="border border-gray-300 rounded-2xl shadow-[0_4px_12px] shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
             <div   class="flex justify-between mb-2 shadow p-3 rounded-xl border border-black">
-                <div class="flex p-3  rounded-xl gap-2 items-center" id="btnLoan"
-                onclick="activeLoan()">
+                <div class="flex p-3  rounded-xl gap-2 items-center"
+               id="btnLoan"  onclick="showLoanTable()"
+                >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.99609 8.5H11.4961" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M5.99609 16.5H7.99609" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -89,7 +90,7 @@
                     <h2 class="text-bold text-[13px]">فورم ثبت قرضه</h2>
                 </div>
                 <div >
-                    <button id="btnCash"  onclick="activeCash()"  class="bg-blue-800 text-[13px] p-3 gap-2 rounded-xl text-white flex">
+                    <button id="btnCash"  onclick="showCashTable()" class="bg-blue-800 text-[13px] p-3 gap-2 rounded-xl text-white flex">
                         <i class="bi bi-pencil-square  text-lg">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2 8.5H13.5" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -231,7 +232,7 @@
                 </div>
                 @endfor
             </div>
-            <div class="hidden lg:block overflow-x-auto ">
+            <div class="hidden lg:block overflow-x-auto  " id="loanTable" style="display:block">
                 <div class="flex justify-between mb-3">
                     <div class="flex gap-1 items-center">
                         <i>
@@ -315,6 +316,91 @@
                     </tbody>
                 </table>
             </div>
+
+            <div class="hidden lg:block overflow-x-auto  " id="cashTable" style="display:none">
+                <div class="flex justify-between mb-3">
+                    <div class="flex gap-1 items-center">
+                        <i>
+                        <svg width="25" height="25" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1047_2670)">
+                        <path d="M34.4314 16.596L32.8736 23.2407C31.5383 28.9792 28.8995 31.3001 23.9398 30.8232C23.145 30.7596 22.2866 30.6166 21.3646 30.394L18.694 29.7582C12.0652 28.1844 10.0146 24.9098 11.5725 18.2651L13.1303 11.6045C13.4482 10.2533 13.8297 9.07698 14.3066 8.1073C16.1665 4.26038 19.3299 3.22712 24.6393 4.48293L27.294 5.10289C33.9545 6.66073 35.9893 9.95128 34.4314 16.596Z" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M23.9399 30.8233C22.9543 31.491 21.7144 32.0474 20.2043 32.5401L17.6926 33.3668C11.3818 35.4015 8.05944 33.7006 6.00881 27.3897L3.97408 21.1107C1.93934 14.7998 3.62436 11.4616 9.93522 9.42682L12.4468 8.60021C13.0986 8.39356 13.7186 8.2187 14.3067 8.10742C13.8298 9.0771 13.4483 10.2534 13.1304 11.6046L11.5725 18.2652C10.0147 24.9099 12.0653 28.1845 18.6941 29.7583L21.3647 30.3941C22.2867 30.6167 23.1451 30.7598 23.9399 30.8233Z" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20.093 13.5596L27.8028 15.5148" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M18.5352 19.7119L23.1451 20.8882" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_1047_2670">
+                        <rect width="38.1513" height="38.1513" fill="white"/>
+                        </clipPath>
+                        </defs>
+                        </svg>
+                        </i>
+                        <h2 id="tableTitle"  class="font-bold text-[14px] mb-0">  رسید قرضه:</h2>
+                    </div>
+                    <div class="flex flex-col lg:flex-row gap-1">
+                        <div class="relative mb-1">
+                            <input type="text"  wire:model.live="search"  class="p-2 w-[100px]  bg-[#1E40AF]/20 text-[13px]  rounded-xl" placeholder="جستجو....">
+                            <span class="absolute left-1 mt-1 top-1.5 ">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <table class="w-full text-center text-sm border-collapse">
+                    <thead class="bg-[#1E40AF]  text-white ">
+                        <tr>
+                            <th class="p-2 text-[12px]">شماره</th>
+                            <th class="p-2 text-[12px]">نام </th>
+                            <th class="p-2 text-[12px]">کاربر</th>
+                            <th class="p-2 text-[12px]">تاریخ</th>
+                            <th class="p-2 text-[12px]">مبلغ</th>
+                            <th class="p-2 text-[12px]">توضیحات</th>
+                            <th class="p-2 text-[12px]">چاپ</th>
+                            <th class="p-2 text-[12px]">ویرایش</th>
+                            <th class="p-2 text-[12px]">حذف</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for ($i=1; $i<=5; $i++)
+                        <tr class=" text-[10px] border-b-2 border-[#1E40AF]">
+                            <td class="p-2 font-bold">{{ $i }}</td>
+                            <td class="p-2">محمود عزیزی</td>
+                            <td class="p-2">محمود عزیزی</td>
+                            <td class="p-2">1404/2/30</td>
+                            <td class="p-2">؋75,000</td>
+                            <td class="p-2">مبایل سامسونګ A20</td>
+                            <td class="p-2 text-center">
+                                <i class=" flex justify-center text-lg cursor-pointer">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+                                </i>
+                            </td>
+                            <td class="p-2 text-center">
+                                <i class="flex justify-center text-blue-800 text-lg cursor-pointer">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M16.0399 3.01976L8.15988 10.8998C7.85988 11.1998 7.55988 11.7898 7.49988 12.2198L7.06988 15.2298C6.90988 16.3198 7.67988 17.0798 8.76988 16.9298L11.7799 16.4998C12.1999 16.4398 12.7899 16.1398 13.0999 15.8398L20.9799 7.95976C22.3399 6.59976 22.9799 5.01976 20.9799 3.01976C18.9799 1.01976 17.3999 1.65976 16.0399 3.01976Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14.9102 4.1499C15.5802 6.5399 17.4502 8.4099 19.8502 9.0899" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                </i>
+                            </td>
+                            <td class="p-2 text-center">
+                                <i class="flex justify-center text-blue-600 text-lg cursor-pointer">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M18.8499 9.14014L18.1999 19.2101C18.0899 20.7801 17.9999 22.0001 15.2099 22.0001H8.7899C5.9999 22.0001 5.9099 20.7801 5.7999 19.2101L5.1499 9.14014" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </i>
+                            </td>
+                        </tr>
+                        @endfor
+                    </tbody>
+                </table>
+            </div>
             <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
                 <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">‹</button>
                 <button class="w-7 h-7 rounded-md border border-blue-500 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs font-medium">1</button>
@@ -342,5 +428,27 @@
             cash.classList.add('text-black');
         }
         </script>
+
+        <script>
+
+function showLoanTable() {
+
+    document.getElementById("loanTable").style.display = "block";
+    document.getElementById("cashTable").style.display = "none";
+
+    document.getElementById("btnLoan").classList.add("bg-blue-700", "text-white");
+    document.getElementById("btnCash").classList.remove("bg-blue-700", "text-white");
+}
+
+function showCashTable() {
+
+    document.getElementById("loanTable").style.display = "none";
+    document.getElementById("cashTable").style.display = "block";
+
+    document.getElementById("btnCash").classList.add("bg-blue-700", "text-white");
+    document.getElementById("btnLoan").classList.remove("bg-blue-700", "text-white");
+}
+
+</script>
     </div>
 </div>

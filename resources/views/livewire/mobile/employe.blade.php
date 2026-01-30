@@ -361,7 +361,7 @@
                 <div class="border-b border-gray-300 mt-5"></div>
             </div>
             @empty
-            <div class="flex justify-center gap-3 mt-5">
+            <div class="flex sm:hidden justify-center gap-3 mt-5">
                     هیچ کارمندی ثبت نشده
             </div>
         @endforelse

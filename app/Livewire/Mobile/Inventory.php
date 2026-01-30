@@ -39,7 +39,24 @@ public function confirmDelete($id)
     $this->confirmingDelete = true;
     $this->deleteId = $id;
 }
-
+private function normalizeNumber($value)
+{
+    if ($value === null) return null;
+    $persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+    $arabic  = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+    $english = ['0','1','2','3','4','5','6','7','8','9'];
+    $value = str_replace($persian, $english, $value);
+    $value = str_replace($arabic,  $english, $value);
+    return $value;
+}
+public function updatingBuyPrice($value)
+{
+    $this->buy_price = (float) $this->normalizeNumber($value);
+}
+public function updatingSellPrice($value)
+{
+    $this->sell_price = (float) $this->normalizeNumber($value);
+}
 public function deleteConfirmed()
 {
     if ($this->deleteId) {
@@ -75,8 +92,6 @@ public function deleteConfirmed()
         $this->status   = $this->selectedStatus ?: null;
         $this->resetPage();
     }
-
-
     public function resetFilter()
     {
         $this->reset([

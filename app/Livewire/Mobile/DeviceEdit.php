@@ -1,18 +1,14 @@
 <?php
-
 namespace App\Livewire\Mobile;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Device;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
-
 class Edit extends Component
 {
     use WithFileUploads;
-
     public Device $device;
-
     public $status;
     public $model;
     public $memory;
@@ -23,17 +19,12 @@ class Edit extends Component
     public $stock;
     public $imei;
     public $warranty;
-
-    // گرفتن id از QueryString
     protected $queryString = ['id'];
     public $id;
-
     public function mount()
     {
         abort_unless($this->id, 404);
-
         $this->device = Device::findOrFail($this->id);
-
         $this->fill([
             'status'     => $this->device->status,
             'model'      => $this->device->model,
@@ -46,7 +37,6 @@ class Edit extends Component
             'warranty'   => $this->device->warranty,
         ]);
     }
-
     protected function rules()
     {
         return [
@@ -62,19 +52,15 @@ class Edit extends Component
             'warranty'   => 'nullable|string|max:255',
         ];
     }
-
     public function update()
     {
         $this->validate();
-
         if ($this->image) {
             if ($this->device->image) {
                 Storage::disk('public')->delete($this->device->image);
             }
-
             $this->device->image = $this->image->store('devices', 'public');
         }
-
         $this->device->update([
             'status'     => $this->status,
             'model'      => $this->model,
@@ -86,10 +72,8 @@ class Edit extends Component
             'imei'       => $this->imei,
             'warranty'   => $this->warranty,
         ]);
-
         session()->flash('success', 'اطلاعات با موفقیت ویرایش شد ✅');
     }
-
     public function render()
     {
         return view('livewire.mobile.device-edit');
