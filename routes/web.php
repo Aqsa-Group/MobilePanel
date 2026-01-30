@@ -20,7 +20,7 @@ Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::middleware('auth')->group(function () {
 Route::get('/', Welcome::class)->name('welcome');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', function () { Auth::logout(); request()->session()->invalidate();  request()->session()->regenerateToken(); return redirect()->route('welcome');})->name('logout');
 Route::get('/userList', function () {return view('Mobile.shop.userList');})->name('user.list');
 Route::get('/cashfund', function () {return view('Mobile.shop.cashfund');})->name('cashfund');
 Route::get('/employe', function () { return view('Mobile.shop.employe'); })->name('employe');
@@ -38,4 +38,5 @@ Route::get('/device-Form', function () { return view('Mobile.shop.deviceForm');}
 Route::get('/borrowings-page', function () { return view('Mobile.shop.borrowings-page');})->name('borrowings');
 Route::get('/device-repair', function () { return view('Mobile.shop.device-repair');})->name('device.repair');
 Route::get('/accounts-page', function () { return view('Mobile.shop.accounts-page');})->name('accounts');
+Route::get('/profile', function () { return view('Mobile.shop.profile');})->name('profile');
 });
