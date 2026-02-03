@@ -115,7 +115,7 @@ public function deleteConfirmed()
         ->when($this->brand, fn ($q) => $q->where('brand', $this->brand))
         ->when($this->status, fn ($q) => $q->where('status', $this->status))
         ->oldest()
-        ->paginate(4);
+        ->paginate(7);
 }
     public function render()
     {

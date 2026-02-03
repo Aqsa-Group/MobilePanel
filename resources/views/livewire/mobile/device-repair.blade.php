@@ -16,7 +16,7 @@
             <h1 class="text-sm font-bold mb-4">مشخصات دستگاه:</h1>
             <h1 class="text-sm font-bold mb-4"> بخش خدمات:</h1>
         </div>
-        <form wire:submit.prevent="save">
+        <form  wire:submit.prevent="save">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="flex flex-col">
                     <div  class="relative">
@@ -273,7 +273,7 @@
                 </div>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
-                <button type="button" wire:click.prevent="resetForm" class="bg-red-800 hover:bg-red-700 text-white rounded-lg py-3 text-sm">انصراف</button>
+                <button type="button" wire:click="cancelEdit" class="bg-red-800 hover:bg-red-700 text-white rounded-lg py-3 text-sm">انصراف</button>
                 <button type="submit" class="btn btn-primary hover:bg-blue-700 bg-blue-800 text-white rounded-lg py-3 text-sm">{{ $editing ? 'ویرایش ' : 'ثبت ' }}</button>
             </div>
             @if($successMessage)

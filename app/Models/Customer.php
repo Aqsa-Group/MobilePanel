@@ -17,6 +17,10 @@ class Customer extends Model
         'phone',
         'admin_id'
     ];
+    public function getNameAttribute()
+{
+    return $this->fullname;
+}
     public function admin()
     {
         return $this->belongsTo(UserForm::class, 'admin_id');

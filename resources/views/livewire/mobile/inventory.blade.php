@@ -1,7 +1,7 @@
 <div >
     <div class="p-4">
-        <div class="grid grid-cols-1 md:grid-cols-5 max-w-full mx-auto gap-4">
-            <div class="col-span-3 ">
+        <div class="grid max-w-full mx-auto gap-4">
+            <div class=" ">
                 <div class="border border-gray-300 rounded-xl shadow-xl shadow-[0px_4px_4px_0px_#00000040]">
                     <div class="bg-[#1E40AF]/5 rounded-xl p-4">
                         <div class="flex justify-between">
@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <p class="font-bold text-lg mt-8">فیلتر پیشرفته:</p>
-                        <div class="grid grid-cols-3 gap-3 mb-4">
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-4">
                             <select wire:model.defer="selectedCategory" class="bg-blue-100 rounded p-2">
                                 <option value="">کتگوری</option>
                                 <option value="mobile">موبایل</option>
@@ -75,26 +75,46 @@
                                     <thead class="bg-[#1E40AF]  text-white">
                                         <tr>
                                             <th class="p-2 text-[12px] text-center">آیدی </th>
+                                            <th class="p-2 text-[12px] text-center">عکس </th>
                                             <th class="p-2 text-[12px] text-center">مدل دستگاه</th>
                                             <th class="p-2 text-[12px] text-center">حافظه</th>
-                                            <th class="p-2 text-[12px] text-center">شماره IMEI</th>
+                                            <th class="p-2 text-[12px] text-center"> بارکد</th>
                                             <th class="p-2 text-[12px] text-center">حالت</th>
+                                            <th class="p-2 text-[12px] text-center">کتگوری</th>
+                                            <th class="p-2 text-[12px] text-center">رنگ</th>
                                             <th class="p-2 text-[12px] text-center">حالت موجودی</th>
                                             <th class="p-2 text-[12px] text-center"> ادمین</th>
+                                            <th class="p-2 text-[12px] text-center"> قیمت خرید</th>
                                             <th class="p-2 text-[12px] text-center">چاپ</th>
                                             <th class="p-2 text-[12px] text-center">ادیت</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse($devices as $device)
-                                        <tr class="border-b text-[11px] border-b-2 border-[#1E40AF]  cursor-pointer" wire:click="selectDevice({{ $device->id }})">
+                                        <tr class="border-b text-[11px] border-b-2 border-[#1E40AF]  cursor-pointer">
                                             <td class="px-4 py-2 font-bold text-center">  {{ $devices->firstItem() + $loop->index }}</td>
+                                            <td class="text-center">
+                                                <div class="w-8 h-8 rounded-full block mx-auto overflow-hidden flex items-center  bg-gray-100">
+                                                    @if($device->image)
+                                                        <img
+                                                            src="{{ asset('storage/' . $device->image) }}"
+                                                            class="w-full h-full object-cover"
+                                                            alt="device"
+                                                        >
+                                                    @else
+                                                        <span class="text-sm text-gray-500">ندارد</span>
+                                                    @endif
+                                                </div>
+                                            </td>
                                             <td class="px-4 py-2 text-center">{{ $device->model }}</td>
                                             <td class="px-4 py-2 text-center">{{ $device->memory }}</td>
                                             <td class="px-4 py-2 text-center">{{ $device->imei }}</td>
                                             <td class="px-4 py-2 text-center">{{ $device->status_fa }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $device->category_fa }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $device->color }}</td>
                                             <td class="px-4 py-2 text-center">{{ $device->stock }}</td>
                                             <td class="px-4 py-2 text-center">@if($device->admin)     {{ $device->admin->name }} ({{ $device->admin->rule }})  @else     -- @endif</td>
+                                            <td class="px-4 py-2 text-center">{{ number_format($device->buy_price, 2) }}؋</td>
                                             <td class="px-4 py-2 text-center">
                                                 <button wire:click.stop="edit({{ $device->id }})" class="text-blue-800">
                                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
@@ -123,19 +143,40 @@
                                 </table>
                             </div>
                             @forelse($devices as $device)
-                            <div  class="cursor-pointer block md:hidden items-center py-4  border-b  border-[#1E40AF]" wire:click="selectDevice({{ $device->id }})" >
-                                <div class="col-span-2 text-center">
-                                    <p class="text-sm flex justify-center">{{ $device->model }}</p>
+                            <div  class="cursor-pointer text-center block md:hidden items-center py-4  border-b  border-[#1E40AF]"  >
+                                <div class="w-10 h-10 rounded-full block mx-auto overflow-hidden bg-gray-100">
+                                    @if($device->image)
+                                        <img
+                                            src="{{ asset('storage/' . $device->image) }}"
+                                            class="w-full h-full object-cover"
+                                            alt="device"
+                                        >
+                                    @else
+                                        <span class="text-sm text-gray-500">ندارد</span>
+                                    @endif
                                 </div>
-                                <div class="text-center col-span-2">
-                                    <p class="text-sm flex justify-center">{{ $device->memory }}</p>
-                                </div>
-                                <div class="col-span-6 justify-center grid grid-cols-3 my-3 md:my-0">
+                                <div class="col-span-6 text-center justify-center grid grid-cols-2 my-3 md:my-0">
                                     <div class="text-center">
-                                        <h1 class="text-[#00000080] block md:hidden">شماره</h1>
+                                        <h1 class="text-[#00000080] block md:hidden">مدل دستگاه</h1>
+                                        <p class="text-sm">{{ $device->model }}</p>
+                                    </div>
+                                    <div class="text-center ">
+                                        <h1 class="text-[#00000080] block md:hidden">حافظه</h1>
+                                        <p class="text-sm">{{ $device->memory }}</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <h1 class="text-[#00000080] block md:hidden">بارکد</h1>
                                         <p class="text-sm">{{ $device->imei }}</p>
                                     </div>
-                                    <div class="col-span-2 text-center">
+                                    <div class="text-center ">
+                                        <h1 class="text-[#00000080] block md:hidden">کتگوری</h1>
+                                        <p class="text-sm">{{ $device->category_fa }}</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <h1 class="text-[#00000080] block md:hidden">رنگ</h1>
+                                        <p class="text-sm">{{ $device->color }}</p>
+                                    </div>
+                                    <div class=" text-center">
                                         <h1 class="text-[#00000080] block md:hidden">حالت</h1>
                                         <p class="text-sm">{{ $device->status_fa }}</p>
                                     </div>
@@ -143,12 +184,16 @@
                                         <h1 class="text-[#00000080] block md:hidden">حالت موجودی</h1>
                                         <p class="text-sm">{{ $device->stock }}</p>
                                     </div>
-                                    <div class="col-span-2 text-center">
+                                    <div class=" text-center">
                                         <h1 class="text-[#00000080] block md:hidden"> ادمین</h1>
                                         <p class="text-sm">@if($device->admin)     {{ $device->admin->name }} ({{ $device->admin->rule }})  @else     -- @endif</p>
                                     </div>
+                                    <div class=" text-center col-span-2">
+                                        <h1 class="text-[#00000080] block md:hidden"> قیمت خرید</h1>
+                                        <p class="text-sm"> {{ number_format($device->buy_price, 2) }}؋</p>
+                                    </div>
                                 </div>
-                                <div class="col-span-2 grid grid-cols-2 my-5 md:my-0 px-16 md:px-0">
+                                <div class=" grid grid-cols-2 my-5 md:my-0 px-16 md:px-0">
                                     <div  wire:click.stop="edit({{ $device->id }})"  class="mx-auto flex items-center border border-[#1C274C] md:border-none rounded-lg px-2 py-1"  >
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                                         <p class="text-[#1C274C] block md:hidden">چاپ</p>
@@ -189,156 +234,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-span-2 hidden md:block mt-4 md:mt-0">
-                <div class="rounded-xl border  border-gray-300 shadow-xl pt-5 px-4 pb-5">
-                    @if($selectedDevice)
-                        <div class="flex justify-center">
-                            <div class="w-24 h-24 rounded-full overflow-hidden flex items-center justify-center bg-gray-100">
-                                @if($selectedDevice->image)
-                                    <img
-                                        src="{{ asset('storage/' . $selectedDevice->image) }}"
-                                        class="w-full h-full object-cover"
-                                        alt="device"
-                                    >
-                                @else
-                                    <span class="text-sm text-gray-500">ندارد</span>
-                                @endif
-                            </div>
-                        </div>
-                        <h1 class="font-bold text-2xl text-center mt-2">
-                            {{ $selectedDevice->category_fa }}  {{ $selectedDevice->model }}
-                        </h1>
-                        <div class="flex items-center mt-4">
-                            <p class="text-gray-500">IMEI:</p>
-                            <p class="mr-2">{{ $selectedDevice->imei }}</p>
-                        </div>
-                        <div class="flex items-center mt-1">
-                            <p class="text-gray-500">کتگوری:</p>
-                            <p class="mr-9">{{ $selectedDevice->category_fa }}</p>
-                        </div>
-                        <div class="flex items-center mt-1">
-                            <p class="text-gray-500">حالت:</p>
-                            <p class="mr-12">{{ $selectedDevice->status_fa }}</p>
-                        </div>
-                        <div class="flex items-center mt-1">
-                            <p class="text-gray-500">رنگ:</p>
-                            <p class="mr-12">{{ $selectedDevice->color }}</p>
-                        </div>
-                        <div class="flex items-center mt-1">
-                            <p class="text-gray-500">موجودی:</p>
-                            <p class="mr-8">{{ $selectedDevice->stock }}</p>
-                        </div>
-                        <div wire:click="toggleSaleDetails" class="flex justify-center">
-                            <button class="w-48 border border-[#1E40AF] rounded-lg text-center py-1 mt-1 cursor-pointer">مشخصات فروش</button>
-                        </div>
-                        @if($showSaleDetails)
-                        <div class="flex items-center mt-2">
-                            <p class="text-gray-500">قیمت خرید:</p>
-                            <p class="mr-8">{{ number_format($buy_price, 2) }}؋</p>
-                        </div>
-                        <div class="flex items-center mt-2">
-                            <p class=" text-gray-500">قیمت فروش:</p>
-                            <p class="mr-6">  {{ number_format($sell_price, 2) }}؋</p>
-                        </div>
-                        <div class="flex items-center mt-2">
-                            <p class= "{{ $profit < 0 ? 'text-red-600' : 'text-green-600'  }}">مقدار مفاد:</p>
-                            <p class="mr-10">   {{ number_format($profit, 2) }}؋</p>
-                        </div>
-                        <div class="flex items-center mt-2">
-                            <p class="text-gray-500">فیصدی مفاد:</p>
-                            <p class="mr-6">{{ $profitPercent }} %</p>
-                        </div>
-                        <div class="flex items-center mt-2">
-                            <p class="text-gray-500">حالت راجستر:</p>
-                            <p class="mr-6">ثبت شده</p>
-                        </div>
-                        <div class="flex items-center mt-2">
-                            <p class="text-gray-500">گارانتی:</p>
-                            <p class="mr-6">{{ $selectedDevice->warranty }}ماه</p>
-                        </div>
-                    @endif
-                    @else
-                        <p class="text-center text-gray-400 py-10">
-                            لطفاً یک دستگاه را انتخاب کنید.
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="w-full md:hidden block mt-4">
-                <div class="rounded-xl border  border-gray-300 shadow-xl pt-5 px-4 pb-5">
-                    @if($selectedDevice)
-                        <div class="flex justify-center">
-                            <div class="w-24 h-24 rounded-full overflow-hidden flex items-center justify-center bg-gray-100">
-                                @if($selectedDevice->image)
-                                    <img
-                                        src="{{ asset('storage/' . $selectedDevice->image) }}"
-                                        class="w-full h-full object-cover"
-                                        alt="device"
-                                    >
-                                @else
-                                    <span class="text-sm text-gray-500">ندارد</span>
-                                @endif
-                            </div>
-                        </div>
-                        <h1 class="font-bold text-2xl text-center mt-2">
-                            {{ $selectedDevice->category_fa }}  {{ $selectedDevice->model }}
-                        </h1>
-                        <div class="flex items-center mt-4">
-                            <p class="text-gray-500">IMEI:</p>
-                            <p class="mr-2">{{ $selectedDevice->imei }}</p>
-                        </div>
-                        <div class="flex items-center mt-1">
-                            <p class="text-gray-500">کتگوری:</p>
-                            <p class="mr-9">{{ $selectedDevice->category_fa }}</p>
-                        </div>
-                        <div class="flex items-center mt-1">
-                            <p class="text-gray-500">حالت:</p>
-                            <p class="mr-12">{{ $selectedDevice->status_fa }}</p>
-                        </div>
-                        <div class="flex items-center mt-1">
-                            <p class="text-gray-500">رنگ:</p>
-                            <p class="mr-12">{{ $selectedDevice->color }}</p>
-                        </div>
-                        <div class="flex items-center mt-1">
-                            <p class="text-gray-500">موجودی:</p>
-                            <p class="mr-8">{{ $selectedDevice->stock }}</p>
-                        </div>
-                        <div wire:click="toggleSaleDetails" class="flex justify-center">
-                            <button class="w-48 border border-[#1E40AF] rounded-lg text-center py-1 mt-1 cursor-pointer">مشخصات فروش</button>
-                        </div>
-                        @if($showSaleDetails)
-                        <div class="flex items-center mt-2">
-                            <p class="text-gray-500">قیمت خرید:</p>
-                            <p class="mr-8">{{ number_format($buy_price, 2) }}؋</p>
-                        </div>
-                        <div class="flex items-center mt-2">
-                            <p class=" text-gray-500">قیمت فروش:</p>
-                            <p class="mr-6">  {{ number_format($sell_price, 2) }}؋</p>
-                        </div>
-                        <div class="flex items-center mt-2">
-                            <p class= "{{ $profit < 0 ? 'text-red-600' : 'text-green-600'  }}">مقدار مفاد:</p>
-                            <p class="mr-10">   {{ number_format($profit, 2) }}؋</p>
-                        </div>
-                        <div class="flex items-center mt-2">
-                            <p class="text-gray-500">فیصدی مفاد:</p>
-                            <p class="mr-6">{{ $profitPercent }} %</p>
-                        </div>
-                        <div class="flex items-center mt-2">
-                            <p class="text-gray-500">حالت راجستر:</p>
-                            <p class="mr-6">ثبت شده</p>
-                        </div>
-                        <div class="flex items-center mt-2">
-                            <p class="text-gray-500">گارانتی:</p>
-                            <p class="mr-6">{{ $selectedDevice->warranty }}ماه</p>
-                        </div>
-                    @endif
-                    @else
-                        <p class="text-center text-gray-400 py-10">
-                            لطفاً یک دستگاه را انتخاب کنید.
-                        </p>
-                    @endif
                 </div>
             </div>
         </div>

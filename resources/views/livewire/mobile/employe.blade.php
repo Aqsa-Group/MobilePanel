@@ -7,20 +7,14 @@
                 <div class="relative mx-auto w-24 h-24">
                     <div id="profileWrapper" onclick="document.getElementById('profile_image').click()"
                         class="w-full h-full rounded-full border flex items-center justify-center cursor-pointer bg-blue-800 overflow-hidden relative text-white font-bold text-xl">
-                        @if ($image)
-                            <img class="w-full h-full object-cover" src="{{ $image->temporaryUrl() }}">
-                        @elseif($employee && $employee->image)
-                            <img class="w-full h-full object-cover" src="{{ asset('storage/'.$employee->image) }}">
+                        @if ($imagePreview)
+                            <img src="{{ $imagePreview }}" class="w-full h-full object-cover">
                         @elseif($name)
                             @php
                                 $parts = preg_split('/\s+/', trim($name));
-                                $initials =
-                                    mb_substr($parts[0], 0, 1) .
-                                    (isset($parts[1]) ? mb_substr($parts[1], 0, 1) : '');
+                                $initials = mb_substr($parts[0],0,1) . (isset($parts[1]) ? mb_substr($parts[1],0,1) : '');
                             @endphp
-                            <span id="avatarText">
-                                {{ mb_strtoupper($initials) }}
-                            </span>
+                            <span>{{ mb_strtoupper($initials) }}</span>
                         @else
                             <svg height="48px" width="48px" viewBox="0 0 487.678 487.678" fill="#fafafa">
                                 <path d="M377.996,282.347c-56.201-18.357-79.563-41.185-79.563-41.185l-1.881,1.793c-16.69,15.709-35.149,24.944-51.965,24.944H243c-16.815,0-35.274-9.235-51.964-24.944l-1.882-1.793s-23.36,22.827-79.562,41.185c-82.964,30.992-58.053,157.119-58.077,158.096c2.613,14.047,4.136,18.875,5.463,19.417c83.314,37.091,290.319,37.091,373.634,0c1.327-0.542,2.85-5.37,5.463-19.417C436.051,439.466,461.295,313.84,377.996,282.347z"/>

@@ -10,7 +10,7 @@
             <div class="space-y-10">
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-[#0B35CC]">مبلغ به افغانی:</span>
-                    <span class="text-lg text-[#0B35CC] font-bold">؋</span>
+                    <span class="text-lg text-[#0B35CC] font-bold"></span>
                 </div>
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-[#0B35CC]">مبلغ به دالر:</span>
@@ -28,7 +28,7 @@
             <div class="space-y-10">
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-[#0099FF]">مبلغ به افغانی:</span>
-                    <span class="text-lg text-[#0099FF] font-bold">؋</span>
+                    <span class="text-lg text-[#0099FF] font-bold"></span>
                 </div>
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-[#0099FF]">مبلغ به دالر:</span>
@@ -74,71 +74,64 @@
         </div>
     </div>
     <div class="grid grid-cols-1 max-w-full mx-auto lg:grid-cols-3 gap-3">
-        <div class="border border-gray-300 rounded-2xl shadow-[0_4px_12px] shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
-            <div   class="flex justify-between mb-2 shadow p-3 rounded-xl border border-black">
-                <div class="flex p-3  rounded-xl gap-2 items-center"
-               id="btnLoan"  onclick="showLoanTable()"
-                >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1.99609 8.5H11.4961" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M5.99609 16.5H7.99609" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M10.4961 16.5H14.4961" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M21.9961 12.03V16.11C21.9961 19.62 21.1061 20.5 17.5561 20.5H6.43609C2.88609 20.5 1.99609 19.62 1.99609 16.11V7.89C1.99609 4.38 2.88609 3.5 6.43609 3.5H14.4961" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M19.0764 4.13031L15.3664 7.84031C15.2264 7.98031 15.0864 8.26031 15.0564 8.46031L14.8564 9.88031C14.7864 10.3903 15.1464 10.7503 15.6564 10.6803L17.0764 10.4803C17.2764 10.4503 17.5564 10.3103 17.6964 10.1703L21.4064 6.46031C22.0464 5.82031 22.3464 5.08031 21.4064 4.14031C20.4564 3.19031 19.7164 3.49031 19.0764 4.13031Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M18.5459 4.66016C18.8659 5.79016 19.7459 6.67016 20.8659 6.98016" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                    <h2 class="text-bold text-[13px]">فورم ثبت قرضه</h2>
-                </div>
-                <div >
-                    <button id="btnCash"  onclick="showCashTable()" class="bg-blue-800 text-[13px] p-3 gap-2 rounded-xl text-white flex">
-                        <i class="bi bi-pencil-square  text-lg">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2 8.5H13.5" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M6 16.5H8" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M10.5 16.5H14.5" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M22 11.03V16.11C22 19.62 21.11 20.5 17.56 20.5H6.44C2.89 20.5 2 19.62 2 16.11V7.89C2 4.38 2.89 3.5 6.44 3.5H13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M16.5 6L18 7.5L22 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        </i>
-                        رسید صندوق
-                    </button>
+        <form wire:submit.prevent="submit">
+            <div class="max-w-full mx-auto col-span-1 gap-3">
+                <div class="border border-gray-300 rounded-2xl shadow-[0_4px_12px] shadow-lg w-full p-3">
+                    <div class="flex  justify-between mb-2  shadow p-3 rounded-xl border border-black">
+                        <button   type="button"  wire:click="setForm('loan')"  class="flex p-3 rounded-xl gap-2 items-center {{ $formType === 'loan' ? 'bg-blue-600 text-white' : 'bg-gray-200' }}" >
+                            <h2 class="text-bold text-[13px]">فورم ثبت قرضه</h2>
+                        </button>
+                        <button  type="button"  wire:click="setForm('cash')"   class="flex p-3 rounded-xl gap-2 items-center {{ $formType === 'cash' ? 'bg-green-600 text-white' : 'bg-gray-200' }}" >
+                            رسید صندوق
+                        </button>
+                    </div>
+                    <select wire:model="customer_id" class="w-full rounded-xl border  border-gray-900 p-4 text-sm mb-3">
+                        <option value="">انتخاب مشتری</option>
+                        @foreach($customers as $customer)
+                            <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                        @endforeach
+                    </select>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
+                        <div class="border rounded-xl p-4 border-gray-900 flex items-center gap-2">
+                            <input type="text" wire:model="amount" class="w-full bg-transparent focus:outline-none text-sm no-spinner" placeholder="{{ $formType === 'loan' ? 'مبلغ قرضه' : 'مبلغ رسید' }}">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_974_3657)">
+                                    <path d="M7.22656 11.9412C7.22656 13.0162 8.05156 13.8829 9.07656 13.8829H11.1682C12.0599 13.8829 12.7849 13.1245 12.7849 12.1912C12.7849 11.1745 12.3432 10.8162 11.6849 10.5829L8.32656 9.41621C7.66823 9.18288 7.22656 8.82454 7.22656 7.80788C7.22656 6.87454 7.95156 6.11621 8.84323 6.11621H10.9349C11.9599 6.11621 12.7849 6.98288 12.7849 8.05788" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M10 5V15" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9.99984 18.3337C14.6022 18.3337 18.3332 14.6027 18.3332 10.0003C18.3332 5.39795 14.6022 1.66699 9.99984 1.66699C5.39746 1.66699 1.6665 5.39795 1.6665 10.0003C1.6665 14.6027 5.39746 18.3337 9.99984 18.3337Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_974_3657">
+                                        <rect width="20" height="20" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="border rounded-xl p-4 border-gray-900 flex items-center gap-2">
+                            <input  type="text"  name="date" wire:model="date"  readonly   class="w-full bg-transparent focus:outline-none text-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentcolor" d="M7.75 2.5a.75.75 0 0 0-1.5 0v1.58c-1.44.115-2.384.397-3.078 1.092c-.695.694-.977 1.639-1.093 3.078h19.842c-.116-1.44-.398-2.384-1.093-3.078c-.694-.695-1.639-.977-3.078-1.093V2.5a.75.75 0 0 0-1.5 0v1.513C15.585 4 14.839 4 14 4h-4c-.839 0-1.585 0-2.25.013z"/><path fill="currentColor" fill-rule="evenodd" d="M22 12c0-.839 0-1.585-.013-2.25H2.013C2 10.415 2 11.161 2 12v2c0 3.771 0 5.657 1.172 6.828S6.229 22 10 22h4c3.771 0 5.657 0 6.828-1.172S22 17.771 22 14zm-8 .25A1.75 1.75 0 0 0 12.25 14v2a1.75 1.75 0 1 0 3.5 0v-2A1.75 1.75 0 0 0 14 12.25m0 1.5a.25.25 0 0 0-.25.25v2a.25.25 0 1 0 .5 0v-2a.25.25 0 0 0-.25-.25m-3.213-1.443a.75.75 0 0 1 .463.693v4a.75.75 0 0 1-1.5 0v-2.19l-.22.22a.75.75 0 0 1-1.06-1.06l1.5-1.5a.75.75 0 0 1 .817-.163" clip-rule="evenodd"/></svg>
+                        </div>
+                    </div>
+                    <textarea wire:model="note"  placeholder="توضیحات..." class="w-full rounded-xl border border-gray-900 p-2 text-sm h-28 mb-3"placeholder="{{ $formType === 'loan' ? 'یادداشت قرضه' : 'تشریح رسید' }}">
+                    </textarea>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-2">
+                        <button type="reset" class="bg-red-800 hover:bg-red-700 text-white rounded-xl py-3 text-sm">
+                            انصراف
+                        </button>
+
+                        <button type="submit" name="print" value="1"
+                                class="bg-blue-900 hover:bg-blue-800 text-white rounded-xl py-3 text-sm">
+                            ثبت و چاپ
+                        </button>
+
+                        <button type="submit"
+                                class="bg-blue-800 hover:bg-blue-700 text-white rounded-xl py-3 text-sm">
+                            ثبت
+                        </button>
+                    </div>
                 </div>
             </div>
-            <select class="w-full rounded-xl border  border-gray-900 p-4 text-sm mb-3">
-                <option class="text-gray-100">انتخاب با جستجوی مشتری...</option>
-            </select>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
-                <div class="border rounded-xl p-4 border-gray-900 flex items-center gap-2">
-                    <input type="text" placeholder="مبلغ" class="w-full bg-transparent no-spinner focus:outline-none text-sm">
-                    <i>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_974_3657)">
-                    <path d="M7.22656 11.9412C7.22656 13.0162 8.05156 13.8829 9.07656 13.8829H11.1682C12.0599 13.8829 12.7849 13.1245 12.7849 12.1912C12.7849 11.1745 12.3432 10.8162 11.6849 10.5829L8.32656 9.41621C7.66823 9.18288 7.22656 8.82454 7.22656 7.80788C7.22656 6.87454 7.95156 6.11621 8.84323 6.11621H10.9349C11.9599 6.11621 12.7849 6.98288 12.7849 8.05788" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M10 5V15" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M9.99984 18.3337C14.6022 18.3337 18.3332 14.6027 18.3332 10.0003C18.3332 5.39795 14.6022 1.66699 9.99984 1.66699C5.39746 1.66699 1.6665 5.39795 1.6665 10.0003C1.6665 14.6027 5.39746 18.3337 9.99984 18.3337Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </g>
-                    <defs>
-                    <clipPath id="clip0_974_3657">
-                    <rect width="20" height="20" fill="white"/>
-                    </clipPath>
-                    </defs>
-                    </svg>
-                    </i>
-                </div>
-                <div class="border rounded-xl p-4 border-gray-900 flex items-center gap-2">
-                    <input readonly type="text" class="w-full bg-transparent focus:outline-none text-sm">
-                    <i>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentcolor" d="M7.75 2.5a.75.75 0 0 0-1.5 0v1.58c-1.44.115-2.384.397-3.078 1.092c-.695.694-.977 1.639-1.093 3.078h19.842c-.116-1.44-.398-2.384-1.093-3.078c-.694-.695-1.639-.977-3.078-1.093V2.5a.75.75 0 0 0-1.5 0v1.513C15.585 4 14.839 4 14 4h-4c-.839 0-1.585 0-2.25.013z"/><path fill="currentColor" fill-rule="evenodd" d="M22 12c0-.839 0-1.585-.013-2.25H2.013C2 10.415 2 11.161 2 12v2c0 3.771 0 5.657 1.172 6.828S6.229 22 10 22h4c3.771 0 5.657 0 6.828-1.172S22 17.771 22 14zm-8 .25A1.75 1.75 0 0 0 12.25 14v2a1.75 1.75 0 1 0 3.5 0v-2A1.75 1.75 0 0 0 14 12.25m0 1.5a.25.25 0 0 0-.25.25v2a.25.25 0 1 0 .5 0v-2a.25.25 0 0 0-.25-.25m-3.213-1.443a.75.75 0 0 1 .463.693v4a.75.75 0 0 1-1.5 0v-2.19l-.22.22a.75.75 0 0 1-1.06-1.06l1.5-1.5a.75.75 0 0 1 .817-.163" clip-rule="evenodd"/></svg>
-                    </i>
-                </div>
-            </div>
-            <textarea class="w-full rounded-xl border  border-gray-900 p-2 text-sm h-28 mb-3" placeholder="توضیحات..."></textarea>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-2">
-                <button class="bg-red-800 hover:bg-red-700 text-white rounded-xl py-3  text-sm">انصراف</button>
-                <button class="bg-blue-900 hover:bg-blue-800 text-white rounded-xl py-3  text-sm">ثبت و چاپ</button>
-                <button class="bg-blue-800 hover:bg-blue-700 text-white rounded-xl py-3  text-sm">ثبت</button>
-            </div>
-        </div>
+        </form>
         <div class="lg:col-span-2 border border-gray-300 rounded-2xl shadow-[0_4px_12px] shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
             <div class="lg:hidden space-y-3 ">
                 <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
@@ -158,7 +151,7 @@
                             </defs>
                             </svg>
                     </i>
-                    <h2 id="tableTitle"  class="font-bold text-[14px] mb-0">لیست قرضه ها:</h2>
+                    <h2 class="font-bold mb-3">   {{ $formType=='loan' ? 'لیست قرضه ها' : 'لیست رسید ها' }}</h2>
                 </div>
                 <div class="flex gap-2 flex-1 min-w-[100px]">
                     <div class="relative flex-1">
@@ -172,67 +165,167 @@
                     </div>
                 </div>
                 </div>
-                @for ($i=1; $i<=5; $i++)
-                <div class="p-4">
-                    <div class="text-center">
-                        <div class="text-center font-bold text-lg text-[#1E40AF] mb-4">
-                            محمود عزیزی
+                @if($formType=='loan')
+                    @forelse($loans as $i =>  $loan)
+                    <div class="p-4">
+                        <div class="text-center">
+                            <div class="text-center font-bold text-lg text-[#1E40AF] mb-4">
+                                {{ $loan->customer->name }}
+                            </div>
+                            <div class="grid grid-cols-2 gap-5 text-sm">
+                                <div>
+                                    <div class="text-gray-600 text-xs font-semibold mb-1">ادمین</div>
+                                      <div class="text-gray-900 font-bold">@if($loan->admin)     {{ $loan->admin->name }} ({{ $loan->admin->rule }})  @else     -- @endif</div>
+                                </div>
+                                <div>
+                                    <div class="text-gray-600 text-xs font-semibold mb-1">تاریخ</div>
+                                    <div class="text-gray-900 font-bold">{{ $loan->loan_date }}</div>
+                                </div>
+                                <div>
+                                    <div class="text-gray-600 text-xs font-semibold mb-1">مبلغ</div>
+                                    <div class="text-gray-900 font-bold">؋{{ number_format($loan->amount) }}</div>
+                                </div>
+                                <div class="text-center flex justify-center flex-col ">
+                                    <div class="text-gray-600 text-xs font-semibold mb-1">توضیحات</div>
+                                    <div class="text-gray-900 font-bold">{{ $loan->note }}  </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center gap-3 mt-5">
+                                <button class="flex text-gray-700 items-center gap-1  border-gray-700 border border-2  py-2 px-3 rounded-lg text-xs">
+                                    <i class="bi bi-printer">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+                                    </i> چاپ
+                                </button>
+                                <button class="flex items-center gap-1 text-[#1E40AF] border-blue-800 border border-2 e py-2 px-3 rounded-lg text-xs">
+                                    <i class="bi bi-pencil-square">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M16.0399 3.02025L8.15988 10.9003C7.85988 11.2003 7.55988 11.7903 7.49988 12.2203L7.06988 15.2303C6.90988 16.3203 7.67988 17.0803 8.76988 16.9303L11.7799 16.5003C12.1999 16.4403 12.7899 16.1403 13.0999 15.8403L20.9799 7.96025C22.3399 6.60025 22.9799 5.02025 20.9799 3.02025C18.9799 1.02025 17.3999 1.66025 16.0399 3.02025Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M14.9102 4.15039C15.5802 6.54039 17.4502 8.41039 19.8502 9.09039" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    </i> ویرایش
+                                </button>
+                                <button wire:click="confirmDeleteLoan({{ $loan->id }})" class="flex items-center gap-1 text-red-600 border-red-600 border border-2   py-2 px-3 rounded-lg text-xs">
+                                    <i class="bi bi-trash">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 5.98047C17.67 5.65047 14.32 5.48047 10.98 5.48047C9 5.48047 7.02 5.58047 5.04 5.78047L3 5.98047" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M18.8499 9.13965L18.1999 19.2096C18.0899 20.7796 17.9999 21.9996 15.2099 21.9996H8.7899C5.9999 21.9996 5.9099 20.7796 5.7999 19.2096L5.1499 9.13965" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    </i> حذف
+                                </button>
+                            </div>
                         </div>
-                        <div class="grid grid-cols-2 gap-5 text-sm">
-                            <div>
-                                <div class="text-gray-600 text-xs font-semibold mb-1">ادمین</div>
-                                <div class="text-gray-900 font-bold">1404/4/20</div>
-                            </div>
-                            <div>
-                                <div class="text-gray-600 text-xs font-semibold mb-1">تاریخ</div>
-                                <div class="text-gray-900 font-bold">1404/4/20</div>
-                            </div>
-                            <div>
-                                <div class="text-gray-600 text-xs font-semibold mb-1">شغل</div>
-                                <div class="text-gray-900 font-bold">فروشنده</div>
-                            </div>
-                            <div>
-                                <div class="text-gray-600 text-xs font-semibold mb-1">مبلغ</div>
-                                <div class="text-gray-900 font-bold">؋75,000</div>
-                            </div>
-                            <div class="text-center flex justify-center flex-col col-span-2">
-                                <div class="text-gray-600 text-xs font-semibold mb-1">توضیحات</div>
-                                <div class="text-gray-900 font-bold">موبایل A20s سامسونگ</div>
-                            </div>
-                        </div>
-                        <div class="flex justify-center gap-3 mt-5">
-                            <button class="flex text-gray-700 items-center gap-1  border-gray-700 border border-2  py-2 px-3 rounded-lg text-xs">
-                                <i class="bi bi-printer">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
-                                </i> چاپ
-                            </button>
-                            <button class="flex items-center gap-1 text-[#1E40AF] border-blue-800 border border-2 e py-2 px-3 rounded-lg text-xs">
-                                <i class="bi bi-pencil-square">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M16.0399 3.02025L8.15988 10.9003C7.85988 11.2003 7.55988 11.7903 7.49988 12.2203L7.06988 15.2303C6.90988 16.3203 7.67988 17.0803 8.76988 16.9303L11.7799 16.5003C12.1999 16.4403 12.7899 16.1403 13.0999 15.8403L20.9799 7.96025C22.3399 6.60025 22.9799 5.02025 20.9799 3.02025C18.9799 1.02025 17.3999 1.66025 16.0399 3.02025Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M14.9102 4.15039C15.5802 6.54039 17.4502 8.41039 19.8502 9.09039" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                </i> ویرایش
-                            </button>
-                            <button class="flex items-center gap-1 text-red-600 border-red-600 border border-2   py-2 px-3 rounded-lg text-xs">
-                                <i class="bi bi-trash">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M21 5.98047C17.67 5.65047 14.32 5.48047 10.98 5.48047C9 5.48047 7.02 5.58047 5.04 5.78047L3 5.98047" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M18.8499 9.13965L18.1999 19.2096C18.0899 20.7796 17.9999 21.9996 15.2099 21.9996H8.7899C5.9999 21.9996 5.9099 20.7796 5.7999 19.2096L5.1499 9.13965" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                </i> حذف
-                            </button>
-                        </div>
+                        <div class="border-b border-gray-300 mt-5"></div>
                     </div>
-                    <div class="border-b border-gray-300 mt-5"></div>
-                </div>
-                @endfor
+                    @empty
+                    <div class="text-center text-gray-500 p-4">
+                        قرضه‌ای ثبت نشده
+                    </div>
+                    @endforelse
+                    @if($loans->lastPage() > 1)
+                    <div class="flex flex-wrap gap-1 justify-center sm:hidden items-center mt-3 text-[10px]">
+                        <button
+                            wire:click="previousPage"
+                            @disabled($loans->onFirstPage())
+                            class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                            قبلی
+                        </button>
+                        <span class="mx-2 text-sm font-medium">
+                            {{ $loans->currentPage() }} از {{ $loans->lastPage() }}
+                        </span>
+                        <button
+                            wire:click="nextPage"
+                            @disabled($loans->onLastPage())
+                            class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                            بعدی
+                        </button>
+                    </div>
+                    @endif
+                    @else
+                    @forelse($cashReceipts as $i =>  $cash)
+                    <div class="p-4">
+                        <div class="text-center">
+                            <div class="text-center font-bold text-lg text-[#1E40AF] mb-4">
+                                {{ $cash->customer->name }}
+                            </div>
+                            <div class="grid grid-cols-2 gap-5 text-sm">
+                                <div>
+                                    <div class="text-gray-600 text-xs font-semibold mb-1">ادمین</div>
+                                    <div class="text-gray-900 font-bold">@if($cash->admin)     {{ $cash->admin->name }} ({{ $cash->admin->rule }})  @else     -- @endif</div>
+                                </div>
+                                <div>
+                                    <div class="text-gray-600 text-xs font-semibold mb-1">تاریخ</div>
+                                    <div class="text-gray-900 font-bold">{{ $cash->receipt_date }}</div>
+                                </div>
+                                <div>
+                                    <div class="text-gray-600 text-xs font-semibold mb-1">مبلغ</div>
+                                    <div class="text-gray-900 font-bold">؋{{ number_format($cash->amount) }}</div>
+                                </div>
+                                <div class="text-center flex justify-center flex-col ">
+                                    <div class="text-gray-600 text-xs font-semibold mb-1">توضیحات</div>
+                                    <div class="text-gray-900 font-bold">{{ $cash->note }}</div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center gap-3 mt-5">
+                                <button class="flex text-gray-700 items-center gap-1  border-gray-700 border border-2  py-2 px-3 rounded-lg text-xs">
+                                    <i class="bi bi-printer">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+                                    </i> چاپ
+                                </button>
+                                <button class="flex items-center gap-1 text-[#1E40AF] border-blue-800 border border-2 e py-2 px-3 rounded-lg text-xs">
+                                    <i class="bi bi-pencil-square">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M16.0399 3.02025L8.15988 10.9003C7.85988 11.2003 7.55988 11.7903 7.49988 12.2203L7.06988 15.2303C6.90988 16.3203 7.67988 17.0803 8.76988 16.9303L11.7799 16.5003C12.1999 16.4403 12.7899 16.1403 13.0999 15.8403L20.9799 7.96025C22.3399 6.60025 22.9799 5.02025 20.9799 3.02025C18.9799 1.02025 17.3999 1.66025 16.0399 3.02025Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M14.9102 4.15039C15.5802 6.54039 17.4502 8.41039 19.8502 9.09039" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    </i> ویرایش
+                                </button>
+                                <button class="flex items-center gap-1 text-red-600 border-red-600 border border-2   py-2 px-3 rounded-lg text-xs">
+                                    <i class="bi bi-trash">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 5.98047C17.67 5.65047 14.32 5.48047 10.98 5.48047C9 5.48047 7.02 5.58047 5.04 5.78047L3 5.98047" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M18.8499 9.13965L18.1999 19.2096C18.0899 20.7796 17.9999 21.9996 15.2099 21.9996H8.7899C5.9999 21.9996 5.9099 20.7796 5.7999 19.2096L5.1499 9.13965" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    </i> حذف
+                                </button>
+                            </div>
+                        </div>
+                        <div class="border-b border-gray-300 mt-5"></div>
+                    </div>
+                    @empty
+                    <div class="text-center text-gray-500 p-4">
+                        رسیدی ثبت نشده
+                    </div>
+                    @endforelse
+                    @if($cashReceipts->lastPage() > 1)
+                    <div class="flex flex-wrap gap-1 justify-center sm:hidden items-center mt-3 text-[10px]">
+                        <button
+                            wire:click="previousPage"
+                            @disabled($cashReceipts->onFirstPage())
+                            class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                            قبلی
+                        </button>
+                        <span class="mx-2 text-sm font-medium">
+                            {{ $cashReceipts->currentPage() }} از {{ $cashReceipts->lastPage() }}
+                        </span>
+                        <button
+                            wire:click="nextPage"
+                            @disabled($cashReceipts->onLastPage())
+                            class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                            بعدی
+                        </button>
+                    </div>
+                    @endif
+                @endif
             </div>
-            <div class="hidden lg:block overflow-x-auto  " id="loanTable" style="display:block">
+            <div class="hidden lg:block overflow-x-auto  " id="loanTable" >
                 <div class="flex justify-between mb-3">
                     <div class="flex gap-1 items-center">
                         <i>
@@ -250,7 +343,7 @@
                         </defs>
                         </svg>
                         </i>
-                        <h2 id="tableTitle"  class="font-bold text-[14px] mb-0">لیست قرضه ها:</h2>
+                        <h2 id="tableTitle"  class="font-bold text-[14px] mb-0">   {{ $formType=='loan' ? 'لیست قرضه ها' : 'لیست رسید ها' }}</h2>
                     </div>
                     <div class="flex flex-col lg:flex-row gap-1">
                         <div class="relative mb-1">
@@ -278,14 +371,53 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @for ($i=1; $i<=5; $i++)
-                        <tr class=" text-[10px] border-b-2 border-[#1E40AF]">
-                            <td class="p-2 font-bold">{{ $i }}</td>
-                            <td class="p-2">محمود عزیزی</td>
-                            <td class="p-2">محمود عزیزی</td>
-                            <td class="p-2">1404/2/30</td>
-                            <td class="p-2">؋75,000</td>
-                            <td class="p-2">مبایل سامسونګ A20</td>
+                        @if($formType=='loan')
+                            @forelse($loans as $i =>  $loan)
+                            <tr class=" text-[10px] border-b-2 border-[#1E40AF]">
+                                <td class="p-2 font-bold">  {{ $loans->firstItem() + $i }} </td>
+                                <td class="p-2">{{ $loan->customer->name }} </td>
+                                <td class="p-2">@if($loan->admin)     {{ $loan->admin->name }} ({{ $loan->admin->rule }})  @else     -- @endif </td>
+                                <td class="p-2">{{ \Morilog\Jalali\Jalalian::fromDateTime($loan->loan_date)->format('Y/m/d') }}</td>
+                                <td class="p-2">؋{{ number_format($loan->amount) }}</td>
+                                <td class="p-2">{{ $loan->note }}</td>
+                                <td class="p-2 text-center">
+                                    <i class=" flex justify-center text-lg cursor-pointer">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+                                    </i>
+                                </td>
+                                <td class="p-2 text-center">
+                                    <i class="flex justify-center text-blue-800 text-lg cursor-pointer">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M16.0399 3.01976L8.15988 10.8998C7.85988 11.1998 7.55988 11.7898 7.49988 12.2198L7.06988 15.2298C6.90988 16.3198 7.67988 17.0798 8.76988 16.9298L11.7799 16.4998C12.1999 16.4398 12.7899 16.1398 13.0999 15.8398L20.9799 7.95976C22.3399 6.59976 22.9799 5.01976 20.9799 3.01976C18.9799 1.01976 17.3999 1.65976 16.0399 3.01976Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M14.9102 4.1499C15.5802 6.5399 17.4502 8.4099 19.8502 9.0899" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    </i>
+                                </td>
+                                <td class="p-2 text-center">
+                                    <i wire:click="confirmDeleteLoan({{ $loan->id }})" class="flex justify-center text-blue-600 text-lg cursor-pointer">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M18.8499 9.14014L18.1999 19.2101C18.0899 20.7801 17.9999 22.0001 15.2099 22.0001H8.7899C5.9999 22.0001 5.9099 20.7801 5.7999 19.2101L5.1499 9.14014" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </i>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr><td colspan="9" class="p-4 text-center">قرضه‌ای وجود ندارد</td></tr>
+                        @endforelse
+                        @else
+                        @forelse($cashReceipts as $i =>  $cash)
+                        <tr  class=" text-[10px] border-b-2 border-[#1E40AF]">
+                            <td class="p-2 font-bold">{{ $cashReceipts->firstItem() + $i }}  </td>
+                            <td class="p-2">{{ $cash->customer->name }}</td>
+                            <td class="p-2">@if($cash->admin)     {{ $cash->admin->name }} ({{ $cash->admin->rule }})  @else     -- @endif</td>
+                            <td class="p-2">{{ \Morilog\Jalali\Jalalian::fromDateTime($cash->receipt_date)->format('Y/m/d') }}</td>
+                            <td class="p-2">؋{{ number_format($cash->amount) }}</td>
+                            <td class="p-2">{{ $cash->note }}</td>
                             <td class="p-2 text-center">
                                 <i class=" flex justify-center text-lg cursor-pointer">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
@@ -301,7 +433,7 @@
                                 </i>
                             </td>
                             <td class="p-2 text-center">
-                                <i class="flex justify-center text-blue-600 text-lg cursor-pointer">
+                                <i   wire:click="confirmDeleteCash({{ $cash->id }})" class="flex justify-center text-blue-600 text-lg cursor-pointer">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -312,143 +444,115 @@
                                 </i>
                             </td>
                         </tr>
-                        @endfor
+                        @empty
+                        <tr><td colspan="9" class="p-4 text-center">رسیدی وجود ندارد</td></tr>
+                        @endforelse
+                        @endif
                     </tbody>
                 </table>
-            </div>
-
-            <div class="hidden lg:block overflow-x-auto  " id="cashTable" style="display:none">
-                <div class="flex justify-between mb-3">
-                    <div class="flex gap-1 items-center">
-                        <i>
-                        <svg width="25" height="25" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_1047_2670)">
-                        <path d="M34.4314 16.596L32.8736 23.2407C31.5383 28.9792 28.8995 31.3001 23.9398 30.8232C23.145 30.7596 22.2866 30.6166 21.3646 30.394L18.694 29.7582C12.0652 28.1844 10.0146 24.9098 11.5725 18.2651L13.1303 11.6045C13.4482 10.2533 13.8297 9.07698 14.3066 8.1073C16.1665 4.26038 19.3299 3.22712 24.6393 4.48293L27.294 5.10289C33.9545 6.66073 35.9893 9.95128 34.4314 16.596Z" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M23.9399 30.8233C22.9543 31.491 21.7144 32.0474 20.2043 32.5401L17.6926 33.3668C11.3818 35.4015 8.05944 33.7006 6.00881 27.3897L3.97408 21.1107C1.93934 14.7998 3.62436 11.4616 9.93522 9.42682L12.4468 8.60021C13.0986 8.39356 13.7186 8.2187 14.3067 8.10742C13.8298 9.0771 13.4483 10.2534 13.1304 11.6046L11.5725 18.2652C10.0147 24.9099 12.0653 28.1845 18.6941 29.7583L21.3647 30.3941C22.2867 30.6167 23.1451 30.7598 23.9399 30.8233Z" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M20.093 13.5596L27.8028 15.5148" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M18.5352 19.7119L23.1451 20.8882" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </g>
-                        <defs>
-                        <clipPath id="clip0_1047_2670">
-                        <rect width="38.1513" height="38.1513" fill="white"/>
-                        </clipPath>
-                        </defs>
-                        </svg>
-                        </i>
-                        <h2 id="tableTitle"  class="font-bold text-[14px] mb-0">  رسید قرضه:</h2>
-                    </div>
-                    <div class="flex flex-col lg:flex-row gap-1">
-                        <div class="relative mb-1">
-                            <input type="text"  wire:model.live="search"  class="p-2 w-[100px]  bg-[#1E40AF]/20 text-[13px]  rounded-xl" placeholder="جستجو....">
-                            <span class="absolute left-1 mt-1 top-1.5 ">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" class="w-4 h-4">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
-                                </svg>
-                            </span>
-                        </div>
-                    </div>
+                @if($formType === 'loan' && $loans->lastPage() > 1)
+                <div class="flex flex-wrap gap-1 justify-start items-center mt-3 text-[10px]">
+                    <button
+                        wire:click="previousPage('{{ $loans->getPageName() }}')"
+                        @disabled($loans->onFirstPage())
+                        class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                        قبلی
+                    </button>
+                    <span class="mx-2 text-sm font-medium">
+                        {{ $loans->currentPage() }} از {{ $loans->lastPage() }}
+                    </span>
+                    <button
+                        wire:click="nextPage('{{ $loans->getPageName() }}')"
+                        @disabled($loans->onLastPage())
+                        class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                        بعدی
+                    </button>
                 </div>
-                <table class="w-full text-center text-sm border-collapse">
-                    <thead class="bg-[#1E40AF]  text-white ">
-                        <tr>
-                            <th class="p-2 text-[12px]">شماره</th>
-                            <th class="p-2 text-[12px]">نام </th>
-                            <th class="p-2 text-[12px]">کاربر</th>
-                            <th class="p-2 text-[12px]">تاریخ</th>
-                            <th class="p-2 text-[12px]">مبلغ</th>
-                            <th class="p-2 text-[12px]">توضیحات</th>
-                            <th class="p-2 text-[12px]">چاپ</th>
-                            <th class="p-2 text-[12px]">ویرایش</th>
-                            <th class="p-2 text-[12px]">حذف</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for ($i=1; $i<=5; $i++)
-                        <tr class=" text-[10px] border-b-2 border-[#1E40AF]">
-                            <td class="p-2 font-bold">{{ $i }}</td>
-                            <td class="p-2">محمود عزیزی</td>
-                            <td class="p-2">محمود عزیزی</td>
-                            <td class="p-2">1404/2/30</td>
-                            <td class="p-2">؋75,000</td>
-                            <td class="p-2">مبایل سامسونګ A20</td>
-                            <td class="p-2 text-center">
-                                <i class=" flex justify-center text-lg cursor-pointer">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
-                                </i>
-                            </td>
-                            <td class="p-2 text-center">
-                                <i class="flex justify-center text-blue-800 text-lg cursor-pointer">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M16.0399 3.01976L8.15988 10.8998C7.85988 11.1998 7.55988 11.7898 7.49988 12.2198L7.06988 15.2298C6.90988 16.3198 7.67988 17.0798 8.76988 16.9298L11.7799 16.4998C12.1999 16.4398 12.7899 16.1398 13.0999 15.8398L20.9799 7.95976C22.3399 6.59976 22.9799 5.01976 20.9799 3.01976C18.9799 1.01976 17.3999 1.65976 16.0399 3.01976Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M14.9102 4.1499C15.5802 6.5399 17.4502 8.4099 19.8502 9.0899" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                </i>
-                            </td>
-                            <td class="p-2 text-center">
-                                <i class="flex justify-center text-blue-600 text-lg cursor-pointer">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M18.8499 9.14014L18.1999 19.2101C18.0899 20.7801 17.9999 22.0001 15.2099 22.0001H8.7899C5.9999 22.0001 5.9099 20.7801 5.7999 19.2101L5.1499 9.14014" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </i>
-                            </td>
-                        </tr>
-                        @endfor
-                    </tbody>
-                </table>
-            </div>
-            <div class="flex items-start justify-center md:justify-start mt-4 space-x-1 rtl:space-x-reverse">
-                <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">‹</button>
-                <button class="w-7 h-7 rounded-md border border-blue-500 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs font-medium">1</button>
-                <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">2</button>
-                <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">...</button>
-                <button class="w-7 h-7 rounded-md border border-transparent bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white text-xs">25</button>
-                <button class="w-7 h-7 rounded-md border border-gray-300 bg-[#1E40AF]/60 hover:bg-[#1E40AF] text-white">›</button>
+                @endif
+                @if($formType === 'cash' && $cashReceipts->lastPage() > 1)
+                <div class="flex flex-wrap gap-1 justify-start  items-center mt-3 text-[10px]">
+                    <button
+                        wire:click="previousPage('{{ $cashReceipts->getPageName() }}')"
+                        @disabled($cashReceipts->onFirstPage())
+                        class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                        قبلی
+                    </button>
+                    <span class="mx-2 text-sm font-medium">
+                        {{ $cashReceipts->currentPage() }} از {{ $cashReceipts->lastPage() }}
+                    </span>
+                    <button
+                        wire:click="nextPage('{{ $cashReceipts->getPageName() }}')"
+                        @disabled($cashReceipts->onLastPage())
+                        class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                        بعدی
+                    </button>
+                </div>
+                @endif
             </div>
         </div>
-        <script>
-        function activeCash() {
-            const cash = document.getElementById('btnCash');
-            const loan = document.getElementById('btnLoan');
-            cash.classList.add('bg-blue-700', 'text-white');
-            cash.classList.remove('text-black');
-            loan.classList.remove('bg-blue-700', 'text-white');
-            loan.classList.add('text-black');
-        }
-        function activeLoan() {
-            const cash = document.getElementById('btnCash');
-            const loan = document.getElementById('btnLoan');
-            loan.classList.add('bg-blue-700', 'text-white');
-            loan.classList.remove('text-black');
-            cash.classList.remove('bg-blue-700', 'text-white');
-            cash.classList.add('text-black');
-        }
-        </script>
-
-        <script>
-
-function showLoanTable() {
-
-    document.getElementById("loanTable").style.display = "block";
-    document.getElementById("cashTable").style.display = "none";
-
-    document.getElementById("btnLoan").classList.add("bg-blue-700", "text-white");
-    document.getElementById("btnCash").classList.remove("bg-blue-700", "text-white");
-}
-
-function showCashTable() {
-
-    document.getElementById("loanTable").style.display = "none";
-    document.getElementById("cashTable").style.display = "block";
-
-    document.getElementById("btnCash").classList.add("bg-blue-700", "text-white");
-    document.getElementById("btnLoan").classList.remove("bg-blue-700", "text-white");
-}
-
-</script>
     </div>
+    @if ($deleteCash)
+        <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+            <div class="bg-white rounded-2xl shadow-xl w-[90%] max-w-sm p-6 animate-fade-in">
+                <div class="flex flex-col items-center text-center gap-3">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 9V13" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M12 17H12.01" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M10.29 3.86L1.82 18A2 2 0 003.55 21H20.45A2 2 0 0022.18 18L13.71 3.86A2 2 0 0010.29 3.86Z"
+                            stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h2 class="text-lg font-bold text-gray-800">
+                        آیا مطمئن هستید؟
+                    </h2>
+                    <p class="text-sm text-gray-500">
+                        این عملیات قابل برگشت نمی‌باشد.
+                    </p>
+                    <div class="flex gap-3 w-full mt-4">
+                        <button
+                            wire:click="$set('deleteLoan', false)"
+                            class="w-1/2 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100">
+                            لغو
+                        </button>
+                        <button
+                            wire:click="deleteConfirmed"
+                            class="w-1/2 py-2 rounded-xl bg-red-600 text-white hover:bg-red-700">
+                            بله، حذف کن
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+    @if ($deleteCash)
+        <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+            <div class="bg-white rounded-2xl shadow-xl w-[90%] max-w-sm p-6 animate-fade-in">
+                <div class="flex flex-col items-center text-center gap-3">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 9V13" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M12 17H12.01" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M10.29 3.86L1.82 18A2 2 0 003.55 21H20.45A2 2 0 0022.18 18L13.71 3.86A2 2 0 0010.29 3.86Z"
+                            stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h2 class="text-lg font-bold text-gray-800">
+                        آیا مطمئن هستید؟
+                    </h2>
+                    <p class="text-sm text-gray-500">
+                        این عملیات قابل برگشت نمی‌باشد.
+                    </p>
+                    <div class="flex gap-3 w-full mt-4">
+                        <button
+                            wire:click="$set('deleteCash', false)"
+                            class="w-1/2 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100">
+                            لغو
+                        </button>
+                        <button
+                            wire:click="deleteConfirmed"
+                            class="w-1/2 py-2 rounded-xl bg-red-600 text-white hover:bg-red-700">
+                            بله، حذف کن
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>

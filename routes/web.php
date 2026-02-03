@@ -40,3 +40,50 @@ Route::get('/device-repair', function () { return view('Mobile.shop.device-repai
 Route::get('/accounts-page', function () { return view('Mobile.shop.accounts-page');})->name('accounts');
 Route::get('/profile', function () { return view('Mobile.shop.profile');})->name('profile');
 });
+// management Panel
+use App\Livewire\Admin2\Dashboard;
+use App\Livewire\Admin2\Users;
+use App\Livewire\Admin2\DeviceList;
+use App\Livewire\Admin2\RegisterDevice;
+use App\Livewire\Admin2\Store;
+use App\Livewire\Admin2\Reports;
+use App\Livewire\Admin2\Profile as AdminProfile;
+use App\Livewire\Admin2\Support as AdminSupport;
+// login page
+Route::get('/admin2/login', function () {
+    return view('livewire.admin2.pages.login');
+})->name('admin2.login');
+// profile
+Route::get('/admin2/profile', function () {
+    return view('livewire.admin2.pages.profile');
+})->name('admin2.profile');
+// Dashboard
+Route::prefix('admin2')->group(function () {
+    Route::get('/dashboard', Dashboard::class)
+        ->name('admin2.dashboard');
+});
+// Users
+Route::prefix('admin2')->group(function () {
+    Route::get('/users', Users::class)
+        ->name('admin2.users');
+});
+// device-list
+Route::prefix('admin2')->group(function () {
+    Route::get('/device-list', DeviceList::class)
+        ->name('admin2.device-list');
+});
+// device-register
+Route::prefix('admin2')->group(function () {
+    Route::get('/register-device', RegisterDevice::class)
+        ->name('admin2.register-device');
+});
+// store
+Route::prefix('admin2')->group(function () {
+    Route::get('/store', Store::class)
+        ->name('admin2.store');
+});
+// Reports
+Route::prefix('admin2')->group(function () {
+    Route::get('/reports', Reports::class)
+        ->name('admin2.reports');
+});

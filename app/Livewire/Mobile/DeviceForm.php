@@ -44,8 +44,8 @@ class DeviceForm extends Component
         'buy_price.required'  => 'قیمت خرید الزامی است',
         'sell_price.required' => 'قیمت فروش الزامی است',
         'stock.required'      => 'موجودی الزامی است',
-        'imei.required'       => 'شماره IMEI الزامی است',
-        'imei.unique'         => 'این IMEI قبلاً ثبت شده است',
+        'imei.required'       => 'بارکد  الزامی است',
+        'imei.unique'         => 'این بارکد  قبلاً ثبت شده است',
     ];
    private function convertToEnglishNumber($value)
 {

@@ -105,49 +105,58 @@ use WithPagination;
         'description.required' => 'وارد کردن توضبحات الزامیست',
         'description.regex' => ' * فقط حروف مجاز است (بدون عدد یا علامت)',
     ];
-    public function resetForm()
-    {
-        $this->reset([
-            'category','name','last_name','brand_name','phone_number',
-            'device_model','imei_number','device_color','device_status',
-            'device_mode','repair_type','description','possible_time',
-            'delivery_date','visit_date','repair_cost',
-        ]);
-        $this->resetErrorBag();
-        $this->editing = false;
-        $this->editingId = null;
-    }
-    public function save()
-    {
-        $this->validate();
-        $this->repair_cost = $this->convertToEnglishNumber($this->repair_cost);
-        $this->visit_date  = Carbon::parse($this->visit_date)->format('Y-m-d');
-        $this->delivery_date = Carbon::parse($this->delivery_date)->format('Y-m-d');
-        DeviceRepairForm::updateOrCreate(
-            ['id' => $this->editingId],
-            array_merge(
-                $this->only([
-                    'category','name','last_name','brand_name','phone_number',
-                    'device_model','imei_number','device_color','device_status',
-                    'device_mode','repair_type','description','possible_time',
-                    'delivery_date','visit_date','repair_cost',
-                ]),
-                [
-                    'user_id'  => Auth::id(),
-                    'admin_id' => Auth::id(),
-                ]
-            )
-        );
-        session()->flash('success', 'اطلاعات با موفقیت ذخیره شد');
-        $this->resetForm();
-    }
+  public function resetForm()
+{
+    $this->reset([
+        'category','name','last_name','brand_name','phone_number',
+        'device_model','imei_number','device_color','device_status',
+        'device_mode','repair_type','description','possible_time',
+        'delivery_date','visit_date','repair_cost',
+    ]);
+    $this->resetErrorBag();
+    $this->editing = false;
+    $this->editingId = null;
+}
     public function edit($id)
-    {
-        $data = DeviceRepairForm::findOrFail($id);
-        $this->fill($data->toArray());
-        $this->editing = true;
-        $this->editingId = $id;
-    }
+{
+    $data = DeviceRepairForm::findOrFail($id);
+
+    // تبدیل تاریخ به Y-m-d برای فرم
+    $data->visit_date = Carbon::parse($data->visit_date)->format('Y-m-d');
+    $data->delivery_date = Carbon::parse($data->delivery_date)->format('Y-m-d');
+
+    $this->fill($data->toArray());
+    $this->editing = true;
+    $this->editingId = $id;
+}
+
+public function save()
+{
+    $this->validate();
+    $this->repair_cost = $this->convertToEnglishNumber($this->repair_cost);
+    $this->visit_date  = Carbon::parse($this->visit_date)->format('Y-m-d');
+    $this->delivery_date = Carbon::parse($this->delivery_date)->format('Y-m-d');
+
+    DeviceRepairForm::updateOrCreate(
+        ['id' => $this->editingId],
+        array_merge(
+            $this->only([
+                'category','name','last_name','brand_name','phone_number',
+                'device_model','imei_number','device_color','device_status',
+                'device_mode','repair_type','description','possible_time',
+                'delivery_date','visit_date','repair_cost',
+            ]),
+            [
+                'user_id'  => Auth::id(),
+                'admin_id' => Auth::id(),
+            ]
+        )
+    );
+
+    session()->flash('success', $this->editing ? 'اطلاعات با موفقیت بروزرسانی شد' : 'اطلاعات با موفقیت ذخیره شد');
+    $this->resetForm();
+}
+
     public function confirmDelete($id)
     {
         $this->deleteId = $id;
