@@ -1,5 +1,5 @@
 <div class="max-w-full mx-auto">
-    <div class="border  border-gray-300 rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl p-5 mt-3">
+    <div class="border bg-white border-gray-300 rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl p-5 mt-3">
         <div class="flex gap-2">
             <span><svg width="24" height="24" class="mt-1" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2.66162 11.333H15.3283" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -284,7 +284,7 @@
         </form>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 p-2">
-        <div class="lg:col-span-2 border  border-gray-300 rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
+        <div class="lg:col-span-2 border bg-white  border-gray-300 rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
             <div class="container print-area flex flex-col gap-2 md:hidden text-[10px] w-full bg-white" >
                 @forelse($DeviceRepair as $a)
                 <div class="rounded-2xl flex flex-col items-center mt-1 border border-[#1E40AF66] h-auto w-full">

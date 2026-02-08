@@ -99,7 +99,7 @@
             </div>
         </div>
         <div class="grid grid-cols-1  lg:grid-cols-3 gap-3 pt-2">
-            <div class="border  border-gray-300 rounded-2xl shadow-xl p-3">
+            <div class="border bg-white border-gray-300 rounded-2xl shadow-xl p-3">
                 @if(session()->has('message'))
                 <div x-data="{ show: true }"
                     x-show="show"
@@ -175,7 +175,7 @@
                     </button>
                 </div>
             </div>
-            <div class="lg:col-span-2 border  border-gray-300 rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl border border-gray-200 w-full lg:max-w-full p-3">
+            <div class="lg:col-span-2 bg-white border  border-gray-300 rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl border border-gray-200 w-full lg:max-w-full p-3">
                 <div class="lg:hidden space-y-3 ">
                     <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
                         <div class="flex items-center gap-1 flex-shrink-0">

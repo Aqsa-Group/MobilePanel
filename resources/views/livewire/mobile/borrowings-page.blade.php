@@ -76,7 +76,7 @@
     <div class="grid grid-cols-1 max-w-full mx-auto lg:grid-cols-3 gap-3">
         <form wire:submit.prevent="submit">
             <div class="max-w-full mx-auto col-span-1 gap-3">
-                <div class="border border-gray-300 rounded-2xl shadow-[0_4px_12px] shadow-lg w-full p-3">
+                <div class="border border-gray-300 rounded-2xl bg-white shadow-[0_4px_12px] shadow-lg w-full p-3">
                     <div class="flex  justify-between mb-2  shadow p-3 rounded-xl border border-black">
                         <button   type="button"  wire:click="setForm('loan')"  class="flex p-3 rounded-xl gap-2 items-center {{ $formType === 'loan' ? 'bg-blue-600 text-white' : 'bg-gray-200' }}" >
                             <h2 class="text-bold text-[13px]">فورم ثبت قرضه</h2>
@@ -132,7 +132,7 @@
                 </div>
             </div>
         </form>
-        <div class="lg:col-span-2 border border-gray-300 rounded-2xl shadow-[0_4px_12px] shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
+        <div class="lg:col-span-2 bg-white border border-gray-300 rounded-2xl shadow-[0_4px_12px] shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
             <div class="lg:hidden space-y-3 ">
                 <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
                 <div  class="flex items-center gap-1 flex-shrink-0">

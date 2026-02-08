@@ -1,7 +1,7 @@
 <div>
     <main class="max-w-full p-4 mx-auto  mt-2 ">
         @if($canEdit)
-        <div class=" w-full mx-auto shadow-[0px_4px_4px_0px_#00000040] border  border-gray-300 rounded-lg  flex flex-col lg:flex-row">
+        <div class=" w-full mx-auto shadow-[0px_4px_4px_0px_#00000040] border bg-white border-gray-300 rounded-lg  flex flex-col lg:flex-row">
             <div class="flex-1 lg:w-1/2 flex items-center justify-center p-3 sm:p-4 order-1 ">
                 <div class="w-full max-w-full mx-auto">
                     <h2 class="sm:text-[30px] sm:text-2xl font-bold text-center lg:text-right flex items-center justify-center ">
@@ -166,7 +166,7 @@
             </div>
         </div>
         @endif
-        <section class=" w-full  mt-2   mx-auto h-full flex flex-col border  border-gray-300  rounded-lg  shadow-[0px_4px_4px_0px_#00000040] p-2  items-center">
+        <section class=" w-full  mt-2 bg-white  mx-auto h-full flex flex-col border  border-gray-300  rounded-lg  shadow-[0px_4px_4px_0px_#00000040] p-2  items-center">
             <div class="flex flex-col md:flex-row justify-between items-center w-full mt-1 gap-1 md:gap-2">
                 <div class="flex gap-2 w-full ">
                     <div class="relative   w-full  md:w-1/4  ">
@@ -250,9 +250,13 @@
                                 <td>{{ $user->number }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->address }}</td>
-                                <td> @if($user->rule === 'user') کاربر
-                                    @elseif($user->rule === 'admin') ادمین
-                                    @else سوپر ادمین
+                                <td>
+                                    @if($user->rule === 'user')
+                                        <span class="px-2 py-1 rounded-full text-xs bg-gray-100 text-gray-700">کاربر</span>
+                                    @elseif($user->rule === 'admin')
+                                        <span class="px-2 py-1 rounded-full text-xs bg-purple-100 text-purple-700">ادمین</span>
+                                    @else
+                                        <span class="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-700">سوپر ادمین</span>
                                     @endif
                                 </td>
                                 @if(auth()->user()->rule !== 'user')
@@ -340,10 +344,13 @@
                             </tr>
                             <tr class="text-[#00000080]">
                                 <td  class="text-[10px] text-center align-middle">{{ $user->address }}</td>
-                                <td  class="text-[10px]">
-                                    @if($user->rule === 'user') کاربر
-                                    @elseif($user->rule === 'admin') ادمین
-                                    @else سوپر ادمین
+                                <td class="text-[10px]">
+                                    @if($user->rule === 'user')
+                                        <span class="px-2 py-1 rounded-full text-xs bg-gray-100 text-gray-700">کاربر</span>
+                                    @elseif($user->rule === 'admin')
+                                        <span class="px-2 py-1 rounded-full text-xs bg-purple-100 text-purple-700">ادمین</span>
+                                    @else
+                                        <span class="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-700">سوپر ادمین</span>
                                     @endif
                                 </td>
                                 <td class="text-[10px]">

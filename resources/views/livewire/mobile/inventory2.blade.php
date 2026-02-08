@@ -1,7 +1,7 @@
 <div class="w-full">
     <main>
         <div class="p-4  max-w-full mx-auto">
-            <div class="rounded-xl shadow-xl w-full shadow-[0px_4px_4px_0px_#00000040] border border-gray-300  px-2 py-4">
+            <div class="rounded-xl shadow-xl w-full bg-white shadow-[0px_4px_4px_0px_#00000040] border border-gray-300  px-2 py-4">
                 <form wire:submit.prevent="save" class="">
                     <div class="flex items-center justify-start">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -114,8 +114,8 @@
                     </div>
                 </from>
             </div>
-            <div class="grid grid-cols-1 w-full lg:grid-cols-2 gap-3 pt-2">
-                <div class="lg:col-span-2 border border-gray-300 rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl  w-full lg:max-w-full p-3">
+            <div class="grid grid-cols-1  w-full lg:grid-cols-2 gap-3 pt-2">
+                <div class="lg:col-span-2 border bg-white border-gray-300 rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl  w-full lg:max-w-full p-3">
                     <div class="lg:hidden space-y-3 ">
                         <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
                             <div class="flex items-center gap-1 flex-shrink-0">
@@ -248,7 +248,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="hidden lg:block overflow-x-auto ">
+                    <div class="hidden  lg:block overflow-x-auto ">
                         <div class="flex justify-between mb-3">
                             <div class="flex gap-1 items-center">
                                 <i>

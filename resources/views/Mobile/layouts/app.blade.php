@@ -11,7 +11,7 @@
     <script src="{{ asset('js/js.js') }}"></script>
     @livewireStyles
 </head>
-<body class="bg-white">
+<body class="bg-gray-100">
     @if(session()->has('welcome'))
         <div  x-data="{ show: true }"  x-show="show"  x-init="setTimeout(() => show = false, 4000)" x-transition:enter="transition duration-500 ease-out"
             x-transition:enter-start="opacity-0 scale-90"  x-transition:enter-end="opacity-100 scale-100"  x-transition:leave="transition duration-700 ease-in"  x-transition:leave-start="opacity-100 scale-100"  x-transition:leave-end="opacity-0 scale-90"  class="fixed inset-0 flex items-center justify-center z-50" >

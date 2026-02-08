@@ -68,9 +68,9 @@
                             </div>
                         </div>
                     </div>
-                    <div id="div1" class=" pb-3">
+                    <div id="div1" class="bg-white rounded-2xl pb-3">
                         <div class="mx-2   mt-1">
-                            <div class="hidden md:block overflow-x-auto">
+                            <div class="hidden md:block  overflow-x-auto">
                                 <table class="min-w-full ">
                                     <thead class="bg-[#1E40AF]  text-white">
                                         <tr>
@@ -128,7 +128,7 @@
                                         </tr>
                                         @empty
                                         <tr>
-                                            <td colspan="9" class="px-4 py-2 text-center">
+                                            <td colspan="11" class="px-4 py-2 text-center">
                                                 <div class="md:flex md:justify-center">
                                                     داده‌ای یافت نشد
                                                 </div>

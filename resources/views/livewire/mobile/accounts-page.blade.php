@@ -73,9 +73,9 @@
             </div>
         </div>
     </div>
-    <div class="grid grid-cols-1 max-w-full mx-auto lg:grid-cols-3 gap-3">
-        <form wire:submit.prevent="save" class="h-full  mb-6 space-y-2">
-            <div class=" rounded-2xl shadow-xl border  border-gray-300 shadow-[0px_4px_4px_0px_#00000040] border border-gray-200 w-full lg:max-w-full p-3">
+    <div class="grid grid-cols-1  max-w-full mx-auto lg:grid-cols-3 gap-3">
+        <form wire:submit.prevent="save" class="h-full   mb-6 space-y-2">
+            <div class=" rounded-2xl shadow-xl border bg-white border-gray-300 shadow-[0px_4px_4px_0px_#00000040] border border-gray-200 w-full lg:max-w-full p-3">
                 <div x-data="{ show: @entangle('successMessage').defer }"
                     x-show="show"
                     x-transition.opacity
@@ -177,7 +177,7 @@
                 @endif
             </div>
         </form>
-        <div class="lg:col-span-2 border  border-gray-300 rounded-2xl shadow-[0_4px_12px] shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
+        <div class="lg:col-span-2 border bg-white border-gray-300 rounded-2xl shadow-[0_4px_12px] shadow-lg border border-gray-200 w-full lg:max-w-full p-3">
             <div class="lg:hidden  space-y-3 ">
                 <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
                     <div class="flex items-center gap-1 flex-shrink-0">

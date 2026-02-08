@@ -4,8 +4,8 @@
     <style>
         [x-cloak] { display: none !important; }
     </style>
-    <div x-data="{ tab: 'invoice', counts: { invoice: {{ $sales->total() }},  debts: {{ $borrowings->total() }}, stock: {{ $products->total() }},  salary: {{ $salaryPayments->total() }},    withdraw: {{ $withdrawals->total() }}  }}" class="max-w-full">
-        <section class="p-4 border mt-3 border-gray-300 rounded-xl">
+    <div cl x-data="{ tab: 'invoice', counts: { invoice: {{ $sales->total() }},  debts: {{ $borrowings->total() }}, stock: {{ $products->total() }},  salary: {{ $salaryPayments->total() }},    withdraw: {{ $withdrawals->total() }}  }}" class="max-w-full">
+        <section class="p-4 border mt-3 bg-gray-100 border-gray-300 rounded-xl">
             <span class="font-bold block mb-4">نوع گزارش:</span>
             <div class="hidden md:grid grid-cols-7 gap-4">
                 <template x-for="item in [
@@ -40,7 +40,7 @@
                 </template>
             </div>
         </section>
-        <section class="mt-6 p-4 border border-gray-300 rounded-xl">
+        <section class="mt-6 bg-gray-100 p-4 border border-gray-300 rounded-xl">
             <div class="w-full h-auto p-2 flex flex-row justify-between text-[20px]">
                 <div>
                     <span class="my-2 mb-6 font-bold">نتایج گزارش:</span>

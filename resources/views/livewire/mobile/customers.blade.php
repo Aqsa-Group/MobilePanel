@@ -184,7 +184,7 @@
                 </div>
             </div>
         </div>
-        <section class="shadow-xl shadow-[0px_4px_4px_0px_#00000040] m-2 md:mt-6 h-auto flex flex-col border  border-gray-300 rounded-2xl  p-2  items-center">
+        <section class="shadow-xl shadow-[0px_4px_4px_0px_#00000040] m-2 md:mt-6 h-auto flex flex-col border bg-white border-gray-300 rounded-2xl  p-2  items-center">
             <div class="w-full flex flex-col gap-2 md:flex-row md:items-center md:justify-between mt-1">
                 <div class="flex items-center gap-2 font-bold">
                     <span class="md:hidden">

@@ -1,5 +1,5 @@
 <div class="w-full p-4 max-w-full mx-auto">
-    <div class="rounded-lg shadow-xl w-full shadow-[0px_4px_4px_0px_#00000040]  border  border-gray-300 px-2 py-4">
+    <div class="rounded-lg shadow-xl w-full shadow-[0px_4px_4px_0px_#00000040] bg-white border  border-gray-300 px-2 py-4">
         <h2 class="text-2xl text-center font-bold mb-2">اطلاعات کارمند </h2>
         <p class="text-gray-500 text-center text-[12px]">شما می‌توانید کارمند جدید ثبت کنید.</p>
         <form  wire:submit.prevent="{{ $editMode ? 'update' : 'save' }}"  wire:key="{{ $formKey }}"    enctype="multipart/form-data" class=" mt-3 ">
@@ -106,7 +106,7 @@
         </form>
     </div>
     <div class="grid grid-cols-1 w-full lg:grid-cols-2 gap-3 pt-2">
-        <div class="lg:col-span-2 border  border-gray-300  rounded-lg shadow-[0px_4px_4px_0px_#00000040] shadow-xl  w-full lg:max-w-full p-3">
+        <div class="lg:col-span-2 border  border-gray-300 bg-white rounded-lg shadow-[0px_4px_4px_0px_#00000040] shadow-xl  w-full lg:max-w-full p-3">
             <div class="flex flex-col md:flex-row justify-between items-center w-full mt-1 gap-1 md:gap-2">
                 <div class="flex gap-2 w-full ">
                     <div class="relative   w-full  md:w-1/4  ">
