@@ -11,15 +11,11 @@ class Device extends Model
         'brand',
         'status',
         'model',
-        'memory',
-        'color',
         'image',
-        'profit',
         'buy_price',
         'sell_price',
         'stock',
         'imei',
-        'warranty',
         'admin_id',
     ];
       protected $appends = ['status_fa', 'brand_fa', 'category_fa'];

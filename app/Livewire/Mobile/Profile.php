@@ -22,9 +22,9 @@ class Profile extends Component
     {
         return [
             'name'     => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:user_forms,username,' . Auth::id(),
-            'email'    => 'required|email|unique:user_forms,email,' . Auth::id(),
-            'number'   => ['required', 'regex:/^07\d{8}$/', 'unique:user_forms,number,' . Auth::id()],
+            'username' => 'required|string|max:255|unique:users,username,' . Auth::id(),
+            'email'    => 'required|email|unique:users,email,' . Auth::id(),
+            'number'   => ['required', 'regex:/^07\d{8}$/', 'unique:users,number,' . Auth::id()],
             'address'  => 'required|string|max:255',
             'image'    => 'nullable|image|max:2048',
             'password' => 'nullable|min:6',

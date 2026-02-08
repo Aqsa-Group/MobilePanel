@@ -387,37 +387,37 @@
     </script>
     @endpush
     @if ($confirmingDelete)
-            <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-                <div class="bg-white rounded-2xl shadow-xl w-[90%] max-w-sm p-6 animate-fade-in">
-                    <div class="flex flex-col items-center text-center gap-3">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                            <path d="M12 9V13" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M12 17H12.01" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M10.29 3.86L1.82 18A2 2 0 003.55 21H20.45A2 2 0 0022.18 18L13.71 3.86A2 2 0 0010.29 3.86Z"
-                                stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <h2 class="text-lg font-bold text-gray-800">
-                            آیا مطمئن هستید؟
-                        </h2>
-                        <p class="text-sm text-gray-500">
-                            این عملیات قابل برگشت نمی‌باشد.
-                        </p>
-                        <div class="flex gap-3 w-full mt-4">
-                            <button
-                                wire:click="$set('confirmingDelete', false)"
-                                class="w-1/2 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100">
-                                لغو
-                            </button>
-                            <button
-                                wire:click="deleteConfirmed"
-                                class="w-1/2 py-2 rounded-xl bg-red-600 text-white hover:bg-red-700">
-                                بله، حذف کن
-                            </button>
-                        </div>
+        <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+            <div class="bg-white rounded-2xl shadow-xl w-[90%] max-w-sm p-6 animate-fade-in">
+                <div class="flex flex-col items-center text-center gap-3">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 9V13" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M12 17H12.01" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M10.29 3.86L1.82 18A2 2 0 003.55 21H20.45A2 2 0 0022.18 18L13.71 3.86A2 2 0 0010.29 3.86Z"
+                            stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h2 class="text-lg font-bold text-gray-800">
+                        آیا مطمئن هستید؟
+                    </h2>
+                    <p class="text-sm text-gray-500">
+                        این عملیات قابل برگشت نمی‌باشد.
+                    </p>
+                    <div class="flex gap-3 w-full mt-4">
+                        <button
+                            wire:click="$set('confirmingDelete', false)"
+                            class="w-1/2 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100">
+                            لغو
+                        </button>
+                        <button
+                            wire:click="deleteConfirmed"
+                            class="w-1/2 py-2 rounded-xl bg-red-600 text-white hover:bg-red-700">
+                            بله، حذف کن
+                        </button>
                     </div>
                 </div>
             </div>
-        @endif
+        </div>
+    @endif
     <script>
         window.addEventListener('reset-file-input', () => {
             const fileInput = document.getElementById('imageUpload');

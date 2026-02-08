@@ -1,6 +1,6 @@
 <div >
     <div class="p-4">
-        <div class="grid max-w-full mx-auto gap-4">
+        <div class="grid max-w-full mx-auto mt-4 gap-4">
             <div class=" ">
                 <div class="border border-gray-300 rounded-xl shadow-xl shadow-[0px_4px_4px_0px_#00000040]">
                     <div class="bg-[#1E40AF]/5 rounded-xl p-4">
@@ -75,43 +75,26 @@
                                     <thead class="bg-[#1E40AF]  text-white">
                                         <tr>
                                             <th class="p-2 text-[12px] text-center">آیدی </th>
-                                            <th class="p-2 text-[12px] text-center">عکس </th>
                                             <th class="p-2 text-[12px] text-center">مدل دستگاه</th>
-                                            <th class="p-2 text-[12px] text-center">حافظه</th>
                                             <th class="p-2 text-[12px] text-center"> بارکد</th>
                                             <th class="p-2 text-[12px] text-center">حالت</th>
                                             <th class="p-2 text-[12px] text-center">کتگوری</th>
-                                            <th class="p-2 text-[12px] text-center">رنگ</th>
                                             <th class="p-2 text-[12px] text-center">حالت موجودی</th>
                                             <th class="p-2 text-[12px] text-center"> ادمین</th>
                                             <th class="p-2 text-[12px] text-center"> قیمت خرید</th>
                                             <th class="p-2 text-[12px] text-center">چاپ</th>
                                             <th class="p-2 text-[12px] text-center">ادیت</th>
+                                            <th class="p-2 text-[12px] text-center">حذف</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse($devices as $device)
                                         <tr class="border-b text-[11px] border-b-2 border-[#1E40AF]  cursor-pointer">
                                             <td class="px-4 py-2 font-bold text-center">  {{ $devices->firstItem() + $loop->index }}</td>
-                                            <td class="text-center">
-                                                <div class="w-8 h-8 rounded-full block mx-auto overflow-hidden flex items-center  bg-gray-100">
-                                                    @if($device->image)
-                                                        <img
-                                                            src="{{ asset('storage/' . $device->image) }}"
-                                                            class="w-full h-full object-cover"
-                                                            alt="device"
-                                                        >
-                                                    @else
-                                                        <span class="text-sm text-gray-500">ندارد</span>
-                                                    @endif
-                                                </div>
-                                            </td>
                                             <td class="px-4 py-2 text-center">{{ $device->model }}</td>
-                                            <td class="px-4 py-2 text-center">{{ $device->memory }}</td>
                                             <td class="px-4 py-2 text-center">{{ $device->imei }}</td>
                                             <td class="px-4 py-2 text-center">{{ $device->status_fa }}</td>
                                             <td class="px-4 py-2 text-center">{{ $device->category_fa }}</td>
-                                            <td class="px-4 py-2 text-center">{{ $device->color }}</td>
                                             <td class="px-4 py-2 text-center">{{ $device->stock }}</td>
                                             <td class="px-4 py-2 text-center">@if($device->admin)     {{ $device->admin->name }} ({{ $device->admin->rule }})  @else     -- @endif</td>
                                             <td class="px-4 py-2 text-center">{{ number_format($device->buy_price, 2) }}؋</td>
@@ -129,6 +112,19 @@
                                                     </svg>
                                                 </button>
                                             </td>
+                                            <td class="px-4 py-2 text-center">
+                                                <button  wire:click="confirmDelete({{ $device->id }})">
+                                                    <i class="text-red-600 text-center flex justify-center text-lg cursor-pointer">
+                                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M18.8499 9.14014L18.1999 19.2101C18.0899 20.7801 17.9999 22.0001 15.2099 22.0001H8.7899C5.9999 22.0001 5.9099 20.7801 5.7999 19.2101L5.1499 9.14014" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
+                                                        </i>
+                                                </button>
+                                            </td>
                                         </tr>
                                         @empty
                                         <tr>
@@ -144,25 +140,10 @@
                             </div>
                             @forelse($devices as $device)
                             <div  class="cursor-pointer text-center block md:hidden items-center py-4  border-b  border-[#1E40AF]"  >
-                                <div class="w-10 h-10 rounded-full block mx-auto overflow-hidden bg-gray-100">
-                                    @if($device->image)
-                                        <img
-                                            src="{{ asset('storage/' . $device->image) }}"
-                                            class="w-full h-full object-cover"
-                                            alt="device"
-                                        >
-                                    @else
-                                        <span class="text-sm text-gray-500">ندارد</span>
-                                    @endif
-                                </div>
                                 <div class="col-span-6 text-center justify-center grid grid-cols-2 my-3 md:my-0">
                                     <div class="text-center">
                                         <h1 class="text-[#00000080] block md:hidden">مدل دستگاه</h1>
                                         <p class="text-sm">{{ $device->model }}</p>
-                                    </div>
-                                    <div class="text-center ">
-                                        <h1 class="text-[#00000080] block md:hidden">حافظه</h1>
-                                        <p class="text-sm">{{ $device->memory }}</p>
                                     </div>
                                     <div class="text-center">
                                         <h1 class="text-[#00000080] block md:hidden">بارکد</h1>
@@ -171,10 +152,6 @@
                                     <div class="text-center ">
                                         <h1 class="text-[#00000080] block md:hidden">کتگوری</h1>
                                         <p class="text-sm">{{ $device->category_fa }}</p>
-                                    </div>
-                                    <div class="text-center">
-                                        <h1 class="text-[#00000080] block md:hidden">رنگ</h1>
-                                        <p class="text-sm">{{ $device->color }}</p>
                                     </div>
                                     <div class=" text-center">
                                         <h1 class="text-[#00000080] block md:hidden">حالت</h1>
@@ -193,18 +170,31 @@
                                         <p class="text-sm"> {{ number_format($device->buy_price, 2) }}؋</p>
                                     </div>
                                 </div>
-                                <div class=" grid grid-cols-2 my-5 md:my-0 px-16 md:px-0">
-                                    <div  wire:click.stop="edit({{ $device->id }})"  class="mx-auto flex items-center border border-[#1C274C] md:border-none rounded-lg px-2 py-1"  >
+                                <div class=" grid grid-cols-3 my-5 md:my-0 px-16 md:px-0">
+                                    <div  wire:click.stop="edit({{ $device->id }})"  class="mx-auto flex items-center text-[#1C274C] border border-[#1C274C] md:border-none rounded-lg px-2 py-1"  >
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                                         <p class="text-[#1C274C] block md:hidden">چاپ</p>
                                     </div>
-                                    <div   wire:click.stop="edit({{ $device->id }})"  class="mx-auto flex items-center border border-[#0033BB] md:border-none rounded-lg px-2 py-1"  >
+                                    <div   wire:click.stop="edit({{ $device->id }})"  class="mx-auto flex items-center border text-[#0033BB]  border-[#0033BB] md:border-none rounded-lg px-2 py-1"  >
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M16.0399 3.02001L8.15988 10.9C7.85988 11.2 7.55988 11.79 7.49988 12.22L7.06988 15.23C6.90988 16.32 7.67988 17.08 8.76988 16.93L11.7799 16.5C12.1999 16.44 12.7899 16.14 13.0999 15.84L20.9799 7.96001C22.3399 6.60001 22.9799 5.02001 20.9799 3.02001C18.9799 1.02001 17.3999 1.66001 16.0399 3.02001Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M14.9102 4.15002C15.5802 6.54002 17.4502 8.41002 19.8502 9.09002" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                         <p class="text-[#0033BB] block md:hidden">ویرایش</p>
+                                    </div>
+                                </div>
+                                <div  wire:click="confirmDelete({{ $device->id }})" class="mx-auto flex items-center text-[#FF0000] border border-[#FF0000] md:border-none rounded-lg px-2 py-1"  >
+                                    <i class="text-red-600 text-center flex justify-center text-lg cursor-pointer">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M18.8499 9.14014L18.1999 19.2101C18.0899 20.7801 17.9999 22.0001 15.2099 22.0001H8.7899C5.9999 22.0001 5.9099 20.7801 5.7999 19.2101L5.1499 9.14014" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        </i>
+                                        <p class="text-[#0033BB] block md:hidden">حذف</p>
                                     </div>
                                 </div>
                             </div>
@@ -238,4 +228,36 @@
             </div>
         </div>
     </div>
+    @if ($confirmingDelete)
+        <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+            <div class="bg-white rounded-2xl shadow-xl w-[90%] max-w-sm p-6 animate-fade-in">
+                <div class="flex flex-col items-center text-center gap-3">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 9V13" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M12 17H12.01" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M10.29 3.86L1.82 18A2 2 0 003.55 21H20.45A2 2 0 0022.18 18L13.71 3.86A2 2 0 0010.29 3.86Z"
+                            stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h2 class="text-lg font-bold text-gray-800">
+                        آیا مطمئن هستید؟
+                    </h2>
+                    <p class="text-sm text-gray-500">
+                        این عملیات قابل برگشت نمی‌باشد.
+                    </p>
+                    <div class="flex gap-3 w-full mt-4">
+                        <button
+                            wire:click="$set('confirmingDelete', false)"
+                            class="w-1/2 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100">
+                            لغو
+                        </button>
+                        <button
+                            wire:click="deleteConfirmed"
+                            class="w-1/2 py-2 rounded-xl bg-red-600 text-white hover:bg-red-700">
+                            بله، حذف کن
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>

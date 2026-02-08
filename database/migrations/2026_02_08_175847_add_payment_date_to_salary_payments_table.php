@@ -6,14 +6,14 @@ return new class extends Migration
 {
    public function up()
 {
-    Schema::table('products', function (Blueprint $table) {
-        $table->decimal('sell_price_wholesale', 15, 2)->default(0);
+    Schema::table('salary_payments', function (Blueprint $table) {
+        $table->date('payment_date')->nullable();
     });
 }
 public function down()
 {
-    Schema::table('products', function (Blueprint $table) {
-        $table->dropColumn('sell_price_wholesale');
+    Schema::table('salary_payments', function (Blueprint $table) {
+        $table->dropColumn('payment_date');
     });
 }
 };

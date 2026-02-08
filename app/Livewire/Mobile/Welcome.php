@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\Models\Borrowing;
 use App\Models\SalaryPayment;
 use App\Models\Withdrawal;
+use App\Http\Livewire\Mobile\Inventory;
 class Welcome extends Component
 {
     public $totalUsers;
@@ -86,6 +87,13 @@ class Welcome extends Component
             DB::getSchemaBuilder()->hasColumn('products', 'quantity')) {
             $this->totalShopStock = Product::sum(DB::raw('buy_price * quantity'));
         }
+        if (DB::getSchemaBuilder()->hasColumn('products', 'buy_price') &&
+    DB::getSchemaBuilder()->hasColumn('products', 'quantity') &&
+    DB::getSchemaBuilder()->hasColumn('products', 'location')) {
+    $this->totalShopStock = Product::where('location', 'shop')
+        ->sum(DB::raw('buy_price * quantity'));
+}
+
         if (DB::getSchemaBuilder()->hasColumn('devices', 'buy_price')) {
             $this->totalWarehouseStock = Device::sum('buy_price');
         }

@@ -3,7 +3,7 @@ namespace App\Livewire\Mobile;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
-use App\Models\Product;
+use App\Models\Product; 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 class Inventory2 extends Component

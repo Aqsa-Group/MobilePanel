@@ -6,14 +6,14 @@ return new class extends Migration
 {
     public function up()
 {
-    Schema::table('products', function (Blueprint $table) {
-        $table->string('image')->nullable();
+    Schema::table('salary_payments', function (Blueprint $table) {
+        $table->string('currency', 3)->default('AFN');
     });
 }
 public function down()
 {
-    Schema::table('products', function (Blueprint $table) {
-        $table->dropColumn('image');
+    Schema::table('salary_payments', function (Blueprint $table) {
+        $table->dropColumn('currency');
     });
 }
 };

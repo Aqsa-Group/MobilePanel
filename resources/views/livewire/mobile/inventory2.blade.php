@@ -14,7 +14,7 @@
                         </svg>
                         <h1 class="font-bold text-lg md:text-2xl">فورم ثبت محصول جدید:</h1>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-4 mt-4 gap-2">
+                    <div class="grid grid-cols-1 md:grid-cols-2 mt-4 gap-2">
                         <div class="relative">
                             <h1>بارکد محصول(اختیاری):</h1>
                             <input wire:model="barcode" type="text" class="w-full text-xs input-field rounded-lg pl-8 py-4 px-1 mt-1" placeholder="در صورت خالی بودن خودکار ایجاد میشود.">
@@ -80,20 +80,6 @@
                             </div>
                         </div>
                         <div class="relative">
-                            <h1>قیمت فروش پرچون هر:</h1>
-                            <input wire:model.defer="sell_price_retail" type="text" class="w-full text-xs input-field rounded-lg pl-8 py-4 px-1 mt-1 no-spinner" placeholder="75,000؋">
-                            <div class="absolute left-2 top-10">
-                                <svg fill="#000000"  width="24" height="24" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M379.141 467.247H225.275c-16.962 0-30.72-13.758-30.72-30.72V71.676c0-16.962 13.758-30.72 30.72-30.72h592.824c16.962 0 30.72 13.758 30.72 30.72v364.851c0 16.962-13.758 30.72-30.72 30.72h-76.288v40.96h76.288c39.583 0 71.68-32.097 71.68-71.68V71.676c0-39.583-32.097-71.68-71.68-71.68H225.275c-39.583 0-71.68 32.097-71.68 71.68v364.851c0 39.583 32.097 71.68 71.68 71.68h153.866v-40.96z"></path><path d="M560.9 155.288c0-23.331-18.909-42.24-42.24-42.24s-42.24 18.909-42.24 42.24c0 23.331 18.909 42.24 42.24 42.24s42.24-18.909 42.24-42.24zm40.96 0c0 45.953-37.247 83.2-83.2 83.2s-83.2-37.247-83.2-83.2 37.247-83.2 83.2-83.2 83.2 37.247 83.2 83.2zm-318.72 160h474.88c11.311 0 20.48-9.169 20.48-20.48s-9.169-20.48-20.48-20.48H283.14c-11.311 0-20.48 9.169-20.48 20.48s9.169 20.48 20.48 20.48zm386.123 687.36V874.341a40.952 40.952 0 0117.858-33.817l36.384-24.853a81.929 81.929 0 0035.706-67.64v-79.596c0-11.311-9.169-20.48-20.48-20.48s-20.48 9.169-20.48 20.48v79.596a40.964 40.964 0 01-17.853 33.82l-36.379 24.85a81.908 81.908 0 00-35.716 67.64v128.307c0 11.311 9.169 20.48 20.48 20.48s20.48-9.169 20.48-20.48zM341.081 654.171v91.423c0 28.832 15.164 55.54 39.919 70.328l43.023 25.685a40.98 40.98 0 0119.96 35.172v125.87c0 11.311 9.169 20.48 20.48 20.48s20.48-9.169 20.48-20.48v-125.87a81.942 81.942 0 00-39.919-70.338l-43.023-25.685a40.963 40.963 0 01-19.96-35.162v-91.423c0-11.311-9.169-20.48-20.48-20.48s-20.48 9.169-20.48 20.48z"></path><path d="M759.113 709.211V495.533c0-36.757-29.803-66.56-66.56-66.56h-2.222c-36.757 0-66.56 29.803-66.56 66.56v126.638c0 11.311 9.169 20.48 20.48 20.48s20.48-9.169 20.48-20.48V495.533c0-14.136 11.464-25.6 25.6-25.6h2.222c14.136 0 25.6 11.464 25.6 25.6v213.678c0 11.311 9.169 20.48 20.48 20.48s20.48-9.169 20.48-20.48z"></path><path d="M664.734 576.049V449.411c0-36.757-29.803-66.56-66.56-66.56h-2.222c-36.757 0-66.56 29.803-66.56 66.56v165.55c0 11.311 9.169 20.48 20.48 20.48s20.48-9.169 20.48-20.48v-165.55c0-14.136 11.464-25.6 25.6-25.6h2.222c14.136 0 25.6 11.464 25.6 25.6v126.638c0 11.311 9.169 20.48 20.48 20.48s20.48-9.169 20.48-20.48z"></path><path d="M570.921 616.966V403.288c0-36.757-29.803-66.56-66.56-66.56h-2.222c-36.757 0-66.56 29.803-66.56 66.56V566.79c0 11.311 9.169 20.48 20.48 20.48s20.48-9.169 20.48-20.48V403.288c0-14.136 11.464-25.6 25.6-25.6h2.222c14.136 0 25.6 11.464 25.6 25.6v213.678c0 11.311 9.169 20.48 20.48 20.48s20.48-9.169 20.48-20.48z"></path><path d="M476.489 612.913V449.411c0-36.757-29.803-66.56-66.56-66.56h-2.222c-36.757 0-66.56 29.803-66.56 66.56v213.678c0 11.311 9.169 20.48 20.48 20.48s20.48-9.169 20.48-20.48V449.411c0-14.136 11.464-25.6 25.6-25.6h2.222c14.136 0 25.6 11.464 25.6 25.6v163.502c0 11.311 9.169 20.48 20.48 20.48s20.48-9.169 20.48-20.48z"></path></g></svg>
-                            </div>
-                        </div>
-                        <div class="relative">
-                            <h1>قیمت فروش عمده هر:</h1>
-                            <input wire:model.defer="sell_price_wholesale" type="text" class="w-full text-xs input-field rounded-lg no-spinner pl-8 py-4 px-1 mt-1" placeholder="75,000؋">
-                            <div class="absolute left-2 top-10">
-                                <svg version="1.1" id="Uploaded to svgrepo.com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 32 32" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .feather_een{fill:#111918;} .st0{fill:#0B1719;} </style> <path class="feather_een" d="M14,27.5c0-0.276,0.224-0.5,0.5-0.5h5c0.276,0,0.5,0.224,0.5,0.5S19.776,28,19.5,28h-5 C14.224,28,14,27.776,14,27.5z M14,19c-0.552,0-1,0.448-1,1c0,0.552,0.448,1,1,1s1-0.448,1-1C15,19.448,14.552,19,14,19z M17,19 c-0.552,0-1,0.448-1,1c0,0.552,0.448,1,1,1s1-0.448,1-1C18,19.448,17.552,19,17,19z M20,19c-0.552,0-1,0.448-1,1 c0,0.552,0.448,1,1,1s1-0.448,1-1C21,19.448,20.552,19,20,19z M20,16c-0.552,0-1,0.448-1,1c0,0.552,0.448,1,1,1s1-0.448,1-1 C21,16.448,20.552,16,20,16z M17,16c-0.552,0-1,0.448-1,1c0,0.552,0.448,1,1,1s1-0.448,1-1C18,16.448,17.552,16,17,16z M14,16 c-0.552,0-1,0.448-1,1c0,0.552,0.448,1,1,1s1-0.448,1-1C15,16.448,14.552,16,14,16z M14,13c-0.552,0-1,0.448-1,1 c0,0.552,0.448,1,1,1s1-0.448,1-1C15,13.448,14.552,13,14,13z M17,13c-0.552,0-1,0.448-1,1c0,0.552,0.448,1,1,1s1-0.448,1-1 C18,13.448,17.552,13,17,13z M20,13c-0.552,0-1,0.448-1,1c0,0.552,0.448,1,1,1s1-0.448,1-1C21,13.448,20.552,13,20,13z M18.5,4h-3 C15.224,4,15,4.224,15,4.5S15.224,5,15.5,5h3C18.776,5,19,4.776,19,4.5S18.776,4,18.5,4z M18.5,6h-3C15.224,6,15,6.224,15,6.5 S15.224,7,15.5,7h3C18.776,7,19,6.776,19,6.5S18.776,6,18.5,6z M28,24v1v3c0,1.657-1.343,3-3,3H9c-1.657,0-3-1.343-3-3v-3v-1 L7.688,9.649C7.866,8.139,9.146,7,10.668,7H13V2c0-0.552,0.448-1,1-1h6c0.552,0,1,0.448,1,1v5h2.332 c1.521,0,2.802,1.139,2.979,2.649L28,24z M14,9h6V2h-6V9z M7.007,24h19.986L25.319,9.766C25.2,8.759,24.346,8,23.332,8H21v1h0.5 C21.776,9,22,9.224,22,9.5S21.776,10,21.5,10h-9C12.224,10,12,9.776,12,9.5S12.224,9,12.5,9H13V8h-2.332 C9.654,8,8.8,8.759,8.681,9.766L7.007,24z M27,25H7v3c0,1.103,0.897,2,2,2h16c1.103,0,2-0.897,2-2V25z"></path> </g></svg>
-                            </div>
-                        </div>
-                        <div class="relative">
                             <h1>موجودی کل:</h1>
                             <input wire:model.defer="quantity" type="text" class="w-full no-spinner text-xs input-field rounded-lg pl-8 py-4 px-1 mt-1" placeholder="30">
                             <div class="absolute left-2 top-10">
@@ -122,7 +108,10 @@
                             </div>
                         </div>
                     </div>
-                    <input type="submit" class="w-full  bg-blue-800 hover:bg-blue-700 text-white mt-2 rounded-lg py-2 font-bold text-xl cursor-pointer" value="ثبت محصول جدید">
+                    <div class="flex flex-col gap-3 sm:flex-row">
+                        <button class="w-full  bg-red-800 hover:bg-red-700 text-white mt-2 rounded-lg py-2 font-bold text-xl cursor-pointer">لغو</button>
+                        <input type="submit" class="w-full  bg-blue-800 hover:bg-blue-700 text-white mt-2 rounded-lg py-2 font-bold text-xl cursor-pointer" value="ثبت محصول جدید">
+                    </div>
                 </from>
             </div>
             <div class="grid grid-cols-1 w-full lg:grid-cols-2 gap-3 pt-2">
@@ -203,10 +192,6 @@
                                         <div class="text-gray-900 font-bold"> {{ ($product->buy_price) }}؋</div>
                                     </div>
                                     <div class="">
-                                        <div class="text-gray-600 text-xs font-semibold mb-1">قیمت فروش  </div>
-                                        <div class="text-gray-900 font-bold"> {{ ($product->sell_price_retail) }}؋</div>
-                                    </div>
-                                    <div class="">
                                         <div class="text-gray-600 text-xs font-semibold mb-1"> مبلغ رسید   </div>
                                         <div class="text-gray-900 font-bold"> {{ ($product->sell_price_wholesale) }}</div>
                                     </div>
@@ -215,25 +200,17 @@
                                         <div class="text-gray-900 font-bold"> <span > {{ ($product->total_buy) }}</span></div>
                                     </div>
                                     <div class="">
-                                        <div class="text-gray-600 text-xs font-semibold mb-1">   فایده هر محصول  </div>
-                                        <div class="text-gray-900 font-bold"> {{ ($product->profit_total) }}</div>
-                                    </div>
-                                    <div class="">
-                                        <div class="text-gray-600 text-xs font-semibold mb-1">   فایده کل   </div>
-                                        <div class="text-gray-900 font-bold"> {{ ($product->profit_total) }}</div>
-                                    </div>
-                                    <div class="">
                                         <div class="text-gray-600 text-xs font-semibold mb-1">  موجودی   </div>
                                         <div class="text-gray-900 font-bold">{{ $product->quantity }} </div>
                                     </div>
                                 </div>
                                 <div class="flex justify-center gap-3 mt-5">
-                                    <button wire:click="edit({{ $product->id }})" class="flex items-center gap-1 text-[#1C274C] border-[#1C274C] border border-2 e py-2 px-3 rounded-lg text-xs">
+                                    <button  wire:click="edit({{ $product->id }})" class="flex items-center gap-1 text-[#1C274C] border-[#1C274C] border border-2 e py-2 px-3 rounded-lg text-xs">
                                         <i class="bi bi-pencil-square">
                                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                                         </i> چاپ
                                     </button>
-                                    <button wire:click="edit({{ $product->id }})" class="flex items-center gap-1 text-[#1E40AF]  border-blue-800 border border-2 e py-2 px-3 rounded-lg text-xs">
+                                    <button  wire:click="edit({{ $product->id }})" class="flex items-center gap-1 text-[#1E40AF]  border-blue-800 border border-2 e py-2 px-3 rounded-lg text-xs">
                                         <i class="bi bi-pencil-square">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -320,11 +297,8 @@
                                     <th class="p-2 text-[12px]">ادمین</th>
                                     <th class="p-2 text-[12px]">شرکت</th>
                                     <th class="p-2 text-[12px]">قیمت خرید</th>
-                                    <th class="p-2 text-[12px]">قیمت فروش </th>
                                     <th class="p-2 text-[12px]"> مبلغ رسید</th>
                                     <th class="p-2 text-[12px]"> الباقی مبلغ</th>
-                                    <th class="p-2 text-[12px]">فایده هر محصول</th>
-                                    <th class="p-2 text-[12px]">فایده کل </th>
                                     <th class="p-2 text-[12px]">موجودی</th>
                                     <th class="p-2 text-[12px]">ویرایش</th>
                                     <th class="p-2 text-[12px]">چاپ</th>
@@ -344,19 +318,16 @@
                                     <td class="p-2">@if($product->admin)   {{ $product->admin->name }} ({{ $product->admin->rule }})   @else     --  @endif</td>
                                     <td class="p-2">{{ $product->company }}</td>
                                     <td class="p-2">{{ ($product->buy_price) }}؋</td>
-                                    <td class="p-2">{{ ($product->sell_price_retail) }}؋</td>
                                     <td class="p-2">{{ ($product->sell_price_wholesale) }}؋</td>
                                     <td class="p-2">{{ ($product->total_buy) }}؋</td>
-                                    <td class="p-2">{{ ($product->total_buy) }}؋</td>
-                                    <td class="p-2">{{ ($product->profit_total) }}؋</td>
                                     <td class="p-2">{{ $product->quantity }}</td>
                                     <td class="p-2">
-                                        <i  wire:click="$emit('editProduct', {{ $product->id }})" class="text-blue-800 flex justify-center text-lg cursor-pointer">
+                                        <i    wire:click="edit({{ $product->id }})" class="text-blue-800 flex justify-center text-lg cursor-pointer">
                                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                                         </i>
                                     </td>
                                     <td class="p-2">
-                                        <i  wire:click="$emit('editProduct', {{ $product->id }})" class="text-blue-800 flex justify-center text-lg cursor-pointer">
+                                        <i    wire:click="edit({{ $product->id }})" class="text-blue-800 flex justify-center text-lg cursor-pointer">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M16.0399 3.01976L8.15988 10.8998C7.85988 11.1998 7.55988 11.7898 7.49988 12.2198L7.06988 15.2298C6.90988 16.3198 7.67988 17.0798 8.76988 16.9298L11.7799 16.4998C12.1999 16.4398 12.7899 16.1398 13.0999 15.8398L20.9799 7.95976C22.3399 6.59976 22.9799 5.01976 20.9799 3.01976C18.9799 1.01976 17.3999 1.65976 16.0399 3.01976Z" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>

@@ -36,9 +36,9 @@ class UserList extends Component
         $rules = [
             'first_name' => 'required|string|max:255',
             'last_name'  => 'required|string|max:255',
-            'username'   => 'required|string|max:255|unique:user_forms,username,' . $this->userId,
-            'email'      => 'required|email|unique:user_forms,email,' . $this->userId,
-            'number'     => ['required', 'regex:/^07\d{8}$/', 'unique:user_forms,number,' . $this->userId],
+            'username'   => 'required|string|max:255|unique:users,username,' . $this->userId,
+            'email'      => 'required|email|unique:users,email,' . $this->userId,
+            'number'     => ['required', 'regex:/^07\d{8}$/', 'unique:users,number,' . $this->userId],
             'address'    => 'required|string|max:255',
             'rule'       => 'required',
             'image'      => 'nullable|image|max:2048',
@@ -58,12 +58,19 @@ class UserList extends Component
     {
         $this->resetPage();
     }
-    protected function convertPersianNumbersToEnglish($input)
-    {
-        $persianNumbers = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
-        $englishNumbers = ['0','1','2','3','4','5','6','7','8','9'];
-        return str_replace($persianNumbers, $englishNumbers, $input);
+   protected function convertPersianNumbersToEnglish($input)
+{
+    if ($input === null || $input === '') {
+        return $input;
     }
+
+    $persianNumbers = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+    $englishNumbers = ['0','1','2','3','4','5','6','7','8','9'];
+
+    return str_replace($persianNumbers, $englishNumbers, (string) $input);
+
+}
+
     public function submit()
     {
         $authUser = Auth::user();
@@ -154,26 +161,7 @@ if ($this->image instanceof \Livewire\TemporaryUploadedFile) {
     $this->limit      = $user->limit;
     $this->password = null;
     $this->image    = null;
-}
-public function update()
-{
-    $this->validate();
-    $user = UserForm::findOrFail($this->userId);
-    $user->update([
-        'first_name' => $this->first_name,
-        'last_name'  => $this->last_name,
-        'username'   => $this->username,
-        'email'      => $this->email,
-        'number'     => $this->number,
-        'address'    => $this->address,
-        'rule'       => $this->rule,
-    ]);
-    if ($this->password) {
-        $user->update([
-            'password' => bcrypt($this->password),
-        ]);
-    }
-    $this->resetForm();
+    $this->oldImage = $user->image;
 }
     public function cancelForm()
     {
@@ -249,15 +237,14 @@ public function update()
                 ->paginate(5);
             $canEdit = true;
         } elseif ($authUser->rule === 'admin') {
-            $users = UserForm::query()
-                ->where('creator_id', $authUser->id)
-                ->where(function($q) {
-                    $q->where('name', 'like', "%{$this->search}%")
-                      ->orWhere('username', 'like', "%{$this->search}%")
-                      ->orWhere('email', 'like', "%{$this->search}%");
-                })
-                ->oldest()
-                ->paginate(5);
+            $users = UserForm::where(function ($q) {
+    $q->where('name', 'like', "%{$this->search}%")
+      ->orWhere('username', 'like', "%{$this->search}%")
+      ->orWhere('email', 'like', "%{$this->search}%");
+})
+->oldest()
+->paginate(5);
+
             $canEdit = true;
         } else {
             $users = UserForm::query()

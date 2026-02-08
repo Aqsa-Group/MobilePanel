@@ -3,11 +3,12 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 class UserForm extends Authenticatable
 {
-    protected $table = 'user_forms';
+    protected $table = 'users';
+    protected $appends = ['name'];
     protected $fillable = [
-    'first_name','last_name','username','email',
+    'name', 'first_name','last_name','username','email',
     'number','address','rule','limit','password',
-    'image','creator_id'
+    'image','creator_id', 'admin_id'
 ];
     protected $hidden = [
         'password',
