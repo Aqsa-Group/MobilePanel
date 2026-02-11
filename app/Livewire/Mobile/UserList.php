@@ -51,7 +51,6 @@ class UserList extends Component
 } elseif ($this->password) {
     $rules['password'] = 'min:6';
 }
-
         return $rules;
     }
     public function updatingSearch()
@@ -63,14 +62,10 @@ class UserList extends Component
     if ($input === null || $input === '') {
         return $input;
     }
-
     $persianNumbers = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
     $englishNumbers = ['0','1','2','3','4','5','6','7','8','9'];
-
     return str_replace($persianNumbers, $englishNumbers, (string) $input);
-
 }
-
     public function submit()
     {
         $authUser = Auth::user();
@@ -92,12 +87,10 @@ class UserList extends Component
     session()->flash('error', 'شما اجازه ساخت این نقش را ندارید');
     return;
 }
-
 if ($authUser->rule === 'user') {
     session()->flash('error', 'شما اجازه انجام این عملیات را ندارید');
     return;
 }
-
         if ($authUser->rule !== 'super_admin') {
             $this->limit = null;
         }
@@ -244,7 +237,6 @@ if ($this->image instanceof \Livewire\TemporaryUploadedFile) {
 })
 ->oldest()
 ->paginate(5);
-
             $canEdit = true;
         } else {
             $users = UserForm::query()

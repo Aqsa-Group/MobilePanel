@@ -98,7 +98,6 @@ class Welcome extends Component
     $this->totalShopStock = Product::where('location', 'shop')
         ->sum(DB::raw('buy_price * quantity'));
 }
-
         if (DB::getSchemaBuilder()->hasColumn('devices', 'buy_price')) {
             $this->totalWarehouseStock = Device::sum('buy_price');
         }

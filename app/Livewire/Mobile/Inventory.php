@@ -19,7 +19,6 @@ public $memory;
 public $color;
 public $stock;
 public $imei;
-
     public $sell_price;
     public $profit = 0;
     public $profitPercent = 0;
@@ -38,15 +37,11 @@ public $imei;
     public function selectDevice($id)
 {
     $this->selectedDevice = Device::find($id);
-
     $barcode = $this->getOrCreateBarcode($this->selectedDevice);
-
     $this->buy_price  = (float) $this->selectedDevice->buy_price;
     $this->sell_price = (float) $this->selectedDevice->sell_price;
-
     $this->calculateProfit();
 }
-
     private function getOrCreateBarcode(Device $device)
 {
     if (!empty($device->barcode)) {
@@ -74,15 +69,14 @@ public $imei;
 }
 public function confirmDelete($id)
 {
-    $this->confirmingDelete = true; // مودال باز شود
-    $this->deleteId = $id;           // آی‌دی دستگاه برای حذف ذخیره شود
+    $this->confirmingDelete = true;
+    $this->deleteId = $id;
 }
-
 public function deleteConfirmed()
 {
     if ($this->deleteId) {
         Device::findOrFail($this->deleteId)->delete();
-        $this->confirmingDelete = false; // مودال بسته شود
+        $this->confirmingDelete = false;
         $this->deleteId = null;
     }
 }
@@ -91,12 +85,10 @@ public function saveDevice()
     if (empty($this->imei)) {
         $this->imei = 'BC-' . strtoupper(Str::random(8));
     }
-
     $this->buy_price  = $this->normalizeNumber($this->buy_price);
     $this->sell_price = $this->normalizeNumber($this->sell_price);
     $this->stock      = $this->normalizeNumber($this->stock);
     $this->imei       = $this->normalizeNumber($this->imei);
-
     $this->validate([
         'category' => 'required|string',
         'brand'    => 'required|string',
@@ -106,7 +98,6 @@ public function saveDevice()
         'stock'      => 'required|integer|min:0',
         'imei'       => 'required|string|min:10|unique:devices,imei',
     ]);
-
     Device::create([
         'category'   => $this->category,
         'brand'      => $this->brand,
@@ -117,15 +108,12 @@ public function saveDevice()
         'imei'       => $this->imei,
         'admin_id'   => auth()->id(),
     ]);
-
     session()->flash('success', 'دستگاه ثبت شد');
-
     $this->reset([
         'category','brand','status','model',
         'buy_price','stock','imei'
     ]);
 }
-
 private function normalizeNumber($value)
 {
     if ($value === null) return null;
@@ -136,7 +124,6 @@ private function normalizeNumber($value)
     $value = str_replace($arabic,  $english, $value);
     return $value;
 }
-
 public function updatingBuyPrice($value)
 {
     $this->buy_price = (float) $this->normalizeNumber($value);
@@ -196,10 +183,6 @@ public function updatingSellPrice($value)
         ->when($this->status, fn ($q) => $q->where('status', $this->status))
         ->oldest()
         ->paginate(7);
-}
-public function edit($id)
-{
-    // بعداً پیاده‌سازی می‌کنی
 }
     public function render()
     {

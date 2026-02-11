@@ -11,7 +11,6 @@ class CashReceipt extends Model
         'note',
         'receipt_date',
         'admin_id'
-
     ];
    public function customer() {
     return $this->belongsTo(Customer::class);
@@ -20,7 +19,6 @@ public function loan()
 {
     return $this->belongsTo(Loan::class, 'loan_id');
 }
-
 protected function amount(): Attribute
 {
     return Attribute::make(

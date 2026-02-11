@@ -212,5 +212,4 @@ $payments = SalaryPayment::with(['employee', 'admin'])
         'monthlyPaymentPercentage' => $monthlyPaymentPercentage,
     ]);
 }
-
 }
