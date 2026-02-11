@@ -10,7 +10,7 @@ class Product extends Model
         'barcode','name','category','status','company',
         'buy_price','sell_price_retail','sell_price_wholesale',
         'total_buy','paid_amount','quantity',
-        'profit_each','profit_total','image','user_id','admin_id',
+        'image','user_id','admin_id',
     ];
     public function admin()
     {

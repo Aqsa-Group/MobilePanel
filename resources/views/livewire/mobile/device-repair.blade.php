@@ -1,4 +1,9 @@
 <div class="max-w-full mx-auto">
+    @if($successMessage)
+        <div class="alert alert-success">
+            {{ $successMessage }}
+        </div>
+    @endif
     <div class="border bg-white border-gray-300 rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl p-5 mt-3">
         <div class="flex gap-2">
             <span><svg width="24" height="24" class="mt-1" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -10,17 +15,15 @@
             <path d="M24.7283 6.21289C25.1549 7.71956 26.3283 8.89289 27.8216 9.30622" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             </span>
-            <h1 class="text-xl font-bold mb-2">فورم ثبت تعمیر دستگاه :</h1>
-        </div>
-        <div class="flex grid grid-cols-2 mr-8">
-            <h1 class="text-sm font-bold mb-4">مشخصات دستگاه:</h1>
-            <h1 class="text-sm font-bold mb-4"> بخش خدمات:</h1>
+            <h1 class="text-lg font-semibold mb-2">
+               {{ $editing ? 'ویرایش دستگاه' : 'ثبت دستگاه جدید' }}
+            </h1>
         </div>
         <form  wire:submit.prevent="save">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 <div class="flex flex-col">
                     <div  class="relative">
-                        <select wire:model="category"  class="bg-white border border-gray-900 rounded-xl px-3 py-5 w-full pl-10 text-right">
+                        <select wire:model="category"  class="input-field">
                             <option value="">انتخاب کتگوری</option>
                             <option value="مبایل">مبایل</option>
                             <option value="تبلیت">تبلیت</option>
@@ -31,37 +34,9 @@
                         <span class=" text-red-500 text-[8px] px-2 mt-1">{{ $message }}</span>
                     @enderror
                 </div>
-                <div   class="bg-white flex justify-between mb-2 shadow p-3 rounded-xl border border-black">
-                    <div class="flex p-3  rounded-xl gap-2 items-center" id="btnLoan"
-                        onclick="activeLoan()">
-                        <h2 class="text-bold text-[13px] cursor-pointer">تعمیرات سخت افزاری</h2>
-                    </div>
-                    <div >
-                        <button id="btnCash"
-                        onclick="activeCash()"  class="bg-blue-800 text-[13px] p-3 rounded-xl text-white">
-                            خدمات نرم افزاری
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
                 <div class="flex flex-col">
                     <div class="relative">
-                        <input
-                            wire:model="brand_name"
-                            id="type"
-                            placeholder=" نام برند"
-                            class="input-field"
-                        >
-                        <svg fill="#000000" class="w-5 h-5 text-gray-600 absolute top-1/2 -translate-y-1/2 left-3" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M4 11a1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1 1 1 0 0 1 1 1zm3.5 11c-.67 0-1.236.452-1.426 1.063l-2.656.443c-.242.04-.418.25-.418.494v3c0 .245.176.454.418.494l2.656.443C6.264 28.547 6.83 29 7.5 29h4c.67 0 1.236-.452 1.426-1.063l2.656-.443c.242-.04.418-.25.418-.494v-3c0-.245-.176-.454-.418-.494l-2.656-.444C12.736 22.453 12.17 22 11.5 22zm0 1h4c.286 0 .5.214.5.5v4c0 .286-.214.5-.5.5h-4c-.286 0-.5-.214-.5-.5v-4c0-.286.214-.5.5-.5zM6 24.092v2.816l-2-.332v-2.152zm7 0l2 .332v2.152l-2 .332zM5.5 3c-.276 0-.5.224-.5.5v15c0 .276.224.5.5.5h11c.67 0 .654-1 0-1H6V4h18v4.5c0 .66 1 .67 1 0v-5c0-.276-.224-.5-.5-.5zm-4-2C.678 1 0 1.678 0 2.5v17c0 .822.678 1.5 1.5 1.5h15c.67 0 .66-1 0-1h-15c-.286 0-.5-.214-.5-.5v-17c0-.286.214-.5.5-.5h24c.286 0 .5.214.5.5v6c0 .677 1 .66 1 0v-6c0-.822-.678-1.5-1.5-1.5zm21 11h3c.277 0 .5.223.5.5s-.223.5-.5.5h-3c-.277 0-.5-.223-.5-.5s.223-.5.5-.5zm-3-2c-.822 0-1.5.678-1.5 1.5v16c0 .822.678 1.5 1.5 1.5h9c.822 0 1.5-.678 1.5-1.5v-16c0-.822-.678-1.5-1.5-1.5zm0 1h9c.286 0 .5.214.5.5v16c0 .286-.214.5-.5.5h-9c-.286 0-.5-.214-.5-.5v-16c0-.286.214-.5.5-.5zM24 25c.554 0 1 .446 1 1s-.446 1-1 1-1-.446-1-1 .446-1 1-1z"></path></g></svg>
-                    </div>
-                    @error('brand_name')
-                        <span class=" text-red-500 text-[8px] px-2 mt-1">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="flex flex-col">
-                    <div class="relative">
-                        <input  wire:model="device_model"  id="type"  placeholder=" مدل دستگاه"    class="input-field"  >
+                        <input  wire:model="device_model"  id="type"  placeholder=" نام دستگاه"    class="input-field"  >
                         <svg class="w-5 h-5 text-gray-600 absolute top-1/2  -translate-y-1/2 left-3"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 16.9503H6.21C2.84 16.9503 2 16.1103 2 12.7403V6.74027C2 3.37027 2.84 2.53027 6.21 2.53027H16.74C20.11 2.53027 20.95 3.37027 20.95 6.74027" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M10 21.4702V16.9502" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -91,49 +66,6 @@
                 </div>
                 <div class="flex flex-col">
                     <div class="relative">
-                        <select wire:model="possible_time" class=" input-field">
-                            <option value="">تایم احتمالی</option>
-                            <option value="یک روز">یک روز</option>
-                            <option value="دو روز"> دو روز</option>
-                            <option value="یک هفته">یک هفته</option>
-                        </select>
-                    </div>
-                    @error('possible_time')
-                        <span class=" text-red-500 text-[8px] px-2 mt-1">{{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
-                <div class="flex flex-col">
-                    <div class="relative">
-                        <input  wire:model="imei_number" id="type" type="number" placeholder="شماره IMEI"   class="input-field"  >
-                        <svg class="w-5 h-5 text-gray-600 absolute top-1/2  -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white"></rect> <path fill-rule="evenodd" clip-rule="evenodd" d="M17.968 2.00002C18.3659 2.00002 18.7652 1.99427 19.1624 2.02137C19.4922 2.04388 19.8221 2.09338 20.1481 2.22838C20.8832 2.53287 21.4672 3.11689 21.7717 3.85197C21.9067 4.1779 21.9562 4.50781 21.9787 4.83764C22.0058 5.23487 22 5.6341 22 6.03201C22 6.47066 22 6.84915 21.9787 7.16241C21.9562 7.49223 21.9067 7.82215 21.7717 8.14807C21.4672 8.88316 20.8832 9.46718 20.1481 9.77166C19.8221 9.90667 19.4922 9.95617 19.1624 9.97867C18.7652 10.0058 18.3659 10 17.968 10C17.5294 10 17.1509 10 16.8376 9.97867C16.5078 9.95617 16.1779 9.90667 15.852 9.77166C15.1169 9.46718 14.5329 8.88316 14.2284 8.14807C14.0934 7.82215 14.0439 7.49223 14.0214 7.16241C14 6.84915 14 6.47066 14 6.03201C14 5.6341 13.9943 5.23487 14.0214 4.83764C14.0439 4.50781 14.0934 4.1779 14.2284 3.85197C14.5329 3.11689 15.1169 2.53287 15.852 2.22838C16.1779 2.09338 16.5078 2.04388 16.8376 2.02137C17.1509 2 17.5294 2.00001 17.968 2.00002Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M6.03201 2.00002C6.47066 2.00001 6.84915 2 7.16241 2.02137C7.49223 2.04388 7.82215 2.09338 8.14807 2.22838C8.88316 2.53287 9.46718 3.11689 9.77166 3.85197C9.90667 4.1779 9.95617 4.50781 9.97867 4.83764C10.0058 5.23487 10 5.6341 10 6.03201C10 6.47066 10 6.84915 9.97867 7.16241C9.95617 7.49223 9.90667 7.82215 9.77166 8.14807C9.46718 8.88316 8.88316 9.46718 8.14807 9.77166C7.82215 9.90667 7.49223 9.95617 7.16241 9.97867C6.84915 10 6.47066 10 6.03201 10C5.6341 10 5.23487 10.0058 4.83764 9.97867C4.50781 9.95617 4.1779 9.90667 3.85197 9.77166C3.11689 9.46718 2.53287 8.88316 2.22838 8.14807C2.09338 7.82215 2.04388 7.49223 2.02137 7.16241C2 6.84915 2.00001 6.47066 2.00002 6.03201C2.00002 5.6341 1.99427 5.23487 2.02137 4.83764C2.04388 4.50781 2.09338 4.1779 2.22838 3.85197C2.53287 3.11689 3.11689 2.53287 3.85197 2.22838C4.1779 2.09338 4.50781 2.04388 4.83764 2.02137C5.23487 1.99427 5.6341 2.00002 6.03201 2.00002Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M5.96804 14C6.36595 14 6.76517 13.9943 7.16241 14.0214C7.49223 14.0439 7.82215 14.0934 8.14807 14.2284C8.88316 14.5329 9.46718 15.1169 9.77166 15.852C9.90667 16.1779 9.95617 16.5078 9.97867 16.8376C10 17.1509 10 17.5294 10 17.968C10 18.3659 10.0058 18.7652 9.97867 19.1624C9.95617 19.4922 9.90667 19.8221 9.77166 20.1481C9.46718 20.8832 8.88316 21.4672 8.14807 21.7717C7.82215 21.9067 7.49223 21.9562 7.16241 21.9787C6.84915 22 6.47066 22 6.03201 22C5.6341 22 5.23487 22.0058 4.83764 21.9787C4.50781 21.9562 4.1779 21.9067 3.85197 21.7717C3.11689 21.4672 2.53287 20.8832 2.22838 20.1481C2.09338 19.8221 2.04388 19.4922 2.02137 19.1624C1.99427 18.7652 2.00002 18.3659 2.00002 17.968C2.00001 17.5294 2 17.1509 2.02137 16.8376C2.04388 16.5078 2.09338 16.1779 2.22838 15.852C2.53287 15.1169 3.11689 14.5329 3.85197 14.2284C4.1779 14.0934 4.50781 14.0439 4.83764 14.0214C5.1509 14 5.52939 14 5.96804 14Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C12.5523 2 13 2.44772 13 3V6C13 6.55228 12.5523 7 12 7C11.4477 7 11 6.55228 11 6V3C11 2.44772 11.4477 2 12 2Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M19 18C19 18.5523 18.5523 19 18 19H15C14.4477 19 14 18.5523 14 18C14 17.4477 14.4477 17 15 17H18C18.5523 17 19 17.4477 19 18Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M22 15C22 15.5523 21.5523 16 21 16H18C17.4477 16 17 15.5523 17 15C17 14.4477 17.4477 14 18 14H21C21.5523 14 22 14.4477 22 15Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M10 12C10 12.5523 9.55228 13 9 13L3 13C2.44772 13 2 12.5523 2 12C2 11.4477 2.44772 11 3 11L9 11C9.55228 11 10 11.4477 10 12Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M22 12C22 12.5523 21.5523 13 21 13L13 13C11.8954 13 11 12.1046 11 11L11 9C11 8.44771 11.4477 8 12 8C12.5523 8 13 8.44771 13 9L13 11L21 11C21.5523 11 22 11.4477 22 12Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5 21C13.5 21.5523 13.9477 22 14.5 22L20 22C21.1046 22 22 21.1046 22 20L22 18C22 17.4477 21.5523 17 21 17C20.4477 17 20 17.4477 20 18L20 20L14.5 20C13.9477 20 13.5 20.4477 13.5 21Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C11.4477 22 11 21.5523 11 21L11 16C11 14.8954 11.8954 14 13 14L15 14C15.5523 14 16 14.4477 16 15C16 15.5523 15.5523 16 15 16L13 16L13 21C13 21.5523 12.5523 22 12 22Z" fill="#323232"></path> </g></svg>
-                    </div>
-                    @error('imei_number')
-                        <span class=" text-red-500 text-[8px] px-2 mt-1">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="flex flex-col">
-                    <div class="relative">
-                        <select wire:model="device_color" class=" input-field">
-                            <option value="">رنگ دستگاه</option>
-                            <option value="آبی">آبی</option>
-                            <option value="سرخ"> سرخ</option>
-                            <option value="سفید">سفید</option>
-                            <option value="سیاه">سیاه</option>
-                            <option value="سبز">سبز</option>
-                            <option value="زرد">زرد</option>
-                            <option value="طلایی">طلایی</option>
-                            <option value="خاکستری"> خاکستری</option>
-                            <option value="رنگی">رنگی</option>
-                        </select>
-                    </div>
-                    @error('device_color')
-                        <span class=" text-red-500 text-[8px] px-2 mt-1">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="flex flex-col">
-                    <div class="relative">
                         <input   wire:model="repair_cost" id="type" type="text"  placeholder="هزینه تعمیر"  class="input-field no-spinner" >
                         <svg class="w-5 h-5 text-gray-600 absolute top-1/2  -translate-y-1/2 left-3" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="layer1"> <path d="M 0 4 L 0 15 L 18 15 L 18 4 L 0 4 z M 1 5 L 17 5 L 17 14 L 1 14 L 1 5 z M 3 6 C 3 6.558207 2.558207 7 2 7 L 2 8 C 3.0986472 8 4 7.0986472 4 6 L 3 6 z M 8.5 6 L 8.5 7 C 7.677495 7 7 7.677495 7 8.5 C 7 9.322505 7.677495 10 8.5 10 L 9.5 10 C 9.782065 10 10 10.217935 10 10.5 C 10 10.782065 9.782065 11 9.5 11 L 8.5 11 L 7 11 L 7 12 L 8.5 12 L 8.5 13 L 9.5 13 L 9.5 12 C 10.322504 12 11 11.322505 11 10.5 C 11 9.6774955 10.322504 9 9.5 9 L 8.5 9 C 8.217935 9 8 8.782065 8 8.5 C 8 8.217935 8.217935 8 8.5 8 L 9.5 8 L 11 8 L 11 7 L 9.5 7 L 9.5 6 L 8.5 6 z M 14 6 C 14 7.0986472 14.901353 8 16 8 L 16 7 C 15.441793 7 15 6.558207 15 6 L 14 6 z M 19 6 L 19 16 L 2 16 L 2 17 L 20 17 L 20 6 L 19 6 z M 2 11 L 2 12 C 2.558207 12 3 12.441793 3 13 L 4 13 C 4 11.901353 3.0986472 11 2 11 z M 16 11 C 14.901353 11 14 11.901353 14 13 L 15 13 C 15 12.441793 15.441793 12 16 12 L 16 11 z " style="fill:#222222; fill-opacity:1; stroke:none; stroke-width:0px;"></path> </g> </g></svg>
                     </div>
@@ -141,96 +73,17 @@
                         <span class=" text-red-500 text-[8px] px-2 mt-1">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="flex flex-col">
-                    <div class="relative">
-                        <div  onclick="document.getElementById('delivery').showPicker()"   class="input-field" >
-                            @if($delivery_date)
-                                {{ \Carbon\Carbon::parse($delivery_date)->translatedFormat('Y/m/d') }}
-                            @else
-                                تاریخ تحویل
-                            @endif
-                        </div>
-                        <input  id="delivery"  type="date" wire:model.live="delivery_date"  class="absolute opacity-0 pointer-events-none"  >
-                        <svg class="w-5 h-5 text-gray-600 absolute top-1/2  -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 2V5" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M16 2V5" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M3.5 9.08984H20.5" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M19.21 15.7703L15.6701 19.3103C15.5301 19.4503 15.4 19.7103 15.37 19.9003L15.18 21.2503C15.11 21.7403 15.45 22.0803 15.94 22.0103L17.29 21.8203C17.48 21.7903 17.75 21.6603 17.88 21.5203L21.4201 17.9803C22.0301 17.3703 22.3201 16.6603 21.4201 15.7603C20.5301 14.8703 19.82 15.1603 19.21 15.7703Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M18.7002 16.2803C19.0002 17.3603 19.8402 18.2003 20.9202 18.5003" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M12 22H8C4.5 22 3 20 3 17V8.5C3 5.5 4.5 3.5 8 3.5H16C19.5 3.5 21 5.5 21 8.5V12" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M11.9955 13.7002H12.0045" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M8.29431 13.7002H8.30329" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M8.29431 16.7002H8.30329" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    @error('delivery_date')
-                        <span class=" text-red-500 text-[8px] px-2 mt-1">{{ $message }}</span>
-                    @enderror
-                </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
-                <div class="flex flex-col ">
-                    <div class="relative">
-                        <select wire:model="device_status" id="" class=" input-field">
-                            <option value="">شرایط دستگاه</option>
-                            <option value="شکسته">شکسته</option>
-                            <option value="خوب">خوب</option>
-                        </select>
-                    </div>
-                    @error('device_status')
-                        <span class=" text-red-500 text-[8px] px-2 mt-1">{{ $message }}</span>
-                    @enderror
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 <div class="flex flex-col">
                     <div class="relative">
-                        <select wire:model="device_mode" id="" class="   input-field">
-                            <option class="text-black" value="">حالت دستگاه</option>
-                            <option class="text-black" value="جدید">جدید</option>
-                            <option class="text-black" value="استفاده شده">استفاده شده</option>
-                            <option class="text-black" value="معیوب">معیوب</option>
-                        </select>
-                    </div>
-                    @error('device_mode')
-                        <span class=" text-red-500 text-[8px] px-2 mt-1">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="flex flex-col md:col-span-2">
-                    <div class="relative ">
-                        <input  wire:model="description"  id="type"  placeholder=" توضیحات" class="input-field" >
-                        <svg class="w-5 h-5 text-gray-600 absolute top-1/2 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16 2H8C4 2 2 4 2 8V21C2 21.55 2.45 22 3 22H16C20 22 22 20 22 16V8C22 4 20 2 16 2Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M12.9098 7.84015L7.71979 13.0302C7.51979 13.2302 7.3298 13.6202 7.2898 13.9002L7.0098 15.8802C6.9098 16.6002 7.40979 17.1002 8.12979 17.0002L10.1098 16.7202C10.3898 16.6802 10.7798 16.4902 10.9798 16.2902L16.1698 11.1002C17.0598 10.2102 17.4898 9.17015 16.1698 7.85015C14.8498 6.52015 13.8098 6.94015 12.9098 7.84015Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M12.1699 8.58008C12.6099 10.1501 13.8399 11.3901 15.4199 11.8301" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    @error('description')
-                        <span class=" text-red-500 text-[8px] px-2 mt-1">{{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
-            <h1 class="mt-2">مشخصات مشتری:</h1>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
-                <div class="flex flex-col">
-                    <div class="relative">
-                        <input  wire:model="name"  id="type"  placeholder="  نام  "   class="input-field" >
+                        <input  wire:model="name"  id="type"  placeholder="   نام مشتری  "   class="input-field" >
                         <svg class="w-5 h-5 text-gray-600 absolute top-1/2 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M7.16021 14.56C4.74021 16.18 4.74021 18.82 7.16021 20.43C9.91021 22.27 14.4202 22.27 17.1702 20.43C19.5902 18.81 19.5902 16.17 17.1702 14.56C14.4302 12.73 9.92021 12.73 7.16021 14.56Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
                     @error('name')
-                        <span class=" text-red-500 text-[8px] px-2 mt-1">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="flex flex-col">
-                    <div class="relative">
-                        <input wire:model="last_name" id="type" type="text" placeholder="تخلص" class="input-field">
-                        <svg class="w-5 h-5 text-gray-600 absolute top-1/2 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M7.16021 14.56C4.74021 16.18 4.74021 18.82 7.16021 20.43C9.91021 22.27 14.4202 22.27 17.1702 20.43C19.5902 18.81 19.5902 16.17 17.1702 14.56C14.4302 12.73 9.92021 12.73 7.16021 14.56Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    @error('last_name')
                         <span class=" text-red-500 text-[8px] px-2 mt-1">{{ $message }}</span>
                     @enderror
                 </div>
@@ -245,16 +98,13 @@
                         <span class=" text-red-500 text-[8px] px-2 mt-1">{{ $message }}</span>
                     @enderror
                 </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 <div class="flex flex-col">
                     <div class="relative">
-                        <div   onclick="document.getElementById('visit').showPicker()"    class="input-field" >
-                            @if($visit_date)
-                                {{ \Carbon\Carbon::parse($visit_date)->translatedFormat('Y/m/d') }}
-                            @else
-                                تاریخ مراجعه
-                            @endif
+                        <div class="input-field">
+                            {{ \Morilog\Jalali\Jalalian::now()->format('Y/m/d') }}
                         </div>
-                        <input  id="visit"  type="date" wire:model.live="visit_date"  class="absolute opacity-0 pointer-events-none"  >
                         <svg class="w-5 h-5 text-gray-600 absolute top-1/2 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8 2V5" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M16 2V5" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -271,16 +121,24 @@
                         <span class=" text-red-500 text-[8px] px-2 mt-1">{{ $message }}</span>
                     @enderror
                 </div>
+                <div class="flex flex-col ">
+                    <div class="relative ">
+                        <input  wire:model="description"  id="type"  placeholder=" توضیحات" class="input-field" >
+                        <svg class="w-5 h-5 text-gray-600 absolute top-1/2 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 2H8C4 2 2 4 2 8V21C2 21.55 2.45 22 3 22H16C20 22 22 20 22 16V8C22 4 20 2 16 2Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12.9098 7.84015L7.71979 13.0302C7.51979 13.2302 7.3298 13.6202 7.2898 13.9002L7.0098 15.8802C6.9098 16.6002 7.40979 17.1002 8.12979 17.0002L10.1098 16.7202C10.3898 16.6802 10.7798 16.4902 10.9798 16.2902L16.1698 11.1002C17.0598 10.2102 17.4898 9.17015 16.1698 7.85015C14.8498 6.52015 13.8098 6.94015 12.9098 7.84015Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12.1699 8.58008C12.6099 10.1501 13.8399 11.3901 15.4199 11.8301" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    @error('description')
+                        <span class=" text-red-500 text-[8px] px-2 mt-1">{{ $message }}</span>
+                    @enderror
+                </div>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
-                <button type="button" wire:click="cancelEdit" class="bg-red-800 hover:bg-red-700 text-white rounded-lg py-3 text-sm">انصراف</button>
+                <button type="button"  wire:click="cancelEdit" class="bg-red-800 hover:bg-red-700 text-white rounded-lg py-3 text-sm">انصراف</button>
                 <button type="submit" class="btn btn-primary hover:bg-blue-700 bg-blue-800 text-white rounded-lg py-3 text-sm">{{ $editing ? 'ویرایش ' : 'ثبت ' }}</button>
             </div>
-            @if($successMessage)
-                <div class="bg-green-100 text-green-700 p-2 my-4 rounded-xl">
-                    {{ $successMessage }}
-                </div>
-            @endif
         </form>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 p-2">
@@ -304,19 +162,19 @@
                         </tr>
                         <tr>
                             <th class="pt-2">کتگوری</th>
-                            <th>شماره IMEI</th>
+                            <th class="pt-2">ادمین </th>
                         </tr>
                         <tr class="text-[#00000080]">
                             <td  class="text-[10px]">{{ $a->category }}</td>
-                            <td  class="text-[10px]">{{ $a->imei_number}}</td>
+                            <td  class="text-[10px]"> @if($a->admin)   {{ $a->admin->name }} ({{ $a->admin->rule }})   @else     --  @endif</td>
                         </tr>
                         <tr>
-                            <th class="pt-2">رنگ</th>
                             <th>شماره تماس</th>
+                            <th>تاریخ مراجعه</th>
                         </tr>
                         <tr class="text-[#00000080]">
-                            <td  class="text-[10px]">{{ $a->device_color }}</td>
                             <td  class="text-[10px]">{{ $a->phone_number}}</td>
+                            <td  class="text-[10px]">{{ \Morilog\Jalali\Jalalian::fromDateTime($a->visit_date)->format('Y/m/d') }}</td>
                         </tr>
                         <tr>
                             <th class="pt-2">نوع تعمیر</th>
@@ -327,34 +185,10 @@
                             <td  class="text-[10px]">{{ $a->repair_cost}}؋</td>
                         </tr>
                         <tr>
-                            <th class="pt-2">توضیحات</th>
-                            <th>شرایط دستگاه</th>
+                            <th colspan="2" class="pt-2">توضیحات</th>
                         </tr>
                         <tr class="text-[#00000080]">
-                            <td  class="text-[10px]">{{ $a->description }}</td>
-                            <td  class="text-[10px]">{{ $a->device_status}}</td>
-                        </tr>
-                        <tr>
-                            <th class="pt-2">حالت دستگاه</th>
-                            <th>تایم احتمالی</th>
-                        </tr>
-                        <tr class="text-[#00000080]">
-                            <td  class="text-[10px]">{{ $a->device_mode }}</td>
-                            <td  class="text-[10px]">{{ $a->possible_time}}</td>
-                        </tr>
-                        <tr>
-                            <th class="pt-2">تاریخ تحویل</th>
-                            <th>تاریخ مراجعه</th>
-                        </tr>
-                        <tr class="text-[#00000080]">
-                            <td  class="text-[10px]">{{ $a->delivery_date }}</td>
-                            <td  class="text-[10px]">{{ $a->visit_date}}</td>
-                        </tr>
-                        <tr>
-                            <th colspan="2" class="pt-2">ادمین </th>
-                        </tr>
-                        <tr class="text-[#00000080]">
-                            <td colspan="2"  class="text-[10px]"> @if($a->admin)   {{ $a->admin->name }} ({{ $a->admin->rule }})   @else     --  @endif</td>
+                            <td colspan="2"  class="text-[10px]">{{ $a->description }}</td>
                         </tr>
                     </table>
                     <div class="flex flex-row gap-2 my-2 w-full px-4 mt-4">
@@ -369,6 +203,17 @@
                                 <path d="M14.9102 4.15002C15.5802 6.54002 17.4502 8.41002 19.8502 9.09002" stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <span>ویرایش</span>
+                        </a>
+                        <a wire:click="edit({{ $a->id }})" class="curser-pointer flex justify-center items-center gap-1 border rounded-lg border-[#FF0000] w-1/2 h-[30px] text-[#FF0000] text-[10px]">
+                            <i class="bi bi-trash">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 5.98047C17.67 5.65047 14.32 5.48047 10.98 5.48047C9 5.48047 7.02 5.58047 5.04 5.78047L3 5.98047" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M18.8499 9.13965L18.1999 19.2096C18.0899 20.7796 17.9999 21.9996 15.2099 21.9996H8.7899C5.9999 21.9996 5.9099 20.7796 5.7999 19.2096L5.1499 9.13965" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            </i> حذف
                         </a>
                     </div>
                 </div>
@@ -416,19 +261,14 @@
                             <th class="p-2 text-[12px]">نام دستگاه</th>
                             <th class="p-2 text-[12px]">کتگوری</th>
                             <th class="p-2 text-[12px]">ادمین</th>
-                            <th class="p-2 text-[12px]">شماره IMEI</th>
-                            <th class="p-2 text-[12px]">رنگ</th>
                             <th class="p-2 text-[12px]">شماره تماس</th>
                             <th class="p-2 text-[12px]">نوع تعمیر</th>
                             <th class="p-2 text-[12px]">هزینه تعمیر</th>
                             <th class="p-2 text-[12px]">توضیحات</th>
-                            <th class="p-2 text-[12px]">شرایط دستگاه</th>
-                            <th class="p-2 text-[12px]">حالت دستگاه</th>
-                            <th class="p-2 text-[12px]">تایم احتمالی</th>
-                            <th class="p-2 text-[12px]">تاریخ تحویل</th>
                             <th class="p-2 text-[12px]">تاریخ مراجعه</th>
                             <th class="p-2 text-[12px]">چاپ</th>
                             <th class="p-2 text-[12px]">ویرایش</th>
+                            <th class="p-2 text-[12px]">حذف</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -439,17 +279,11 @@
                             <td class="p-2"> {{$a->brand_name}}  {{$a->device_model}} </td>
                             <td class="p-2"> {{$a->category}}</td>
                             <td class="p-2">  @if($a->admin)   {{ $a->admin->name }} ({{ $a->admin->rule }})   @else     --  @endif</td>
-                            <td class="p-2"> {{$a->imei_number}}</td>
-                            <td class="p-2"> {{$a->device_color}}</td>
                             <td class="p-2"> {{$a->phone_number}}</td>
                             <td class="p-2"> {{$a->repair_type}}</td>
                             <td class="p-2"> {{$a->repair_cost}}؋</td>
                             <td class="p-2"> {{$a->description}}</td>
-                            <td class="p-2"> {{$a->device_status}}</td>
-                            <td class="p-2"> {{$a->device_mode}}</td>
-                            <td class="p-2"> {{$a->possible_time}}</td>
-                            <td class="p-2"> {{$a->delivery_date}}</td>
-                            <td class="p-2"> {{$a->visit_date}}</td>
+                            <td class="p-2"> {{ \Morilog\Jalali\Jalalian::fromDateTime($a->visit_date)->format('Y/m/d') }}</td>
                             <td class="p-2  ">
                                 <button wire:click="edit({{ $a->id }})">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
@@ -464,10 +298,23 @@
                                     </svg>
                                 </button>
                             </td>
+                            <td class="p-2  ">
+                                <button wire:click="confirmDelete({{  $a->id }})">
+                                    <i class="text-red-600 text-center flex justify-center text-lg cursor-pointer">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M18.8499 9.14014L18.1999 19.2101C18.0899 20.7801 17.9999 22.0001 15.2099 22.0001H8.7899C5.9999 22.0001 5.9099 20.7801 5.7999 19.2101L5.1499 9.14014" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    </i>
+                                </button>
+                            </td>
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="17" class="p-4 text-center text-gray-400">
+                            <td colspan="15" class="p-4 text-center text-gray-400">
                                 هیچ دستگاهی ثبت نشده
                             </td>
                         </tr>
@@ -495,4 +342,37 @@
                 @endif
             </div>
         </div>
+        @if ($confirmingDelete)
+            <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+                <div class="bg-white rounded-2xl shadow-xl w-[90%] max-w-sm p-6 animate-fade-in">
+                    <div class="flex flex-col items-center text-center gap-3">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 9V13" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M12 17H12.01" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M10.29 3.86L1.82 18A2 2 0 003.55 21H20.45A2 2 0 0022.18 18L13.71 3.86A2 2 0 0010.29 3.86Z"
+                                stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <h2 class="text-lg font-bold text-gray-800">
+                            آیا مطمئن هستید؟
+                        </h2>
+                        <p class="text-sm text-gray-500">
+                            این عملیات قابل برگشت نمی‌باشد.
+                        </p>
+                        <div class="flex gap-3 w-full mt-4">
+                            <button
+                                wire:click="$set('confirmingDelete', false)"
+                                class="w-1/2 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100">
+                                لغو
+                            </button>
+                            <button
+                                wire:click="deleteConfirmed"
+                                class="w-1/2 py-2 rounded-xl bg-red-600 text-white hover:bg-red-700">
+                                بله، حذف کن
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
+</div>

@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Device;
 use App\Models\Product;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class DeviceForm extends Component
 {
@@ -26,7 +27,7 @@ class DeviceForm extends Component
         'model'     => 'required|string|max:255',
         'buy_price' => 'required|numeric|min:0',
         'stock'     => 'required|integer|min:1',
-        'imei'      => 'required|string|min:5|unique:devices,imei',
+        'imei'      => 'nullable|string|min:5|unique:devices,imei',
     ];
 
     protected $messages = [
@@ -55,34 +56,38 @@ class DeviceForm extends Component
             $this->resetErrorBag('imei');
         } else {
             $this->fromWarehouse = false;
-            $this->addError('imei', '❌ این بارکد در گدام وجود ندارد');
+            $this->addError('imei', '❌ این بارکد در گدام وجود ندارد، بارکد اتومات ساخته خواهد شد');
         }
     }
 
     private function convertToEnglishNumber($value)
-{
-    if ($value === null) return null;
+    {
+        if ($value === null) return null;
 
-    $persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
-    $arabic  = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
-    $english = ['0','1','2','3','4','5','6','7','8','9'];
+        $persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+        $arabic  = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+        $english = ['0','1','2','3','4','5','6','7','8','9'];
 
-    if (is_array($value)) {
-        // اگر آرایه است، هر مقدار آرایه را تبدیل کن
-        return array_map(function($v) use ($persian, $arabic, $english) {
-            return str_replace($persian, $english, str_replace($arabic, $english, $v));
-        }, $value);
+        if (is_array($value)) {
+            return array_map(function($v) use ($persian, $arabic, $english) {
+                return str_replace($persian, $english, str_replace($arabic, $english, $v));
+            }, $value);
+        }
+
+        return str_replace($persian, $english, str_replace($arabic, $english, $value));
     }
-
-    return str_replace($persian, $english, str_replace($arabic, $english, $value));
-}
-
 
     public function saveDevice()
     {
-        $this->imei      = $this->convertToEnglishNumber($this->imei);
+        // تبدیل اعداد فارسی به انگلیسی
+        $this->imei      = $this->imei ? $this->convertToEnglishNumber($this->imei) : null;
         $this->buy_price = $this->convertToEnglishNumber($this->buy_price);
         $this->stock     = $this->convertToEnglishNumber($this->stock);
+
+        // 🔹 اگر بارکد وارد نشده، اتومات بساز
+        if (!$this->imei) {
+            $this->imei = 'IMEI-' . Str::random(8);
+        }
 
         $this->validate();
 
@@ -111,9 +116,20 @@ class DeviceForm extends Component
             'admin_id' => auth()->id(),
         ]);
 
+        // بازگردانی پیام موفقیت
         session()->flash('success', '✅ دستگاه با موفقیت به دوکان اضافه شد');
 
+        // ریست فرم بعد از ثبت
+        $this->resetForm();
+
         return redirect()->route('inventory');
+    }
+
+    public function resetForm()
+    {
+        $this->reset([
+            'category','brand','status','model','buy_price','stock','imei','fromWarehouse'
+        ]);
     }
 
     public function render()

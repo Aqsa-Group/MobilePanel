@@ -3,6 +3,7 @@ namespace App\Livewire\Mobile;
 use Livewire\Component;
 use App\Models\Withdrawal;
 use App\Models\SalaryPayment;
+use App\Models\DeviceRepairForm;
 use App\Models\CashFund as CashFundModel;
 class Cashfund extends Component
 {
@@ -19,13 +20,20 @@ class Cashfund extends Component
         $withdrawTotalUSD = $salesUSD + $salaryUSD;
         $profitAFN = $salesAFN - $salaryAFN;
         $profitUSD = $salesUSD - $salaryUSD;
+        $repairIncomeAFN = DeviceRepairForm::sum('repair_cost');
+        $repairIncomeUSD = $repairIncomeAFN /70;
+        $afnToUsdRate = 70;
+        $repairIncomeUSD = $repairIncomeAFN / $afnToUsdRate;
         $lossAFN = $salaryAFN;
+        $repairIncomeAFN = DeviceRepairForm::sum('repair_cost');
         $lossUSD = $salaryUSD;
         $totalLoansAFN = 0;
         $totalLoansUSD = 0;
         return view('livewire.mobile.cashfund', compact(
             'afnBalance',
+            'repairIncomeAFN',
             'usdBalance',
+            'repairIncomeUSD',
             'salesAFN',
             'salesUSD',
             'withdrawTotalAFN',

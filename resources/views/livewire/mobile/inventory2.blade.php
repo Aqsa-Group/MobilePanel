@@ -112,7 +112,7 @@
                         <button class="w-full  bg-red-800 hover:bg-red-700 text-white mt-2 rounded-lg py-2 font-bold text-xl cursor-pointer">لغو</button>
                         <input type="submit" class="w-full  bg-blue-800 hover:bg-blue-700 text-white mt-2 rounded-lg py-2 font-bold text-xl cursor-pointer" value="ثبت محصول جدید">
                     </div>
-                </from>
+                </form>
             </div>
             <div class="grid grid-cols-1  w-full lg:grid-cols-2 gap-3 pt-2">
                 <div class="lg:col-span-2 border bg-white border-gray-300 rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl  w-full lg:max-w-full p-3">
