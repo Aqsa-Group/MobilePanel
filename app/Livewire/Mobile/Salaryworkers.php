@@ -4,6 +4,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\SalaryPayment;
 use App\Models\Employee;
+use App\Models\Withdrawal;
 use Carbon\Carbon;
 use App\Models\CashFund;
 use Morilog\Jalali\Jalalian;

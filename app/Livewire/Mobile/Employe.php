@@ -13,6 +13,8 @@ class Employe extends Component
     public $search = '';
     public $filter = '';
     public $formKey;
+    public $totalEmployees = 0;
+    public $activeEmployees = 0;
     public $editMode = false;
     public $employeeId;
     public $name,$nid,$number,$address,$salary,$job,$image;
@@ -22,6 +24,8 @@ class Employe extends Component
     public function mount()
     {
         $this->formKey = uniqid();
+        $this->totalEmployees = Employee::count();
+        $this->activeEmployees = Employee::where('updated_at', '>=', now()->subDays(30))->count();
     }
     private function convertToEnglishNumber($value)
     {

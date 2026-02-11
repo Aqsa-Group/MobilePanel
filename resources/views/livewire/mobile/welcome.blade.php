@@ -6,7 +6,7 @@
                     <div class="card-anim relative bg-[#616161]/5 shadow-xl p-4 pb-[70px] flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#00000040] overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
-                                <h3 class="text-3xl text-[#1E40AF] sm:text-3xl lg:text-3xl font-bold leading-none">
+                                <h3 class="text-3xl text-[#1E40AF] sm:text-2xl font-bold leading-none">
                                      {{ $totalUsers }}
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
@@ -34,14 +34,14 @@
                     <div class="card-anim relative bg-[#616161]/5 shadow-xl p-4 pb-[70px] flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#00000040] overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
-                                <h3 class="text-3xl sm:text-3xl lg:text-3xl font-bold leading-none text-[#1E40AF]">
+                                <h3 class="text-3xl sm:text-2xl font-bold leading-none text-[#1E40AF]">
                                     {{ $totalCustomers }}
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
                                     تعداد مشتریان
                                 </p>
                             </div>
-                            <svg fill="#1E40AF" class="  p-2 ml-2" width="50px" height="50px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 484.191 484.191" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M227.535,294.249v16.117h28.822v-16.117c-4.753,0.908-9.557,1.415-14.404,1.415 C237.107,295.665,232.289,295.157,227.535,294.249z"></path> <path d="M377.016,271.181l-59.18-17.648c-3.816,4.777-7.819,9.141-11.932,13.153l15.404,4.598 c-10.291,40.96-38.191,152.836-46.042,192.794c-6.304,1.526-12.716,2.745-19.3,3.393l16.657-39.332L256.609,321.04h-29.027 l-16.015,107.099l16.655,39.332c-6.71-0.656-13.215-1.915-19.611-3.478c-7.866-39.991-35.705-151.625-46.012-192.624l15.482-4.62 c-4.129-4.012-8.115-8.368-11.948-13.153l-58.96,17.586c-13.23,3.941-22.286,16.093-22.286,29.887v25.915 c0,86.822,70.377,157.207,157.208,157.207c86.83,0,157.207-70.385,157.207-157.207v-25.915 C399.303,287.275,390.248,275.123,377.016,271.181z"></path> <path d="M343.555,125.97c2.908-18.317,1.611-37.976-0.93-53.339C337.198,39.797,324.17,16.69,324.17,16.69l-6.084,25.516 l-0.594,2.51c-0.047-1.025-0.203-2.159-0.313-3.261c-1.454-13.919-7.695-32.772-7.695-32.772 c-14.012,6.67-37.002,6.005-37.002,6.005c6.365-4.676,22.99-9.337,22.99-9.337C254.06-7.7,227.582,5.953,214.695,16.228 c-2.785,2.229-4.942,4.27-6.475,5.872l4.723-5.45l9.807-11.3c-19.77,1.939-34.174,15.295-42.932,26.204 c-6.318,7.867-9.789,14.498-9.789,14.498l1.689-8.688l3.643-18.673c-13.59,10.869-21.785,26.673-26.806,42.789 c-7.566,24.331-8.354,53.946-8.094,64.443c-7.877,3.256-13.807,10.607-16.397,20.385c-2.455,9.33-1.814,20.207,1.814,30.615 c5.724,16.436,17.906,28.518,31.17,31.224c16.468,35.329,46.762,71.502,84.904,71.502c38.114,0,68.408-36.118,84.876-71.424 c13.058-2.557,25.445-14.71,31.231-31.302C365.816,154.57,359.438,132.572,343.555,125.97z M342.938,171.661 c-4.77,13.669-14.466,21.042-21.347,21.042c-3.833,0.469-6.21,1.847-7.491,4.809c-13.936,31.967-40.209,66.124-72.146,66.124 c-31.934,0-58.209-34.156-72.145-66.124c-1.267-2.924-4.486-4.809-7.678-4.809c-6.693,0-16.374-7.373-21.129-21.042 c-2.55-7.335-3.082-15.084-1.454-21.262c0.798-2.979,2.8-8.218,7.46-9.837c0.501-0.172,1.486-0.273,1.969-0.32 c3.957-0.383,7.039-3.613,7.227-7.585c0.173-3.699,0.615-7.269,1.502-10.768c11.936-47.109,52.986-50.476,52.986-50.476 c-7.383,17.352-19.314,24.687-19.314,24.687c39.363-16.015,51.625-33.367,51.625-33.367c26.197,36.369,62.292,52.149,83.139,58.616 c0.609,3.738,1.377,7.421,1.564,11.308c0.188,3.972,3.269,7.202,7.227,7.585c0.482,0.047,1.469,0.148,1.984,0.32 C344.002,143.032,348.225,156.42,342.938,171.661z"></path> </g> </g></svg>
+                            <svg class="  p-2 ml-2" width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M9 1.25C6.37665 1.25 4.25 3.37665 4.25 6C4.25 8.62335 6.37665 10.75 9 10.75C11.6234 10.75 13.75 8.62335 13.75 6C13.75 3.37665 11.6234 1.25 9 1.25ZM5.75 6C5.75 4.20507 7.20507 2.75 9 2.75C10.7949 2.75 12.25 4.20507 12.25 6C12.25 7.79493 10.7949 9.25 9 9.25C7.20507 9.25 5.75 7.79493 5.75 6Z" fill="#1E40AF"></path> <path d="M15 2.25C14.5858 2.25 14.25 2.58579 14.25 3C14.25 3.41421 14.5858 3.75 15 3.75C16.2426 3.75 17.25 4.75736 17.25 6C17.25 7.24264 16.2426 8.25 15 8.25C14.5858 8.25 14.25 8.58579 14.25 9C14.25 9.41421 14.5858 9.75 15 9.75C17.0711 9.75 18.75 8.07107 18.75 6C18.75 3.92893 17.0711 2.25 15 2.25Z" fill="#1E40AF"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67815 13.5204C5.07752 12.7208 6.96067 12.25 9 12.25C11.0393 12.25 12.9225 12.7208 14.3219 13.5204C15.7 14.3079 16.75 15.5101 16.75 17C16.75 18.4899 15.7 19.6921 14.3219 20.4796C12.9225 21.2792 11.0393 21.75 9 21.75C6.96067 21.75 5.07752 21.2792 3.67815 20.4796C2.3 19.6921 1.25 18.4899 1.25 17C1.25 15.5101 2.3 14.3079 3.67815 13.5204ZM4.42236 14.8228C3.26701 15.483 2.75 16.2807 2.75 17C2.75 17.7193 3.26701 18.517 4.42236 19.1772C5.55649 19.8253 7.17334 20.25 9 20.25C10.8267 20.25 12.4435 19.8253 13.5776 19.1772C14.733 18.517 15.25 17.7193 15.25 17C15.25 16.2807 14.733 15.483 13.5776 14.8228C12.4435 14.1747 10.8267 13.75 9 13.75C7.17334 13.75 5.55649 14.1747 4.42236 14.8228Z" fill="#1E40AF"></path> <path d="M18.1607 13.2674C17.7561 13.1787 17.3561 13.4347 17.2674 13.8393C17.1787 14.2439 17.4347 14.6439 17.8393 14.7326C18.6317 14.9064 19.2649 15.2048 19.6829 15.5468C20.1014 15.8892 20.25 16.2237 20.25 16.5C20.25 16.7507 20.1294 17.045 19.7969 17.3539C19.462 17.665 18.9475 17.9524 18.2838 18.1523C17.8871 18.2717 17.6624 18.69 17.7818 19.0867C17.9013 19.4833 18.3196 19.708 18.7162 19.5886C19.5388 19.3409 20.2743 18.9578 20.8178 18.4529C21.3637 17.9457 21.75 17.2786 21.75 16.5C21.75 15.6352 21.2758 14.912 20.6328 14.3859C19.9893 13.8593 19.1225 13.4783 18.1607 13.2674Z" fill="#1E40AF"></path> </g></svg>
                         </div>
                         <div class="absolute bottom-0 left-0 w-full h-[55px] bg-[#1E40AF] flex items-center px-4">
                             <span class="text-sm font-semibold text-white">
@@ -52,7 +52,7 @@
                     <div class="card-anim relative bg-[#616161]/5 shadow-xl p-4 pb-[70px] flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#00000040] overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
-                                <h3 class="text-3xl sm:text-3xl lg:text-3xl font-bold leading-none text-[#1E40AF]">
+                                <h3 class="text-3xl sm:text-2xl font-bold leading-none text-[#1E40AF]">
                                     {{ number_format($todaySalesAmount) }}؋
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
@@ -70,7 +70,7 @@
                     <div class="card-anim relative bg-[#616161]/5 shadow-xl p-4 pb-[70px] flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#00000040] overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
-                                <h3 class="text-3xl sm:text-3xl lg:text-3xl font-bold leading-none text-[#1E40AF]">
+                                <h3 class="text-3xl sm:text-2xl font-bold leading-none text-[#1E40AF]">
                                    {{ number_format($todayProfitAmount) }}؋
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
@@ -88,7 +88,7 @@
                     <div class="card-anim relative bg-[#616161]/5 shadow-xl p-4 pb-[70px] flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#1E40AF1E40AF40] overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
-                                <h3 class="text-3xl sm:text-3xl lg:text-3xl font-bold leading-none text-[#1E40AF]">
+                                <h3 class="text-3xl sm:text-2xl font-bold leading-none text-[#1E40AF]">
                                     {{ number_format($grandTotal) }} ؋
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
@@ -106,7 +106,7 @@
                     <div class="card-anim relative bg-[#616161]/5 shadow-xl p-4 pb-[70px] flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#00000040] overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
-                                <h3 class="text-3xl sm:text-3xl lg:text-3xl font-bold leading-none text-[#1E40AF]">
+                                <h3 class="text-3xl sm:text-2xl font-bold leading-none text-[#1E40AF]">
                                     {{ number_format($totalBorrowings) }} ؋
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
@@ -124,7 +124,7 @@
                     <div class="card-anim relative bg-[#616161]/5 shadow-xl p-4 pb-[70px] flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#00000040] overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
-                                <h3 class="text-3xl sm:text-3xl lg:text-3xl font-bold leading-none text-[#1E40AF]">
+                                <h3 class="text-3xl sm:text-2xl font-bold leading-none text-[#1E40AF]">
                                    {{ number_format($this->totalSalaryPaid + $this->totalWithdrawals) }}؋
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
@@ -142,21 +142,18 @@
                     <div class="card-anim relative bg-[#616161]/5 shadow-xl p-4 pb-[70px] flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#00000040] overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
-                                <h3 class="text-3xl sm:text-3xl lg:text-3xl font-bold leading-none text-[#1E40AF]">
-                                    {{ number_format($totalShopStock) }}؋
+                                <h3 class="text-3xl sm:text-2xl font-bold leading-none text-[#1E40AF]">
+                                    {{ $totalemployee }}
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
-                                    مجموعه سرمایه دوکان
+                                    تعداد کارمندان
                                 </p>
                             </div>
-                            <svg class="p-2 ml-2"  width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M3.17157 20.8284C4.34315 22 6.22876 22 10 22H14C17.7712 22 19.6569 22 20.8284 20.8284C22 19.6569 22 17.7712 22 14C22 12.8302 22 11.8419 21.965 11M20.8284 7.17157C19.6569 6 17.7712 6 14 6H10C6.22876 6 4.34315 6 3.17157 7.17157C2 8.34315 2 10.2288 2 14C2 15.1698 2 16.1581 2.03496 17" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round"></path> <path d="M12 2C13.8856 2 14.8284 2 15.4142 2.58579C16 3.17157 16 4.11438 16 6M8.58579 2.58579C8 3.17157 8 4.11438 8 6" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round"></path> <path d="M12 17.3333C13.1046 17.3333 14 16.5871 14 15.6667C14 14.7462 13.1046 14 12 14C10.8954 14 10 13.2538 10 12.3333C10 11.4129 10.8954 10.6667 12 10.6667M12 17.3333C10.8954 17.3333 10 16.5871 10 15.6667M12 17.3333V18M12 10V10.6667M12 10.6667C13.1046 10.6667 14 11.4129 14 12.3333" stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+                            <svg class="p-2 ml-2"  width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.25C9.37665 1.25 7.25 3.37665 7.25 6C7.25 8.62335 9.37665 10.75 12 10.75C14.6234 10.75 16.75 8.62335 16.75 6C16.75 3.37665 14.6234 1.25 12 1.25ZM8.75 6C8.75 4.20507 10.2051 2.75 12 2.75C13.7949 2.75 15.25 4.20507 15.25 6C15.25 7.79493 13.7949 9.25 12 9.25C10.2051 9.25 8.75 7.79493 8.75 6Z" fill="#1E40AF"></path> <path d="M18 3.25C17.5858 3.25 17.25 3.58579 17.25 4C17.25 4.41421 17.5858 4.75 18 4.75C19.3765 4.75 20.25 5.65573 20.25 6.5C20.25 7.34427 19.3765 8.25 18 8.25C17.5858 8.25 17.25 8.58579 17.25 9C17.25 9.41421 17.5858 9.75 18 9.75C19.9372 9.75 21.75 8.41715 21.75 6.5C21.75 4.58285 19.9372 3.25 18 3.25Z" fill="#1E40AF"></path> <path d="M6.75 4C6.75 3.58579 6.41421 3.25 6 3.25C4.06278 3.25 2.25 4.58285 2.25 6.5C2.25 8.41715 4.06278 9.75 6 9.75C6.41421 9.75 6.75 9.41421 6.75 9C6.75 8.58579 6.41421 8.25 6 8.25C4.62351 8.25 3.75 7.34427 3.75 6.5C3.75 5.65573 4.62351 4.75 6 4.75C6.41421 4.75 6.75 4.41421 6.75 4Z" fill="#1E40AF"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 12.25C10.2157 12.25 8.56645 12.7308 7.34133 13.5475C6.12146 14.3608 5.25 15.5666 5.25 17C5.25 18.4334 6.12146 19.6392 7.34133 20.4525C8.56645 21.2692 10.2157 21.75 12 21.75C13.7843 21.75 15.4335 21.2692 16.6587 20.4525C17.8785 19.6392 18.75 18.4334 18.75 17C18.75 15.5666 17.8785 14.3608 16.6587 13.5475C15.4335 12.7308 13.7843 12.25 12 12.25ZM6.75 17C6.75 16.2242 7.22169 15.4301 8.17338 14.7956C9.11984 14.1646 10.4706 13.75 12 13.75C13.5294 13.75 14.8802 14.1646 15.8266 14.7956C16.7783 15.4301 17.25 16.2242 17.25 17C17.25 17.7758 16.7783 18.5699 15.8266 19.2044C14.8802 19.8354 13.5294 20.25 12 20.25C10.4706 20.25 9.11984 19.8354 8.17338 19.2044C7.22169 18.5699 6.75 17.7758 6.75 17Z" fill="#1E40AF"></path> <path d="M19.2674 13.8393C19.3561 13.4347 19.7561 13.1787 20.1607 13.2674C21.1225 13.4783 21.9893 13.8593 22.6328 14.3859C23.2758 14.912 23.75 15.6352 23.75 16.5C23.75 17.3648 23.2758 18.088 22.6328 18.6141C21.9893 19.1407 21.1225 19.5217 20.1607 19.7326C19.7561 19.8213 19.3561 19.5653 19.2674 19.1607C19.1787 18.7561 19.4347 18.3561 19.8393 18.2674C20.6317 18.0936 21.2649 17.7952 21.6829 17.4532C22.1014 17.1108 22.25 16.7763 22.25 16.5C22.25 16.2237 22.1014 15.8892 21.6829 15.5468C21.2649 15.2048 20.6317 14.9064 19.8393 14.7326C19.4347 14.6439 19.1787 14.2439 19.2674 13.8393Z" fill="#1E40AF"></path> <path d="M3.83935 13.2674C4.24395 13.1787 4.64387 13.4347 4.73259 13.8393C4.82132 14.2439 4.56525 14.6439 4.16065 14.7326C3.36829 14.9064 2.73505 15.2048 2.31712 15.5468C1.89863 15.8892 1.75 16.2237 1.75 16.5C1.75 16.7763 1.89863 17.1108 2.31712 17.4532C2.73505 17.7952 3.36829 18.0936 4.16065 18.2674C4.56525 18.3561 4.82132 18.7561 4.73259 19.1607C4.64387 19.5653 4.24395 19.8213 3.83935 19.7326C2.87746 19.5217 2.0107 19.1407 1.36719 18.6141C0.724248 18.088 0.25 17.3648 0.25 16.5C0.25 15.6352 0.724248 14.912 1.36719 14.3859C2.0107 13.8593 2.87746 13.4783 3.83935 13.2674Z" fill="#1E40AF"></path> </g></svg>
                         </div>
                         <div class="absolute bottom-0 left-0 w-full h-[55px] bg-[#1E40AF] flex items-center px-4">
                             <span class="text-sm font-semibold text-white">
-                                درصد سرمایه :  @php
-                                $shopPercent = $totalShopStock > 0 ? 100 : 0;
-                                @endphp
-                                {{ $shopPercent }}%
+                                کارمندان فعال:{{ $activeemployee }}
                             </span>
                         </div>
                     </div>

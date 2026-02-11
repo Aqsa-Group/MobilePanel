@@ -13,10 +13,9 @@ class DeviceRepair extends Component
 use WithPagination;
     public $editing = false;
     protected $paginationTheme = 'bootstrap';
-    public $category, $name, $device_model;
-    public $device_status;
-    public $repair_type, $description, $possible_time, $phone_number;
-    public $delivery_date, $visit_date, $repair_cost;
+   public $device_id, $category, $name, $device_model, $device_status;
+public $repair_type, $description, $possible_time, $phone_number;
+public $delivery_date, $visit_date, $repair_cost;
     public $counter = 1;
     public $editingId = null;
     private float $afnToUsdRate = 70;
@@ -57,9 +56,10 @@ use WithPagination;
     }
 public function edit($id)
 {
-    $device = DeviceRepairForm::findOrFail($id);
     $this->editing = true;
     $this->editingId = $id;
+    $device = DeviceRepairForm::findOrFail($id);
+    $this->device_id = $device->id;
     $this->category = $device->category;
     $this->device_model = $device->device_model;
     $this->repair_type = $device->repair_type;
@@ -67,10 +67,13 @@ public function edit($id)
     $this->name = $device->name;
     $this->phone_number = $device->phone_number;
     $this->description = $device->description;
+    $this->visit_date = $device->visit_date;
 }
     public function cancelEdit()
     {
-        $this->resetForm();
+         $this->resetErrorBag();
+    $this->editing = false;
+    $this->editingId = null;
     }
     public function cancelDelete()
     {
@@ -143,18 +146,16 @@ public function edit($id)
             'user_id' => Auth::id(),
             'admin_id' => Auth::id(),
         ]);
-$fund = CashFund::first();
-if (!$fund) {
-    $fund = CashFund::create([
-        'afn_balance' => 0,
-        'usd_balance' => 0,
-    ]);
-}
-$fund->increment('afn_balance', $this->repair_cost);
         $this->successMessage = 'اطلاعات با موفقیت ذخیره شد';
     }
-$usdAmount = $this->repair_cost / $this->afnToUsdRate;
-$fund->increment('usd_balance', $usdAmount);
+    $fund = CashFund::first();
+    if ($fund) {
+        $usdAmount = $this->repair_cost / $this->afnToUsdRate;
+        $fund->increment('usd_balance', $usdAmount);
+        if (!$this->editing) {
+            $fund->increment('afn_balance', $this->repair_cost);
+        }
+    }
     $this->resetForm();
     $this->resetPage();
 }

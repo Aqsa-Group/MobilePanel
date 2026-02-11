@@ -52,13 +52,6 @@
                             </select>
                         </div>
                         <div class="relative">
-                            <h1>شرکت:</h1>
-                            <input wire:model.defer="company"  type="text" class="w-full text-xs input-field rounded-lg pl-8 py-4 px-1 mt-1" placeholder="نام شرکت">
-                            <div class="absolute left-2 top-10">
-                                <svg fill="#000000" width="24" height="24" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M8 2L8 6L4 6L4 48L46 48L46 14L30 14L30 6L26 6L26 2 Z M 10 4L24 4L24 8L28 8L28 46L19 46L19 39L15 39L15 46L6 46L6 8L10 8 Z M 10 10L10 12L12 12L12 10 Z M 14 10L14 12L16 12L16 10 Z M 18 10L18 12L20 12L20 10 Z M 22 10L22 12L24 12L24 10 Z M 10 15L10 19L12 19L12 15 Z M 14 15L14 19L16 19L16 15 Z M 18 15L18 19L20 19L20 15 Z M 22 15L22 19L24 19L24 15 Z M 30 16L44 16L44 46L30 46 Z M 32 18L32 20L34 20L34 18 Z M 36 18L36 20L38 20L38 18 Z M 40 18L40 20L42 20L42 18 Z M 10 21L10 25L12 25L12 21 Z M 14 21L14 25L16 25L16 21 Z M 18 21L18 25L20 25L20 21 Z M 22 21L22 25L24 25L24 21 Z M 32 22L32 24L34 24L34 22 Z M 36 22L36 24L38 24L38 22 Z M 40 22L40 24L42 24L42 22 Z M 32 26L32 28L34 28L34 26 Z M 36 26L36 28L38 28L38 26 Z M 40 26L40 28L42 28L42 26 Z M 10 27L10 31L12 31L12 27 Z M 14 27L14 31L16 31L16 27 Z M 18 27L18 31L20 31L20 27 Z M 22 27L22 31L24 31L24 27 Z M 32 30L32 32L34 32L34 30 Z M 36 30L36 32L38 32L38 30 Z M 40 30L40 32L42 32L42 30 Z M 10 33L10 37L12 37L12 33 Z M 14 33L14 37L16 37L16 33 Z M 18 33L18 37L20 37L20 33 Z M 22 33L22 37L24 37L24 33 Z M 32 34L32 36L34 36L34 34 Z M 36 34L36 36L38 36L38 34 Z M 40 34L40 36L42 36L42 34 Z M 32 38L32 40L34 40L34 38 Z M 36 38L36 40L38 40L38 38 Z M 40 38L40 40L42 40L42 38 Z M 10 39L10 44L12 44L12 39 Z M 22 39L22 44L24 44L24 39 Z M 32 42L32 44L34 44L34 42 Z M 36 42L36 44L38 44L38 42 Z M 40 42L40 44L42 44L42 42Z"></path></g></svg>
-                            </div>
-                        </div>
-                        <div class="relative">
                             <h1>قیمت خرید هر محصول:</h1>
                             <input  wire:model.defer="buy_price" type="text" class="w-full text-xs input-field no-spinner rounded-lg pl-8 py-4 px-1 mt-1" placeholder="75,000؋">
                             <div class="absolute left-2 top-10">
@@ -86,31 +79,10 @@
                                 <svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 256 253" enable-background="new 0 0 256 253" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M122,219H76v-45h18v14h10v-14h18V219z M182,219h-46v-45h18v14h10v-14h18V219z M152,160h-46v-45h18v14h10v-14h18V160z M2,69 c0,13.678,9.625,25.302,22,29.576V233H2v18h252v-18h-22V98.554c12.89-3.945,21.699-15.396,22-29.554v-8H2V69z M65.29,68.346 c0,6.477,6.755,31.47,31.727,31.47c21.689,0,31.202-19.615,31.202-31.47c0,11.052,7.41,31.447,31.464,31.447 c21.733,0,31.363-20.999,31.363-31.447c0,14.425,9.726,26.416,22.954,30.154V233H42V98.594C55.402,94.966,65.29,82.895,65.29,68.346 z M222.832,22H223V2H34v20L2,54h252L222.832,22z"></path> </g></svg>
                             </div>
                         </div>
-                        <div class="relative">
-                            <h1>آپلود عکس محصول:</h1>
-                            <div class="relative w-full">
-                                <input   wire:model.defer="image"   type="file"   id="imageInput"  class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"   >
-                                <div class="w-full text-xs input-field rounded-lg  py-3 mt-1 flex items-center border h-12">
-                                    <div class="flex-1 flex justify-start items-center space-x-2">
-                                        @if($image)
-                                            <img src="{{ $image->temporaryUrl() }}" class="w-8 h-8 rounded object-cover border" alt="preview">
-                                            <span class="text-xs text-gray-700">{{ \Illuminate\Support\Str::limit($image->getClientOriginalName(), 15) }}</span>
-                                        @else
-                                            <span class="text-xs text-gray-700">انتخاب فایل</span>
-                                        @endif
-                                    </div>
-                                    <div class="flex-shrink-0">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M13.6136 15.3473L17.8651 10.9766L21 13.9844M6.96484 19L11.9688 13.9766L17.9727 19M9.96875 9.97656C9.96875 11.0811 9.07332 11.9766 7.96875 11.9766C6.86418 11.9766 5.96875 11.0811 5.96875 9.97656C5.96875 8.87199 6.86418 7.97656 7.96875 7.97656C9.07332 7.97656 9.96875 8.87199 9.96875 9.97656ZM12.0627 6.06274L11.9373 5.93726C11.5914 5.59135 11.4184 5.4184 11.2166 5.29472C11.0376 5.18506 10.8425 5.10425 10.6385 5.05526C10.4083 5 10.1637 5 9.67452 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V15.8C3 16.9201 3 17.4802 3.21799 17.908C3.40973 18.2843 3.71569 18.5903 4.09202 18.782C4.51984 19 5.07989 19 6.2 19H17.8C18.9201 19 19.4802 19 19.908 18.782C20.2843 18.5903 20.5903 18.2843 20.782 17.908C21 17.4802 21 16.9201 21 15.8V10.2C21 9.0799 21 8.51984 20.782 8.09202C20.5903 7.71569 20.2843 7.40973 19.908 7.21799C19.4802 7 18.9201 7 17.8 7H14.3255C13.8363 7 13.5917 7 13.3615 6.94474C13.1575 6.89575 12.9624 6.81494 12.7834 6.70528C12.5816 6.5816 12.4086 6.40865 12.0627 6.06274Z" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="flex flex-col gap-3 sm:flex-row">
-                        <button class="w-full  bg-red-800 hover:bg-red-700 text-white mt-2 rounded-lg py-2 font-bold text-xl cursor-pointer">لغو</button>
-                        <input type="submit" class="w-full  bg-blue-800 hover:bg-blue-700 text-white mt-2 rounded-lg py-2 font-bold text-xl cursor-pointer" value="ثبت محصول جدید">
+                        <button class="w-full  bg-red-800 hover:bg-red-700 text-white mt-2 rounded-lg py-3 font-bold text-sm cursor-pointer">لغو</button>
+                        <input type="submit" class="w-full  bg-blue-800 hover:bg-blue-700 text-white mt-2 rounded-lg py-3 font-bold text-sm cursor-pointer" value="ثبت محصول جدید">
                     </div>
                 </form>
             </div>
@@ -158,12 +130,6 @@
                             <div class="">
                                 <div class="grid grid-cols-2 gap-5 text-center text-sm">
                                     <div>
-                                        <div class="text-gray-600 text-xs font-semibold mb-1"> عکس </div>
-                                        <div class="text-gray-900 font-bold flex justify-center"> @if($product->image)
-                                            <img src="{{ asset('storage/'.$product->image) }}" class="w-10 h-10  rounded-full">
-                                        @endif </div>
-                                    </div>
-                                    <div>
                                         <div class="text-gray-600 text-xs font-semibold mb-1">بار کد </div>
                                         <div class="text-gray-900 font-bold">{{ $product->barcode }} </div>
                                     </div>
@@ -178,10 +144,6 @@
                                     <div class="">
                                         <div class="text-gray-600 text-xs font-semibold mb-1">  حالت   </div>
                                         <div class="text-gray-900 font-bold">   {{ ($product->status ) }}</div>
-                                    </div>
-                                    <div class="">
-                                        <div class="text-gray-600 text-xs font-semibold mb-1">شرکت </div>
-                                        <div class="text-gray-900 font-bold">  {{ $product->company  }}</div>
                                     </div>
                                     <div class="">
                                         <div class="text-gray-600 text-xs font-semibold mb-1">ادمین </div>
@@ -289,19 +251,18 @@
                             <thead class=" bg-[#1E40AF] text-white  border-b-2 border-[#1E40AF] text-center">
                                 <tr>
                                     <th class="p-2 text-[12px]">آیدی</th>
-                                        <th class="p-2 text-[12px]">عکس</th>
                                     <th class="p-2 text-[12px]"> بارکد</th>
                                     <th class="p-2 text-[12px]">نام دستگاه</th>
                                     <th class="p-2 text-[12px]">کتگوری</th>
                                     <th class="p-2 text-[12px]">حالت</th>
                                     <th class="p-2 text-[12px]">ادمین</th>
-                                    <th class="p-2 text-[12px]">شرکت</th>
                                     <th class="p-2 text-[12px]">قیمت خرید</th>
                                     <th class="p-2 text-[12px]"> مبلغ رسید</th>
                                     <th class="p-2 text-[12px]"> الباقی مبلغ</th>
                                     <th class="p-2 text-[12px]">موجودی</th>
                                     <th class="p-2 text-[12px]">ویرایش</th>
                                     <th class="p-2 text-[12px]">چاپ</th>
+                                    <th class="p-2 text-[12px]">حذف</th>
                                 </tr>
                             </thead>
                             <tbody>

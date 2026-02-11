@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\Models\Borrowing;
 use App\Models\SalaryPayment;
 use App\Models\Withdrawal;
+use App\Models\Employee;
 use App\Http\Livewire\Mobile\Inventory;
 class Welcome extends Component
 {
@@ -29,6 +30,8 @@ class Welcome extends Component
     public $totalBorrowings = 0;
     public $borrowingsPercent = 0;
     public $totalSalaryPaid = 0;
+    public $totalemployee;
+    public $activeemployee;
     public $totalWithdrawals = 0;
     public $totalShopStock = 0;
     public $totalWarehouseStock = 0;
@@ -36,7 +39,7 @@ class Welcome extends Component
     public $warehousePercent = 0;
     public function mount()
     {
-          $this->monthlyProfit = [];
+        $this->monthlyProfit = [];
         $this->monthlyLoss = [];
         $startMonth = Carbon::now()->startOfYear();
         for ($i = 0; $i < 12; $i++) {
@@ -54,6 +57,8 @@ class Welcome extends Component
                 'month' => $monthStart->format('M'),
                 'amount' => $loss
             ];
+        $this->totalemployee = Employee::count();
+        $this->activeemployee = Employee::where('updated_at', '>=', now()->subDays(30))->count();
         $this->totalBorrowings = Borrowing::sum('amount');
         $totalPaid = Borrowing::sum('paid_amount');
         $this->borrowingsPercent = $this->totalBorrowings > 0

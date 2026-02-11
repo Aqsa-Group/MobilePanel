@@ -1,7 +1,10 @@
 <div class="max-w-full mx-auto">
     @if($successMessage)
-        <div class="alert alert-success">
-            {{ $successMessage }}
+        <div  x-data="{ show: true }"  x-show="show"  x-transition  class="flex justify-between items-center bg-green-500 text-white p-4 rounded-md mb-4 shadow" >
+            <span>{{ $successMessage }}</span>
+            <button    @click="show = false"  class="text-white font-bold px-2 py-1 hover:bg-green-600 rounded" >
+                ×
+            </button>
         </div>
     @endif
     <div class="border bg-white border-gray-300 rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl p-5 mt-3">
@@ -23,7 +26,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 <div class="flex flex-col">
                     <div  class="relative">
-                        <select wire:model="category"  class="input-field">
+                        <select wire:model.defer="category"  class="input-field">
                             <option value="">انتخاب کتگوری</option>
                             <option value="مبایل">مبایل</option>
                             <option value="تبلیت">تبلیت</option>
@@ -36,7 +39,7 @@
                 </div>
                 <div class="flex flex-col">
                     <div class="relative">
-                        <input  wire:model="device_model"  id="type"  placeholder=" نام دستگاه"    class="input-field"  >
+                        <input  wire:model.defer="device_model"  id="type"  placeholder=" نام دستگاه"    class="input-field"  >
                         <svg class="w-5 h-5 text-gray-600 absolute top-1/2  -translate-y-1/2 left-3"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 16.9503H6.21C2.84 16.9503 2 16.1103 2 12.7403V6.74027C2 3.37027 2.84 2.53027 6.21 2.53027H16.74C20.11 2.53027 20.95 3.37027 20.95 6.74027" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M10 21.4702V16.9502" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -52,7 +55,7 @@
                 </div>
                 <div class="flex flex-col">
                     <div class="relative">
-                        <select wire:model="repair_type" class=" input-field">
+                        <select wire:model.defer="repair_type" class=" input-field">
                             <option value="">نوع تعمیر</option>
                             <option value="نرم‌افزاری">نرم‌افزاری</option>
                             <option value="سخت‌افزاری">سخت‌افزاری</option>
@@ -66,7 +69,7 @@
                 </div>
                 <div class="flex flex-col">
                     <div class="relative">
-                        <input   wire:model="repair_cost" id="type" type="text"  placeholder="هزینه تعمیر"  class="input-field no-spinner" >
+                        <input   wire:model.defer="repair_cost" id="type" type="text"  placeholder="هزینه تعمیر"  class="input-field no-spinner" >
                         <svg class="w-5 h-5 text-gray-600 absolute top-1/2  -translate-y-1/2 left-3" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="layer1"> <path d="M 0 4 L 0 15 L 18 15 L 18 4 L 0 4 z M 1 5 L 17 5 L 17 14 L 1 14 L 1 5 z M 3 6 C 3 6.558207 2.558207 7 2 7 L 2 8 C 3.0986472 8 4 7.0986472 4 6 L 3 6 z M 8.5 6 L 8.5 7 C 7.677495 7 7 7.677495 7 8.5 C 7 9.322505 7.677495 10 8.5 10 L 9.5 10 C 9.782065 10 10 10.217935 10 10.5 C 10 10.782065 9.782065 11 9.5 11 L 8.5 11 L 7 11 L 7 12 L 8.5 12 L 8.5 13 L 9.5 13 L 9.5 12 C 10.322504 12 11 11.322505 11 10.5 C 11 9.6774955 10.322504 9 9.5 9 L 8.5 9 C 8.217935 9 8 8.782065 8 8.5 C 8 8.217935 8.217935 8 8.5 8 L 9.5 8 L 11 8 L 11 7 L 9.5 7 L 9.5 6 L 8.5 6 z M 14 6 C 14 7.0986472 14.901353 8 16 8 L 16 7 C 15.441793 7 15 6.558207 15 6 L 14 6 z M 19 6 L 19 16 L 2 16 L 2 17 L 20 17 L 20 6 L 19 6 z M 2 11 L 2 12 C 2.558207 12 3 12.441793 3 13 L 4 13 C 4 11.901353 3.0986472 11 2 11 z M 16 11 C 14.901353 11 14 11.901353 14 13 L 15 13 C 15 12.441793 15.441793 12 16 12 L 16 11 z " style="fill:#222222; fill-opacity:1; stroke:none; stroke-width:0px;"></path> </g> </g></svg>
                     </div>
                     @error('repair_cost')
@@ -77,7 +80,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 <div class="flex flex-col">
                     <div class="relative">
-                        <input  wire:model="name"  id="type"  placeholder="   نام مشتری  "   class="input-field" >
+                        <input  wire:model.defer="name"  id="type"  placeholder="   نام مشتری  "   class="input-field" >
                         <svg class="w-5 h-5 text-gray-600 absolute top-1/2 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M7.16021 14.56C4.74021 16.18 4.74021 18.82 7.16021 20.43C9.91021 22.27 14.4202 22.27 17.1702 20.43C19.5902 18.81 19.5902 16.17 17.1702 14.56C14.4302 12.73 9.92021 12.73 7.16021 14.56Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -89,7 +92,7 @@
                 </div>
                 <div class="flex flex-col">
                     <div class="relative">
-                        <input  wire:model="phone_number"  id="type"   placeholder=" شماره تماس"   class="input-field"   >
+                        <input  wire:model.defer="phone_number"  id="type"   placeholder=" شماره تماس"   class="input-field"   >
                         <svg class="w-5 h-5 text-gray-600 absolute top-1/2 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21.97 18.33C21.97 18.69 21.89 19.06 21.72 19.42C21.55 19.78 21.33 20.12 21.04 20.44C20.55 20.98 20.01 21.37 19.4 21.62C18.8 21.87 18.15 22 17.45 22C16.43 22 15.34 21.76 14.19 21.27C13.04 20.78 11.89 20.12 10.75 19.29C9.6 18.45 8.51 17.52 7.47 16.49C6.44 15.45 5.51 14.36 4.68 13.22C3.86 12.08 3.2 10.94 2.72 9.81C2.24 8.67 2 7.58 2 6.54C2 5.86 2.12 5.21 2.36 4.61C2.6 4 2.98 3.44 3.51 2.94C4.15 2.31 4.85 2 5.59 2C5.87 2 6.15 2.06 6.4 2.18C6.66 2.3 6.89 2.48 7.07 2.74L9.39 6.01C9.57 6.26 9.7 6.49 9.79 6.71C9.88 6.92 9.93 7.13 9.93 7.32C9.93 7.56 9.86 7.8 9.72 8.03C9.59 8.26 9.4 8.5 9.16 8.74L8.4 9.53C8.29 9.64 8.24 9.77 8.24 9.93C8.24 10.01 8.25 10.08 8.27 10.16C8.3 10.24 8.33 10.3 8.35 10.36C8.53 10.69 8.84 11.12 9.28 11.64C9.73 12.16 10.21 12.69 10.73 13.22C11.27 13.75 11.79 14.24 12.32 14.69C12.84 15.13 13.27 15.43 13.61 15.61C13.66 15.63 13.72 15.66 13.79 15.69C13.87 15.72 13.95 15.73 14.04 15.73C14.21 15.73 14.34 15.67 14.45 15.56L15.21 14.81C15.46 14.56 15.7 14.37 15.93 14.25C16.16 14.11 16.39 14.04 16.64 14.04C16.83 14.04 17.03 14.08 17.25 14.17C17.47 14.26 17.7 14.39 17.95 14.56L21.26 16.91C21.52 17.09 21.7 17.3 21.81 17.55C21.91 17.8 21.97 18.05 21.97 18.33Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"/>
                         </svg>
@@ -123,7 +126,7 @@
                 </div>
                 <div class="flex flex-col ">
                     <div class="relative ">
-                        <input  wire:model="description"  id="type"  placeholder=" توضیحات" class="input-field" >
+                        <input  wire:model.defer="description"  id="type"  placeholder=" توضیحات" class="input-field" >
                         <svg class="w-5 h-5 text-gray-600 absolute top-1/2 -translate-y-1/2 left-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M16 2H8C4 2 2 4 2 8V21C2 21.55 2.45 22 3 22H16C20 22 22 20 22 16V8C22 4 20 2 16 2Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M12.9098 7.84015L7.71979 13.0302C7.51979 13.2302 7.3298 13.6202 7.2898 13.9002L7.0098 15.8802C6.9098 16.6002 7.40979 17.1002 8.12979 17.0002L10.1098 16.7202C10.3898 16.6802 10.7798 16.4902 10.9798 16.2902L16.1698 11.1002C17.0598 10.2102 17.4898 9.17015 16.1698 7.85015C14.8498 6.52015 13.8098 6.94015 12.9098 7.84015Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -204,7 +207,7 @@
                             </svg>
                             <span>ویرایش</span>
                         </a>
-                        <a wire:click="edit({{ $a->id }})" class="curser-pointer flex justify-center items-center gap-1 border rounded-lg border-[#FF0000] w-1/2 h-[30px] text-[#FF0000] text-[10px]">
+                        <a wire:click="confirmDelete({{  $a->id }})" class="curser-pointer flex justify-center items-center gap-1 border rounded-lg border-[#FF0000] w-1/2 h-[30px] text-[#FF0000] text-[10px]">
                             <i class="bi bi-trash">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21 5.98047C17.67 5.65047 14.32 5.48047 10.98 5.48047C9 5.48047 7.02 5.58047 5.04 5.78047L3 5.98047" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -227,7 +230,7 @@
                 <div class="flex flex-col md:flex-row justify-between items-center w-full mt-1 gap-1 md:gap-2">
                     <div class="flex gap-2 w-full ">
                         <div class="relative   w-full  md:w-1/4  ">
-                            <input type="text"  wire:model.live="search" class="w-full h-full block rounded-md md:rounded-lg bg-[#1E40AF]/20  md:top-0 md:right-0 pr-2 text-[7px] sm:p-4  p-4  md:text-[10px]" placeholder="جستجو">
+                            <input type="text"  wire:model.defer.live="search" class="w-full h-full block rounded-md md:rounded-lg bg-[#1E40AF]/20  md:top-0 md:right-0 pr-2 text-[7px] sm:p-4  p-4  md:text-[10px]" placeholder="جستجو">
                             <span class="absolute md:hidden left-1  top-3">
                                 <svg  width="14" height="14" viewBox="0 0 19 19" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
