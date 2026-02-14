@@ -2,8 +2,10 @@
 namespace App\Livewire\Mobile;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Intervention\Image\ImageManager;
 use App\Models\Customer as CustomerModel;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use function Livewire\store;
@@ -58,6 +60,22 @@ class Customer extends Component
         $english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
         return str_replace($persian, $english, $value);
     }
+    protected function compressAndStoreImage($image)
+{
+    $manager = new ImageManager(new Driver());
+    $img = $manager->read($image->getRealPath());
+    $img->resize(800, null, function ($constraint) {
+        $constraint->aspectRatio();
+        $constraint->upsize();
+    });
+    Storage::disk('public')->makeDirectory('users');
+    $filename = 'users/' . uniqid() . '.jpg';
+    Storage::disk('public')->put(
+        $filename,
+        (string) $img->toJpeg(85)
+    );
+    return $filename;
+}
     public function updatedCustomerNumber($value)
     {
         $this->customer_number = $this->convertToEnglishNumber($value);
@@ -89,9 +107,13 @@ class Customer extends Component
     public function submit()
     {
         $this->validate();
-        $imagePath = $this->image
-            ? $this->image->store('users', 'public')
-            : null;
+        $imagePath = null;
+if ($this->image) {
+    if ($this->editing && $this->oldImage && Storage::disk('public')->exists($this->oldImage)) {
+        Storage::disk('public')->delete($this->oldImage);
+    }
+    $imagePath = $this->compressAndStoreImage($this->image);
+}
         CustomerModel::updateOrCreate(
             ['id' => $this->customerId],
             [

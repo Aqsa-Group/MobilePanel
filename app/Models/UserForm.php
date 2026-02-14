@@ -6,25 +6,35 @@ class UserForm extends Authenticatable
     protected $table = 'users';
     protected $appends = ['name'];
     protected $fillable = [
-    'name', 'first_name','last_name','username','email',
-    'number','address','rule','limit','password',
-    'image','creator_id', 'admin_id'
-];
+        'name',
+        'first_name',
+        'last_name',
+        'username',
+        'email',
+        'number',
+        'address',
+        'rule',
+        'limit',
+        'password',
+        'image',
+        'creator_id',
+        'admin_id'
+    ];
     protected $hidden = [
         'password',
         'remember_token',
     ];
     public function isOnline()
-{
-    return \DB::table('sessions')
-        ->where('user_id', $this->id)
-        ->where('last_activity', '>=', now()->subMinutes(30)->timestamp)
-        ->exists();
-}
-public function getNameAttribute()
-{
-    return $this->first_name . ' ' . $this->last_name;
-}
+    {
+        return \DB::table('sessions')
+            ->where('user_id', $this->id)
+            ->where('last_activity', '>=', now()->subMinutes(30)->timestamp)
+            ->exists();
+    }
+    public function getNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
     public function creator()
     {
         return $this->belongsTo(UserForm::class, 'creator_id');
