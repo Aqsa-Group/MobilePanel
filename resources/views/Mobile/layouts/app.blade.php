@@ -11,6 +11,10 @@
     <script src="{{ asset('js/js.js') }}"></script>
     @livewireStyles
 </head>
+<style>
+
+</style>
+
 <body class="bg-gray-100">
     @if(session()->has('welcome'))
         <div  x-data="{ show: true }"  x-show="show"  x-init="setTimeout(() => show = false, 4000)" x-transition:enter="transition duration-500 ease-out"
@@ -34,5 +38,29 @@
         </main>
     </div>
 @livewireScripts
+<script>
+const toggleBtn = document.getElementById('darkToggle');
+
+// اعمال حالت ذخیره شده
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    toggleBtn.innerHTML = '<i class="fa-solid fa-sun "></i>'; // آیکون خورشید
+} else {
+    toggleBtn.innerHTML = '<i class="fa-solid fa-moon "></i>'; // آیکون ماه
+}
+
+// کلیک روی toggle
+toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    if (document.body.classList.contains('dark')) {
+        localStorage.setItem('theme', 'dark');
+        toggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    } else {
+        localStorage.setItem('theme', 'light');
+        toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    }
+});
+
+</script>
 </body>
 </html>

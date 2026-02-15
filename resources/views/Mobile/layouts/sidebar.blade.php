@@ -31,7 +31,7 @@
     }
 </style>
 <body>
-    <header class="fixed top-0 inset-x-0 w-full bg-white z-[60] shadow shadow-blue-800 p-2">
+    <header class="fixed header top-0 inset-x-0 w-full bg-white z-[60] shadow shadow-blue-800 p-2">
         <div class="w-full  lg:px-2">
             <div class="h-16 flex items-center justify-between">
                 <div class="flex items-center">
@@ -44,6 +44,9 @@
                 </div>
                 <div class="flex-1"></div>
                 <div class="flex items-center gap-2 sm:gap-3">
+                    <button id="darkToggle" class="toggle-btn w-10 h-10  ">
+                        <i class="fa-solid fa-moon text-black"></i>
+                    </button>
                     <button class="rounded-full bg-gray-100  w-10 h-10  transition relative">
                         <i class="fa-regular text-lg fa-bell"></i>
                         <span class="absolute -top-1 -right-1 bg-blue-800 text-white text-[10px] rounded-full px-1.5">3</span>
@@ -83,7 +86,7 @@
             </div>
         </div>
     </header>
-    <aside id="sidebar"   class="fixed lg:static  sm:top-20 lg:top-0 top-5  right-0  h-[calc(100vh-5rem)] lg:h-auto  w-56  bg-white  shadow shadow-blue-800    duration-200 ease-out  z-40  overflow-y-auto transform translate-x-full lg:translate-x-0  transition-transform" aria-label="Sidebar">
+    <aside id="sidebar"   class="fixed lg:static sidebar sm:top-20 lg:top-0 top-5  right-0  h-[calc(100vh-5rem)] lg:h-auto  w-56  bg-white  shadow shadow-blue-800    duration-200 ease-out  z-40  overflow-y-auto transform translate-x-full lg:translate-x-0  transition-transform" aria-label="Sidebar">
         <div class="h-16 flex items-center justify-start ">
             <a id="closeSidebar" class="hidden" aria-label="بستن">
                 <i class="fa-solid fa-xmark"></i>

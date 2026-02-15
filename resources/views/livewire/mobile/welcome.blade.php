@@ -180,7 +180,7 @@
                         </svg>
                         <h3 class="font-bold">مفاد ماهوار</h3>
                     </div>
-                    <canvas id="profitChart" class="w-full h-[220px] sm:h-[260px]"></canvas>
+                    <canvas id="profitChart"  class="w-full h-[220px] sm:h-[260px] darkChart"></canvas>
                 </div>
                 <div class="card-anim bg-[#616161]/5 shadow-[0px_4px_4px_0px_#00000040] shadow-xl rounded-xl p-4 sm:p-5">
                     <div class="flex items-center gap-2">
@@ -194,7 +194,7 @@
                         </svg>
                         <h3 class="font-bold">ضرر ماهوار</h3>
                     </div>
-                    <canvas id="lossChart" class="w-full h-[220px] sm:h-[260px]"></canvas>
+                    <canvas id="lossChart" class="w-full h-[220px] sm:h-[260px] darkChart"></canvas>
                 </div>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -206,120 +206,116 @@
                     function money(num){
                         return new Intl.NumberFormat('fa-AF', { style: 'currency', currency: 'AFN' }).format(num);
                     }
-                    const profitCtx = document.getElementById('profitChart').getContext('2d');
-                    const profitGradient = profitCtx.createLinearGradient(0,0,0,260);
-                    profitGradient.addColorStop(0, 'rgba(16,185,129,.25)');
-                    profitGradient.addColorStop(1, 'rgba(16,185,129,0)');
-                    new Chart(profitCtx, {
-                        type: 'line',
-                        data: {
-                            labels: months,
-                            datasets: [{
-                                label: 'مفاد',
-                                data: sampleProfit,
-                                tension: 0.35,
-                                fill: true,
-                                backgroundColor: profitGradient,
-                                borderColor: 'rgb(16,185,129)',
-                                borderWidth: 2,
-                                pointRadius: 0
-                            }]
-                        },
-                        options: {
-                            plugins: {
-                                legend: { display: false },
-                                tooltip: {
-                                    enabled: true,
-                                    backgroundColor: '#000',
-                                    titleColor: '#fff',
-                                    bodyColor: '#fff',
-                                    displayColors: false,
-                                    callbacks: {
-                                        title: function(context) {
-                                            return context[0].label;
-                                        },
-                                        label: function(context) {
-                                            return `مفاد: ${money(context.raw)}`;
+                    let profitChart, lossChart;
+                    function getColors() {
+                        const isDark = document.body.classList.contains('dark');
+                        return {
+                            gridColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)',
+                            tickColor: isDark ? '#fff' : '#000',
+                            tooltipBg: isDark ? '#333' : '#fff',
+                            tooltipTitle: isDark ? '#fff' : '#000',
+                            tooltipBody: isDark ? '#fff' : '#000',
+                        };
+                    }
+                    function buildCharts() {
+                        const profitColors = getColors();
+                        const lossColors = getColors();
+                        if (profitChart) profitChart.destroy();
+                        if (lossChart) lossChart.destroy();
+                        const profitCtx = document.getElementById('profitChart').getContext('2d');
+                        const profitGradient = profitCtx.createLinearGradient(0,0,0,260);
+                        profitGradient.addColorStop(0, 'rgba(16,185,129,.25)');
+                        profitGradient.addColorStop(1, 'rgba(16,185,129,0)');
+                        profitChart = new Chart(profitCtx, {
+                            type: 'line',
+                            data: {
+                                labels: months,
+                                datasets: [{
+                                    label: 'مفاد',
+                                    data: sampleProfit,
+                                    tension: 0.35,
+                                    fill: true,
+                                    backgroundColor: profitGradient,
+                                    borderColor: 'rgb(16,185,129)',
+                                    borderWidth: 2,
+                                    pointRadius: 0
+                                }]
+                            },
+                            options: {
+                                plugins: {
+                                    legend: { display: false },
+                                    tooltip: {
+                                        enabled: true,
+                                        backgroundColor: profitColors.tooltipBg,
+                                        titleColor: profitColors.tooltipTitle,
+                                        bodyColor:  profitColors.tooltipBody,
+                                        displayColors: false,
+                                        callbacks: {
+                                            title: function(context) { return context[0].label; },
+                                            label: function(context) { return `مفاد: ${money(context.raw)}`; }
                                         }
                                     }
-                                }
-                            },
-                            interaction: {
-                                mode: 'index',
-                                intersect: false
-                            },
-                            hover: {
-                                mode: 'index',
-                                intersect: false
-                            },
-                            scales: {
-                                x: {
-                                    grid: { display: false },
-                                    ticks: { color: '#000' },
                                 },
-                                y: {
-                                    grid: { color: 'rgba(0,0,0,.05)' }
+                                interaction: { mode: 'index', intersect: false },
+                                hover: { mode: 'index', intersect: false },
+                                scales: {
+                                    x: { grid: { color: profitColors.gridColor }, ticks: { color: profitColors.tickColor } },
+                                    y: { grid: { color: profitColors.gridColor }, ticks: { color: profitColors.tickColor } }
                                 }
                             }
-                        }
-                    });
-                    const lossCtx = document.getElementById('lossChart').getContext('2d');
-                    const lossGradient = lossCtx.createLinearGradient(0,0,0,260);
-                    lossGradient.addColorStop(0, 'rgba(244,63,94,.25)');
-                    lossGradient.addColorStop(1, 'rgba(244,63,94,0)');
-                    new Chart(lossCtx, {
-                        type: 'line',
-                        data: {
-                            labels: months,
-                            datasets: [{
-                                label: 'ضرر',
-                                data: sampleLoss,
-                                tension: 0.35,
-                                fill: true,
-                                backgroundColor: lossGradient,
-                                borderColor: 'rgb(244,63,94)',
-                                borderWidth: 2,
-                                pointRadius: 0
-                            }]
-                        },
-                        options: {
-                            plugins: {
-                                legend: { display: false },
-                                tooltip: {
-                                    enabled: true,
-                                    backgroundColor: '#000',
-                                    titleColor: '#fff',
-                                    bodyColor: '#fff',
-                                    displayColors: false,
-                                    callbacks: {
-                                        title: function(context) {
-                                            return context[0].label;
-                                        },
-                                        label: function(context) {
-                                            return `ضرر: ${money(context.raw)}`;
+                        });
+                        const lossCtx = document.getElementById('lossChart').getContext('2d');
+                        const lossGradient = lossCtx.createLinearGradient(0,0,0,260);
+                        lossGradient.addColorStop(0, 'rgba(244,63,94,.25)');
+                        lossGradient.addColorStop(1, 'rgba(244,63,94,0)');
+                        lossChart = new Chart(lossCtx, {
+                            type: 'line',
+                            data: {
+                                labels: months,
+                                datasets: [{
+                                    label: 'ضرر',
+                                    data: sampleLoss,
+                                    tension: 0.35,
+                                    fill: true,
+                                    backgroundColor: lossGradient,
+                                    borderColor: 'rgb(244,63,94)',
+                                    borderWidth: 2,
+                                    pointRadius: 0
+                                }]
+                            },
+                            options: {
+                                plugins: {
+                                    legend: { display: false },
+                                    tooltip: {
+                                        enabled: true,
+                                        backgroundColor: lossColors.tooltipBg,
+                                        titleColor: lossColors.tooltipTitle,
+                                        bodyColor:  lossColors.tooltipBody,
+                                        displayColors: false,
+                                        callbacks: {
+                                            title: function(context) { return context[0].label; },
+                                            label: function(context) { return `ضرر: ${money(context.raw)}`; }
                                         }
                                     }
-                                }
-                            },
-                            interaction: {
-                                mode: 'index',
-                                intersect: false
-                            },
-                            hover: {
-                                mode: 'index',
-                                intersect: false
-                            },
-                            scales: {
-                                x: {
-                                    grid: { display: false },
-                                    ticks: { color: '#000' },
                                 },
-                                y: {
-                                    grid: { color: 'rgba(0,0,0,.05)' }
+                                interaction: { mode: 'index', intersect: false },
+                                hover: { mode: 'index', intersect: false },
+                                scales: {
+                                    x: { grid: { color: lossColors.gridColor }, ticks: { color: lossColors.tickColor } },
+                                    y: { grid: { color: lossColors.gridColor }, ticks: { color: lossColors.tickColor } }
                                 }
                             }
-                        }
+                        });
+                    }
+                    buildCharts();
+                    const observer = new MutationObserver(function(mutations) {
+                        mutations.forEach(function(mutation) {
+                            if (mutation.attributeName === 'class') {
+                                buildCharts();
+                            }
+                        });
                     });
+                    observer.observe(document.body, { attributes: true });
                 });
             </script>
         </section>

@@ -57,3 +57,252 @@ input.no-spinner::-webkit-inner-spin-button {
 input.no-spinner[type=number] {
     -moz-appearance: textfield;
 }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body.dark header a,
+body.dark header span,
+body.dark header i,
+body.dark header svg path {
+    color: #e0e0e0;
+    stroke: #e0e0e0;
+    fill: #e0e0e0;
+}
+header {
+    background-color: #ffffff;
+    color: #222;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+body.dark header {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+body.dark #openSidebar {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #1E40AF;
+}
+body.dark #openSidebar:hover {
+    background-color: #f0f0f0;
+}
+body.dark .toggle-btn {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #1E40AF;
+}
+body.dark .toggle-btn:hover {
+    background-color: #f0f0f0;
+}
+body.dark .w-10.h-10 {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #1E40AF;
+}
+body.dark .w-10.h-10:hover {
+    background-color: #f0f0f0;
+}
+body.dark header .fa-solid,
+body.dark header .fa-regular,
+body.dark header svg {
+    color: #000000 !important;
+    stroke: #000000;
+}
+body.dark #profileMenu button svg path {
+    stroke: #000000 !important;
+}
+body.dark #profileMenu {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #1E40AF;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+body.dark #profileMenu a,
+body.dark #profileMenu button {
+    color: #000000;
+}
+body.dark #profileMenu a:hover,
+body.dark #profileMenu button:hover {
+    background-color: #f0f0f0;
+}
+body.dark #profileMenu img,
+body.dark #profileButton img {
+    border: 2px solid #1E40AF;
+}
+body {
+    background: linear-gradient(to bottom, #f2f2f2, #e0e0e0);
+    color: #222;
+    min-height: 100vh;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+body.dark  .input-field {
+    border: 1.5px solid rgb(255, 255, 255);
+    background-color: #434445;
+}
+.sidebar {
+    background-color: #fff;
+    transition: background-color 0.5s ease;
+}
+.card {
+    background-color: #fff;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
+}
+.toggle-btn {
+    border: none;
+    border-radius: 50px;
+    background-color: #e2e2e2;
+    cursor: pointer;
+    font-size:20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.toggle-btn:hover {
+    background-color: #555;
+}
+body.dark {
+    background: linear-gradient(to bottom, #181818, #121212);
+    color: #e0e0e0;
+}
+body.dark .bavb{
+   border-color: white;
+}
+body.dark .sidebar {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+}
+body.dark .card {
+    background-color: #262626;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    color: #f0f0f0;
+}
+body.dark .toggle-btn {
+    background-color: #e0e0e0;
+    color: #1a1a1a;
+}
+body.dark .toggle-btn:hover {
+    background-color: #ddd;
+}
+body.dark a,
+body.dark span,
+body.dark p,
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark h5,
+body.dark h6 {
+    color: #e0e0e0;
+}
+body.dark canvas.darkChart {
+    --chart-tick-color: #ffffff;
+    --chart-grid-color: rgba(255,255,255,0.1);
+}
+body.dark canvas.darkChart {
+    --chart-tooltip-bg: #ffffff;
+    --chart-tooltip-text: #000000;
+}
+.role-user {
+    background-color: #f3f4f6;
+    color: #374151;
+    padding: 2px 6px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+}
+.role-admin {
+    background-color: #ede9fe;
+    color: #7c3aed;
+    padding: 2px 6px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+}
+.role-superadmin {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+    padding: 2px 6px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+}
+body.dark .role-user {
+    background-color: #374151;
+    color: #f3f4f6;
+}
+body.dark .role-admin {
+    background-color: #5b21b6;
+    color: #ede9fe;
+}
+body.dark .role-superadmin {
+    background-color: #1e40af;
+    color: #dbeafe;
+}
+.status-online {
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 2px 6px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+}
+.status-offline {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    padding: 2px 6px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+}
+body.dark .status-online {
+    background-color: #065f46;
+    color: #d1fae5;
+}
+body.dark .status-offline {
+    background-color: #991b1b;
+    color: #fee2e2;
+}
+.icon-danger {
+    stroke: #FF0000;
+    transition: stroke 0.3s ease;
+}
+body.dark .icon-danger {
+    stroke: #fa6d6d;
+}
+.icon-blue {
+    stroke: #1E40AF;
+    transition: stroke 0.3s ease;
+}
+body.dark .icon-blue {
+    stroke: #4f99ef;
+}
+.icon-dark-light {
+    stroke: #1C274C;
+    fill: #1C274C;
+    transition: stroke 0.3s ease, fill 0.3s ease;
+}
+body.dark .icon-dark-light {
+    stroke: #93C5FD;
+    fill: #93C5FD;
+}
+.input-dark-light {
+    background-color: rgba(30, 64, 175, 0.125);
+    color: #1E40AF;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+body.dark .input-dark-light {
+    background-color: rgba(30, 64, 175, 0.5);
+    color: #EFF6FF;
+}
+.svg-dark-light path {
+    stroke: #292D32;
+    transition: stroke 0.3s ease;
+}
+body.dark .svg-dark-light path {
+    stroke: #ffffff;
+}
+.svg-dark-light2 path {
+    stroke: #292D32;
+    stroke-opacity: 0.8;
+    transition: stroke 0.3s ease;
+}
+body.dark .svg-dark-light2 path {
+    stroke: #ffffff;
+    stroke-opacity: 1;
+}

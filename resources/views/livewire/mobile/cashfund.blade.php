@@ -58,7 +58,7 @@
         </div>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-gradient-to-br from-green-100 to-green-200 border-r-4 border-green-500 text-green-800 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
+        <div class="bg-[#DCFCE7]/10 border-r-4 border-green-500 text-green-800 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
             <div class="flex items-center justify-between mb-4">
                 <h3 class="text-lg font-bold"> سود کل </h3>
                 <div class="bg-green-500 p-2 rounded-full">
