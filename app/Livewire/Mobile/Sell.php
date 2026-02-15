@@ -1,50 +1,106 @@
 <?php
+
 namespace App\Livewire\Mobile;
+
 use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Sale;
 use Livewire\WithPagination;
+use App\Models\LoanSell;
+use App\Models\CashSell;
 use Carbon\Carbon;
+
 class Sell extends Component
 {
     use WithPagination;
+
     protected $paginationTheme = 'tailwind';
-    public $totalCount;
-    public $totalAmount;
-    public $todayCount;
-    public $todayAmount;
-    public $weekCount;
-    public $weekAmount;
-    public $monthCount;
-    public $monthAmount;
-    public function mount()
+
+    public $search = '';
+
+    protected $queryString = ['search'];
+
+    /* وقتی سرچ تغییر کند هر دو صفحه ریست شود */
+    public function updatingSearch()
     {
-        $this->totalCount = Sale::count();
-        $this->totalAmount = Sale::sum('total_price');
-        $this->todayCount = Sale::whereDate('created_at', Carbon::today())->count();
-        $this->todayAmount = Sale::whereDate('created_at', Carbon::today())->sum('total_price');
-        $this->weekCount = Sale::whereBetween(
-            'created_at',
-            [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]
-        )->count();
-        $this->weekAmount = Sale::whereBetween(
-            'created_at',
-            [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]
-        )->sum('total_price');
-        $this->monthCount = Sale::whereMonth('created_at', Carbon::now()->month)
-            ->whereYear('created_at', Carbon::now()->year)
-            ->count();
-        $this->monthAmount = Sale::whereMonth('created_at', Carbon::now()->month)
-            ->whereYear('created_at', Carbon::now()->year)
-            ->sum('total_price');
+        $this->resetPage('loanPage');
+        $this->resetPage('cashPage');
     }
+
     public function render()
     {
-        $sales = Sale::with('customer')
+        $today = Carbon::today();
+        $week  = Carbon::now()->startOfWeek();
+        $month = Carbon::now()->startOfMonth();
+
+        /* ================= LOAN ================= */
+
+        $loanSales = LoanSell::query()
+            ->when($this->search, function ($query) {
+                $query->where('name', 'like', "%{$this->search}%")
+                      ->orWhere('model', 'like', "%{$this->search}%");
+            })
             ->latest()
-            ->paginate(7);
-        return view('livewire.mobile.sell', [
-            'sales' => $sales
-        ]);
+            ->paginate(6, ['*'], 'loanPage');
+
+        /* ================= CASH ================= */
+
+        $cashSales = CashSell::with('customer')
+            ->when($this->search, function ($query) {
+                $query->where('model', 'like', "%{$this->search}%")
+                      ->orWhereHas('customer', function ($q) {
+                          $q->where('fullname', 'like', "%{$this->search}%");
+                      });
+            })
+            ->latest()
+            ->paginate(6, ['*'], 'cashPage');
+
+        /* ================= آمار کلی ================= */
+
+        $totalCount = LoanSell::count() + CashSell::count();
+
+        $totalAmount =
+            LoanSell::sum('sell_price') +
+            CashSell::sum('profit_total');
+
+        /* ================= امروز ================= */
+
+        $todayCount =
+            LoanSell::whereDate('created_at', $today)->count() +
+            CashSell::whereDate('created_at', $today)->count();
+
+        $todayAmount =
+            LoanSell::whereDate('created_at', $today)->sum('sell_price') +
+            CashSell::whereDate('created_at', $today)->sum('profit_total');
+/* ================= هفته ================= */
+
+$weekCount =
+    LoanSell::where('created_at', '>=', $week)->count() +
+    CashSell::where('created_at', '>=', $week)->count();
+
+$weekAmount =
+    LoanSell::where('created_at', '>=', $week)->sum('sell_price') +
+    CashSell::where('created_at', '>=', $week)->sum('profit_total');
+
+/* ================= ماه ================= */
+
+$monthCount =
+    LoanSell::where('created_at', '>=', $month)->count() +
+    CashSell::where('created_at', '>=', $month)->count();
+
+$monthAmount =
+    LoanSell::where('created_at', '>=', $month)->sum('sell_price') +
+    CashSell::where('created_at', '>=', $month)->sum('profit_total');
+
+       return view('livewire.mobile.sell', [
+    'loanSales'   => $loanSales,
+    'cashSales'   => $cashSales,
+    'totalCount'  => $totalCount,
+    'totalAmount' => $totalAmount,
+    'todayCount'  => $todayCount,
+    'todayAmount' => $todayAmount,
+    'weekCount'   => $weekCount,   // 👈 اضافه شد
+    'weekAmount'  => $weekAmount,
+    'monthCount'  => $monthCount,  // 👈 اضافه شد
+    'monthAmount' => $monthAmount,
+]);
     }
 }

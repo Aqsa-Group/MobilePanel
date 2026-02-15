@@ -1,137 +1,287 @@
 <?php
+
 namespace App\Livewire\Mobile;
-use App\Models\Sale;
-use App\Models\Customer;
-use App\Models\Device;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+
 use Livewire\Component;
-use Livewire\WithFileUploads;
+use App\Models\Device;
+use App\Models\Customer;
+use App\Models\Product;
+use App\Models\LoanSell;
+use App\Models\CashSell;
+
 class SellForm extends Component
 {
-    use WithFileUploads;
-    public $searchName = '';
-    public $customersList = [];
-    public $customer_id;
-    public $name;
-    public $phone;
-public $customer;
-    public $id_card;
-    public $address;
-    public $customer_image;
-    public $category;
-    public $model;
-    public $color;
-    public $serial;
-    public $price;
-    public $device_image;
-    protected $rules = [
-        'phone' => 'required',
-        'name' => 'required',
-        'model' => 'required',
-        'price' => 'required|numeric',
-    ];
-    public function updatedPhone()
+    public $table = 'loan';
+    public $formKey = 0;
+
+    /* ================= LOAN ================= */
+
+    public $devices;
+    public $loan_customer_name;
+    public $loan_phone;
+    public $loan_models = [];
+    public $loan_purchase_prices = [];
+    public $loan_sale_prices = [];
+    public $loan_number;
+    public $loan_date;
+
+    /* ================= CASH ================= */
+
+    public $customers;
+    public $cash_customer_id;
+    public $cash_barcode;
+    public $cash_model;
+    public $cash_buy_price = '';
+    public $cash_sell_price = '';
+    public $cash_discount = '';
+    public $cash_final_price = '';
+    public $cash_number;
+
+    public function mount()
     {
-        $customer = Customer::where('phone', $this->phone)->first();
-        if ($customer) {
-            $this->fill([
-                'customer_id' => $customer->id,
-                'name' => $customer->fullname,
-                'id_card' => $customer->id_card,
-                'address' => $customer->address,
-            ]);
+        $this->customers = Customer::all();
+        $this->devices   = Device::all();
+
+        $this->loan_models = [''];
+        $this->loan_purchase_prices = [''];
+        $this->loan_sale_prices = [''];
+
+        $this->loan_date = $this->todayJalali();
+    }
+
+    /* ================= ابزار کمکی ================= */
+
+    private function todayJalali()
+    {
+        return date('Y-m-d');
+    }
+
+    private function convertToEnglish($number)
+    {
+        $persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹','٪'];
+        $english = ['0','1','2','3','4','5','6','7','8','9','%'];
+
+        return str_replace($persian, $english, $number);
+    }
+
+    /* ================= SWITCH ================= */
+
+    public function showLoan() { $this->table = 'loan'; }
+    public function showCash() { $this->table = 'cash'; }
+
+    /* ================= LOAN ================= */
+
+    protected function rules()
+{
+    if ($this->table == 'loan') {
+        return [
+            'loan_customer_name' => 'required|string',
+            'loan_phone' => 'required',
+            'loan_models.*' => 'required',
+            'loan_number' => 'required',
+        ];
+    }
+
+    if ($this->table == 'cash') {
+        return [
+            'cash_customer_id' => 'required',
+            'cash_barcode' => 'required',
+            'cash_number' => 'required',
+        ];
+    }
+
+    return [];
+}
+
+protected $messages = [
+
+    // فروش پرچون
+    'loan_customer_name.required' => 'لطفاً نام مشتری را وارد کنید',
+    'loan_phone.required' => 'شماره تماس مشتری را وارد کنید',
+    'loan_models.*.required' => 'لطفاً دستگاه را انتخاب کنید',
+    'loan_number.required' => 'شماره فاکتور را وارد کنید',
+
+    // فروش عمده
+    'cash_customer_id.required' => 'لطفاً مشتری را انتخاب کنید',
+    'cash_barcode.required' => 'بارکد دستگاه را وارد کنید',
+    'cash_number.required' => 'شماره فاکتور را وارد کنید',
+
+];
+
+    public function updatedLoanModels($value, $key)
+    {
+        $device = Device::find($value);
+
+        if ($device) {
+            $this->loan_purchase_prices[$key] = $device->buy_price;
+            $this->loan_sale_prices[$key]     = $device->sell_price;
         } else {
-            $this->customer_id = null;
-            $this->name = '';
-            $this->id_card = '';
-            $this->address = '';
+            $this->loan_purchase_prices[$key] = '';
+            $this->loan_sale_prices[$key]     = '';
         }
     }
-    public function updatedSearchName()
+
+    public function addLoanModel()
     {
-        if (strlen($this->searchName) < 1) {
-            $this->customersList = [];
+        $this->loan_models[] = '';
+        $this->loan_purchase_prices[] = '';
+        $this->loan_sale_prices[] = '';
+    }
+
+    public function removeLoanModel($index)
+    {
+        unset($this->loan_models[$index]);
+        unset($this->loan_purchase_prices[$index]);
+        unset($this->loan_sale_prices[$index]);
+    }
+
+    /* ================= CASH ================= */
+
+   public function updatedCashBarcode()
+{
+    $barcode = trim($this->convertToEnglish($this->cash_barcode));
+
+    // اگر خالی باشد
+    if (!$barcode) {
+        session()->flash('error', 'بارکد اشتباه است ❌');
+        return;
+    }
+
+    $product = Product::where('barcode', $barcode)->first();
+
+    if ($product) {
+        $this->cash_model      = $product->name;
+        $this->cash_buy_price  = $product->buy_price;
+        $this->cash_sell_price = $product->sell_price_retail;
+
+        $this->calculateFinal();
+    } else {
+
+        // اگر بارکد پیدا نشد
+        $this->cash_model = '';
+        $this->cash_buy_price = '';
+        $this->cash_sell_price = '';
+        $this->cash_final_price = '';
+
+        session()->flash('error', 'دستگاه یافت نشد ❌');
+    }
+}
+
+    public function updatedCashDiscount()
+    {
+        $this->calculateFinal();
+    }
+
+    private function calculateFinal()
+    {
+        $sell = (float) $this->convertToEnglish($this->cash_sell_price);
+        $discountInput = $this->convertToEnglish($this->cash_discount);
+
+        if (!$sell) {
+            $this->cash_final_price = '';
             return;
         }
-        $this->customersList = Customer::where('fullname', 'like', '%' . $this->searchName . '%')
-            ->orWhere('phone', 'like', '%' . $this->searchName . '%')
-            ->limit(5)
-            ->get();
+
+        $discountValue = 0;
+
+        // اگر درصد باشد
+        if (str_contains($discountInput, '%')) {
+
+            $percent = str_replace('%', '', $discountInput);
+            $percent = (float) $percent;
+
+            if ($percent > 100) $percent = 100;
+
+            $discountValue = ($sell * $percent) / 100;
+
+        } else {
+
+            $discountValue = (float) $discountInput;
+
+            if ($discountValue > $sell) {
+                $discountValue = $sell;
+            }
+        }
+
+        $this->cash_final_price = $sell - $discountValue;
     }
-    public function getCustomerImageProperty()
-{
-    if ($this->customer_image) {
-        return $this->customer_image->temporaryUrl();
-    }
-    if ($this->customer_id) {
-        $customer = Customer::find($this->customer_id);
-        return $customer && $customer->image_path ? Storage::url($customer->image_path) : null;
-    }
-    return null;
-}
-    public function selectCustomer($id)
-    {
-        $customer = Customer::find($id);
-        $this->customer_id = $id;
-    $this->customer = Customer::find($id);
-        if (!$customer) return;
-        $this->fill([
-            'customer_id' => $customer->id,
-            'searchName' => $customer->fullname,
-            'customer_number' => $customer->customer_number,
-            'name' => $customer->fullname,
-            'id_card' => $customer->id_card,
-            'address' => $customer->address,
-        ]);
-        $this->customersList = [];
-    }
-    public function submit()
+
+    /* ================= SAVE ================= */
+
+    public function save()
     {
         $this->validate();
-        DB::transaction(function () {
-            $customer = Customer::firstOrCreate(
-                ['customer_number' => $this->customer_number],
-                [
-                    'fullname' => $this->name,
-                    'id_card' => $this->id_card,
-                    'address' => $this->address,
-                ]
-            );
-            if ($this->customer_image) {
-                $customer->update([
-                    'image_path' => $this->customer_image->store('customers', 'public')
-                ]);
+        if ($this->table == 'loan') {
+
+            foreach ($this->loan_models as $modelId) {
+
+                $device = Device::find($modelId);
+
+                if ($device) {
+                    LoanSell::create([
+                        'name'       => $this->loan_customer_name,
+                        'model'      => $device->model,
+                        'number'     => $this->convertToEnglish($this->loan_number),
+                        'buy_price'  => $device->buy_price,
+                        'sell_price' => $device->sell_price,
+                        'barcode'    => $device->barcode ?? null,
+                    ]);
+                }
             }
-            $sale = Sale::create([
-                'customer_id' => $customer->id,
-                'admin_id' => Auth::id(),
-                'total_price' => $this->price,
+        }
+
+        if ($this->table == 'cash') {
+
+            $customer = Customer::find($this->cash_customer_id);
+
+            CashSell::create([
+                'customer_id'       => $this->cash_customer_id,
+                'model'             => $this->cash_model,
+                'number'            => $this->convertToEnglish($this->cash_number),
+                'buy_price'         => $this->cash_buy_price,
+                'sell_price_retail' => $this->cash_sell_price,
+                'profit_total'      => $this->cash_final_price, // 👈 مبلغ نهایی ذخیره شد
+                'barcode'           => $this->cash_barcode,
+                'id_card'           => $customer?->id_card,
+                'address'           => $customer?->address,
             ]);
-            Device::create([
-                'category' => $this->category,
-                'model' => $this->model,
-                'color' => $this->color,
-                'serial' => $this->serial,
-                'price' => $this->price,
-                'customer_id' => $customer->id,
-                'sale_id' => $sale->id,
-                'image_path' => $this->device_image ? $this->device_image->store('devices', 'public') : null,
-            ]);
-        });
-        session()->flash('success', 'فروش و مشتری با موفقیت ثبت شد');
-        $this->reset([
-            'searchName', 'customersList', 'customer_id', 'name', 'phone', 'id_card', 'address',
-            'category', 'model', 'color', 'serial', 'price', 'customer_image', 'device_image'
-        ]);
-        $this->emit('customerUpdated');
+        }
+
+        session()->flash('success', 'فروش موفقانه ثبت شد ✔');
+        $this->resetFields();
     }
+
+    public function saveAndPrint()
+    {
+        $this->save();
+        $this->dispatch('print-page');
+    }
+
+    public function resetFields()
+    {
+        $this->loan_customer_name = '';
+        $this->loan_phone = '';
+        $this->loan_models = [''];
+        $this->loan_purchase_prices = [''];
+        $this->loan_sale_prices = [''];
+        $this->loan_number = '';
+
+        $this->cash_customer_id = '';
+        $this->cash_barcode = '';
+        $this->cash_model = '';
+        $this->cash_buy_price = '';
+        $this->cash_sell_price = '';
+        $this->cash_discount = '';
+        $this->cash_final_price = '';
+        $this->cash_number = '';
+
+        $this->loan_date = $this->todayJalali();
+
+        $this->formKey++;
+    }
+
     public function render()
     {
-        $this->customersList = Customer::where('fullname', 'like', "%{$this->searchName}%")
-    ->orWhere('customer_number', 'like', "%{$this->searchName}%")
-    ->limit(5)
-    ->get();
         return view('livewire.mobile.sellform');
     }
 }

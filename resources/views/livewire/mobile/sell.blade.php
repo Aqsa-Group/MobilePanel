@@ -11,11 +11,11 @@
                 <div class="space-y-10">
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-[#0B35CC]">تعداد:</span>
-                        <span class="text-lg text-[#0B35CC] font-bold"></span>
+                        <span class="text-lg text-[#0B35CC] font-bold">{{ number_format($totalCount) }}</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-[#0B35CC]">مبلغ:</span>
-                        <span class="text-lg text-[#0B35CC] font-bold"></span>
+                        <span class="text-lg text-[#0B35CC] font-bold">{{ number_format($totalAmount) }} افغانی</span>
                     </div>
                 </div>
             </div>
@@ -29,11 +29,11 @@
                 <div class="space-y-10">
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-[#0099FF]">تعداد:</span>
-                        <span class="text-lg text-[#0099FF] font-bold"></span>
+                        <span class="text-lg text-[#0099FF] font-bold">{{ number_format($todayCount) }}</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-[#0099FF]">مبلغ:</span>
-                        <span class="text-lg text-[#0099FF] font-bold"></span>
+                        <span class="text-lg text-[#0099FF] font-bold">{{ number_format($todayAmount) }} افغانی</span>
                     </div>
                 </div>
             </div>
@@ -47,11 +47,11 @@
                 <div class="space-y-10">
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-[#31009B]">تعداد:</span>
-                        <span class="text-lg text-[#31009B] font-bold"></span>
+                        <span class="text-lg text-[#31009B] font-bold">{{ number_format($weekCount) }}</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-[#31009B]">مبلغ:</span>
-                        <span class="text-lg text-[#31009B] font-bold"></span>
+                        <span class="text-lg text-[#31009B] font-bold">{{ number_format($weekAmount) }} افغانی</span>
                     </div>
                 </div>
             </div>
@@ -65,11 +65,11 @@
                 <div class="space-y-10">
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-[#3A64D0]">تعداد:</span>
-                        <span class="text-lg text-[#3A64D0] font-bold"></span>
+                        <span class="text-lg text-[#3A64D0] font-bold">{{ number_format($monthCount) }}</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-[#3A64D0]">مبلغ:</span>
-                        <span class="text-lg text-[#3A64D0] font-bold"></span>
+                        <span class="text-lg text-[#3A64D0] font-bold">{{ number_format($monthAmount) }} افغانی</span>
                     </div>
                 </div>
             </div>
@@ -81,56 +81,79 @@
                     <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
 
                     </div>
-                    <div class="p-4">
-                        <div class="">
-                            <div class="grid grid-cols-2 text-center gap-5 text-sm">
-                                <div>
-                                    <div class="text-gray-900 font-bold">
-                                            <img  class="w-16 h-16 rounded-lg object-cover">
-                                    </div>
-                                </div>
+                  <div class="p-4">
 
-                                <div>
-                                    <div class="text-gray-600 text-xs font-semibold mb-1">مشتری</div>
-                                    <div class="text-gray-900 font-bold"></div>
-                                </div>
-                                <div>
-                                    <div class="text-gray-600 text-xs font-semibold mb-1">آیدی تذکره مشتری</div>
-                                    <div class="text-gray-900 font-bold"></div>
-                                </div>
-                                <div>
-                                    <div class="text-gray-600 text-xs font-semibold mb-1">ادمین</div>
-                                    <div class="text-gray-900 font-bold"></div>
-                                </div>
-                                <div>
-                                    <div class="text-gray-600 text-xs font-semibold mb-1">تاریخ</div>
-                                    <div class="text-gray-900 font-bold"></div>
-                                </div>
-                                <div>
-                                    <div class="text-gray-600 text-xs font-semibold mb-1">مدل دستگاه</div>
-                                    <div class="text-gray-900 font-bold"></div>
-                                </div>
-                                <div>
-                                    <div class="text-gray-600 text-xs font-semibold mb-1">مبلغ</div>
-                                    <div class="text-gray-900 font-bold"></div>
-                                </div>
-                            </div>
-                            <div class="flex justify-center gap-3 mt-5">
-                                <div  class="text-center">
-                                    <div class="text-gray-600 text-xs font-semibold mb-1">شمارهIMEI</div>
-                                    <div class="text-gray-900 text-center font-bold"> </div>
-                                </div>
-                            </div>
-                            <div class="flex justify-center gap-3 mt-5">
-                                <button class="flex items-center gap-1  border-gray-700 border border-2  py-2 px-3 rounded-lg text-xs">
-                                    <i class="bi bi-printer">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="#1C274C"></circle> <path d="M15 16.5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
-                                    </i> چاپ
-                                </button>
-                            </div>
-                        </div>
-                        <div class="border-b border-gray-300 mt-5"></div>
-                    </div>
+    <!-- Search -->
+    <div class="mb-4">
+        <input type="text"
+               wire:model.debounce.500ms="search"
+               placeholder="جستجو مشتری..."
+               class="border rounded-lg px-3 py-2 text-sm w-full md:w-1/3">
+    </div>
+
+    <div class="overflow-hidden rounded-lg border border-gray-300 bg-white">
+        <table class="min-w-full text-sm text-center">
+
+            <!-- Header Desktop -->
+            <thead class="bg-gray-100 text-gray-700 text-xs font-semibold hidden md:table-header-group">
+                <tr>
+                    <th class="px-4 py-2 border">مشتری</th>
+                    <th class="px-4 py-2 border">آیدی تذکره</th>
+                    <th class="px-4 py-2 border">ادمین</th>
+                    <th class="px-4 py-2 border">تاریخ</th>
+                    <th class="px-4 py-2 border">مدل دستگاه</th>
+                    <th class="px-4 py-2 border">مبلغ</th>
+                </tr>
+            </thead>
+
+            <tbody class="divide-y md:divide-y-0">
+
+             @foreach($loanSales as  $sale)
+                <tr class="block md:table-row border-b md:border-none p-4 md:p-0 space-y-2 md:space-y-0">
+
+                    <td class="block md:table-cell md:border px-4 py-2">
+                        <span class="md:hidden text-xs text-gray-500 font-semibold">مشتری:</span>
+                        <span class="font-bold block md:inline">
+                         {{ $sale->name }}
+                        </span>
+                    </td>
+
+
+
+                    <td class="block md:table-cell md:border px-4 py-2">
+                        <span class="md:hidden text-xs text-gray-500 font-semibold">ادمین:</span>
+                        {{ $order->admin->name ?? '-' }}
+                    </td>
+
+                    <td class="block md:table-cell md:border px-4 py-2">
+                        <span class="md:hidden text-xs text-gray-500 font-semibold">تاریخ:</span>
+                      {{ $sale->created_at->format('Y-m-d') }}
+                    </td>
+
+                    <td class="block md:table-cell md:border px-4 py-2">
+                        <span class="md:hidden text-xs text-gray-500 font-semibold">مدل دستگاه:</span>
+             {{ $sale->model }}
+                    </td>
+
+                    <td class="block md:table-cell md:border px-4 py-2 font-bold">
+                        <span class="md:hidden text-xs text-gray-500 font-semibold">مبلغ:</span>
+                        {{ number_format($sale->sell_price) }} افغانی
+                    </td>
+
+                </tr>
+
+                @endforeach
+
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+  <div class="mt-3">
+{{ $loanSales->links() }}
+</div>
+
+</div>
                 </div>
                 <div class="hidden lg:block overflow-x-auto ">
                     <div class="flex justify-between mb-3">
@@ -149,9 +172,9 @@
 
                         <div class="flex flex-col lg:flex-row gap-2 items-center">
                             <div class="flex-1 relative w-full">
-                                <input type="text" wire:model.live="search"
+                                <input type="text"  wire:model.debounce.500ms="search"
                                     class="w-full h-full block rounded-lg bg-[#1E40AF]/20 pr-3 pl-8 py-2 text-[10px] md:text-[10px] focus:outline-none"
-                                    placeholder="جستجو">
+                                    placeholder="جستجو" wire:model.live="search" >
                                 <span class="absolute left-2 top-1/2 -translate-y-1/2">
                                     <svg width="16" height="16" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11.899 14.9749C8.8537 14.9749 6.38498 12.5062 6.38498 9.46083C6.38498 6.4155 8.8537 3.94678 11.899 3.94678C14.9444 3.94678 17.4131 6.4155 17.4131 9.46083C17.4131 12.5062 14.9444 14.9749 11.899 14.9749Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -160,8 +183,8 @@
                                 </span>
                             </div>
                             <div class="flex-none">
-                                <a  href="{{ route('sellform') }}"  class="flex items-center gap-1 px-3 py-2 bg-[#1E40AF] text-white rounded-lg cursor-pointer whitespace-nowrap">
-                                     <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <a href="{{ route('sellform') }}" class="flex items-center gap-1 px-3 py-2 bg-[#1E40AF] text-white rounded-lg cursor-pointer whitespace-nowrap">
+                                    <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <g clip-path="url(#clip0_464_1107)">
                                             <path d="M7.52977 13.8047C10.981 13.8047 13.8047 10.981 13.8047 7.52977C13.8047 4.07858 10.981 1.25488 7.52977 1.25488C4.07858 1.25488 1.25488 4.07858 1.25488 7.52977C1.25488 10.981 4.07858 13.8047 7.52977 13.8047Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                             <path d="M5.02002 7.52979H10.0399" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -178,24 +201,52 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
-                    <table class="w-full text-center text-sm border-collapse"  id="loanTable" style="display:block">
-                        <thead class="bg-[#1E40AF] text-white border-b-2 border-[#1E40AF]">
+                    </div><div class="w-full overflow-x-auto">
+                      <table class="min-w-[800px] w-full text-center text-sm border-collapse" id="loanTable">
+                        <thead class="bg-[#1E40AF] text-white border-b-2 w-full border-[#1E40AF]">
                             <tr>
                                 <th class="px-8 py-2 text-[12px] text-center">آیدی</th>
                                 <th class="px-8 py-2 text-[12px] text-center">مدل دستگاه </th>
                                 <th class="px-8 py-2 text-[12px] text-center">نام مشتری </th>
                                 <th class="px-8 py-2 text-[12px] text-center">تاریخ فروش</th>
                                 <th class="px-8  py-2 text-[12px] text-center">مبلغ</th>
-                                <th class="px-8  py-2 text-[12px] text-center">شماره IMEI</th>
+
                                 <th class="px-8 py-2 text-[12px] text-center"> ادمین</th>
                                 <th class="px-8 py-2 text-[12px] text-center">چاپ</th>
                             </tr>
                         </thead>
+
+@foreach($loanSales as $i => $sale)
+<tr class="border-b">
+<td>{{ $i + 1 }}</td>
+<td>{{ $sale->model }}</td>
+<td>{{ $sale->name }}</td>
+<td>{{ $sale->created_at->format('Y-m-d') }}</td>
+<td>{{ number_format($sale->sell_price) }} افغانی فروخته شد</td>
+
+<td>
+</td>
+<td>
+<button onclick="window.print()" class="text-green-600 bg-green-300 p-2 rounded-xl">
+چاپ
+</button>
+</td>
+</tr>
+@endforeach
+</tbody>
+</table>
+</div>
+
+<div class="mt-3">
+{{ $loanSales->links() }}
+</div>
+</div>
+
                     </table>
 
-                    <table class="w-full text-center text-sm border-collapse" id="cashTable" style="display:none">
-                        <thead class="bg-[#1E40AF] text-white border-b-2 border-[#1E40AF]">
+                   <div class="w-full ">
+<table class="min-w-[900px] w-full text-center text-sm border-collapse" id="cashTable" style="display:none">
+                        <thead  class="bg-[#1E40AF] w-full text-white border-b-2 border-[#1E40AF]">
                             <tr>
                                 <th class="px-8 py-2 text-[12px] text-center">آیدی</th>
                                 <th class="px-8 py-2 text-[12px] text-center">مدل دستگاه </th>
@@ -207,7 +258,34 @@
                                 <th class="px-8 py-2 text-[12px] text-center">چاپ</th>
                             </tr>
                         </thead>
-                    </table>
+                        <tbody>
+@foreach($cashSales as $i => $sale)
+<tr class="border-b">
+<td>{{ $i + 1 }}</td>
+<td>{{ $sale->model }}</td>
+<td>{{ $sale->customer->fullname ?? '-' }}</td>
+<td>{{ $sale->customer->id_card ?? '-' }}</td>
+<td>{{ number_format($sale->profit_total) }} افغانی فابده کل</td>
+<td>{{ $sale->customer->address ?? '-' }}</td>
+<td>
+</td>
+<td>
+<button onclick="window.print()" class="text-green-600 bg-green-300 p-2 rounded-xl">
+چاپ
+</button>
+</td>
+</tr>
+@endforeach
+</tbody>
+</table>
+</div>
+
+<div class="mt-3">
+{{ $cashSales->links() }}
+</div>
+</div>
+
+
                 </div>
             </div>
         </div>

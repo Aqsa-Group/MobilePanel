@@ -1,95 +1,209 @@
+<div class="bg-white rounded-2xl shadow p-6">
 
+    <h1 class="text-xl font-bold text-center mb-6">فروشات</h1>
 
-<div class="flex min-h-screen">
-
-  <!-- Main -->
-  <main class="flex-1 p-6">
-
-
-    <div class="bg-white rounded-2xl shadow p-6">
-        <h1 class="text-xl font-bold text-center mb-6">فروشات  </h1>
-      <div class="grid grid-cols-1 lg:grid-cols-1 gap-6">
-                            <div class="flex justify-between mb-3">
-                        <div class="flex gap-1 items-center">
-                                <a  class="flex items-center gap-1 px-3 py-2 bg-[#1E40AF] text-white rounded-lg cursor-pointer
-                                whitespace-nowrap"   id="btnLoan" onclick="showLoanTable()">
-
-                                    <span class="hidden md:inline text-[10px] truncate">فرم فروشات ها پرچون   </span>
-                                </a>
-                                <a  class="flex items-center gap-1 px-3 py-2 bg-[#1E40AF] text-white rounded-lg
-                                 cursor-pointer whitespace-nowrap" id="btnCash" onclick="showCashTable()">
-                                    <span class="hidden md:inline text-[10px] truncate">فرم فروشات ها عمده   </span>
-                                </a>
-                        </div>
-
-
-                        <div class="flex flex-col lg:flex-row gap-2 items-center">
-                            <div class="flex-1 relative w-full">
-                                <input type="text" wire:model.live="search"
-                                    class="w-full h-full block rounded-lg bg-[#1E40AF]/20 pr-3 pl-8 py-2 text-[10px] md:text-[10px] focus:outline-none"
-                                    placeholder="جستجو">
-                                <span class="absolute left-2 top-1/2 -translate-y-1/2">
-                                    <svg width="16" height="16" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M11.899 14.9749C8.8537 14.9749 6.38498 12.5062 6.38498 9.46083C6.38498 6.4155 8.8537 3.94678 11.899 3.94678C14.9444 3.94678 17.4131 6.4155 17.4131 9.46083C17.4131 12.5062 14.9444 14.9749 11.899 14.9749Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M5.80448 15.5554L6.96533 14.3945" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </span>
-                            </div>
-                            <div class="flex-none">
-
-                            </div>
-                        </div>
-                    </div>
-        <!-- Device info -->
-
-          <div class="space-y-3" id="loanTable" style="display:block">
-            <input type="text" placeholder="اسم" class="w-full border rounded-xl px-4 py-2 focus:outline-none focus:ring" />
-            <input type="text" placeholder="مدل دستگاه" class="w-full border rounded-xl px-4 py-2" />
-            <input type="text" placeholder="شماره" class="w-full border rounded-xl px-4 py-2" />
-            <input type="text" placeholder="مبلغ " class="w-full border rounded-xl px-4 py-2" />
-            <input type="text" placeholder="ادمین " class="w-full border rounded-xl px-4 py-2" />
-          </div>
-
-         <div class="space-y-3" id="cashTable" style="display:none">
-            <input type="text" placeholder="اسم" class="w-full border rounded-xl px-4 py-2 focus:outline-none focus:ring" />
-            <input type="text" placeholder="مدل دستگاه" class="w-full border rounded-xl px-4 py-2" />
-            <input type="text" placeholder="شماره" class="w-full border rounded-xl px-4 py-2" />
-            <input type="text" placeholder="مبلغ " class="w-full border rounded-xl px-4 py-2" />
-            <input type="text" placeholder="ادمین " class="w-full border rounded-xl px-4 py-2" />
-            <input type="text" placeholder="تذکره " class="w-full border rounded-xl px-4 py-2" />
-            <input type="text" placeholder="آدرس " class="w-full border rounded-xl px-4 py-2" />
-         </div>
-      <!-- Buttons -->
-      <div class="flex gap-4 mt-6">
-        <button class="flex-1 bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700">ثبت</button>
-        <button class="flex-1 bg-red-600 text-white py-3 rounded-xl hover:bg-red-700">لغو</button>
-        <button class="flex-1 bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700">ثبت و چاپ</button>
-      </div>
+    {{-- پیام موفقیت --}}
+    @if (session()->has('success'))
+        <div class="bg-green-100 text-green-800 p-3 rounded-xl mb-4 text-center success-message">
+            {{ session('success') }}
+        </div>
+    @endif
+@if (session()->has('error'))
+    <div class="alert alert-danger bg-red-100 text-red-800 p-3 rounded-xl mb-4 text-center">
+        {{ session('error') }}
     </div>
-  </main>
+@endif
+    {{-- انتخاب نوع فروش --}}
+    <div class="flex gap-2 mb-4">
+        <button type="button" wire:click="showLoan"
+            class="flex-1 py-2 rounded-lg text-white {{ $table=='loan'?'bg-blue-700':'bg-blue-500' }}">
+            فروش پرچون
+        </button>
 
+        <button type="button" wire:click="showCash"
+            class="flex-1 py-2 rounded-lg text-white {{ $table=='cash'?'bg-blue-700':'bg-blue-500' }}">
+            فروش عمده
+        </button>
+    </div>
+
+    {{-- کل فرم داخل key برای ریست کامل --}}
+    <div wire:key="form-{{ $formKey }}">
+
+    <form wire:submit.prevent="save">
+
+    {{-- ======================= فروش پرچون ======================= --}}
+    @if($table == 'loan')
+
+        <input wire:model="loan_customer_name"
+            class="w-full border rounded-xl px-4 py-2 mb-2"
+            placeholder="نام مشتری">
+@error('loan_customer_name')
+    <span class="text-red-600 text-xs">{{ $message }}</span>
+@enderror
+        <input wire:model="loan_phone"
+            class="w-full border rounded-xl px-4 py-2 mb-3"
+            placeholder="شماره تماس">
+@error('loan_phone')
+    <span class="text-red-600 text-xs">{{ $message }}</span>
+@enderror
+        @foreach($loan_models as $index => $model)
+
+            <div class="border rounded-xl p-3 mb-2 bg-gray-50">
+
+                <select wire:model.live="loan_models.{{ $index }}"
+                    class="w-full border rounded-xl px-4 py-2 mb-2">
+
+                    <option value="">انتخاب دستگاه</option>
+                    @foreach($devices as $device)
+                        <option value="{{ $device->id }}">
+                            {{ $device->model }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('loan_models')
+    <span class="text-red-600 text-xs">{{ $message }}</span>
+@enderror
+                {{-- قیمت خرید --}}
+                <input readonly
+                    class="w-full border rounded-xl px-4 py-2 mb-2 bg-gray-100"
+                    value="{{ $loan_purchase_prices[$index] ?? '' }}  افغانی  قیمت خرید "
+                    placeholder="قیمت خرید">
+
+                {{-- قیمت فروش --}}
+                <input readonly
+                    class="w-full border rounded-xl px-4 py-2 mb-2 bg-gray-100"
+                    value="{{ $loan_sale_prices[$index] ?? '' }}  افغانی  قیمت فروش"
+                    placeholder= "افغانی قیمت فروش">
+
+                @if(count($loan_models) > 1)
+                    <button type="button"
+                        wire:click="removeLoanModel({{ $index }})"
+                        class="text-red-600 text-sm">
+                        حذف
+                    </button>
+                @endif
+
+            </div>
+
+        @endforeach
+
+        <button type="button"
+            wire:click="addLoanModel"
+            class="text-blue-600 text-sm mb-3">
+            + افزودن دستگاه
+        </button>
+
+        <input wire:model="loan_number"
+            class="w-full border rounded-xl px-4 py-2 mb-3"
+            placeholder="شماره فاکتور">
+    @error('loan_number')
+    <span class="text-red-600 text-xs">{{ $message }}</span>
+@enderror
+    @endif
+
+
+    {{-- ======================= فروش عمده ======================= --}}
+    @if($table == 'cash')
+
+        {{-- انتخاب مشتری --}}
+        <select wire:model="cash_customer_id"
+            class="w-full border rounded-xl px-4 py-2 mb-3">
+            <option value="">انتخاب مشتری</option>
+            @foreach($customers as $customer)
+                <option value="{{ $customer->id }}">
+                    {{ $customer->fullname }}
+                </option>
+            @endforeach
+        </select>
+ @error('cash_customer_id')
+    <span class="text-red-600 text-xs">{{ $message }}</span>
+@enderror
+        {{-- بارکد --}}
+        <input wire:model.live="cash_barcode"
+            class="w-full border rounded-xl px-4 py-2 mb-2"
+            placeholder="بارکد دستگاه">
+@error('cash_barcode')
+    <span class="text-red-600 text-xs">{{ $message }}</span>
+@enderror
+        {{-- نام دستگاه --}}
+        <input readonly
+            class="w-full border rounded-xl px-4 py-2 mb-2 bg-gray-100"
+            value="{{ $cash_model }} نام دستگاه"
+            placeholder="نام دستگاه">
+
+        {{-- قیمت خرید --}}
+        <input readonly
+            class="w-full border rounded-xl px-4 py-2 mb-2 bg-gray-100"
+            value="{{ $cash_buy_price }}افغانی قیمت خرید"
+            placeholder= " افغانی قیمت خرید">
+
+        {{-- قیمت فروش --}}
+        <input readonly
+            class="w-full border rounded-xl px-4 py-2 mb-2 bg-gray-100"
+            value="{{ $cash_sell_price }} افغانی قیمت فروش "
+            placeholder=" افغانی قیمت فروش">
+
+        {{-- تخفیف --}}
+        <input wire:model.live="cash_discount"
+            class="w-full border rounded-xl px-4 py-2 mb-2"
+            placeholder="تخفیف (اختیاری)">
+
+        {{-- مبلغ نهایی --}}
+        <input readonly
+            class="w-full border rounded-xl px-4 py-2 mb-3 bg-green-100 font-bold"
+            value="{{ $cash_final_price }}افغانی مبلغ کل "
+            placeholder="مبلغ کل">
+
+        <input wire:model="cash_number"
+            class="w-full border rounded-xl px-4 py-2 mb-3"
+            placeholder="شماره فاکتور">
+@error('cash_number')
+    <span class="text-red-600 text-xs">{{ $message }}</span>
+@enderror
+    @endif
+
+
+    {{-- ======================= دکمه‌ها ======================= --}}
+    <div class="flex gap-3 mt-4">
+
+        <button type="submit"
+            class="flex-1 bg-blue-600 text-white py-2 rounded-xl">
+            ثبت
+        </button>
+
+        <button type="button"
+            wire:click="saveAndPrint"
+            class="flex-1 bg-green-600 text-white py-2 rounded-xl">
+            ثبت و چاپ
+        </button>
+
+        <button type="button"
+            wire:click="resetFields"
+            class="flex-1 bg-red-600 text-white py-2 rounded-xl">
+            لغو
+        </button>
+
+    </div>
+
+    </form>
+    </div>
 
 </div>
 
 
+{{-- حذف پیام موفقیت بعد از ۳ ثانیه --}}
 <script>
+setTimeout(function(){
+    document.querySelectorAll('.success-message')
+        .forEach(el => el.remove());
+},3000);
+</script>
 
-function showLoanTable() {
-
-    document.getElementById("loanTable").style.display = "block";
-    document.getElementById("cashTable").style.display = "none";
-
-    document.getElementById("btnLoan").classList.add("bg-blue-700", "text-white");
-    document.getElementById("btnCash").classList.remove("bg-blue-700", "text-white");
-}
-
-function showCashTable() {
-
-    document.getElementById("loanTable").style.display = "none";
-    document.getElementById("cashTable").style.display = "block";
-
-    document.getElementById("btnCash").classList.add("bg-blue-700", "text-white");
-    document.getElementById("btnLoan").classList.remove("bg-blue-700", "text-white");
-}
-
+{{-- چاپ --}}
+<script>
+document.addEventListener('livewire:init', () => {
+    Livewire.on('print-page', () => {
+        window.print();
+    });
+});
 </script>

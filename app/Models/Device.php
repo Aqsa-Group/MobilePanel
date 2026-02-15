@@ -15,7 +15,6 @@ class Device extends Model
         'buy_price',
         'sell_price',
         'stock',
-        'imei',
         'admin_id',
     ];
       protected $appends = ['status_fa', 'brand_fa', 'category_fa'];
@@ -35,7 +34,6 @@ class Device extends Model
             'samsung' => 'سامسونگ',
             'xiaomi'  => 'شیائومی',
             'huawei'  => 'هواوی',
-            'oppo'    => 'اوپو',
             default   => '--',
         };
     }

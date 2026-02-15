@@ -1,5 +1,13 @@
 <div class="min-h-screen max-w-full w-full flex justify-center">
     <main class="w-full px-3 sm:px-4 lg:px-6">
+        @if (session()->has('success'))
+            <div x-data="{ show: true }" x-show="show" x-transition  class="flex justify-between items-center bg-green-500 text-white p-4 rounded-md mb-4 shadow"  >
+                <span>{{ session('success') }}</span>
+                <button  @click="show = false"  class="text-white font-bold px-2 py-1 hover:bg-green-600 rounded"  >
+                    ×
+                </button>
+            </div>
+        @endif
         <section class="col-span-1 lg:col-span-2 rounded-xl p-4 space-y-4">
             <aside class="col-span-1 space-y-5">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -193,8 +201,8 @@
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
                     const months = ['حمل','ثور','جوزا','سرطان','اسد','سنبله','میزان','عقرب','قوس','جدی','دلو','حوت'];
-                    const sampleProfit = [600, 800, 1200, 1400, 1600, 1700, 1850, 2100, 2400, 2800, 3300, 3900];
-                    const sampleLoss = [500, 900, 700, 1100, 500, 300, 800, 600, 900, 700, 650, 600];
+                    const sampleProfit = @json($monthlyProfit);
+                    const sampleLoss   = @json($monthlyLoss);
                     function money(num){
                         return new Intl.NumberFormat('fa-AF', { style: 'currency', currency: 'AFN' }).format(num);
                     }

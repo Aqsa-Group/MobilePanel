@@ -120,12 +120,14 @@ class UserList extends Component
             }
         }
         if ($this->userId) {
-            $user = User::find($this->userId);
-            $user->update($data);
-            session()->flash('success', 'کاربر با موفقیت ویرایش شد');
+        $user = User::find($this->userId);
+        $user->update($data);
+        session()->flash('message', 'کاربر با موفقیت ویرایش شد');
+        session()->flash('type', 'edit');
         } else {
             User::create($data);
-            session()->flash('success', 'کاربر با موفقیت ایجاد شد');
+            session()->flash('message', 'کاربر با موفقیت ایجاد شد');
+            session()->flash('type', 'create');
         }
         $this->resetForm();
         $this->reset(['image', 'oldImage', 'editMode', 'userId']);
@@ -200,7 +202,8 @@ class UserList extends Component
         $user->delete();
         $this->confirmingDelete = false;
         $this->deleteUserId = null;
-        session()->flash('success', 'کاربر حذف شد');
+        session()->flash('message', 'کاربر حذف شد');
+        session()->flash('type', 'delete');
     }
     public function render()
     {

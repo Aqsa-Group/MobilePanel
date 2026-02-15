@@ -53,7 +53,7 @@ class Profile extends Component
             $data['password'] = Hash::make($this->password);
         }
         $user->update($data);
-        session()->flash('success', 'پروفایل با موفقیت بروزرسانی شد ✅');
+        session()->flash('success', 'پروفایل با موفقیت بروزرسانی شد ');
         return redirect()->route('welcome');
     }
 protected function convertPersianNumbers($string)

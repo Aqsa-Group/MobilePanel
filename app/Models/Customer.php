@@ -29,4 +29,16 @@ class Customer extends Model
     {
         return $this->belongsTo(UserForm::class, 'user_id');
     }
+      public function sales()
+{
+    return $this->hasMany(Sale::class);
+}
+    public function loans()
+{
+    return $this->hasMany(LoanSell::class, 'customer_id');
+}
+public function cashSales()
+{
+    return $this->hasMany(CashSell::class, 'customer_id');
+}
 }

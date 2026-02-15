@@ -15,10 +15,9 @@ class Inventory extends Component
     public $deleteId;
     public $buy_price;
     public $model;
-public $memory;
-public $color;
-public $stock;
-public $imei;
+    public $memory;
+    public $color;
+    public $stock;
     public $sell_price;
     public $profit = 0;
     public $profitPercent = 0;
@@ -44,9 +43,6 @@ public $imei;
 }
     private function getOrCreateBarcode(Device $device)
 {
-    if (!empty($device->barcode)) {
-        return $device->barcode;
-    }
     $product = Product::where('name', $device->name)->first();
     if ($product && $product->barcode) {
         $device->barcode = $product->barcode;
@@ -57,7 +53,6 @@ public $imei;
     $device->barcode = $barcode;
     $device->save();
     Product::create([
-        'barcode' => $barcode,
         'name' => $device->name,
         'buy_price' => $device->buy_price,
         'sell_price_retail' => $device->sell_price,
@@ -88,7 +83,6 @@ public function saveDevice()
     $this->buy_price  = $this->normalizeNumber($this->buy_price);
     $this->sell_price = $this->normalizeNumber($this->sell_price);
     $this->stock      = $this->normalizeNumber($this->stock);
-    $this->imei       = $this->normalizeNumber($this->imei);
     $this->validate([
         'category' => 'required|string',
         'brand'    => 'required|string',
@@ -96,7 +90,6 @@ public function saveDevice()
         'model'    => 'required|string|max:255',
         'buy_price'  => 'required|numeric|min:0',
         'stock'      => 'required|integer|min:0',
-        'imei'       => 'required|string|min:10|unique:devices,imei',
     ]);
     Device::create([
         'category'   => $this->category,
@@ -105,13 +98,12 @@ public function saveDevice()
         'model'      => $this->model,
         'buy_price'  => $this->buy_price,
         'stock'      => $this->stock,
-        'imei'       => $this->imei,
         'admin_id'   => auth()->id(),
     ]);
     session()->flash('success', 'دستگاه ثبت شد');
     $this->reset([
         'category','brand','status','model',
-        'buy_price','stock','imei'
+        'buy_price','stock'
     ]);
 }
 private function normalizeNumber($value)
@@ -166,7 +158,6 @@ public function updatingSellPrice($value)
             'selectedBrand',
             'selectedStatus',
             'category',
-            'brand',
             'status',
         ]);
         $this->resetPage();
@@ -182,7 +173,7 @@ public function updatingSellPrice($value)
         ->when($this->brand, fn ($q) => $q->where('brand', $this->brand))
         ->when($this->status, fn ($q) => $q->where('status', $this->status))
         ->oldest()
-        ->paginate(7);
+        ->paginate(5);
 }
     public function render()
     {

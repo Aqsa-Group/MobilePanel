@@ -1,5 +1,46 @@
 <div>
     <main class="max-w-full p-4 mx-auto  mt-2 ">
+        @if (session()->has('message'))
+            @php
+                $type = session('type');
+                $bg = match($type) {
+                    'create' => 'bg-green-500',
+                    'edit'   => 'bg-blue-500',
+                    'delete' => 'bg-red-500',
+                    default  => 'bg-gray-500'
+                };
+            @endphp
+            <div x-data="{ show: true }" x-init="setTimeout(() => show = false,3000)" x-show="show"  x-transition.opacity   class="fixed inset-0 flex items-center justify-center z-50" >
+                <div class="absolute inset-0 bg-black/40"></div>
+                <div  x-transition.scale  class="{{ $bg }} text-white px-8 py-8 rounded-xl shadow-2xl relative z-10 min-w-[320px] text-center"  >
+                    <div class="flex justify-center mb-6 relative">
+                        <svg class="w-20 h-20 transform -rotate-90">
+                            <circle  cx="40"   cy="40"  r="35" stroke="white"  stroke-opacity="0.3"  stroke-width="6"   fill="none"  />
+                            <circle  cx="40"  cy="40"  r="35"   stroke="white"   stroke-width="6"  fill="none"   stroke-dasharray="220"  stroke-dashoffset="220"   class="animate-progress" />
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center text-3xl font-bold">
+                            ✔
+                        </div>
+                    </div>
+                    <p class="text-lg font-semibold">
+                        {{ session('message') }}
+                    </p>
+                </div>
+            </div>
+            <style>
+                @keyframes progress {
+                    from {
+                        stroke-dashoffset: 220;
+                    }
+                    to {
+                        stroke-dashoffset: 0;
+                    }
+                }
+                .animate-progress {
+                    animation: progress 3s linear forwards;
+                }
+            </style>
+        @endif
         @if($canEdit)
         <div class=" w-full mx-auto shadow-[0px_4px_4px_0px_#00000040] border bg-white border-gray-300 rounded-lg  flex flex-col lg:flex-row">
             <div class="flex-1 lg:w-1/2 flex items-center justify-center p-3 sm:p-4 order-1 ">

@@ -93,7 +93,8 @@ class Employe extends Component
             'user_id'=>Auth::id(),
             'admin_id'=>Auth::id(),
         ]);
-        session()->flash('success','کارمند ثبت شد');
+        session()->flash('message','کارمند ثبت شد');
+        session()->flash('type','create');
         $this->resetForm();
     }
     public function edit($id)
@@ -141,7 +142,8 @@ class Employe extends Component
             'job'=>$this->job,
             'image'=>$emp->image,
         ]);
-        session()->flash('success','اطلاعات بروزرسانی شد');
+        session()->flash('message','اطلاعات بروزرسانی شد');
+        session()->flash('type','edit');
         $this->resetForm();
     }
     public function updatedImage()
@@ -162,7 +164,8 @@ class Employe extends Component
         }
         $emp->delete();
         $this->confirmingDelete=false;
-        session()->flash('success','کارمند حذف شد');
+        session()->flash('message','کارمند حذف شد');
+        session()->flash('type','delete');
     }
     public function resetForm()
     {

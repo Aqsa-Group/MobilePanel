@@ -21,12 +21,34 @@ class Customers extends Component
     public $customerCount;
     public $todayCustomers;
     public $monthCustomers;
+    public $confirmingDelete = false;
+    public $customerToDelete = null;
     public function mount()
     {
         $this->customerCount = CustomerModel::count();
         $this->todayCustomers = 0;
         $this->monthCustomers = 0;
     }
+    public function confirmDelete($id)
+{
+    $this->confirmingDelete = true;
+    $this->customerToDelete = $id;
+}
+public function deleteConfirmed()
+{
+    if ($this->customerToDelete) {
+        $customer = CustomerModel::find($this->customerToDelete);
+        if ($customer) {
+            if ($customer->image && Storage::disk('public')->exists($customer->image)) {
+                Storage::disk('public')->delete($customer->image);
+            }
+            $customer->delete();
+        }
+    }
+    $this->confirmingDelete = false;
+    $this->customerToDelete = null;
+    session()->flash('success', 'مشتری با موفقیت حذف شد');
+}
     public function delete($id)
     {
         CustomerModel::findOrFail($id)->delete();

@@ -4,11 +4,11 @@ use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
-    protected $fillable = [
+   protected $fillable = [
         'barcode','name','category','status','company',
         'buy_price','sell_price_retail','sell_price_wholesale',
         'total_buy','paid_amount','quantity',
-        'image','user_id','admin_id',
+        'profit_each','profit_total','image'
     ];
     public function admin()
     {

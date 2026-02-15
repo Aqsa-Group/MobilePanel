@@ -2,7 +2,7 @@
     <main>
         <div class="p-4  max-w-full mx-auto">
             <div class="rounded-xl shadow-xl w-full bg-white shadow-[0px_4px_4px_0px_#00000040] border border-gray-300  px-2 py-4">
-                <form wire:submit.prevent="save" class="">
+                <form wire:submit.prevent="save" >
                     <div class="flex items-center justify-start">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2.66162 11.333H15.3283" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
