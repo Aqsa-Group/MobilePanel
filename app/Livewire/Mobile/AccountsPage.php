@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Livewire\Mobile;
+
 use Morilog\Jalali\Jalalian;
 use Livewire\Component;
 use App\Models\Withdrawal;
@@ -7,6 +9,7 @@ use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\CashFund as CashFundModel;
+
 class AccountsPage extends Component
 {
     use WithPagination;
@@ -25,12 +28,14 @@ class AccountsPage extends Component
     public $monthTotal;
     public $editing = false;
     public $editingId = null;
-protected $listeners = ['setWithdrawalDate'];
+    public $formKey;
+    public $editMode = false;
 
-public function setWithdrawalDate($date)
-{
-    $this->withdrawal_date = $date;
-}
+    protected $listeners = ['setWithdrawalDate'];
+    public function setWithdrawalDate($date)
+    {
+        $this->withdrawal_date = $date;
+    }
     public function mount()
     {
         $this->current_date = now();
@@ -75,6 +80,7 @@ public function setWithdrawalDate($date)
     {
         $withdrawal = Withdrawal::findOrFail($id);
         $this->editing = true;
+        $this->editMode = true;
         $this->editingId = $withdrawal->id;
         $this->withdrawal_type = $withdrawal->withdrawal_type;
         $this->amount = $withdrawal->amount;
@@ -82,6 +88,7 @@ public function setWithdrawalDate($date)
         $this->withdrawal_date = Jalalian::fromDateTime(
             $withdrawal->withdrawal_date
         )->format('Y/m/d');
+        $this->formKey = uniqid();
     }
     public function cancelEdit()
     {
@@ -104,72 +111,74 @@ public function setWithdrawalDate($date)
         ]);
         $this->withdrawal_date = Jalalian::fromDateTime(now())
             ->format('Y/m/d');
+        $this->formKey = uniqid();
+        $this->resetValidation();
     }
-        private function convertToEnglishNumbers($string)
-{
-    $faNumbers = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
-    $enNumbers = ['0','1','2','3','4','5','6','7','8','9'];
-    return str_replace($faNumbers, $enNumbers, $string);
-}
-   public function save()
-{
-    $this->amount = $this->convertToEnglishNumbers($this->amount);
-    $this->validate();
-    $fund = CashFundModel::first();
-    if (!$fund) {
-        $this->addError('amount', 'صندوق هنوز موجودی ندارد');
-        return;
+    private function convertToEnglishNumbers($string)
+    {
+        $faNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+        $enNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        return str_replace($faNumbers, $enNumbers, $string);
     }
-    $currency = $this->currency ?? 'AFN';
-    if ($currency === 'AFN' && ($fund->afn_balance <= 0 || $fund->afn_balance < $this->amount)) {
-        $this->addError('amount', 'موجودی صندوق کافی نیست');
-        return;
-    }
-    if ($currency === 'USD' && ($fund->usd_balance <= 0 || $fund->usd_balance < $this->amount)) {
-        $this->addError('amount', 'موجودی صندوق کافی نیست');
-        return;
-    }
-    if ($this->editing) {
-        Withdrawal::findOrFail($this->editingId)->update([
-            'withdrawal_type' => $this->withdrawal_type,
-            'amount' => $this->amount,
-            'description' => $this->description,
-        ]);
-        $this->successMessage = 'ویرایش با موفقیت انجام شد';
-    } else {
-        if ($currency === 'AFN') {
-            $fund->afn_balance -= $this->amount;
-        } else {
-            $fund->usd_balance -= $this->amount;
+    public function save()
+    {
+        $this->amount = $this->convertToEnglishNumbers($this->amount);
+        $this->validate();
+        $fund = CashFundModel::first();
+        if (!$fund) {
+            $this->addError('amount', 'صندوق هنوز موجودی ندارد');
+            return;
         }
-        $fund->save();
-        Withdrawal::create([
-            'withdrawal_type' => $this->withdrawal_type,
-            'amount' => $this->amount,
-            'description' => $this->description,
-            'currency' => $currency,
-            'withdrawal_date' => now()->toDateString(),
-            'user_id'  => Auth::id(),
-            'admin_id' => Auth::user()->admin_id ?? Auth::id(),
-        ]);
-        $this->successMessage = 'برداشت با موفقیت ثبت شد';
+        $currency = $this->currency ?? 'AFN';
+        if ($currency === 'AFN' && ($fund->afn_balance <= 0 || $fund->afn_balance < $this->amount)) {
+            $this->addError('amount', 'موجودی صندوق کافی نیست');
+            return;
+        }
+        if ($currency === 'USD' && ($fund->usd_balance <= 0 || $fund->usd_balance < $this->amount)) {
+            $this->addError('amount', 'موجودی صندوق کافی نیست');
+            return;
+        }
+        if ($this->editing) {
+            Withdrawal::findOrFail($this->editingId)->update([
+                'withdrawal_type' => $this->withdrawal_type,
+                'amount' => $this->amount,
+                'description' => $this->description,
+            ]);
+            $this->successMessage = 'ویرایش با موفقیت انجام شد';
+        } else {
+            if ($currency === 'AFN') {
+                $fund->afn_balance -= $this->amount;
+            } else {
+                $fund->usd_balance -= $this->amount;
+            }
+            $fund->save();
+            Withdrawal::create([
+                'withdrawal_type' => $this->withdrawal_type,
+                'amount' => $this->amount,
+                'description' => $this->description,
+                'currency' => $currency,
+                'withdrawal_date' => now()->toDateString(),
+                'user_id'  => Auth::id(),
+                'admin_id' => Auth::user()->admin_id ?? Auth::id(),
+            ]);
+            $this->successMessage = 'برداشت با موفقیت ثبت شد';
+        }
+        $this->resetForm();
     }
-    $this->resetForm();
-}
     public function render()
     {
         $withdrawals = Withdrawal::query()
-        ->when($this->search !== '', function ($q) {
-            $q->where(function ($qq) {
-                $qq->where('withdrawal_type', 'like', "%{$this->search}%")
-                ->orWhere('amount', 'like', "%{$this->search}%");
-            });
-        })
-        ->when($this->filterType !== '', function ($q) {
-            $q->where('withdrawal_type', $this->filterType);
-        })
-        ->orderBy('created_at', 'asc')
-        ->paginate(7);
+            ->when($this->search !== '', function ($q) {
+                $q->where(function ($qq) {
+                    $qq->where('withdrawal_type', 'like', "%{$this->search}%")
+                        ->orWhere('amount', 'like', "%{$this->search}%");
+                });
+            })
+            ->when($this->filterType !== '', function ($q) {
+                $q->where('withdrawal_type', $this->filterType);
+            })
+            ->orderBy('created_at', 'asc')
+            ->paginate(7);
         return view('livewire.mobile.accounts-page', compact('withdrawals'));
     }
 }

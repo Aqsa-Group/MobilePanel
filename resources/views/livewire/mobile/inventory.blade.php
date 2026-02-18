@@ -2,7 +2,7 @@
     <div class="p-4">
         <div class=" text-gray-800 ">
             <div class=" flex items-center mx-auto max-w-full justify-center">
-                <div class="shadow-xl bg-white shadow-[0px_4px_4px_0px_#00000040] w-full  border border-gray-300 rounded-2xl overflow-hidden flex flex-col lg:flex-row ">
+                <div class="shadow-xl card shadow-[0px_4px_4px_0px_#00000040] w-full  border rounded-2xl overflow-hidden flex flex-col lg:flex-row ">
                     <div class="flex-1  flex items-start justify-center sm:p-4  ">
                         <div class="w-full max-w-full">
                             <h2 class="text-[40px] sm:text-2xl font-bold text-center lg:text-right flex items-center justify-center mt-[30px]">
@@ -75,7 +75,7 @@
         </div>
         <div class="grid max-w-full mx-auto mt-4 gap-4">
             <div class=" ">
-                <div class="border border-gray-300 rounded-xl shadow-xl shadow-[0px_4px_4px_0px_#00000040]">
+                <div class="border card rounded-xl shadow-xl shadow-[0px_4px_4px_0px_#00000040]">
                     <div class="bg-[#1E40AF]/5 rounded-xl p-4">
                         <div class="flex justify-between">
                             <h1 class="font-bold text-2xl">موجودی دوکان:</h1>

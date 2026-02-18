@@ -1,5 +1,5 @@
 <div>
-<div class="p-3 ">
+    <div class="p-3 ">
         <div class="gap-4 max-w-full mx-auto md:gap-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-8 mt-4 ">
             <div class="bg-[#0B35CC]/10 w-full rounded-2xl space-y-3 p-4 border-r-[3px] border-[#0B35CC] shadow-xl shadow-[0px_4px_4px_0px_#00000040]">
                 <div class="flex justify-between items-center">
@@ -15,7 +15,7 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-[#0B35CC]">مبلغ:</span>
-                        <span class="text-lg text-[#0B35CC] font-bold">{{ number_format($totalAmount) }} افغانی</span>
+                        <span class="text-lg text-[#0B35CC] font-bold">{{ number_format($totalAmount) }}؋</span>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-[#0099FF]">مبلغ:</span>
-                        <span class="text-lg text-[#0099FF] font-bold">{{ number_format($todayAmount) }} افغانی</span>
+                        <span class="text-lg text-[#0099FF] font-bold">{{ number_format($todayAmount) }}؋</span>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-[#31009B]">مبلغ:</span>
-                        <span class="text-lg text-[#31009B] font-bold">{{ number_format($weekAmount) }} افغانی</span>
+                        <span class="text-lg text-[#31009B] font-bold">{{ number_format($weekAmount) }}؋</span>
                     </div>
                 </div>
             </div>
@@ -69,107 +69,75 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-[#3A64D0]">مبلغ:</span>
-                        <span class="text-lg text-[#3A64D0] font-bold">{{ number_format($monthAmount) }} افغانی</span>
+                        <span class="text-lg text-[#3A64D0] font-bold">{{ number_format($monthAmount) }}؋</span>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="grid grid-cols-1 max-w-full mx-auto  gap-3"   >
             <div class="border border-gray-300 rounded-2xl  shadow-[0px_4px_4px_0px_#00000040]  shadow-xl w-full p-3">
                 <div class="lg:hidden space-y-3 ">
-                    <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
-
+                    <div class="p-4">
+                        <div class="mb-4">
+                            <input type="text"  wire:model.debounce.500ms="search"  placeholder="جستجو مشتری..." class="border input-dark-light rounded-lg px-3 py-2 text-sm w-full md:w-1/3">
+                        </div>
+                        <div class="overflow-hidden rounded-lg border border-gray-300 card">
+                            <table class="min-w-full text-sm text-center">
+                                <thead class="bg-gray-100 text-gray-700 text-xs font-semibold hidden md:table-header-group">
+                                    <tr>
+                                        <th class="px-4 py-2 border">مشتری</th>
+                                        <th class="px-4 py-2 border">آیدی تذکره</th>
+                                        <th class="px-4 py-2 border">ادمین</th>
+                                        <th class="px-4 py-2 border">تاریخ</th>
+                                        <th class="px-4 py-2 border">مدل دستگاه</th>
+                                        <th class="px-4 py-2 border">مبلغ</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y md:divide-y-0">
+                                    @foreach($loanSales as  $sale)
+                                    <tr class="block md:table-row border-b md:border-none p-4 md:p-0 space-y-2 md:space-y-0">
+                                        <td class="block md:table-cell md:border px-4 py-2">
+                                            <span class="md:hidden text-xs text-gray-500 font-semibold">مشتری:</span>
+                                            <span class="font-bold block md:inline">
+                                            {{ $sale->name }}
+                                            </span>
+                                        </td>
+                                        <td class="block md:table-cell md:border px-4 py-2">
+                                            <span class="md:hidden text-xs text-gray-500 font-semibold">ادمین:</span>
+                                            {{ $order->admin->name ?? '-' }}
+                                        </td>
+                                        <td class="block md:table-cell md:border px-4 py-2">
+                                            <span class="md:hidden text-xs text-gray-500 font-semibold">تاریخ:</span>
+                                        {{ $sale->created_at->format('Y-m-d') }}
+                                        </td>
+                                        <td class="block md:table-cell md:border px-4 py-2">
+                                            <span class="md:hidden text-xs text-gray-500 font-semibold">مدل دستگاه:</span>
+                                                {{ $sale->model }}
+                                        </td>
+                                        <td class="block md:table-cell md:border px-4 py-2 font-bold">
+                                            <span class="md:hidden text-xs text-gray-500 font-semibold">مبلغ:</span>
+                                            {{ number_format($sale->sell_price) }}؋
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-3">
+                        {{ $loanSales->links() }}
+                        </div>
                     </div>
-                  <div class="p-4">
-
-    <!-- Search -->
-    <div class="mb-4">
-        <input type="text"
-               wire:model.debounce.500ms="search"
-               placeholder="جستجو مشتری..."
-               class="border rounded-lg px-3 py-2 text-sm w-full md:w-1/3">
-    </div>
-
-    <div class="overflow-hidden rounded-lg border border-gray-300 bg-white">
-        <table class="min-w-full text-sm text-center">
-
-            <!-- Header Desktop -->
-            <thead class="bg-gray-100 text-gray-700 text-xs font-semibold hidden md:table-header-group">
-                <tr>
-                    <th class="px-4 py-2 border">مشتری</th>
-                    <th class="px-4 py-2 border">آیدی تذکره</th>
-                    <th class="px-4 py-2 border">ادمین</th>
-                    <th class="px-4 py-2 border">تاریخ</th>
-                    <th class="px-4 py-2 border">مدل دستگاه</th>
-                    <th class="px-4 py-2 border">مبلغ</th>
-                </tr>
-            </thead>
-
-            <tbody class="divide-y md:divide-y-0">
-
-             @foreach($loanSales as  $sale)
-                <tr class="block md:table-row border-b md:border-none p-4 md:p-0 space-y-2 md:space-y-0">
-
-                    <td class="block md:table-cell md:border px-4 py-2">
-                        <span class="md:hidden text-xs text-gray-500 font-semibold">مشتری:</span>
-                        <span class="font-bold block md:inline">
-                         {{ $sale->name }}
-                        </span>
-                    </td>
-
-
-
-                    <td class="block md:table-cell md:border px-4 py-2">
-                        <span class="md:hidden text-xs text-gray-500 font-semibold">ادمین:</span>
-                        {{ $order->admin->name ?? '-' }}
-                    </td>
-
-                    <td class="block md:table-cell md:border px-4 py-2">
-                        <span class="md:hidden text-xs text-gray-500 font-semibold">تاریخ:</span>
-                      {{ $sale->created_at->format('Y-m-d') }}
-                    </td>
-
-                    <td class="block md:table-cell md:border px-4 py-2">
-                        <span class="md:hidden text-xs text-gray-500 font-semibold">مدل دستگاه:</span>
-             {{ $sale->model }}
-                    </td>
-
-                    <td class="block md:table-cell md:border px-4 py-2 font-bold">
-                        <span class="md:hidden text-xs text-gray-500 font-semibold">مبلغ:</span>
-                        {{ number_format($sale->sell_price) }} افغانی
-                    </td>
-
-                </tr>
-
-                @endforeach
-
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Pagination -->
-  <div class="mt-3">
-{{ $loanSales->links() }}
-</div>
-
-</div>
                 </div>
                 <div class="hidden lg:block overflow-x-auto ">
                     <div class="flex justify-between mb-3">
                         <div class="flex gap-1 items-center">
-                                <a  class="flex items-center gap-1 px-3 py-2 bg-[#1E40AF] text-white rounded-lg cursor-pointer
-                                whitespace-nowrap"   id="btnLoan" onclick="showLoanTable()">
-
-                                    <span class="hidden md:inline text-[10px] truncate">لیست فروشات ها پرچون   </span>
-                                </a>
-                                <a  class="flex items-center gap-1 px-3 py-2 bg-[#1E40AF] text-white rounded-lg
-                                 cursor-pointer whitespace-nowrap" id="btnCash" onclick="showCashTable()">
-                                    <span class="hidden md:inline text-[10px] truncate">لیست فروشات ها عمده   </span>
-                                </a>
+                            <a  class="flex items-center gap-1 px-3 py-2 bg-[#1E40AF] text-white rounded-lg cursor-pointer whitespace-nowrap"   id="btnLoan" onclick="showLoanTable()">
+                                <span class="hidden md:inline text-[10px] truncate">لیست فروشات ها پرچون   </span>
+                            </a>
+                            <a  class="flex items-center gap-1 px-3 py-2 bg-[#1E40AF] text-white rounded-lg  cursor-pointer whitespace-nowrap" id="btnCash" onclick="showCashTable()">
+                                <span class="hidden md:inline text-[10px] truncate">لیست فروشات ها عمده   </span>
+                            </a>
                         </div>
-
-
                         <div class="flex flex-col lg:flex-row gap-2 items-center">
                             <div class="flex-1 relative w-full">
                                 <input type="text"  wire:model.debounce.500ms="search"
@@ -196,13 +164,13 @@
                                             </clipPath>
                                         </defs>
                                     </svg>
-
                                     <span class="hidden md:inline text-[10px] truncate " href="{{ url('/sellform') }}">اضافه کردن فروش جدید</span>
                                 </a>
                             </div>
                         </div>
-                    </div><div class="w-full overflow-x-auto">
-                      <table class="min-w-[800px] w-full text-center text-sm border-collapse" id="loanTable">
+                    </div>
+                    <div class="w-full overflow-x-auto">
+                    <table class="min-w-[800px] w-full text-center text-sm border-collapse" id="loanTable">
                         <thead class="bg-[#1E40AF] text-white border-b-2 w-full border-[#1E40AF]">
                             <tr>
                                 <th class="px-8 py-2 text-[12px] text-center">آیدی</th>
@@ -210,106 +178,83 @@
                                 <th class="px-8 py-2 text-[12px] text-center">نام مشتری </th>
                                 <th class="px-8 py-2 text-[12px] text-center">تاریخ فروش</th>
                                 <th class="px-8  py-2 text-[12px] text-center">مبلغ</th>
-
                                 <th class="px-8 py-2 text-[12px] text-center"> ادمین</th>
                                 <th class="px-8 py-2 text-[12px] text-center">چاپ</th>
                             </tr>
                         </thead>
-
-@foreach($loanSales as $i => $sale)
-<tr class="border-b">
-<td>{{ $i + 1 }}</td>
-<td>{{ $sale->model }}</td>
-<td>{{ $sale->name }}</td>
-<td>{{ $sale->created_at->format('Y-m-d') }}</td>
-<td>{{ number_format($sale->sell_price) }} افغانی فروخته شد</td>
-
-<td>
-</td>
-<td>
-<button onclick="window.print()" class="text-green-600 bg-green-300 p-2 rounded-xl">
-چاپ
-</button>
-</td>
-</tr>
-@endforeach
-</tbody>
-</table>
-</div>
-
-<div class="mt-3">
-{{ $loanSales->links() }}
-</div>
-</div>
-
+                        @foreach($loanSales as $i => $sale)
+                            <tr class="border-b">
+                                <td>{{ $i + 1 }}</td>
+                                <td>{{ $sale->model }}</td>
+                                <td>{{ $sale->name }}</td>
+                                <td>{{ $sale->created_at->format('Y-m-d') }}</td>
+                                <td>{{ number_format($sale->sell_price) }}؋ فروخته شد</td>
+                                <td></td>
+                                <td>
+                                <button onclick="window.print()" class="text-green-600 bg-green-300 p-2 rounded-xl">
+                                چاپ
+                                </button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </table>
-
-                   <div class="w-full ">
-<table class="min-w-[900px] w-full text-center text-sm border-collapse" id="cashTable" style="display:none">
-                        <thead  class="bg-[#1E40AF] w-full text-white border-b-2 border-[#1E40AF]">
-                            <tr>
-                                <th class="px-8 py-2 text-[12px] text-center">آیدی</th>
-                                <th class="px-8 py-2 text-[12px] text-center">مدل دستگاه </th>
-                                <th class="px-8 py-2text-[12px] text-center">نام مشتری </th>
-                                <th class="px-8 py-2 text-[12px] text-center"> آیدی تذکره مشتری </th>
-                                <th class="px-8 py-2 text-[12px] text-center">مبلغ</th>
-                                <th class="px-8 py-2 text-[12px] text-center">آدرس </th>
-                                <th class="px-8 py-2 text-[12px] text-center"> ادمین</th>
-                                <th class="px-8 py-2 text-[12px] text-center">چاپ</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-@foreach($cashSales as $i => $sale)
-<tr class="border-b">
-<td>{{ $i + 1 }}</td>
-<td>{{ $sale->model }}</td>
-<td>{{ $sale->customer->fullname ?? '-' }}</td>
-<td>{{ $sale->customer->id_card ?? '-' }}</td>
-<td>{{ number_format($sale->profit_total) }} افغانی فابده کل</td>
-<td>{{ $sale->customer->address ?? '-' }}</td>
-<td>
-</td>
-<td>
-<button onclick="window.print()" class="text-green-600 bg-green-300 p-2 rounded-xl">
-چاپ
-</button>
-</td>
-</tr>
-@endforeach
-</tbody>
-</table>
-</div>
-
-<div class="mt-3">
-{{ $cashSales->links() }}
-</div>
-</div>
-
-
+                </div>
+                <div class="mt-3">
+                {{ $loanSales->links() }}
                 </div>
             </div>
+            <div class="w-full ">
+                <table class="min-w-[900px] w-full text-center text-sm border-collapse" id="cashTable" style="display:none">
+                    <thead  class="bg-[#1E40AF] w-full text-white border-b-2 border-[#1E40AF]">
+                        <tr>
+                            <th class="px-8 py-2 text-[12px] text-center">آیدی</th>
+                            <th class="px-8 py-2 text-[12px] text-center">مدل دستگاه </th>
+                            <th class="px-8 py-2text-[12px] text-center">نام مشتری </th>
+                            <th class="px-8 py-2 text-[12px] text-center"> آیدی تذکره مشتری </th>
+                            <th class="px-8 py-2 text-[12px] text-center">مبلغ</th>
+                            <th class="px-8 py-2 text-[12px] text-center">آدرس </th>
+                            <th class="px-8 py-2 text-[12px] text-center"> ادمین</th>
+                            <th class="px-8 py-2 text-[12px] text-center">چاپ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($cashSales as $i => $sale)
+                        <tr class="border-b">
+                        <td>{{ $i + 1 }}</td>
+                        <td>{{ $sale->model }}</td>
+                        <td>{{ $sale->customer->fullname ?? '-' }}</td>
+                        <td>{{ $sale->customer->id_card ?? '-' }}</td>
+                        <td>{{ number_format($sale->profit_total) }}؋ فابده کل</td>
+                        <td>{{ $sale->customer->address ?? '-' }}</td>
+                        <td>
+                        </td>
+                        <td>
+                        <button onclick="window.print()" class="text-green-600 bg-green-300 p-2 rounded-xl">
+                        چاپ
+                        </button>
+                        </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-3">
+            {{ $cashSales->links() }}
+            </div>
         </div>
-
-
+    </div>
 </div>
 <script>
-
 function showLoanTable() {
-
     document.getElementById("loanTable").style.display = "block";
     document.getElementById("cashTable").style.display = "none";
-
     document.getElementById("btnLoan").classList.add("bg-blue-700", "text-white");
     document.getElementById("btnCash").classList.remove("bg-blue-700", "text-white");
 }
-
 function showCashTable() {
-
     document.getElementById("loanTable").style.display = "none";
     document.getElementById("cashTable").style.display = "block";
-
     document.getElementById("btnCash").classList.add("bg-blue-700", "text-white");
     document.getElementById("btnLoan").classList.remove("bg-blue-700", "text-white");
 }
-
 </script>
