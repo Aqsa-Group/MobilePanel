@@ -218,7 +218,7 @@ if (strtolower(auth()->user()?->role) === 'super_admin') {
             });
         })
         ->oldest()
-        ->paginate(2);
+        ->paginate(5);
     return view('livewire.admin2.component.users', compact('users'));
 }
 }

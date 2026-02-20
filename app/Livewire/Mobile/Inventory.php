@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Livewire\Mobile;
-
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Device;
@@ -9,7 +7,6 @@ use App\Models\Product;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
-
 class Inventory extends Component
 {
     use WithPagination;
@@ -54,35 +51,27 @@ class Inventory extends Component
     protected $messages = [
         'category.required' => 'انتخاب دسته‌بندی الزامی است',
         'category.string'   => 'دسته‌بندی باید رشته باشد',
-
         'brand.required'    => '*وارد کردن نام دستگاه الزامی است',
         'brand.string'      => '*نام دستگاه باید فقط حروف باشد',
-
         'status.required'   => 'حالت دستگاه را مشخص کنید',
         'status.string'     => 'وضعیت دستگاه باید رشته باشد',
-
         'model.required'    => 'وارد کردن مدل دستگاه الزامی است',
         'model.string'      => 'مدل دستگاه باید رشته باشد',
         'model.max'         => 'مدل دستگاه نمی‌تواند بیش از 255 کاراکتر باشد',
-
         'buy_price.required' => 'قیمت خرید الزامی است',
         'buy_price.numeric' => 'قیمت خرید باید عدد باشد',
         'buy_price.min'     => 'قیمت خرید نمی‌تواند منفی باشد',
-
         'stock.required'    => 'تعداد موجودی الزامی است',
         'stock.integer'     => 'تعداد باید عدد صحیح باشد',
         'stock.min'         => 'تعداد موجودی نمی‌تواند منفی باشد',
-
         'barcode.unique'    => 'این بارکد قبلاً ثبت شده است',
     ];
-
     public function mount()
     {
         if (!auth()->check()) {
             abort(403, 'کاربر وارد نشده است');
         }
     }
-
     public function toggleSaleDetails()
     {
         $this->showSaleDetails = !$this->showSaleDetails;
@@ -122,14 +111,14 @@ class Inventory extends Component
         $this->confirmingDelete = true;
         $this->deleteId = $id;
     }
-    public function deleteConfirmed()
-    {
-        if ($this->deleteId) {
-            Device::findOrFail($this->deleteId)->delete();
-            $this->confirmingDelete = false;
-            $this->deleteId = null;
-        }
+   public function deleteConfirmed()
+{
+    if ($this->deleteId) {
+        Product::findOrFail($this->deleteId)->delete();
+        $this->confirmingDelete = false;
+        $this->deleteId = null;
     }
+}
     public function edit($id)
     {
         $this->editing = true;
@@ -145,8 +134,6 @@ class Inventory extends Component
         $this->barcode = $product->barcode;
         $this->formKey = uniqid();
     }
-
-
     public function cancelEdit()
     {
         $this->resetErrorBag();
@@ -178,8 +165,9 @@ class Inventory extends Component
         $this->buy_price  = $this->normalizeNumber($this->buy_price);
         $this->sell_price = $this->normalizeNumber($this->sell_price);
         $this->stock      = $this->normalizeNumber($this->stock);
+        $this->buy_price = (float) $this->normalizeNumber($this->buy_price);
+        $this->stock     = (int) $this->normalizeNumber($this->stock);
         $adminName = auth()->user()->name;
-
         $this->validate([
             'category'  => 'required|string',
             'status'    => 'required|string',
@@ -187,13 +175,11 @@ class Inventory extends Component
             'buy_price' => 'required|numeric',
             'stock'     => 'required|numeric',
         ]);
-
         $adminId = auth()->id();
         if (!$adminId) {
             session()->flash('error', 'کاربر وارد سیستم نشده است');
             return;
         }
-
         $data = [
             'category'  => $this->category,
             'brand'     => $this->brand,
@@ -206,7 +192,6 @@ class Inventory extends Component
             'admin_id'  => auth()->id(),
             'admin_name' => auth()->user()->name,
         ];
-
         try {
             if ($this->editing && $this->editingId) {
                 Product::findOrFail($this->editingId)->update($data);
@@ -218,35 +203,37 @@ class Inventory extends Component
         } catch (\Exception $e) {
             dd('خطا در ثبت: ' . $e->getMessage());
         }
-
         $this->resetForm();
         $this->resetPage();
     }
-
-
     private function normalizeNumber($value)
-    {
-        if ($value === null) return null;
-        $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-        $arabic  = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-        $english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-        $value = str_replace($persian, $english, $value);
-        $value = str_replace($arabic,  $english, $value);
-        return $value;
-    }
-    public function updatingBuyPrice($value)
-    {
-        $this->buy_price = (float) $this->normalizeNumber($value);
-    }
+{
+    if ($value === null) return null;
+
+    $persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹','٬','٫',' '];
+    $arabic  = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩','٬','٫',' '];
+    $english = ['0','1','2','3','4','5','6','7','8','9','','.',''];
+
+    $value = str_replace($persian, $english, $value);
+    $value = str_replace($arabic,  $english, $value);
+
+    // کامای انگلیسی و علامت پول و هر چیز اضافی
+    $value = str_replace([',','؋'], '', $value);
+
+    return $value;
+}
+   public function updatingBuyPrice($value)
+{
+    $this->buy_price = $this->normalizeNumber($value); // بدون float
+}
     public function updatingSellPrice($value)
     {
         $this->sell_price = (float) $this->normalizeNumber($value);
     }
-    public function updatedBuyPrice($value)
-    {
-        $this->buy_price = (float) $value;
-        $this->calculateProfit();
-    }
+   public function updatedBuyPrice($value)
+{
+    $this->buy_price = $this->normalizeNumber($value); // بدون float
+}
     public function updatedSellPrice($value)
     {
         $this->sell_price = (float) $value;
@@ -284,19 +271,16 @@ class Inventory extends Component
     {
         Product::findOrFail($id)->delete();
     }
-
     public function getDevicesProperty()
-    {
-        return Product::with('admin')
-            ->oldest()
-            ->paginate(5);
-    }
-
-
+{
+    return Product::with('admin')
+        ->latest()          // یا ->orderByDesc('id')
+        ->paginate(5);
+}
     public function render()
     {
-        return view('livewire.mobile.inventory', [
-            'devices' => $this->devices,
-        ]);
+       return view('livewire.mobile.inventory', [
+        'devices' => $this->devices, // همین ok است چون computed است
+    ]);
     }
 }

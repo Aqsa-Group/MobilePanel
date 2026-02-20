@@ -40,7 +40,7 @@ class SellForm extends Component
     public function mount()
     {
         $this->customers = Customer::all();
-        $this->devices   = Device::all();
+        $this->devices   = Product::orderBy('created_at','desc')->get(); // ✅ بجای Device
 
         $this->loan_models = [''];
         $this->loan_purchase_prices = [''];

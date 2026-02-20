@@ -40,7 +40,6 @@ Route::get('/device-repair', function () { return view('Mobile.shop.device-repai
 Route::get('/accounts-page', function () { return view('Mobile.shop.accounts-page');})->name('accounts');
 Route::get('/profile', function () { return view('Mobile.shop.profile');})->name('profile');
 });
-// management Panel
 use App\Livewire\Admin2\Dashboard;
 use App\Livewire\Admin2\Users;
 use App\Livewire\Admin2\DeviceList;
@@ -54,7 +53,6 @@ Route::prefix('admin2')->group(function () {
     Route::get('/login', [AuthControllers::class, 'showLogin'])->name('admin2.login');
     Route::post('/login', [AuthControllers::class, 'login'])->name('admin2.login.post');
     Route::post('/logout', [AuthControllers::class, 'logout'])->name('admin2.logout');
-
     Route::middleware('auth:admin2')->group(function () {
         Route::get('/dashboard', Dashboard::class)->name('admin2.dashboard');
         Route::get('/users', Users::class)->name('admin2.users');
@@ -63,4 +61,17 @@ Route::prefix('admin2')->group(function () {
         Route::get('/store', Store::class)->name('admin2.store');
         Route::get('/reports', Reports::class)->name('admin2.reports');
     });
+});
+use App\Livewire\Website\Home;
+use App\Livewire\Website\About;
+use App\Livewire\Website\Contact;
+use App\Livewire\Website\Register as WebsiteRegister;
+use App\Livewire\Website\Services;
+Route::prefix('website')->group(function () {
+    Route::get('/', Home::class)->name('website.home');
+    Route::get('/about', About::class)->name('website.about');
+    Route::get('/services', Services::class)->name('website.services');
+    Route::get('/contact', Contact::class)->name('website.contact');
+    Route::get('/register', WebsiteRegister::class)->name('website.register');
+    Route::view('/login', 'livewire.website.login')->name('website.login');
 });

@@ -1,23 +1,31 @@
 <?php
+
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\UserForm;
+
 class Device extends Model
 {
     use HasFactory;
     protected $table = 'devices';
     protected $fillable = [
+        'barcode',
+        'name',
         'category',
-        'brand',
         'status',
-        'model',
-        'image',
         'buy_price',
-        'sell_price',
-        'stock',
+        'sell_price_retail',
+        'sell_price_wholesale',
+        'total_buy',
+        'paid_amount',
+        'quantity',
+        'image',
+        'user_id',
         'admin_id',
     ];
-      protected $appends = ['status_fa', 'brand_fa', 'category_fa'];
+    protected $appends = ['status_fa', 'category_fa'];
     public function getStatusFaAttribute()
     {
         return match ($this->status) {
@@ -27,20 +35,11 @@ class Device extends Model
             default   => '--',
         };
     }
-    public function getBrandFaAttribute()
-    {
-        return match ($this->brand) {
-            'apple'   => 'اپل',
-            'samsung' => 'سامسونگ',
-            'xiaomi'  => 'شیائومی',
-            'huawei'  => 'هواوی',
-            default   => '--',
-        };
-    }
+
     public function sale()
-{
-    return $this->belongsTo(Sale::class);
-}
+    {
+        return $this->belongsTo(Sale::class);
+    }
     public function getCategoryFaAttribute()
     {
         return match ($this->category) {

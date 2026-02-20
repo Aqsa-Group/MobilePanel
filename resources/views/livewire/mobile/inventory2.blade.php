@@ -1,8 +1,8 @@
 <div class="w-full">
     <main>
         <div class="p-4  max-w-full mx-auto">
-            <div class="rounded-xl shadow-xl w-full bg-white shadow-[0px_4px_4px_0px_#00000040] border card  px-2 py-4">
-                <form wire:submit.prevent="save" >
+            <div wire:key="{{ $formKey }}"   class="rounded-xl shadow-xl w-full bg-white shadow-[0px_4px_4px_0px_#00000040] border card  px-2 py-4">
+                <form wire:submit.prevent="save"  >
                     <div class="flex items-center justify-start">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2.66162 11.333H15.3283" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -24,7 +24,7 @@
                         </div>
                         <div class="relative">
                             <h1>نام دستگاه:</h1>
-                            <input type="text" wire:model.defer="name" class="w-full text-xs input-field rounded-lg pl-8 py-4 px-1 mt-1" placeholder="نام کامل جنس">
+                            <input type="text" wire:model="name" class="w-full text-xs input-field rounded-lg pl-8 py-4 px-1 mt-1" placeholder="نام کامل جنس">
                             <div class="absolute left-2 top-10">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16 2H8C4 2 2 4 2 8V21C2 21.55 2.45 22 3 22H16C20 22 22 20 22 16V8C22 4 20 2 16 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -32,63 +32,72 @@
                                     <path d="M12.1699 8.58008C12.6099 10.1501 13.8399 11.3901 15.4199 11.8301" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
+                            @error('name') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                         <div class="relative">
                             <h1>کتگوری:</h1>
-                            <select wire:model.defer="category" class="input-field rounded-lg mt-1 pl-8 p-2.5 ">
+                            <select wire:model="category" class="input-field rounded-lg mt-1 pl-8 p-2.5 ">
                                 <option value="">کتگوری</option>
                                 <option value="موبایل">موبایل</option>
                                 <option value="تبلت">تبلت</option>
                                 <option value="لپتاب">لپتاب</option>
                             </select>
+                            @error('category') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                         <div class="relative">
                             <h1>حالت:</h1>
-                            <select wire:model.defer="status" class="input-field rounded-lg mt-1 pl-8 p-2.5">
+                            <select wire:model="status" class="input-field rounded-lg mt-1 pl-8 p-2.5">
                                 <option value="">حالت</option>
                                 <option value="نو">نو</option>
                                 <option value="کارکرده">کارکرده</option>
                                 <option value="معیوب">معیوب</option>
                             </select>
+                            @error('status') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                         <div class="relative">
                             <h1>قیمت خرید هر محصول:</h1>
-                            <input  wire:model.defer="buy_price" type="text" class="w-full text-xs input-field no-spinner rounded-lg pl-8 py-4 px-1 mt-1" placeholder="75,000؋">
+                            <input  wire:model="buy_price" type="text" class="w-full text-xs input-field no-spinner rounded-lg pl-8 py-4 px-1 mt-1" placeholder="75,000؋">
                             <div class="absolute left-2 top-10">
                                 <svg width="24" height="24" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="layer1"> <path d="M 0 4 L 0 15 L 18 15 L 18 4 L 0 4 z M 1 5 L 17 5 L 17 14 L 1 14 L 1 5 z M 3 6 C 3 6.558207 2.558207 7 2 7 L 2 8 C 3.0986472 8 4 7.0986472 4 6 L 3 6 z M 8.5 6 L 8.5 7 C 7.677495 7 7 7.677495 7 8.5 C 7 9.322505 7.677495 10 8.5 10 L 9.5 10 C 9.782065 10 10 10.217935 10 10.5 C 10 10.782065 9.782065 11 9.5 11 L 8.5 11 L 7 11 L 7 12 L 8.5 12 L 8.5 13 L 9.5 13 L 9.5 12 C 10.322504 12 11 11.322505 11 10.5 C 11 9.6774955 10.322504 9 9.5 9 L 8.5 9 C 8.217935 9 8 8.782065 8 8.5 C 8 8.217935 8.217935 8 8.5 8 L 9.5 8 L 11 8 L 11 7 L 9.5 7 L 9.5 6 L 8.5 6 z M 14 6 C 14 7.0986472 14.901353 8 16 8 L 16 7 C 15.441793 7 15 6.558207 15 6 L 14 6 z M 19 6 L 19 16 L 2 16 L 2 17 L 20 17 L 20 6 L 19 6 z M 2 11 L 2 12 C 2.558207 12 3 12.441793 3 13 L 4 13 C 4 11.901353 3.0986472 11 2 11 z M 16 11 C 14.901353 11 14 11.901353 14 13 L 15 13 C 15 12.441793 15.441793 12 16 12 L 16 11 z " style="fill:currentColor; fill-opacity:1; stroke:none; stroke-width:0px;"></path> </g> </g></svg>
                             </div>
+                            @error('buy_price') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                         <div class="relative">
                             <h1>مبلغ کل خرید:</h1>
-                            <input wire:model.defer="total_buy"   type="text" class="w-full text-xs no-spinner input-field rounded-lg pl-8 py-4 px-1 mt-1" placeholder="75,000؋">
+                            <input wire:model="total_buy"   type="text" class="w-full text-xs no-spinner input-field rounded-lg pl-8 py-4 px-1 mt-1" placeholder="75,000؋">
                             <div class="absolute left-2 top-10">
                                 <svg fill="currentColor" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 31.521 31.522" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M12.204,8.502L9.517,1.407h12.479l-2.688,7.095H12.204z M10.648,9.782h10.225v-1H10.648V9.782z M24.029,12.801 l-1.604-4.242h7.545l-1.604,4.242H24.029z M23.869,9.559l0.851,2.242h2.953l0.851-2.242H23.869z M3.154,12.801L1.55,8.559h7.545 L7.49,12.801H3.154z M2.995,9.559l0.85,2.242h2.953l0.85-2.242H2.995z M17.617,20.792c-0.217-0.146-0.669-0.219-1.355-0.219v2.381 h0.22c0.976,0,1.463-0.418,1.463-1.256C17.945,21.24,17.836,20.936,17.617,20.792z M13.668,18.066c0,0.745,0.448,1.118,1.344,1.118 c0.009,0,0.084,0.004,0.226,0.013V16.99l-0.22,0.006C14.118,16.997,13.668,17.352,13.668,18.066z M31.521,17.193v6.17 c0,1.76-1.434,3.19-3.193,3.19H24.09c-0.701,2.062-2.635,3.562-4.932,3.562h-6.699c-2.299,0-4.235-1.5-4.936-3.567 c-0.022,0-0.046,0.008-0.07,0.008H3.191C1.43,26.555,0,25.123,0,23.364v-6.17c0-1.762,1.432-3.192,3.191-3.192h4.186 c0.005-0.022,0.016-0.042,0.021-0.065H2.07v-1h5.697c0.844-1.754,2.617-2.978,4.69-2.978h6.698c2.074,0,3.85,1.223,4.69,2.978 h5.603v1h-5.23c0.006,0.022,0.018,0.042,0.021,0.065h4.09C30.088,13.999,31.521,15.43,31.521,17.193z M7.294,25.553 c-0.028-0.223-0.067-0.438-0.067-0.67v-9.696c0-0.064,0.017-0.125,0.021-0.188H3.191C1.982,15,1,15.983,1,17.192v6.17 c0,1.209,0.982,2.191,2.191,2.191H7.294L7.294,25.553z M19.482,21.672c0-0.885-0.197-1.49-0.595-1.822 c-0.396-0.332-1.157-0.526-2.288-0.59l-0.338-0.014v-2.25H16.5c0.833,0,1.25,0.332,1.25,1l0.006,0.162h1.469v-0.207 c0-0.883-0.209-1.486-0.628-1.812c-0.419-0.324-1.196-0.487-2.335-0.487v-0.875h-1.024v0.875c-1.191,0-2.008,0.17-2.447,0.51 c-0.438,0.341-0.66,0.97-0.66,1.892c0,0.949,0.221,1.599,0.656,1.943c0.438,0.346,1.256,0.52,2.451,0.52v2.438l-0.226-0.006 c-0.612,0-1.008-0.08-1.185-0.242c-0.178-0.158-0.268-0.518-0.268-1.07v-0.156H12.04l-0.007,0.306c0,0.91,0.219,1.547,0.654,1.914 c0.434,0.367,1.188,0.549,2.26,0.549l0.287,0.007v1.006h1.026v-1.006l0.313-0.008c1.076,0,1.828-0.191,2.26-0.574 S19.482,22.622,19.482,21.672z M30.521,17.193c0-1.209-0.984-2.192-2.193-2.192h-3.959c0.002,0.064,0.02,0.124,0.02,0.188v9.697 c0,0.229-0.039,0.446-0.066,0.67h4.008c1.209,0,2.191-0.982,2.191-2.191V17.193L30.521,17.193z"></path> </g> </g></svg>
                             </div>
+                            @error('total_buy') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                         <div class="relative">
                             <h1>مبلغ رسید:</h1>
-                            <input wire:model.defer="paid_amount" type="text" class="w-full text-xs input-field rounded-lg pl-8 py-4 px-1 mt-1 no-spinner" placeholder="75,000؋">
+                            <input wire:model="paid_amount" type="text" class="w-full text-xs input-field rounded-lg pl-8 py-4 px-1 mt-1 no-spinner" placeholder="75,000؋">
                             <div class="absolute left-2 top-10">
                                 <svg fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 496 496" xml:space="preserve" width="24" height="24"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <g> <path d="M472,96c13.232,0,24-10.768,24-24V24c0-13.232-10.768-24-24-24H312c-13.232,0-24,10.768-24,24v48 c0,13.232,10.768,24,24,24h48v240h-16V152c0-22.056-17.944-40-40-40H192V0H48v112h-8c-22.056,0-40,17.944-40,40v184v8v152h496 V336h-72V96H472z M64,16h16v16h16V16h16v16h16V16h16v16h16V16h16v144H64V16z M16,152c0-13.232,10.768-24,24-24h8v32H32v16h176 v-16h-16v-32h112c13.232,0,24,10.768,24,24v184H16V152z M480,352v128H16V352H480z M376,336V96h32v240H376z M312,80 c-4.416,0-8-3.584-8-8V24c0-4.416,3.584-8,8-8h160c4.416,0,8,3.584,8,8v48c0,4.416-3.584,8-8,8H312z"></path> <rect x="448" y="48" width="16" height="16"></rect> <rect x="360" y="48" width="72" height="16"></rect> <rect x="80" y="48" width="80" height="16"></rect> <rect x="80" y="80" width="80" height="16"></rect> <rect x="128" y="112" width="32" height="16"></rect> <path d="M240,256h48v-48h-48V256z M256,224h16v16h-16V224z"></path> <path d="M176,256h48v-48h-48V256z M192,224h16v16h-16V224z"></path> <path d="M112,256h48v-48h-48V256z M128,224h16v16h-16V224z"></path> <path d="M48,256h48v-48H48V256z M64,224h16v16H64V224z"></path> <path d="M240,320h48v-48h-48V320z M256,288h16v16h-16V288z"></path> <path d="M176,320h48v-48h-48V320z M192,288h16v16h-16V288z"></path> <path d="M112,320h48v-48h-48V320z M128,288h16v16h-16V288z"></path> <path d="M48,320h48v-48H48V320z M64,288h16v16H64V288z"></path> <path d="M248,464c23.736,0,43.448-17.336,47.28-40H376v-16h-80.72c-3.824-22.664-23.544-40-47.28-40 c-23.736,0-43.448,17.336-47.28,40H120v16h80.72C204.552,446.664,224.264,464,248,464z M248,384c17.648,0,32,14.352,32,32 s-14.352,32-32,32s-32-14.352-32-32S230.352,384,248,384z"></path> </g> </g> </g> </g></svg>
                             </div>
+                            @error('paid_amount') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                         <div class="relative">
                             <h1>موجودی کل:</h1>
-                            <input wire:model.defer="quantity" type="text" class="w-full no-spinner text-xs input-field rounded-lg pl-8 py-4 px-1 mt-1" placeholder="30">
+                            <input wire:model="quantity" type="text" class="w-full no-spinner text-xs input-field rounded-lg pl-8 py-4 px-1 mt-1" placeholder="30">
                             <div class="absolute left-2 top-10">
                                 <svg fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 256 253" enable-background="new 0 0 256 253" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M122,219H76v-45h18v14h10v-14h18V219z M182,219h-46v-45h18v14h10v-14h18V219z M152,160h-46v-45h18v14h10v-14h18V160z M2,69 c0,13.678,9.625,25.302,22,29.576V233H2v18h252v-18h-22V98.554c12.89-3.945,21.699-15.396,22-29.554v-8H2V69z M65.29,68.346 c0,6.477,6.755,31.47,31.727,31.47c21.689,0,31.202-19.615,31.202-31.47c0,11.052,7.41,31.447,31.464,31.447 c21.733,0,31.363-20.999,31.363-31.447c0,14.425,9.726,26.416,22.954,30.154V233H42V98.594C55.402,94.966,65.29,82.895,65.29,68.346 z M222.832,22H223V2H34v20L2,54h252L222.832,22z"></path> </g></svg>
                             </div>
+                            @error('quantity') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                     </div>
                     <div class="flex flex-col gap-3 sm:flex-row">
-                        <button class="w-full  bg-red-800 hover:bg-red-700 text-white mt-2 rounded-lg py-3 font-bold text-sm cursor-pointer">لغو</button>
-                        <input type="submit" class="w-full  bg-blue-800 hover:bg-blue-700 text-white mt-2 rounded-lg py-3 font-bold text-sm cursor-pointer" value="ثبت محصول جدید">
+                        <button type="button"  wire:click='resetForm' class="w-full  bg-red-800 hover:bg-red-700 text-white mt-2 rounded-lg py-3 font-bold text-sm cursor-pointer">لغو</button>
+                        <button type="submit"   class="w-full  bg-blue-800 hover:bg-blue-700 text-white mt-2 rounded-lg py-3 font-bold text-sm cursor-pointer" >
+                            {{ $editing ? 'ویرایش ' : 'ثبت ' }}
+                        </button>
                     </div>
                 </form>
             </div>
             <div class="grid grid-cols-1  w-full lg:grid-cols-2 gap-3 pt-2">
                 <div class="lg:col-span-2 border bg-white card rounded-2xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl  w-full lg:max-w-full p-3">
-                    <div class="lg:hidden space-y-3 ">
+                    <div class=" lg:hidden space-y-3 ">
                         <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
                             <div class="flex items-center gap-1 flex-shrink-0">
                                 <i>
@@ -125,54 +134,54 @@
                                 </div>
                             </div>
                         </div>
-                        @forelse($products as $product)
+                        @forelse($devices as $device)
                         <div class="p-4">
                             <div class="">
                                 <div class="grid grid-cols-2 gap-5 text-center text-sm">
                                     <div>
                                         <div class="text-gray-600 text-xs font-semibold mb-1">بار کد </div>
-                                        <div class="text-gray-900 font-bold">{{ $product->barcode }} </div>
+                                        <div class="text-gray-900 font-bold">{{ $device->barcode }} </div>
                                     </div>
                                     <div>
                                         <div class="text-gray-600 text-xs font-semibold mb-1">نام دستگاه</div>
-                                        <div class="text-gray-900 font-bold">{{ $product->name  }} </div>
+                                        <div class="text-gray-900 font-bold">{{ $device->name  }} </div>
                                     </div>
                                     <div>
                                         <div class="text-gray-600 text-xs font-semibold mb-1">کتکوری</div>
-                                        <div class="text-gray-900 font-bold"> {{ $product->category  }}</div>
+                                        <div class="text-gray-900 font-bold"> {{ $device->category  }}</div>
                                     </div>
                                     <div class="">
                                         <div class="text-gray-600 text-xs font-semibold mb-1">  حالت   </div>
-                                        <div class="text-gray-900 font-bold">   {{ ($product->status ) }}</div>
+                                        <div class="text-gray-900 font-bold">   {{ ($device->status ) }}</div>
                                     </div>
                                     <div class="">
                                         <div class="text-gray-600 text-xs font-semibold mb-1">ادمین </div>
-                                        <div class="text-gray-900 font-bold">  @if($product->admin)   {{ $product->admin->name }} ({{ $product->admin->rule }})   @else     --  @endif</div>
+                                        <div class="text-gray-900 font-bold">  @if($device->admin)   {{ $device->admin->name }} ({{ $device->admin->rule }})   @else     --  @endif</div>
                                     </div>
                                     <div class="">
                                         <div class="text-gray-600 text-xs font-semibold mb-1">قیمت خرید </div>
-                                        <div class="text-gray-900 font-bold"> {{ ($product->buy_price) }}؋</div>
+                                        <div class="text-gray-900 font-bold"> {{ ($device->buy_price) }}؋</div>
                                     </div>
                                     <div class="">
                                         <div class="text-gray-600 text-xs font-semibold mb-1"> مبلغ رسید   </div>
-                                        <div class="text-gray-900 font-bold"> {{ ($product->sell_price_wholesale) }}</div>
+                                        <div class="text-gray-900 font-bold"> {{ ($device->sell_price_wholesale) }}</div>
                                     </div>
                                     <div class="">
                                         <div class="text-gray-600 text-xs font-semibold mb-1">  الباقی قیمت  </div>
-                                        <div class="text-gray-900 font-bold"> <span > {{ ($product->total_buy) }}</span></div>
+                                        <div class="text-gray-900 font-bold"> <span >{{ number_format($device->buy_price * $device->quantity - $device->paid_amount) }}؋</span></div>
                                     </div>
                                     <div class="">
                                         <div class="text-gray-600 text-xs font-semibold mb-1">  موجودی   </div>
-                                        <div class="text-gray-900 font-bold">{{ $product->quantity }} </div>
+                                        <div class="text-gray-900 font-bold">{{ $device->quantity }} </div>
                                     </div>
                                 </div>
                                 <div class="flex justify-center gap-3 mt-5">
-                                    <button  wire:click="edit({{ $product->id }})" class="flex items-center gap-1 text-[#1C274C] border-[#1C274C] border border-2 e py-2 px-3 rounded-lg text-xs">
+                                    <button  wire:click="edit({{ $device->id }})" class="flex items-center gap-1 text-[#1C274C] border-[#1C274C] border border-2 e py-2 px-3 rounded-lg text-xs">
                                         <i class="bi bi-pencil-square">
                                             <svg width="20" height="20" viewBox="0 0 24 24" class="icon-dark-light" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14"  stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="currentColor"></circle> <path d="M15 16.5H9"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827"  stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                                         </i> چاپ
                                     </button>
-                                    <button  wire:click="edit({{ $product->id }})" class="flex items-center gap-1 text-[#1E40AF]  border-blue-800 border border-2 e py-2 px-3 rounded-lg text-xs">
+                                    <button  wire:click="edit({{ $device->id }})" class="flex items-center gap-1 text-[#1E40AF]  border-blue-800 border border-2 e py-2 px-3 rounded-lg text-xs">
                                         <i class="bi bi-pencil-square">
                                         <svg width="24" class="icon-blue" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -199,28 +208,28 @@
                         <div class="flex justify-center gap-3 mt-5">
                             هیچ محصولی ثبت نشده
                         </div>
-                    @endforelse
+                        @endforelse
                         <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
-                            @if ($products->lastPage() > 1)
+                            @if ($devices->lastPage() > 1)
                             <button
                                 wire:click="previousPage"
-                                @disabled($products->onFirstPage())
+                                @disabled($devices->onFirstPage())
                                 class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
                                 قبلی
                             </button>
                             <span class="mx-2 text-sm font-medium">
-                                {{ $products->currentPage() }} از {{ $products->lastPage() }}
+                                {{ $devices->currentPage() }} از {{ $devices->lastPage() }}
                             </span>
                             <button
                                 wire:click="nextPage"
-                                @disabled($products->onLastPage())
+                                @disabled($devices->onLastPage())
                                 class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
                                 بعدی
                             </button>
                             @endif
                         </div>
                     </div>
-                    <div class="hidden  lg:block overflow-x-auto ">
+                    <div class=" hidden  lg:block   overflow-x-auto ">
                         <div class="flex justify-between mb-3">
                             <div class="flex gap-1 items-center">
                                 <i>
@@ -266,39 +275,37 @@
                                     <th class="p-2 text-[12px]">کتگوری</th>
                                     <th class="p-2 text-[12px]">حالت</th>
                                     <th class="p-2 text-[12px]">ادمین</th>
-                                    <th class="p-2 text-[12px]">قیمت خرید</th>
+                                    <th class="p-2 text-[12px]">قیمت خرید هر محصول</th>
+                                    <th class="p-2 text-[12px]"> مبلغ کل خرید</th>
                                     <th class="p-2 text-[12px]"> مبلغ رسید</th>
                                     <th class="p-2 text-[12px]"> الباقی مبلغ</th>
                                     <th class="p-2 text-[12px]">موجودی</th>
-                                    <th class="p-2 text-[12px]">ویرایش</th>
                                     <th class="p-2 text-[12px]">چاپ</th>
+                                    <th class="p-2 text-[12px]">ویرایش</th>
                                     <th class="p-2 text-[12px]">حذف</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            @forelse($products as $i => $product)
+                            @forelse($devices as $i => $device)
                                 <tr class=" text-[10px] border-b-2 border-[#1E40AF]">
-                                    <td class="p-2 font-bold">{{ $products->firstItem() + $i }}</td>
+                                    <td class="p-2 font-bold">{{ $devices->firstItem() + $i }}</td>
+                                    <td class="p-2">{{ $device->barcode }}</td>
+                                    <td class="p-2">{{ $device->name }}</td>
+                                    <td class="p-2">{{ $device->category }}</td>
+                                    <td class="p-2">{{ $device->status }}</td>
+                                    <td class="p-2">@if($device->admin)   {{ $device->admin->name }} ({{ $device->admin->rule }})   @else     --  @endif</td>
+                                    <td class="p-2">{{ ($device->buy_price) }}؋</td>
+                                    <td class="p-2">{{ number_format($device->buy_price * $device->quantity) }} ؋</td>
+                                    <td class="p-2">{{ ($device->paid_amount) }}؋</td>
+                                    <td class="p-2">{{ number_format($device->buy_price * $device->quantity - $device->paid_amount) }}؋</td>
+                                    <td class="p-2">{{ $device->quantity }}</td>
                                     <td class="p-2">
-                                        @if($product->image) <img src="{{ asset('storage/'.$product->image) }}" class="w-10 block mx-auto  h-10 rounded-full">   @endif
-                                    </td>
-                                    <td class="p-2">{{ $product->barcode }}</td>
-                                    <td class="p-2">{{ $product->name }}</td>
-                                    <td class="p-2">{{ $product->category }}</td>
-                                    <td class="p-2">{{ $product->status }}</td>
-                                    <td class="p-2">@if($product->admin)   {{ $product->admin->name }} ({{ $product->admin->rule }})   @else     --  @endif</td>
-                                    <td class="p-2">{{ $product->company }}</td>
-                                    <td class="p-2">{{ ($product->buy_price) }}؋</td>
-                                    <td class="p-2">{{ ($product->sell_price_wholesale) }}؋</td>
-                                    <td class="p-2">{{ ($product->total_buy) }}؋</td>
-                                    <td class="p-2">{{ $product->quantity }}</td>
-                                    <td class="p-2">
-                                        <i    wire:click="edit({{ $product->id }})" class="text-blue-800 flex justify-center text-lg cursor-pointer">
+                                        <i class="text-blue-800 flex justify-center text-lg cursor-pointer">
                                             <svg class="icon-dark-light" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14"  stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="currentColor"></circle> <path d="M15 16.5H9"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827"  stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                                         </i>
                                     </td>
                                     <td class="p-2">
-                                        <i    wire:click="edit({{ $product->id }})" class="text-blue-800 flex justify-center text-lg cursor-pointer">
+                                        <i   wire:click="edit({{ $device->id }})"  class="text-blue-800 flex justify-center text-lg cursor-pointer">
                                         <svg width="20"  class="icon-blue" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M16.0399 3.01976L8.15988 10.8998C7.85988 11.1998 7.55988 11.7898 7.49988 12.2198L7.06988 15.2298C6.90988 16.3198 7.67988 17.0798 8.76988 16.9298L11.7799 16.4998C12.1999 16.4398 12.7899 16.1398 13.0999 15.8398L20.9799 7.95976C22.3399 6.59976 22.9799 5.01976 20.9799 3.01976C18.9799 1.01976 17.3999 1.65976 16.0399 3.01976Z"  stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -307,7 +314,7 @@
                                         </i>
                                     </td>
                                     <td class="text-center">
-                                        <button  type="button"  class="flex items-center justify-center mx-auto h-full" >
+                                        <button  type="button" wire:click='delete({{ $device->id}})'  class="flex items-center justify-center mx-auto h-full" >
                                             <svg class="icon-danger" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998"
                                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -332,23 +339,23 @@
                             @endforelse
                             </tbody>
                         </table>
-                        <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
-                            @if ($products->lastPage() > 1)
-                            <button
-                                wire:click="previousPage"
-                                @disabled($products->onFirstPage())
-                                class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
-                                قبلی
-                            </button>
-                            <span class="mx-2 text-sm font-medium">
-                                {{ $products->currentPage() }} از {{ $products->lastPage() }}
-                            </span>
-                            <button
-                                wire:click="nextPage"
-                                @disabled($products->onLastPage())
-                                class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
-                                بعدی
-                            </button>
+                       <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
+                            @if ($devices->lastPage() > 1)
+                                <button
+                                    wire:click="previousPage"
+                                    @disabled($devices->onFirstPage())
+                                    class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                                    قبلی
+                                </button>
+                                <span class="mx-2 text-sm font-medium">
+                                    {{ $devices->currentPage() }} از {{ $devices->lastPage() }}
+                                </span>
+                                <button
+                                    wire:click="nextPage"
+                                    @disabled($devices->onLastPage())
+                                    class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50">
+                                    بعدی
+                                </button>
                             @endif
                         </div>
                     </div>
