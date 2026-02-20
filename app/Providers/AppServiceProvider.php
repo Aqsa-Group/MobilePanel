@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Auth\Middleware\Authenticate;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -14,11 +14,14 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
-    {
-        //
-    }
+   public function boot(): void
+{
+    Authenticate::redirectUsing(function ($request) {
+        if ($request->is('admin2/*')) {
+            return route('admin2.login');
+        }
+
+        return route('login');
+    });
+}
 }

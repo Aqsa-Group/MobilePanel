@@ -34,13 +34,17 @@ return [
     | Supported: "session"
     |
     */
-
-    'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
+'guards' => [
+    'web' => [ // پنل اول (موبایل)
+        'driver' => 'session',
+        'provider' => 'users',
     ],
+
+    'admin2' => [ // پنل دوم (Admin2)
+        'driver' => 'session',
+        'provider' => 'admin2_users',
+    ],
+],
 
     /*
     |--------------------------------------------------------------------------
@@ -59,17 +63,22 @@ return [
     |
     */
 
-    'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' =>App\Models\UserForm::class,
-        ],
+'providers' => [
+    'users' => [ // پنل اول
+        'driver' => 'eloquent',
+        'model' => App\Models\UserForm::class,
+    ],
+
+    'admin2_users' => [ // پنل دوم
+        'driver' => 'eloquent',
+        'model' => App\Models\User::class, // همین User که users_list است
+    ],
+],
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
-    ],
 
     /*
     |--------------------------------------------------------------------------

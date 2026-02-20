@@ -351,26 +351,26 @@
                 <div class="flex justify-center items-center gap-2 mt-3">
                     <div class="flex  gap-3 mt-5">
                         <a wire:click="goToEdit({{ $employee->id }})" class="flex items-center gap-1  border border-2 border-gray-600 py-2 px-3 rounded-lg text-xs">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14"  stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="currentColor"></circle> <path d="M15 16.5H9"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827"  stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+                            <svg width="20"  class="icon-dark-light" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14"  stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="currentColor"></circle> <path d="M15 16.5H9"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827"  stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                             چاپ
                         </a>
                         <a wire:click="edit({{ $employee->id }})"   class="flex items-center gap-1 border-[#1E40AF] border border-2 py-2 px-3 rounded-lg text-xs">
                             <i class="bi bi-pencil-square">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"  class="icon-blue"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13"
-                                        stroke="#1E40AF" stroke-width="1.5" stroke-linecap="round"
+                                         stroke-width="1.5" stroke-linecap="round"
                                         stroke-linejoin="round"/>
                                     <path d="M16.0399 3.02025L8.15988 10.9003C7.85988 11.2003 7.55988 11.7903
                                             7.49988 12.2203L7.06988 15.2303C6.90988 16.3203 7.67988 17.0803
                                             8.76988 16.9303L11.7799 16.5003C12.1999 16.4403 12.7899 16.1403
                                             13.0999 15.8403L20.9799 7.96025C22.3399 6.60025 22.9799 5.02025
                                             20.9799 3.02025C18.9799 1.02025 17.3999 1.66025 16.0399 3.02025Z"
-                                        stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10"
+                                         stroke-width="1.5" stroke-miterlimit="10"
                                         stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M14.9102 4.15039C15.5802 6.54039 17.4502 8.41039
                                             19.8502 9.09039"
-                                        stroke="#1E40AF" stroke-width="1.5" stroke-miterlimit="10"
+                                         stroke-width="1.5" stroke-miterlimit="10"
                                         stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </i>
@@ -378,12 +378,12 @@
                         </a>
                         <button wire:click="confirmDelete({{ $employee->id }})" class="flex items-center gap-1  border-red-600 border border-2   py-2 px-3 rounded-lg text-xs">
                             <i class="bi bi-trash">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 5.98047C17.67 5.65047 14.32 5.48047 10.98 5.48047C9 5.48047 7.02 5.58047 5.04 5.78047L3 5.98047" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M18.8499 9.13965L18.1999 19.2096C18.0899 20.7796 17.9999 21.9996 15.2099 21.9996H8.7899C5.9999 21.9996 5.9099 20.7796 5.7999 19.2096L5.1499 9.13965" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <svg width="24" height="24" class="icon-danger" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 5.98047C17.67 5.65047 14.32 5.48047 10.98 5.48047C9 5.48047 7.02 5.58047 5.04 5.78047L3 5.98047"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M18.8499 9.13965L18.1999 19.2096C18.0899 20.7796 17.9999 21.9996 15.2099 21.9996H8.7899C5.9999 21.9996 5.9099 20.7796 5.7999 19.2096L5.1499 9.13965"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10.3301 16.5H13.6601"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.5 12.5H14.5"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             </i> حذف
                         </button>
