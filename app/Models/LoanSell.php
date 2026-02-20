@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
-
 class LoanSell extends Model
 {protected $fillable = [
     'name',
@@ -11,11 +8,15 @@ class LoanSell extends Model
     'number',
     'buy_price',
     'sell_price',
-    'barcode'
+    'barcode',
+    'product_stock_id',
 ];
-
-    public function devices()
+    public function productStock()
     {
-        return $this->belongsTo(Devices::class);
+        return $this->belongsTo(ProductStock::class, 'product_stock_id');
+    }
+    public function device()
+    {
+        return $this->belongsTo(Device::class);
     }
 }

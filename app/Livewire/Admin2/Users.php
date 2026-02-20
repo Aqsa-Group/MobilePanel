@@ -35,6 +35,31 @@ class Users extends Component
     {
         $this->resetPage();
     }
+    protected function messages()
+{
+    return [
+        'name.required' => 'نام الزامی است.',
+        'name.regex' => 'نام فقط باید شامل حروف فارسی/انگلیسی و فاصله باشد.',
+        'last_name.regex' => 'نام خانوادگی فقط باید شامل حروف فارسی/انگلیسی و فاصله باشد.',
+        'user_name.required' => 'نام کاربری الزامی است.',
+        'user_name.unique' => 'این نام کاربری قبلاً ثبت شده است.',
+        'email.required' => 'ایمیل الزامی است.',
+        'email.email' => 'فرمت ایمیل صحیح نیست.',
+        'email.unique' => 'این ایمیل قبلاً ثبت شده است.',
+        'password.required' => 'رمز عبور الزامی است.',
+        'password.min' => 'رمز عبور باید حداقل ۶ کاراکتر باشد.',
+        'phone_number.required' => 'شماره تماس الزامی است.',
+        'phone_number.unique' => 'این شماره تماس قبلاً ثبت شده است.',
+        'phone_number.regex' => 'شماره تماس باید با 07 شروع شود و دقیقاً ۱۰ رقم باشد (مثل 0712345678).',
+        'address.required' => 'آدرس الزامی است.',
+        'address.string' => 'آدرس باید متن باشد.',
+        'role.required' => 'نقش کاربر الزامی است.',
+        'role.in' => 'نقش انتخاب‌شده معتبر نیست.',
+        'image.image' => 'فایل انتخاب‌شده باید تصویر باشد.',
+        'image.max' => 'حجم تصویر نباید بیشتر از ۲ مگابایت باشد.',
+        'user_count_added.in' => 'تعداد مجاز ساخت کاربر فقط می‌تواند ۵ یا ۱۰ باشد.',
+    ];
+}
     private function faToEnDigits($value)
     {
     if ($value === null) return null;
