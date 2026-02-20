@@ -63,6 +63,14 @@
                             @error('buy_price') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                         <div class="relative">
+                            <h1>موجودی کل:</h1>
+                            <input wire:model="quantity" type="text" class="w-full no-spinner text-xs input-field rounded-lg pl-8 py-4 px-1 mt-1" placeholder="30">
+                            <div class="absolute left-2 top-10">
+                                <svg fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 256 253" enable-background="new 0 0 256 253" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M122,219H76v-45h18v14h10v-14h18V219z M182,219h-46v-45h18v14h10v-14h18V219z M152,160h-46v-45h18v14h10v-14h18V160z M2,69 c0,13.678,9.625,25.302,22,29.576V233H2v18h252v-18h-22V98.554c12.89-3.945,21.699-15.396,22-29.554v-8H2V69z M65.29,68.346 c0,6.477,6.755,31.47,31.727,31.47c21.689,0,31.202-19.615,31.202-31.47c0,11.052,7.41,31.447,31.464,31.447 c21.733,0,31.363-20.999,31.363-31.447c0,14.425,9.726,26.416,22.954,30.154V233H42V98.594C55.402,94.966,65.29,82.895,65.29,68.346 z M222.832,22H223V2H34v20L2,54h252L222.832,22z"></path> </g></svg>
+                            </div>
+                            @error('quantity') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="relative">
                             <h1>مبلغ کل خرید:</h1>
                             <input wire:model="total_buy"   type="text" class="w-full text-xs no-spinner input-field rounded-lg pl-8 py-4 px-1 mt-1" placeholder="75,000؋">
                             <div class="absolute left-2 top-10">
@@ -77,14 +85,6 @@
                                 <svg fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 496 496" xml:space="preserve" width="24" height="24"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <g> <path d="M472,96c13.232,0,24-10.768,24-24V24c0-13.232-10.768-24-24-24H312c-13.232,0-24,10.768-24,24v48 c0,13.232,10.768,24,24,24h48v240h-16V152c0-22.056-17.944-40-40-40H192V0H48v112h-8c-22.056,0-40,17.944-40,40v184v8v152h496 V336h-72V96H472z M64,16h16v16h16V16h16v16h16V16h16v16h16V16h16v144H64V16z M16,152c0-13.232,10.768-24,24-24h8v32H32v16h176 v-16h-16v-32h112c13.232,0,24,10.768,24,24v184H16V152z M480,352v128H16V352H480z M376,336V96h32v240H376z M312,80 c-4.416,0-8-3.584-8-8V24c0-4.416,3.584-8,8-8h160c4.416,0,8,3.584,8,8v48c0,4.416-3.584,8-8,8H312z"></path> <rect x="448" y="48" width="16" height="16"></rect> <rect x="360" y="48" width="72" height="16"></rect> <rect x="80" y="48" width="80" height="16"></rect> <rect x="80" y="80" width="80" height="16"></rect> <rect x="128" y="112" width="32" height="16"></rect> <path d="M240,256h48v-48h-48V256z M256,224h16v16h-16V224z"></path> <path d="M176,256h48v-48h-48V256z M192,224h16v16h-16V224z"></path> <path d="M112,256h48v-48h-48V256z M128,224h16v16h-16V224z"></path> <path d="M48,256h48v-48H48V256z M64,224h16v16H64V224z"></path> <path d="M240,320h48v-48h-48V320z M256,288h16v16h-16V288z"></path> <path d="M176,320h48v-48h-48V320z M192,288h16v16h-16V288z"></path> <path d="M112,320h48v-48h-48V320z M128,288h16v16h-16V288z"></path> <path d="M48,320h48v-48H48V320z M64,288h16v16H64V288z"></path> <path d="M248,464c23.736,0,43.448-17.336,47.28-40H376v-16h-80.72c-3.824-22.664-23.544-40-47.28-40 c-23.736,0-43.448,17.336-47.28,40H120v16h80.72C204.552,446.664,224.264,464,248,464z M248,384c17.648,0,32,14.352,32,32 s-14.352,32-32,32s-32-14.352-32-32S230.352,384,248,384z"></path> </g> </g> </g> </g></svg>
                             </div>
                             @error('paid_amount') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="relative">
-                            <h1>موجودی کل:</h1>
-                            <input wire:model="quantity" type="text" class="w-full no-spinner text-xs input-field rounded-lg pl-8 py-4 px-1 mt-1" placeholder="30">
-                            <div class="absolute left-2 top-10">
-                                <svg fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 256 253" enable-background="new 0 0 256 253" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M122,219H76v-45h18v14h10v-14h18V219z M182,219h-46v-45h18v14h10v-14h18V219z M152,160h-46v-45h18v14h10v-14h18V160z M2,69 c0,13.678,9.625,25.302,22,29.576V233H2v18h252v-18h-22V98.554c12.89-3.945,21.699-15.396,22-29.554v-8H2V69z M65.29,68.346 c0,6.477,6.755,31.47,31.727,31.47c21.689,0,31.202-19.615,31.202-31.47c0,11.052,7.41,31.447,31.464,31.447 c21.733,0,31.363-20.999,31.363-31.447c0,14.425,9.726,26.416,22.954,30.154V233H42V98.594C55.402,94.966,65.29,82.895,65.29,68.346 z M222.832,22H223V2H34v20L2,54h252L222.832,22z"></path> </g></svg>
-                            </div>
-                            @error('quantity') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                     </div>
                     <div class="flex flex-col gap-3 sm:flex-row">
@@ -190,7 +190,7 @@
                                         </svg>
                                         </i> ویرایش
                                     </button>
-                                    <button  type="button"   class="flex justify-center items-center gap-1 border rounded-lg border-[#FF0000] text-white w-1/2 h-[30px] text-[#FF0000] text-[10px]">
+                                    <button  type="button" wire:click="confirmDelete({{ $device->id }})"  class="flex justify-center items-center gap-1 border rounded-lg border-[#FF0000] text-white w-1/2 h-[30px] text-[#FF0000] text-[10px]">
                                         <svg class="icon-danger"  width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                             <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -232,21 +232,6 @@
                     <div class=" hidden  lg:block   overflow-x-auto ">
                         <div class="flex justify-between mb-3">
                             <div class="flex gap-1 items-center">
-                                <i>
-                                <svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g clip-path="url(#clip0_1047_2670)">
-                                <path d="M34.4314 16.596L32.8736 23.2407C31.5383 28.9792 28.8995 31.3001 23.9398 30.8232C23.145 30.7596 22.2866 30.6166 21.3646 30.394L18.694 29.7582C12.0652 28.1844 10.0146 24.9098 11.5725 18.2651L13.1303 11.6045C13.4482 10.2533 13.8297 9.07698 14.3066 8.1073C16.1665 4.26038 19.3299 3.22712 24.6393 4.48293L27.294 5.10289C33.9545 6.66073 35.9893 9.95128 34.4314 16.596Z"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M23.9399 30.8233C22.9543 31.491 21.7144 32.0474 20.2043 32.5401L17.6926 33.3668C11.3818 35.4015 8.05944 33.7006 6.00881 27.3897L3.97408 21.1107C1.93934 14.7998 3.62436 11.4616 9.93522 9.42682L12.4468 8.60021C13.0986 8.39356 13.7186 8.2187 14.3067 8.10742C13.8298 9.0771 13.4483 10.2534 13.1304 11.6046L11.5725 18.2652C10.0147 24.9099 12.0653 28.1845 18.6941 29.7583L21.3647 30.3941C22.2867 30.6167 23.1451 30.7598 23.9399 30.8233Z"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M20.093 13.5596L27.8028 15.5148"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M18.5352 19.7119L23.1451 20.8882"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </g>
-                                <defs>
-                                <clipPath id="clip0_1047_2670">
-                                <rect width="38.1513" height="38.1513" fill="white"/>
-                                </clipPath>
-                                </defs>
-                                </svg>
-                                </i>
                                 <h2 class="font-bold text-lg mb-0">  لیست موجودی تمام محصولات گدام:</h2>
                             </div>
                             <div class="flex flex-col lg:flex-row gap-1">
@@ -314,7 +299,7 @@
                                         </i>
                                     </td>
                                     <td class="text-center">
-                                        <button  type="button" wire:click='delete({{ $device->id}})'  class="flex items-center justify-center mx-auto h-full" >
+                                        <button  type="button" wire:click="confirmDelete({{ $device->id }})"  class="flex items-center justify-center mx-auto h-full" >
                                             <svg class="icon-danger" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998"
                                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -339,7 +324,7 @@
                             @endforelse
                             </tbody>
                         </table>
-                       <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
+                        <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
                             @if ($devices->lastPage() > 1)
                                 <button
                                     wire:click="previousPage"
@@ -363,4 +348,33 @@
             </div>
         </div>
     </main>
+    @if ($confirmingDelete)
+    <div class="fixed inset-0 z-[99999999] flex items-center justify-center bg-black/50"
+        wire:click="$set('confirmingDelete', false)">
+        <div class="bg-white rounded-2xl shadow-xl w-[90%] max-w-sm p-6 animate-fade-in" wire:click.stop>
+            <div class="flex flex-col items-center text-center gap-3">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 9V13" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M12 17H12.01" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M10.29 3.86L1.82 18A2 2 0 003.55 21H20.45A2 2 0 0022.18 18L13.71 3.86A2 2 0 0010.29 3.86Z"
+                        stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h2 class="text-lg font-bold text-gray-800">آیا مطمئن هستید؟</h2>
+                <p class="text-sm text-gray-500">این عملیات قابل برگشت نمی‌باشد.</p>
+                <div class="flex gap-3 w-full mt-4">
+                    <button
+                        wire:click="$set('confirmingDelete', false)"
+                        class="w-1/2 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100">
+                        لغو
+                    </button>
+                    <button
+                        wire:click="deleteConfirmed"
+                        class="w-1/2 py-2 rounded-xl bg-red-600 text-white hover:bg-red-700">
+                        بله، حذف کن
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
 </div>

@@ -1,20 +1,17 @@
 <?php
-
 namespace App\Livewire\Mobile;
-
 use Livewire\WithFileUploads;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Device;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-
 class Inventory2 extends Component
 {
-
     use WithPagination;
     protected $paginationTheme = 'tailwind';
-
+    public $confirmingDelete = false;
+    public $deleteId = null;
     public $product_id;
     public $barcode, $name, $category, $status;
     public $buy_price, $sell_price_retail, $sell_price_wholesale;
@@ -24,10 +21,22 @@ class Inventory2 extends Component
     public $editing = false;
     public $editingId = null;
     public $validated;
-
     public $search = '';
     public $categoryFilter = '';
-
+public function confirmDelete($id)
+{
+    $this->deleteId = $id;
+    $this->confirmingDelete = true;
+}
+public function deleteConfirmed()
+{
+    if (!$this->deleteId) return;
+    Device::findOrFail($this->deleteId)->delete();
+    $this->confirmingDelete = false;
+    $this->deleteId = null;
+    $this->resetForm();
+    $this->resetPage();
+}
     protected function rules()
     {
         return [
@@ -43,48 +52,36 @@ class Inventory2 extends Component
             'barcode'             => 'nullable|unique:devices,barcode,' . $this->editingId,
         ];
     }
-
     protected $messages = [
         'category.required'         => 'انتخاب دسته‌بندی الزامی است',
         'category.string'           => 'دسته‌بندی باید رشته باشد',
         'category.max'              => 'طول دسته‌بندی نباید بیش از 255 کاراکتر باشد',
-
         'name.required'             => 'وارد کردن نام محصول الزامی است',
         'name.string'               => 'نام محصول باید رشته باشد',
         'name.max'                  => 'نام محصول نباید بیش از 255 کاراکتر باشد',
-
         'status.required'           => 'وضعیت محصول را مشخص کنید',
         'status.string'             => 'وضعیت محصول باید رشته باشد',
         'status.max'                => 'طول وضعیت نباید بیش از 255 کاراکتر باشد',
-
         'quantity.required'         => 'وارد کردن تعداد الزامی است',
         'quantity.integer'          => 'تعداد باید عدد صحیح باشد',
         'quantity.min'              => 'تعداد باید حداقل 1 باشد',
-
         'buy_price.required'        => 'قیمت خرید الزامی است',
         'buy_price.numeric'         => 'قیمت خرید باید عدد باشد',
         'buy_price.min'             => 'قیمت خرید نمی‌تواند منفی باشد',
-
         'sell_price_retail.required' => 'قیمت فروش عمده الزامی است',
         'sell_price_retail.numeric' => 'قیمت فروش عمده باید عدد باشد',
         'sell_price_retail.min'     => 'قیمت فروش عمده نمی‌تواند منفی باشد',
-
         'sell_price_wholesale.required' => 'قیمت فروش خرد الزامی است',
         'sell_price_wholesale.numeric' => 'قیمت فروش خرد باید عدد باشد',
         'sell_price_wholesale.min'     => 'قیمت فروش خرد نمی‌تواند منفی باشد',
-
         'total_buy.required'        => 'مبلغ کل خرید الزامی است',
         'total_buy.numeric'         => 'مبلغ کل خرید باید عدد باشد',
         'total_buy.min'             => 'مبلغ کل خرید نمی‌تواند منفی باشد',
-
         'paid_amount.required'      => 'مبلغ پرداختی الزامی است',
         'paid_amount.numeric'       => 'مبلغ پرداختی باید عدد باشد',
         'paid_amount.min'           => 'مبلغ پرداختی نمی‌تواند منفی باشد',
-
         'barcode.unique'            => 'این بارکد قبلاً ثبت شده است',
-
     ];
-
     public function mount()
     {
         if (!auth()->check()) {
@@ -128,16 +125,24 @@ class Inventory2 extends Component
     private function normalizeNumber($value)
     {
         if ($value === null) return null;
-
         $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
         $arabic  = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
         $english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-
         $value = str_replace($persian, $english, $value);
         $value = str_replace($arabic, $english, $value);
-
         return $value;
     }
+    private function normalizeMoney($value)
+{
+    if ($value === null) return null;
+    $persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹','٬','٫',' '];
+    $arabic  = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩','٬','٫',' '];
+    $english = ['0','1','2','3','4','5','6','7','8','9','','.',''];
+    $value = str_replace($persian, $english, $value);
+    $value = str_replace($arabic,  $english, $value);
+    $value = str_replace([',','؋'], '', $value);
+    return $value;
+}
     public function edit($id)
     {
         $this->editing = true;
@@ -158,14 +163,12 @@ class Inventory2 extends Component
         $this->profit_total = $this->profit_each * (int)$this->quantity;
         $this->formKey = uniqid();
     }
-
     public function cancelEdit()
     {
         $this->resetErrorBag();
         $this->editing = false;
         $this->editingId = null;
     }
-
     public function resetForm()
     {
         $this->reset([
@@ -186,10 +189,6 @@ class Inventory2 extends Component
         $this->editingId = null;
         $this->formKey = uniqid();
     }
-
-
-
-
     public function save()
     {
         $adminId = auth()->id();
@@ -197,23 +196,15 @@ class Inventory2 extends Component
             session()->flash('error', 'کاربر وارد سیستم نشده است');
             return;
         }
-
-        // تبدیل اعداد فارسی به انگلیسی
-        $this->buy_price = $this->normalizeNumber($this->buy_price) ?: 0;
-        $this->sell_price_retail = $this->normalizeNumber($this->sell_price_retail) ?: 0;
-        $this->sell_price_wholesale = $this->normalizeNumber($this->sell_price_wholesale) ?: 0;
-        $this->quantity = $this->normalizeNumber($this->quantity) ?: 0;
-        $this->total_buy = $this->normalizeNumber($this->total_buy) ?: ($this->buy_price * $this->quantity);
-        $this->paid_amount = $this->normalizeNumber($this->paid_amount) ?: 0;
-
-        // محاسبه خودکار سود و باقی مانده
+       $this->buy_price = $this->normalizeMoney($this->buy_price) ?: 0;
+$this->sell_price_retail = $this->normalizeMoney($this->sell_price_retail) ?: 0;
+$this->sell_price_wholesale = $this->normalizeMoney($this->sell_price_wholesale) ?: 0;
+$this->quantity = $this->normalizeMoney($this->quantity) ?: 0;
+$this->total_buy = $this->normalizeMoney($this->total_buy) ?: ($this->buy_price * $this->quantity);
+$this->paid_amount = $this->normalizeMoney($this->paid_amount) ?: 0;
         $this->profit_each  = $this->sell_price_retail - $this->buy_price;
         $this->profit_total = $this->profit_each * $this->quantity;
-
-
-        // اعتبارسنجی
         $validated = $this->validate();
-
         $data = [
             'name' => $this->name,
             'category' => $this->category,
@@ -230,7 +221,6 @@ class Inventory2 extends Component
             'admin_id' => $adminId,
             'admin_name' => auth()->user()->name,
         ];
-
         if ($this->editing && $this->editingId) {
             Device::findOrFail($this->editingId)->update($data);
             session()->flash('success', 'دستگاه ویرایش شد');
@@ -238,21 +228,48 @@ class Inventory2 extends Component
             Device::create($data);
             session()->flash('success', 'دستگاه ثبت شد');
         }
-
         $this->resetForm();
         $this->resetPage();
     }
-
-
-
     public function delete($id)
     {
         Device::findOrFail($id)->delete();
         $this->resetForm();
     }
-
-
-
+public function updatedBuyPrice($value)
+{
+    $this->buy_price = $this->normalizeMoney($value);
+    $this->recalculateTotalBuy();
+}
+public function updated($name, $value)
+{
+    if ($name === 'buy_price' || $name === 'quantity') {
+        if ($name === 'buy_price') {
+            $this->buy_price = $this->normalizeMoney($value);
+        }
+        if ($name === 'quantity') {
+            $this->quantity = $this->normalizeMoney($value);
+        }
+        $this->recalculateTotalBuy();
+    }
+}
+public function updatedQuantity($value)
+{
+    $this->quantity = (int) $this->normalizeMoney($value);
+    $this->recalculateTotalBuy();
+}
+private function recalculateTotalBuy(): void
+{
+    $buyRaw = $this->normalizeMoney($this->buy_price);
+    $qtyRaw = $this->normalizeMoney($this->quantity);
+    if ($buyRaw === null || $buyRaw === '' || $qtyRaw === null || $qtyRaw === '') {
+        $this->total_buy = null;
+        return;
+    }
+    $buy = (float) $buyRaw;
+    $qty = (int) $qtyRaw;
+    $this->total_buy = $buy * $qty;
+}
     public function render()
     {
         $devices = Device::where(function ($q) {
@@ -262,9 +279,8 @@ class Inventory2 extends Component
             ->when($this->categoryFilter, function ($query) {
                 $query->where('category', 'like', '%' . $this->categoryFilter . '%');
             })
-            ->latest()
+            ->oldest()
             ->paginate(5);
-
         return view('livewire.mobile.inventory2', compact('devices'));
     }
 }
