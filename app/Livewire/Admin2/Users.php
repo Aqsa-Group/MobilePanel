@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Livewire\Admin2;
-
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Layout;
@@ -13,16 +11,16 @@ use Illuminate\Support\Facades\Gate;
 class Users extends Component
 {
     use WithFileUploads;
- use WithPagination;
- protected string $paginationTheme = 'tailwind';
+    use WithPagination;
+    protected string $paginationTheme = 'tailwind';
     public string $mode = 'create';
     public ?int $editingId = null;
     public $formResetKey = 0;
-public $search = '';
-public $user_count_added = null; // ✅ فقط برای super_admin
+    public $search = '';
+    public $user_count_added = null;
     public $name = '';
     public bool $confirmingDelete = false;
-public ?int $deleteId = null;
+    public ?int $deleteId = null;
     public $last_name = '';
     public $user_name = '';
     public $email = '';
@@ -33,20 +31,17 @@ public ?int $deleteId = null;
     public $image;
     public $successMessage;
     public $usersCount;
-public function updatedSearch()
-{
-    $this->resetPage();
-}
-private function faToEnDigits($value)
-{
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
+    private function faToEnDigits($value)
+    {
     if ($value === null) return null;
-
     $fa = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹','٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
     $en = ['0','1','2','3','4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9'];
-
     return str_replace($fa, $en, (string)$value);
 }
-
 private function normalizeInputs()
 {
     $this->phone_number = $this->faToEnDigits($this->phone_number);
@@ -60,24 +55,19 @@ public function delete($id)
 public function deleteConfirmed()
 {
     if (!$this->deleteId) return;
-
     User::findOrFail($this->deleteId)->delete();
-
     $this->confirmingDelete = false;
     $this->deleteId = null;
-
-    session()->flash('success', 'کاربر با موفقیت حذف شد');
+    session()->flash('message', 'کاربر با موفقیت حذف شد');
+session()->flash('type', 'delete');
 }
     protected function rules()
 {
     $authRole = strtolower(auth()->user()?->role ?? 'user');
-
-    // ✅ allowed roles برای ساخت/ویرایش توسط هر نقش
-    $allowedRoles = ['user']; // پیشفرض: همه فقط user
+    $allowedRoles = ['user'];
     if ($authRole === 'super_admin') {
-        $allowedRoles = ['user','admin']; // سوپرادمین user/admin
+        $allowedRoles = ['user','admin'];
     }
-
     return [
         'name' => ['required', 'regex:/^[A-Za-z\x{0600}-\x{06FF}\s]+$/u'],
         'last_name' => ['nullable', 'regex:/^[A-Za-z\x{0600}-\x{06FF}\s]+$/u'],
@@ -86,76 +76,59 @@ public function deleteConfirmed()
         'password' => $this->mode === 'create' ? ['required', 'min:6'] : ['nullable', 'min:6'],
         'phone_number' => ['required', Rule::unique('users_list', 'phone_number')->ignore($this->editingId), 'regex:/^07[0-9]{8}$/'],
         'address' => ['required', 'string'],
-
-        // ✅ نقش محدود شده
         'role' => ['required', Rule::in($allowedRoles)],
-
         'image' => $this->mode === 'create' ? 'nullable|image|max:2048' : 'nullable|image|max:2048',
-
-        // ✅ فقط سوپرادمین اجازه validate این فیلد را دارد
        'user_count_added' => $authRole === 'super_admin'
     ? ['nullable', Rule::in([5,10])]
     : ['nullable'],
     ];
 }
-
    public function mount()
 {
     $this->usersCount = User::count();
     $this->role = strtolower(auth()->user()?->role ?? 'user');
-
-    // ✅ اضافه: role پیشفرض فرم
     $authRole = strtolower(auth()->user()?->role ?? 'user');
     if ($authRole === 'admin') {
-        $this->role = 'user'; // ادمین فقط user
+        $this->role = 'user';
     }
     if ($authRole === 'super_admin') {
-        $this->role = 'user'; // پیشفرض user (ولی می‌تواند admin انتخاب کند)
+        $this->role = 'user';
     }
 }
-
     public function resetForm($keepMode = false)
     {
-        $this->reset(['name', 'last_name', 'user_name', 'email', 'password', 'phone_number', 'address', 'role', 'image']);
+        $this->reset(['name', 'last_name', 'user_name', 'email', 'password', 'phone_number', 'address', 'role', 'image','user_count_added' ]);
         $this->resetValidation();
-
         if (!$keepMode) {
             $this->mode = 'create';
             $this->editingId = null;
-            $this->formResetKey++; // تغییر key فقط برای Create
+            $this->formResetKey++;
         }
     }
-
     public function save()
     {
          $auth = auth()->user();
     $authRole = strtolower($auth?->role ?? 'user');
-
-    // ✅ user اصلاً اجازه ندارد
     if ($authRole === 'user') {
         $this->addError('permission', 'شما اجازه ایجاد کاربر را ندارید.');
         return;
     }
-
-    // ✅ ادمین فقط user می‌سازد (حتی اگر دستی admin فرستاد)
     if ($authRole === 'admin') {
         $this->role = 'user';
-        $this->user_count_added = null; // ادمین اصلاً این مفهوم را ندارد
+        $this->user_count_added = null;
     }
     if ($authRole === 'super_admin' && $this->role !== 'admin') {
     $this->user_count_added = null;
 }
-
         if ($this->mode === 'create' && auth()->user()->role === User::ROLE_ADMIN) {
             $createdCount = auth()->user()->createdUsers()->count();
             if ($createdCount >= 10) {
                 $this->addError('permission', 'شما اجازه ایجاد بیش از 10 کاربر را ندارید.');
-                return; // جلوگیری از ادامه
+                return;
             }
         }
         $this->normalizeInputs();
         $this->validate();
-
         if ($this->mode === 'edit') {
             $user = User::findOrFail($this->editingId);
             $user->update([
@@ -172,16 +145,12 @@ public function deleteConfirmed()
         'user_limit' => $this->user_count_added !== null ? (int)$this->user_count_added : null,
     ]);
 }
-
             if ($this->password) $user->update(['password' => bcrypt($this->password)]);
             if ($this->image) $user->update(['image' => $this->image->store('users', 'public')]);
-
-            $this->successMessage = 'ویرایش با موفقیت انجام شد';
-
-            // ⚡ بعد از ویرایش فرم به حالت Create برگردد و خالی شود
+            session()->flash('message', 'ویرایش با موفقیت انجام شد');
+session()->flash('type', 'edit');
             $this->resetForm();
        } else {
-
     $created = User::create([
         'name' => $this->name,
         'last_name' => $this->last_name,
@@ -194,19 +163,16 @@ public function deleteConfirmed()
         'image' => $this->image ? $this->image->store('users', 'public') : null,
         'created_by' => auth()->user()?->id
     ]);
-
-    // ✅ فقط سوپر ادمین اگر admin ساخت، حد مجاز را ذخیره کند
     if (strtolower(auth()->user()?->role) === 'super_admin' && $created->role === 'admin') {
         $created->update([
             'user_limit' => $this->user_count_added !== null ? (int)$this->user_count_added : null,
         ]);
     }
-
-    $this->successMessage = 'کاربر با موفقیت ایجاد شد';
+    session()->flash('message', 'کاربر با موفقیت ایجاد شد');
+session()->flash('type', 'create');
     $this->resetForm();
 }
     }
-
     public function edit($id)
     {
         $user = User::findOrFail($id);
@@ -219,34 +185,30 @@ public function deleteConfirmed()
         $this->phone_number = $user->phone_number;
         $this->address = $user->address;
         $this->role = $user->role;
-        // ✅ اضافه: ادمین حق ندارد نقش را تغییر بدهد
+        $this->dispatch('scrollToTop');
 if (strtolower(auth()->user()?->role) === 'admin') {
     $this->role = 'user';
 }
-
-// ✅ فقط سوپرادمین limit را بگیرد
 if (strtolower(auth()->user()?->role) === 'super_admin') {
-    $this->user_count_added = $user->user_limit ?? null; // اگر ستون داری
+    $this->user_count_added = $user->user_limit ?? null;
 } else {
     $this->user_count_added = null;
 }
         $this->password = '';
         $this->image = null;
     }
-
     public function cancel()
     {
         if ($this->mode === 'edit' && $this->editingId) {
-            // لغو ویرایش → فرم دوباره به حالت Create برمی‌گردد و خالی می‌شود
             $this->resetForm();
         } else {
             $this->resetForm();
         }
     }
-
   public function render()
 {
     $users = User::query()
+     ->with('creator')
         ->when($this->search, function ($q) {
             $q->where(function ($qq) {
                 $qq->where('name', 'like', "%{$this->search}%")
@@ -257,7 +219,6 @@ if (strtolower(auth()->user()?->role) === 'super_admin') {
         })
         ->oldest()
         ->paginate(2);
-
     return view('livewire.admin2.component.users', compact('users'));
 }
 }

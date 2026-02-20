@@ -1,29 +1,47 @@
 <div>
     <div class="max-w-full  mx-auto px-4 w-full">
+        @if (session()->has('message'))
+            @php
+                $type = session('type');
+                $bg = match($type) {
+                    'create' => 'bg-green-500',
+                    'edit'   => 'bg-blue-500',
+                    'delete' => 'bg-red-500',
+                    default  => 'bg-gray-500'
+                };
+            @endphp
+            <div x-data="{ show: true }"
+                x-init="setTimeout(() => show = false,3000)"
+                x-show="show"
+                x-transition.opacity
+                class="fixed inset-0 flex items-center justify-center z-50">
+                <div class="absolute inset-0 bg-black/40"></div>
+                <div x-transition.scale
+                    class="{{ $bg }} text-white px-8 py-8 rounded-xl shadow-2xl relative z-10 min-w-[320px] text-center">
+                    <div class="flex justify-center mb-6 relative">
+                        <svg class="w-20 h-20 transform -rotate-90">
+                            <circle cx="40" cy="40" r="35" stroke="white" stroke-opacity="0.3" stroke-width="6" fill="none"/>
+                            <circle cx="40" cy="40" r="35" stroke="white" stroke-width="6" fill="none"
+                                    stroke-dasharray="220" stroke-dashoffset="220" class="animate-progress"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center text-3xl font-bold">✔</div>
+                    </div>
+                    <p class="text-lg font-semibold">{{ session('message') }}</p>
+                </div>
+            </div>
+            <style>
+                @keyframes progress { from { stroke-dashoffset: 220; } to { stroke-dashoffset: 0; } }
+                .animate-progress { animation: progress 3s linear forwards; }
+            </style>
+        @endif
         <div class="w-full p-2 bg-white border border-gray-200 rounded-xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl  pt-5 pb-6">
-            <!-- Title -->
             <div class="text-center">
                 <h1 class="font-bold text-2xl">اطلاعات کاربر</h1>
                 <p class="mt-2 text-xs text-[#000]/60">لطفااطلاعات را وارد نمایید.</p>
             </div>
-
-            <!-- ✅ پیام موفقیت -->
-            @if($successMessage)
-                <div class="mt-4 p-3 rounded-lg bg-green-100 text-green-800 text-sm">
-                    {{ $successMessage }}
-                </div>
-            @endif
-
-            <!-- ✅ خطای محدودیت/اجازه -->
-            @error('permission')
-                <div class="mt-4 p-3 rounded-lg bg-red-100 text-red-700 text-sm">
-                    {{ $message }}
-                </div>
-            @enderror
-
             <!-- Form -->
             <div class="md:px-4 mt-8">
-                <form wire:submit.prevent="save" class="space-y-4 " enctype="multipart/form-data">
+                <form wire:submit.prevent="save" class="space-y-4 "  wire:key="user-form-{{ $mode }}-{{ $editingId ?? 'new' }}-{{ $formResetKey }}" enctype="multipart/form-data">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="relative">
                             <input
@@ -42,7 +60,6 @@
                             </div>
                             @error('name') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                         </div>
-
                         <div class="relative">
                             <input
                                 type="text"
@@ -61,7 +78,6 @@
                             @error('last_name') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                         </div>
                     </div>
-
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="relative">
                             <input
@@ -81,7 +97,6 @@
                             </div>
                             @error('address') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                         </div>
-
                         <div class="relative">
                             <input
                                 type="text"
@@ -97,7 +112,6 @@
                             @error('phone_number') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                         </div>
                     </div>
-
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="relative">
                             <input
@@ -113,7 +127,6 @@
                             </div>
                             @error('email') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                         </div>
-
                         <div class="relative">
                             <input
                                 type="text"
@@ -130,7 +143,6 @@
                             @error('user_name') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                         </div>
                     </div>
-
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="relative">
                             <input
@@ -150,21 +162,13 @@
                             </div>
                             @error('password') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                         </div>
-
                         <div class="relative border border-gray-500 focus:border-blue-600 px-3 text-gray-500 rounded-lg">
                             <select wire:model.defer="role" class="outline-none py-4 w-full">
                                 <option value="">انتخاب نقش</option>
-
-                                {{-- ✅ همه می‌توانند user ببینند --}}
                                 <option value="user">کاربر</option>
-
-                                {{-- ✅ فقط سوپر ادمین admin را ببیند --}}
                                 @if(strtolower(auth()->user()?->role) === 'super_admin')
                                     <option value="admin">ادمین</option>
                                 @endif
-
-                                {{-- ✅ هیچ‌کس اینجا super_admin را نبینند/نسازد --}}
-                                {{-- option super_admin را حذف نمی‌کنیم، فقط نمایش نمی‌دهیم --}}
                                 @if(false)
                                     <option value="super_admin">super_admin</option>
                                 @endif
@@ -172,22 +176,21 @@
                             @error('role') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                         </div>
                     </div>
-
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      @if(strtolower(auth()->user()?->role) === 'super_admin' && $role === 'admin')
-<div class="relative border border-gray-500 focus:border-blue-600 px-3 text-gray-500 rounded-lg">
-    <select wire:model.defer="user_count_added" class="outline-none py-4 w-full">
-        <option value="">تعداد مجاز کاربر </option>
-        <option value="5">۵ کاربر</option>
-        <option value="10">۱۰ کاربر</option>
-    </select>
-    @error('user_count_added') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
-</div>
-@endif
+                        @if(strtolower(auth()->user()?->role) === 'super_admin' && $role === 'admin')
+                        <div class="relative border border-gray-500 focus:border-blue-600 px-3 text-gray-500 rounded-lg">
+                            <select wire:model.defer="user_count_added" class="outline-none py-4 w-full">
+                                <option value="">تعداد مجاز کاربر </option>
+                                <option value="5">۵ کاربر</option>
+                                <option value="10">۱۰ کاربر</option>
+                            </select>
+                            @error('user_count_added') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+                        </div>
+                        @endif
                         <div class="relative">
                             <input
                                 type="file"
-                                wire:model="image"
+                                wire:model="image" wire:key="image-{{ $formResetKey }}"
                                 class="border border-gray-500 outline-none focus:border-blue-600 pl-12 rounded-lg pr-3 py-4 w-full"
                             >
                             <div class="absolute left-4 top-4">
@@ -199,7 +202,6 @@
                             @error('image') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                         </div>
                     </div>
-
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="relative">
                             <input
@@ -220,14 +222,12 @@
                 </form>
             </div>
         </div>
-
         <div class="">
             <div class="bg-white  border border-gray-200 my-4 py-4 px-3 md:px-2 rounded-xl shadow-[0px_4px_4px_0px_#00000040] shadow-xl">
                 <div class="">
                     <!-- Title -->
                     <div class="flex justify-between items-center border-b border-[#0B35CC] md:border-none pb-2 md:mb-0">
                         <div class="flex gap-2">
-
                             <div class="relative">
                                 <input type="text" wire:model.debounce.400ms="search" class="py-2 pr-2 bg-[#0B35CC]/20 rounded-lg w-full md:w-40 outline-none" placeholder="جستجو">
                                 <div class="absolute top-3 left-2">
@@ -239,283 +239,256 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Table -->
                     <div >
-
-    {{-- ✅ Desktop / Laptop Table (md+) --}}
-    <div class="hidden md:block">
-        @php
-function initialsFa($name, $last) {
-    $name = trim((string)$name);
-    $last = trim((string)$last);
-
-    $n1 = $name !== '' ? mb_substr($name, 0, 1, 'UTF-8') : '';
-    $l1 = $last !== '' ? mb_substr($last, 0, 1, 'UTF-8') : '';
-
-    $ini = $n1 . $l1;
-    return $ini !== '' ? $ini : '؟';
-}
-
-function avatarBg($seed) {
-    // چند کلاس آماده tailwind
-    $colors = [
-        'bg-blue-600','bg-indigo-600','bg-purple-600','bg-pink-600',
-        'bg-red-600','bg-orange-600','bg-amber-600','bg-green-600',
-        'bg-teal-600','bg-cyan-600'
-    ];
-    $i = abs(crc32($seed)) % count($colors);
-    return $colors[$i];
-}
-@endphp
-        <table class="w-full table-auto border-collapse">
-            <thead>
-                <tr class="bg-[#0B35CC] text-white">
-                    <th class="p-2 text-[12px] text-center">آیدی</th>
-                    <th class="p-2 text-[12px] text-center">عکس</th>
-                    <th class="p-2 text-[12px] text-center">نام کامل</th>
-                    <th class="p-2 text-[12px] text-center">آدرس</th>
-                    <th class="p-2 text-[12px] text-center">شماره تماس</th>
-                    <th class="p-2 text-[12px] text-center">نام کاربری</th>
-                    <th class="p-2 text-[12px] text-center">ایمیل</th>
-                    <th class="p-2 text-[12px] text-center">نقش</th>
-                    <th class="p-2 text-[12px] text-center">وضعیت</th>
-                    <th class="p-2 text-[12px] text-center">ادمین </th>
-
-                    <th class="p-2 text-[12px] text-center">ایدیت</th>
-                    <th class="p-2 text-[12px] text-center">حذف</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @forelse($users as $index => $u)
-                    <tr class="border-b p-2 border-[#0B35CC] ">
-                        <td class="text-[11px] text-center font-bold "> {{ $users->firstItem() + $index }}</td>
-
-                        <td class="text-[11px] text-center">
-                            <div class="flex justify-center items-center">
-                          @if($u->image)
-    <img
-        src="{{ asset('storage/'.$u->image) }}"
-        alt=""
-        class="w-12 h-12 rounded-full object-cover"
-    >
-@else
-    @php
-        $name = trim((string) $u->name);
-        $last = trim((string) $u->last_name);
-
-        $n1 = $name !== '' ? mb_substr($name, 0, 1, 'UTF-8') : '';
-        $l1 = $last !== '' ? mb_substr($last, 0, 1, 'UTF-8') : '';
-
-        $ini = ($n1 . $l1) !== '' ? ($n1 . $l1) : '؟';
-    @endphp
-
-    <div
-        class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"
-        style="background:#0B35CC;"
-        title="{{ $u->name }} {{ $u->last_name }}"
-    >
-        {{ $ini }}
-    </div>
-@endif
+                        {{-- ✅ Desktop / Laptop Table (md+) --}}
+                        <div class="hidden md:block">
+                            <table class="w-full table-auto border-collapse">
+                                <thead>
+                                    <tr class="bg-[#0B35CC] text-white">
+                                        <th class="p-2 text-[12px] text-center">آیدی</th>
+                                        <th class="p-2 text-[12px] text-center">عکس</th>
+                                        <th class="p-2 text-[12px] text-center">نام کامل</th>
+                                        <th class="p-2 text-[12px] text-center">آدرس</th>
+                                        <th class="p-2 text-[12px] text-center">شماره تماس</th>
+                                        <th class="p-2 text-[12px] text-center">نام کاربری</th>
+                                        <th class="p-2 text-[12px] text-center">ایمیل</th>
+                                        <th class="p-2 text-[12px] text-center">نقش</th>
+                                        @if(in_array(strtolower(auth()->user()?->role ?? 'user'), ['admin','super_admin']))
+                                            <th class="p-2 text-[12px] text-center">وضعیت</th>
+                                        @endif
+                                        <th class="p-2 text-[12px] text-center">ادمین </th>
+                                        <th class="p-2 text-[12px] text-center">ایدیت</th>
+                                        <th class="p-2 text-[12px] text-center">حذف</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($users as $index => $u)
+                                        <tr class="border-b p-2 border-[#0B35CC] ">
+                                            <td class="text-[11px] text-center font-bold "> {{ $users->firstItem() + $index }}</td>
+                                            <td class="text-[11px] text-center">
+                                                <div class="flex justify-center items-center">
+                                                    @if($u->image)
+                                                            <img  src="{{ asset('storage/'.$u->image) }}"  alt=""  class="w-8 h-8 rounded-full object-cover" >
+                                                        @else
+                                                        @php
+                                                            $name = trim((string) $u->name);
+                                                            $last = trim((string) $u->last_name);
+                                                            $n1 = $name !== '' ? mb_substr($name, 0, 1, 'UTF-8') : '';
+                                                            $l1 = $last !== '' ? mb_substr($last, 0, 1, 'UTF-8') : '';
+                                                            $ini = ($n1 . $l1) !== '' ? ($n1 . $l1) : '؟';
+                                                        @endphp
+                                                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold" style="background:#0B35CC;" title="{{ $u->name }} {{ $u->last_name }}" >
+                                                            {{ $ini }}
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </td>
+                                            <td class="text-[11px] text-center ">{{ $u->name }} {{ $u->last_name }}</td>
+                                            <td class="text-[11px] text-center ">{{ $u->address ?? '-' }}</td>
+                                            <td class="text-[11px] text-center ">{{ $u->phone_number ?? '-' }}</td>
+                                            <td class="text-[11px] text-center ">{{ $u->user_name }}</td>
+                                            <td class="text-[11px] text-center ">{{ $u->email }}</td>
+                                            <td class="text-[11px] text-center">
+                                                @if($u->role === 'user')
+                                                    <span class="px-2 py-1 rounded-full text-xs bg-gray-100 text-gray-700">
+                                                        کاربر
+                                                    </span>
+                                                @elseif($u->role === 'admin')
+                                                    <span class="px-2 py-1 rounded-full text-xs bg-purple-100 text-purple-700">
+                                                        ادمین
+                                                    </span>
+                                                @elseif($u->role === 'super_admin')
+                                                    <span class="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-700">
+                                                        سوپر ادمین
+                                                    </span>
+                                                @else
+                                                    <span class="px-2 py-1 rounded-full text-xs bg-gray-100 text-gray-700">
+                                                        {{ $u->role }}
+                                                    </span>
+                                                @endif
+                                            </td>
+                                            @if(in_array(strtolower(auth()->user()?->role ?? 'user'), ['admin','super_admin']))
+                                                <td class="text-[11px] text-center">
+                                                    @php
+                                                        $isOnline = $u->last_seen_at
+                                                            && \Carbon\Carbon::parse($u->last_seen_at)->gte(now()->subMinutes(30));
+                                                    @endphp
+                                                    @if($isOnline)
+                                                        <span class="status-online">فعال</span>
+                                                    @else
+                                                        <span class="status-offline">غیرفعال</span>
+                                                    @endif
+                                                </td>
+                                            @endif
+                                            <td class="text-[11px] text-center">
+                                                @if($u->creator)
+                                                    {{ $u->creator->name }}
+                                                    <span class="block text-[10px] text-[#00000080]">
+                                                        ({{ $u->creator->role === 'super_admin' ? 'سوپر ادمین' : ($u->creator->role === 'admin' ? 'ادمین' : 'کاربر') }})
+                                                    </span>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                            <td class="text-[11px] text-center">
+                                                <div wire:click="edit({{ $u->id }})"   class="inline-flex items-center cursor-pointer  rounded-lg px-2 py-1"  >
+                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#0B35CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M16.0399 3.02025L8.15988 10.9003C7.85988 11.2003 7.55988 11.7903 7.49988 12.2203L7.06988 15.2303C6.90988 16.3203 7.67988 17.0803 8.76988 16.9303L11.7799 16.5003C12.1999 16.4403 12.7899 16.1403 13.0999 15.8403L20.9799 7.96025C22.3399 6.60025 22.9799 5.02025 20.9799 3.02025C18.9799 1.02025 17.3999 1.66025 16.0399 3.02025Z" stroke="#0B35CC" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M14.9102 4.15039C15.5802 6.54039 17.4502 8.41039 19.8502 9.09039" stroke="#0B35CC" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                </div>
+                                            </td>
+                                            <td class="p-2 text-center">
+                                                <div wire:click="delete({{ $u->id }})"  class="inline-flex items-center cursor-pointer  rounded-lg px-2 py-1"   >
+                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M21 5.98047C17.67 5.65047 14.32 5.48047 10.98 5.48047C9 5.48047 7.02 5.58047 5.04 5.78047L3 5.98047" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M18.8499 9.13965L18.1999 19.2096C18.0899 20.7796 17.9999 21.9996 15.2099 21.9996H8.7899C5.9999 21.9996 5.9099 20.7796 5.7999 19.2096L5.1499 9.13965" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="11" class="p-6 text-center text-gray-500">
+                                                هیچ کاربری موجود نیست
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                        {{-- ✅ Mobile (your exact code) --}}
+                        <div class="md:hidden">
+                            <div class="rounded-lg  border border-[#0B35CC]">
+                                @forelse($users as $index => $u)
+                                    <div class="md:grid grid-cols-12  items-center mt-3 md:mt-0 py-3 border-b  border-[#0B35CC]">
+                                        <div class="hidden md:flex justify-center"><p class="text-sm"> {{ $users->firstItem() + $index }}</p></div>
+                                        <div class="flex justify-center items-center">
+                                            @if($u->image)
+                                                <img src="{{ asset('storage/'.$u->image) }}"  alt=""   class="w-12 h-12 rounded-full object-cover" >
+                                            @else
+                                                @php
+                                                    $name = trim((string) $u->name);
+                                                    $last = trim((string) $u->last_name);
+                                                    $n1 = $name !== '' ? mb_substr($name, 0, 1, 'UTF-8') : '';
+                                                    $l1 = $last !== '' ? mb_substr($last, 0, 1, 'UTF-8') : '';
+                                                    $ini = ($n1 . $l1) !== '' ? ($n1 . $l1) : '؟';
+                                                @endphp
+                                                <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"  style="background:#0B35CC;"   title="{{ $u->name }} {{ $u->last_name }}"  >
+                                                    {{ $ini }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="text-center"><p class="text-sm">{{ $u->name }} {{ $u->last_name }}</p></div>
+                                        <div class="col-span-3 grid grid-cols-2 text-center my-3 md:my-0">
+                                            <div class="text-center">
+                                                <h1 class="text-[#00000080] block md:hidden">آدرس:</h1>
+                                                <p class="text-sm">{{ $u->address ?? '-' }}</p>
+                                            </div>
+                                            <div class="text-center">
+                                                <h1 class="text-[#00000080] block md:hidden">نام کاربری:</h1>
+                                                <p class="text-sm">{{ $u->user_name }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-2 grid grid-cols-2 md:grid-cols-3 my-3 md:my-0">
+                                            <div class="md:col-span-2 text-center">
+                                                <h1 class="text-[#00000080] block md:hidden">ایمیل:</h1>
+                                                <p class="text-sm">{{ $u->email }}</p>
+                                            </div>
+                                            <div class="text-center">
+                                                <h1 class="text-[#00000080] block md:hidden">نقش:</h1>
+                                                @if($u->role === 'user')
+                                                    <span class="px-2 py-1 rounded-full text-xs bg-gray-100 text-gray-700">
+                                                        کاربر
+                                                    </span>
+                                                @elseif($u->role === 'admin')
+                                                    <span class="px-2 py-1 rounded-full text-xs bg-purple-100 text-purple-700">
+                                                        ادمین
+                                                    </span>
+                                                @elseif($u->role === 'super_admin')
+                                                    <span class="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-700">
+                                                        سوپر ادمین
+                                                    </span>
+                                                @else
+                                                    <span class="px-2 py-1 rounded-full text-xs bg-gray-100 text-gray-700">
+                                                        {{ $u->role }}
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-span-2 grid grid-cols-2 my-3 md:my-0">
+                                            <div class="text-center">
+                                                @if(in_array(strtolower(auth()->user()?->role ?? 'user'), ['admin','super_admin']))
+                                                    <h1 class="text-[#00000080] block md:hidden">وضعیت:</h1>
+                                                @endif
+                                                @if(in_array(strtolower(auth()->user()?->role ?? 'user'), ['admin','super_admin']))
+                                                    @php
+                                                        $isOnline = $u->last_seen_at
+                                                            && \Carbon\Carbon::parse($u->last_seen_at)->gte(now()->subMinutes(30));
+                                                    @endphp
+                                                    <span class="inline-block text-sm px-2 py-1 rounded-full {{ $isOnline ? 'status-online' : 'status-offline' }}">
+                                                        {{ $isOnline ? 'فعال' : 'غیرفعال' }}
+                                                    </span>
+                                                @endif
+                                            </div>
+                                            <div class="text-center">
+                                                <h1 class="text-[#00000080] block md:hidden">شماره تماس:</h1>
+                                                <p class="text-sm">{{ $u->phone_number ?? '-' }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <h1 class="text-[#00000080] block md:hidden"> ادمین:</h1>
+                                            <p class="text-[10px] ">
+                                                {{ $u->creator?->name ?? '-' }}
+                                                ({{ $u->creator?->role === 'super_admin' ? 'سوپر ادمین' : ($u->creator?->role === 'admin' ? 'ادمین' : 'کاربر') }})
+                                            </p></div>
+                                        <div class="my-5 md:my-0 md:px-0 flex items-center justify-center gap-1">
+                                            <div wire:click="edit({{ $u->id }})" class="flex items-center cursor-pointer border border-[#0B35CC] md:border-none rounded-lg px-2 md:px-0 py-1 md:py-0">
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#0B35CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M16.0399 3.02025L8.15988 10.9003C7.85988 11.2003 7.55988 11.7903 7.49988 12.2203L7.06988 15.2303C6.90988 16.3203 7.67988 17.0803 8.76988 16.9303L11.7799 16.5003C12.1999 16.4403 12.7899 16.1403 13.0999 15.8403L20.9799 7.96025C22.3399 6.60025 22.9799 5.02025 20.9799 3.02025C18.9799 1.02025 17.3999 1.66025 16.0399 3.02025Z" stroke="#0B35CC" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M14.9102 4.15039C15.5802 6.54039 17.4502 8.41039 19.8502 9.09039" stroke="#0B35CC" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                                <p class="text-[#0B35CC] block md:hidden">ویرایش</p>
+                                            </div>
+                                            <div wire:click="delete({{ $u->id }})" class="flex items-center cursor-pointer border border-[#FF0000] md:border-none rounded-lg px-2 md:px-0 py-1 md:py-0">
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M21 5.98047C17.67 5.65047 14.32 5.48047 10.98 5.48047C9 5.48047 7.02 5.58047 5.04 5.78047L3 5.98047" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M18.8499 9.13965L18.1999 19.2096C18.0899 20.7796 17.9999 21.9996 15.2099 21.9996H8.7899C5.9999 21.9996 5.9099 20.7796 5.7999 19.2096L5.1499 9.13965" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                                <p class="text-[#FF0000] block md:hidden">حذف</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @empty
+                                    <div class="p-6 text-center text-gray-500">
+                                        هیچ کاربری موجود نیست
+                                    </div>
+                                @endforelse
                             </div>
-                        </td>
-
-                        <td class="text-[11px] text-center ">{{ $u->name }} {{ $u->last_name }}</td>
-                        <td class="text-[11px] text-center ">{{ $u->address ?? '-' }}</td>
-                        <td class="text-[11px] text-center ">{{ $u->phone_number ?? '-' }}</td>
-                        <td class="text-[11px] text-center ">{{ $u->user_name }}</td>
-                        <td class="text-[11px] text-center ">{{ $u->email }}</td>
-                        <td class="text-[11px] text-center ">{{ $u->role }}</td>
-                        <td class="text-[11px] text-center ">فعال</td>
-<td class="text-[11px] text-center">
-    @if($u->creator)
-        {{ $u->creator->name }}
-        <span class="block text-[10px] text-[#00000080]">
-            ({{ $u->creator->role === 'super_admin' ? 'سوپر ادمین' : ($u->creator->role === 'admin' ? 'ادمین' : 'کاربر') }})
-        </span>
-    @else
-        -
-    @endif
-</td>
-                        <td class="text-[11px] text-center">
-                            <div
-                                wire:click="edit({{ $u->id }})"
-                                class="inline-flex items-center cursor-pointer  rounded-lg px-2 py-1"
-                            >
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#0B35CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M16.0399 3.02025L8.15988 10.9003C7.85988 11.2003 7.55988 11.7903 7.49988 12.2203L7.06988 15.2303C6.90988 16.3203 7.67988 17.0803 8.76988 16.9303L11.7799 16.5003C12.1999 16.4403 12.7899 16.1403 13.0999 15.8403L20.9799 7.96025C22.3399 6.60025 22.9799 5.02025 20.9799 3.02025C18.9799 1.02025 17.3999 1.66025 16.0399 3.02025Z" stroke="#0B35CC" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M14.9102 4.15039C15.5802 6.54039 17.4502 8.41039 19.8502 9.09039" stroke="#0B35CC" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                        </td>
-
-                        <td class="p-2 text-center">
-                            <div
-                                wire:click="delete({{ $u->id }})"
-                                class="inline-flex items-center cursor-pointer  rounded-lg px-2 py-1"
-                            >
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M21 5.98047C17.67 5.65047 14.32 5.48047 10.98 5.48047C9 5.48047 7.02 5.58047 5.04 5.78047L3 5.98047" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M18.8499 9.13965L18.1999 19.2096C18.0899 20.7796 17.9999 21.9996 15.2099 21.9996H8.7899C5.9999 21.9996 5.9099 20.7796 5.7999 19.2096L5.1499 9.13965" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="11" class="p-6 text-center text-gray-500">
-                            هیچ کاربری موجود نیست
-                        </td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
-
-    {{-- ✅ Mobile (your exact code) --}}
-    <div class="md:hidden">
-        <div class="rounded-lg  border border-[#0B35CC]">
-
-
-            @forelse($users as $index => $u)
-                <div class="md:grid grid-cols-12  items-center mt-3 md:mt-0 py-3 border-b  border-[#0B35CC]">
-                    <div class="hidden md:flex justify-center"><p class="text-sm"> {{ $users->firstItem() + $index }}</p></div>
-
-                    <div class="flex justify-center items-center">
-                 @if($u->image)
-    <img
-        src="{{ asset('storage/'.$u->image) }}"
-        alt=""
-        class="w-12 h-12 rounded-full object-cover"
-    >
-@else
-    @php
-        $name = trim((string) $u->name);
-        $last = trim((string) $u->last_name);
-
-        $n1 = $name !== '' ? mb_substr($name, 0, 1, 'UTF-8') : '';
-        $l1 = $last !== '' ? mb_substr($last, 0, 1, 'UTF-8') : '';
-
-        $ini = ($n1 . $l1) !== '' ? ($n1 . $l1) : '؟';
-    @endphp
-
-    <div
-        class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"
-        style="background:#0B35CC;"
-        title="{{ $u->name }} {{ $u->last_name }}"
-    >
-        {{ $ini }}
-    </div>
-@endif
-                    </div>
-
-                    <div class="text-center"><p class="text-sm">{{ $u->name }} {{ $u->last_name }}</p></div>
-
-                    <div class="col-span-3 grid grid-cols-2 text-center my-3 md:my-0">
-                        <div class="text-center">
-                            <h1 class="text-[#00000080] block md:hidden">آدرس:</h1>
-                            <p class="text-sm">{{ $u->address ?? '-' }}</p>
-                        </div>
-
-                        <div class="text-center">
-                            <h1 class="text-[#00000080] block md:hidden">نام کاربری:</h1>
-                            <p class="text-sm">{{ $u->user_name }}</p>
                         </div>
                     </div>
-
-                    <div class="col-span-2 grid grid-cols-2 md:grid-cols-3 my-3 md:my-0">
-                        <div class="md:col-span-2 text-center">
-                            <h1 class="text-[#00000080] block md:hidden">ایمیل:</h1>
-                            <p class="text-sm">{{ $u->email }}</p>
-                        </div>
-                        <div class="text-center">
-                            <h1 class="text-[#00000080] block md:hidden">نقش:</h1>
-                            <p class="text-sm">{{ $u->role }}</p>
-                        </div>
-                    </div>
-
-                    <div class="col-span-2 grid grid-cols-2 my-3 md:my-0">
-                        <div class="text-center">
-                            <h1 class="text-[#00000080] block md:hidden">وضعیت:</h1>
-                            <p class="text-sm">فعال</p>
-                        </div>
-                         <div class="text-center">
-                            <h1 class="text-[#00000080] block md:hidden">شماره تماس:</h1>
-                            <p class="text-sm">{{ $u->phone_number ?? '-' }}</p>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <h1 class="text-[#00000080] block md:hidden"> ادمین:</h1>
-                        <p class="text-[10px] ">
-    {{ $u->creator?->name ?? '-' }}
-    ({{ $u->creator?->role === 'super_admin' ? 'سوپر ادمین' : ($u->creator?->role === 'admin' ? 'ادمین' : 'کاربر') }})
-</p></div>
-
-                    <div class="my-5 md:my-0 md:px-0 flex items-center justify-center gap-1">
-                        <div wire:click="edit({{ $u->id }})" class="flex items-center cursor-pointer border border-[#0B35CC] md:border-none rounded-lg px-2 md:px-0 py-1 md:py-0">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#0B35CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M16.0399 3.02025L8.15988 10.9003C7.85988 11.2003 7.55988 11.7903 7.49988 12.2203L7.06988 15.2303C6.90988 16.3203 7.67988 17.0803 8.76988 16.9303L11.7799 16.5003C12.1999 16.4403 12.7899 16.1403 13.0999 15.8403L20.9799 7.96025C22.3399 6.60025 22.9799 5.02025 20.9799 3.02025C18.9799 1.02025 17.3999 1.66025 16.0399 3.02025Z" stroke="#0B35CC" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M14.9102 4.15039C15.5802 6.54039 17.4502 8.41039 19.8502 9.09039" stroke="#0B35CC" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <p class="text-[#0B35CC] block md:hidden">ویرایش</p>
-                        </div>
-
-                        <div wire:click="delete({{ $u->id }})" class="flex items-center cursor-pointer border border-[#FF0000] md:border-none rounded-lg px-2 md:px-0 py-1 md:py-0">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M21 5.98047C17.67 5.65047 14.32 5.48047 10.98 5.48047C9 5.48047 7.02 5.58047 5.04 5.78047L3 5.98047" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M18.8499 9.13965L18.1999 19.2096C18.0899 20.7796 17.9999 21.9996 15.2099 21.9996H8.7899C5.9999 21.9996 5.9099 20.7796 5.7999 19.2096L5.1499 9.13965" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M10.3301 16.5H13.6601" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M9.5 12.5H14.5" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <p class="text-[#FF0000] block md:hidden">حذف</p>
-                        </div>
-                    </div>
-                </div>
-            @empty
-                <div class="p-6 text-center text-gray-500">
-                    هیچ کاربری موجود نیست
-                </div>
-            @endforelse
-        </div>
-    </div>
-
-</div>
                     {{-- ✅ Pagination (Livewire) with your design --}}
-<div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
-    @if ($users->lastPage() > 1)
-
-        <button
-            wire:click="previousPage"
-            @disabled($users->onFirstPage())
-            class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50"
-            type="button"
-        >
-            قبلی
-        </button>
-
-        <span class="mx-2 text-sm font-medium">
-            {{ $users->currentPage() }} از {{ $users->lastPage() }}
-        </span>
-
-        <button
-            wire:click="nextPage"
-            @disabled($users->onLastPage())
-            class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50"
-            type="button"
-        >
-            بعدی
-        </button>
-
-    @endif
-</div>
+                    <div class="flex flex-wrap gap-1 justify-center sm:justify-start items-center mt-3 text-[10px]">
+                        @if ($users->lastPage() > 1)
+                            <button  wire:click="previousPage"  @disabled($users->onFirstPage())  class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50"  type="button"  >
+                                قبلی
+                            </button>
+                            <span class="mx-2 text-sm font-medium">
+                                {{ $users->currentPage() }} از {{ $users->lastPage() }}
+                            </span>
+                            <button  wire:click="nextPage"  @disabled($users->onLastPage())  class="px-2 py-1 text-sm bg-blue-800 text-white rounded disabled:opacity-50"  type="button" >
+                                بعدی
+                            </button>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
@@ -530,24 +503,13 @@ function avatarBg($seed) {
                     <path d="M10.29 3.86L1.82 18A2 2 0 003.55 21H20.45A2 2 0 0022.18 18L13.71 3.86A2 2 0 0010.29 3.86Z"
                         stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-
                 <h2 class="text-lg font-bold text-gray-800">آیا مطمئن هستید؟</h2>
                 <p class="text-sm text-gray-500">این عملیات قابل برگشت نمی‌باشد.</p>
-
                 <div class="flex gap-3 w-full mt-4">
-                    <button
-                        wire:click="$set('confirmingDelete', false)"
-                        class="w-1/2 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100"
-                        type="button"
-                    >
+                    <button  wire:click="$set('confirmingDelete', false)"  class="w-1/2 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100"   type="button"  >
                         لغو
                     </button>
-
-                    <button
-                        wire:click="deleteConfirmed"
-                        class="w-1/2 py-2 rounded-xl bg-red-600 text-white hover:bg-red-700"
-                        type="button"
-                    >
+                    <button  wire:click="deleteConfirmed"  class="w-1/2 py-2 rounded-xl bg-red-600 text-white hover:bg-red-700"  type="button" >
                         بله، حذف کن
                     </button>
                 </div>
@@ -555,4 +517,11 @@ function avatarBg($seed) {
         </div>
     </div>
 @endif
+<script>
+document.addEventListener('livewire:init', () => {
+  Livewire.on('scrollToTop', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+</script>
 </div>
