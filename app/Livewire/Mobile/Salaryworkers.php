@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Livewire\Mobile;
-
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\SalaryPayment;
@@ -11,8 +9,6 @@ use Carbon\Carbon;
 use App\Models\CashFund;
 use Morilog\Jalali\Jalalian;
 use Illuminate\Support\Facades\Auth;
-
-
 class Salaryworkers extends Component
 {
     use WithPagination;
@@ -86,6 +82,33 @@ class Salaryworkers extends Component
         $paid = $this->paidAmount($employee_id);
         return max(0, $employee->salary - $paid);
     }
+    private function getTotalIncome(): array
+    {
+        $afnToUsdRate = 70;
+        $salesAFN = \App\Models\LoanSell::sum('sell_price') + \App\Models\CashSell::sum('profit_total');
+        $salesUSD = $salesAFN / $afnToUsdRate;
+        $repairIncomeAFN = \App\Models\DeviceRepairForm::sum('repair_cost');
+        $repairIncomeUSD = $repairIncomeAFN / $afnToUsdRate;
+        $receiptAFN = \App\Models\CashReceipt::where('currency', 'AFN')->sum('amount');
+        $receiptUSD = \App\Models\CashReceipt::where('currency', 'USD')->sum('amount');
+        $totalIncreaseAFN = $salesAFN + $repairIncomeAFN + $receiptAFN;
+        $totalIncreaseUSD = $salesUSD + $repairIncomeUSD + $receiptUSD;
+        $salaryAFN = \App\Models\SalaryPayment::where('currency', 'AFN')->sum('amount');
+        $salaryUSD = \App\Models\SalaryPayment::where('currency', 'USD')->sum('amount');
+        $withdrawTotalAFN = \App\Models\Withdrawal::where('currency', 'AFN')
+    ->where('withdrawal_type', '!=', 'حقوق کارکنان')
+    ->sum('amount');
+$withdrawTotalUSD = \App\Models\Withdrawal::where('currency', 'USD')
+    ->where('withdrawal_type', '!=', 'حقوق کارکنان')
+    ->sum('amount');
+        $totalDecreaseAFN = $salaryAFN + $withdrawTotalAFN;
+        $totalDecreaseUSD = $salaryUSD + $withdrawTotalUSD;
+        $totalIncomeAFN = $totalIncreaseAFN - $totalDecreaseAFN;
+        $totalIncomeUSD = $totalIncreaseUSD - $totalDecreaseUSD;
+        $totalIncomeAFN = $totalIncomeAFN > 0 ? $totalIncomeAFN : 0;
+        $totalIncomeUSD = $totalIncomeUSD > 0 ? $totalIncomeUSD : 0;
+        return [$totalIncomeAFN, $totalIncomeUSD];
+    }
     public function submit()
     {
         $this->amount = $this->convertToEnglishNumbers($this->amount);
@@ -97,6 +120,11 @@ class Salaryworkers extends Component
         $employee = Employee::find($this->employee_id);
         if (!$employee) {
             session()->flash('error', 'کارمند انتخاب شده معتبر نیست');
+            return;
+        }
+        [$totalIncomeAFN, $totalIncomeUSD] = $this->getTotalIncome();
+        if ($totalIncomeAFN < (float)$this->amount) {
+            session()->flash('error', 'برداشت کافی نیست');
             return;
         }
         $fund = CashFund::first();
@@ -121,6 +149,12 @@ class Salaryworkers extends Component
         $carbonDate = now();
         if ($this->edit_id) {
             $payment = SalaryPayment::findOrFail($this->edit_id);
+            $oldAmount = (float) $payment->amount;
+            $availableAFN = $totalIncomeAFN + $oldAmount;
+            if ($availableAFN < (float)$this->amount) {
+                session()->flash('error', 'برداشت کافی نیست');
+                return;
+            }
             $payment->update([
                 'employee_id' => $this->employee_id,
                 'amount' => $this->amount,
@@ -128,11 +162,25 @@ class Salaryworkers extends Component
                 'description' => $this->description,
                 'admin_id' => Auth::user()->admin_id ?? Auth::id(),
             ]);
+            $w = Withdrawal::where('withdrawal_type', 'حقوق کارکنان')
+                ->where('currency', 'AFN')
+                ->where('description', 'like', "%(SP#{$payment->id})%")
+                ->first();
+            if ($w) {
+                $w->update([
+                    'amount' => $this->amount,
+                    'withdrawal_date' => $carbonDate->toDateString(),
+                    'description' => "برداشت حقوق {$employee->name} (SP#{$payment->id})",
+                    'admin_id' => Auth::user()->admin_id ?? Auth::id(),
+                ]);
+            }
             session()->flash('message', 'پرداخت بروزرسانی شد');
         } else {
-            $fund->afn_balance -= $this->amount;
-            $fund->save();
-            SalaryPayment::create([
+         if (false) {
+    $fund->afn_balance -= $this->amount;
+    $fund->save();
+}
+            $payment = SalaryPayment::create([
                 'employee_id' => $this->employee_id,
                 'amount' => $this->amount,
                 'payment_date' => $carbonDate,
@@ -145,7 +193,7 @@ class Salaryworkers extends Component
                 'amount' => $this->amount,
                 'currency' => 'AFN',
                 'withdrawal_date' => $carbonDate->toDateString(),
-                'description' => "برداشت حقوق {$employee->name}",
+                'description' => "برداشت حقوق {$employee->name} (SP#{$payment->id})",
                 'user_id' => Auth::id(),
                 'admin_id' => Auth::user()->admin_id ?? Auth::id(),
             ]);
@@ -161,7 +209,6 @@ class Salaryworkers extends Component
             'employee_id',
             'amount',
         ]);
-
         $this->edit_id = false;
         $this->formKey = uniqid();
         $this->resetValidation();
@@ -177,11 +224,14 @@ class Salaryworkers extends Component
         $this->formKey = uniqid();
         $this->dispatch('scrollToForm');
         $this->payment_date_display = Jalalian::fromCarbon(Carbon::parse($payment->payment_date))->format('Y/m/d');
-
     }
     public function delete($id)
     {
         SalaryPayment::findOrFail($id)->delete();
+        Withdrawal::where('withdrawal_type', 'حقوق کارکنان')
+            ->where('currency', 'AFN')
+            ->where('description', 'like', "%(SP#{$id})%")
+            ->delete();
         session()->flash('message', 'پرداخت حذف شد');
     }
     public function render()

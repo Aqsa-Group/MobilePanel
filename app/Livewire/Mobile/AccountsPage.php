@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Livewire\Mobile;
-
 use Morilog\Jalali\Jalalian;
 use Livewire\Component;
 use App\Models\Withdrawal;
@@ -9,13 +7,13 @@ use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\CashFund as CashFundModel;
-
 class AccountsPage extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'tailwind';
     public $withdrawal_type;
     public $withdrawal_date;
+    public string $currency = 'AFN';
     public $description;
     public $search = '';
     public string $filterType = '';
@@ -30,12 +28,34 @@ class AccountsPage extends Component
     public $editingId = null;
     public $formKey;
     public $editMode = false;
-
     protected $listeners = ['setWithdrawalDate'];
     public function setWithdrawalDate($date)
     {
         $this->withdrawal_date = $date;
     }
+    private function getTotalIncome(): array
+{
+    $afnToUsdRate = 70;
+    $salesAFN = \App\Models\LoanSell::sum('sell_price') + \App\Models\CashSell::sum('profit_total');
+    $salesUSD = $salesAFN / $afnToUsdRate;
+    $repairIncomeAFN = \App\Models\DeviceRepairForm::sum('repair_cost');
+    $repairIncomeUSD = $repairIncomeAFN / $afnToUsdRate;
+    $receiptAFN = \App\Models\CashReceipt::where('currency', 'AFN')->sum('amount');
+    $receiptUSD = \App\Models\CashReceipt::where('currency', 'USD')->sum('amount');
+    $totalIncreaseAFN = $salesAFN + $repairIncomeAFN + $receiptAFN;
+    $totalIncreaseUSD = $salesUSD + $repairIncomeUSD + $receiptUSD;
+    $salaryAFN = \App\Models\SalaryPayment::where('currency', 'AFN')->sum('amount');
+    $salaryUSD = \App\Models\SalaryPayment::where('currency', 'USD')->sum('amount');
+    $withdrawTotalAFN = \App\Models\Withdrawal::where('currency', 'AFN')->sum('amount');
+    $withdrawTotalUSD = \App\Models\Withdrawal::where('currency', 'USD')->sum('amount');
+    $totalDecreaseAFN = $salaryAFN + $withdrawTotalAFN;
+    $totalDecreaseUSD = $salaryUSD + $withdrawTotalUSD;
+    $totalIncomeAFN = $totalIncreaseAFN - $totalDecreaseAFN;
+    $totalIncomeUSD = $totalIncreaseUSD - $totalDecreaseUSD;
+    $totalIncomeAFN = $totalIncomeAFN > 0 ? $totalIncomeAFN : 0;
+    $totalIncomeUSD = $totalIncomeUSD > 0 ? $totalIncomeUSD : 0;
+    return [$totalIncomeAFN, $totalIncomeUSD];
+}
     public function mount()
     {
         $this->current_date = now();
@@ -58,11 +78,12 @@ class AccountsPage extends Component
             [$startMonth->toDateString(), $endMonth->toDateString()]
         )->sum('amount');
     }
-    protected $rules = [
-        'withdrawal_type' => 'required|in:کرایه,مصارف,معاش,تعمیرکاری',
-        'amount' => 'required|numeric|min:10',
-        'description' => 'required|regex:/^[A-Za-z\x{0600}-\x{06FF}\s]+$/u|max:50',
-    ];
+  protected $rules = [
+    'withdrawal_type' => 'required|in:کرایه,مصارف,معاش,تعمیرکاری',
+    'currency' => 'required|in:AFN,USD',
+    'amount' => 'required|numeric|min:10',
+    'description' => 'required|regex:/^[A-Za-z\x{0600}-\x{06FF}\s]+$/u|max:50',
+];
     protected $messages = [
         'withdrawal_type.required' => '*نوع برداشت را انتخاب کنید',
         'amount.required' => '*مقدار برداشت را وارد کنید',
@@ -84,6 +105,7 @@ class AccountsPage extends Component
         $this->editingId = $withdrawal->id;
         $this->withdrawal_type = $withdrawal->withdrawal_type;
         $this->amount = $withdrawal->amount;
+        $this->currency = $withdrawal->currency ?? 'AFN';
         $this->description = $withdrawal->description;
         $this->withdrawal_date = Jalalian::fromDateTime(
             $withdrawal->withdrawal_date
@@ -97,6 +119,8 @@ class AccountsPage extends Component
         $this->withdrawal_type = '';
         $this->amount = null;
         $this->description = '';
+        $this->currency = 'AFN';
+$this->editMode = false;
     }
     public function resetForm()
     {
@@ -108,10 +132,13 @@ class AccountsPage extends Component
             'editing',
             'editingId',
             'successMessage',
+            'currency',
+'editMode',
         ]);
         $this->withdrawal_date = Jalalian::fromDateTime(now())
             ->format('Y/m/d');
         $this->formKey = uniqid();
+        $this->currency = 'AFN';
         $this->resetValidation();
     }
     private function convertToEnglishNumbers($string)
@@ -120,51 +147,56 @@ class AccountsPage extends Component
         $enNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
         return str_replace($faNumbers, $enNumbers, $string);
     }
-    public function save()
-    {
-        $this->amount = $this->convertToEnglishNumbers($this->amount);
-        $this->validate();
-        $fund = CashFundModel::first();
-        if (!$fund) {
-            $this->addError('amount', 'صندوق هنوز موجودی ندارد');
+   public function save()
+{
+    $this->amount = $this->convertToEnglishNumbers($this->amount);
+    $this->validate();
+    $currency  = $this->currency ?? 'AFN';
+    $newAmount = (float) $this->amount;
+    [$totalIncomeAFN, $totalIncomeUSD] = $this->getTotalIncome();
+    if ($this->editing) {
+        $withdrawal = Withdrawal::findOrFail($this->editingId);
+        $oldCurrency = $withdrawal->currency ?? 'AFN';
+        $oldAmount   = (float) $withdrawal->amount;
+        $availableAFN = $totalIncomeAFN + (($oldCurrency === 'AFN') ? $oldAmount : 0);
+        $availableUSD = $totalIncomeUSD + (($oldCurrency === 'USD') ? $oldAmount : 0);
+        if ($currency === 'AFN' && $availableAFN < $newAmount) {
+            $this->addError('amount', 'برداشت کافی نیست');
             return;
         }
-        $currency = $this->currency ?? 'AFN';
-        if ($currency === 'AFN' && ($fund->afn_balance <= 0 || $fund->afn_balance < $this->amount)) {
-            $this->addError('amount', 'موجودی صندوق کافی نیست');
+        if ($currency === 'USD' && $availableUSD < $newAmount) {
+            $this->addError('amount', 'برداشت کافی نیست');
             return;
         }
-        if ($currency === 'USD' && ($fund->usd_balance <= 0 || $fund->usd_balance < $this->amount)) {
-            $this->addError('amount', 'موجودی صندوق کافی نیست');
+        $withdrawal->update([
+            'withdrawal_type' => $this->withdrawal_type,
+            'amount' => $newAmount,
+            'description' => $this->description,
+            'currency' => $currency,
+        ]);
+        $this->successMessage = 'ویرایش با موفقیت انجام شد';
+    } else {
+        if ($currency === 'AFN' && $totalIncomeAFN < $newAmount) {
+            $this->addError('amount', 'برداشت کافی نیست');
             return;
         }
-        if ($this->editing) {
-            Withdrawal::findOrFail($this->editingId)->update([
-                'withdrawal_type' => $this->withdrawal_type,
-                'amount' => $this->amount,
-                'description' => $this->description,
-            ]);
-            $this->successMessage = 'ویرایش با موفقیت انجام شد';
-        } else {
-            if ($currency === 'AFN') {
-                $fund->afn_balance -= $this->amount;
-            } else {
-                $fund->usd_balance -= $this->amount;
-            }
-            $fund->save();
-            Withdrawal::create([
-                'withdrawal_type' => $this->withdrawal_type,
-                'amount' => $this->amount,
-                'description' => $this->description,
-                'currency' => $currency,
-                'withdrawal_date' => now()->toDateString(),
-                'user_id'  => Auth::id(),
-                'admin_id' => Auth::user()->admin_id ?? Auth::id(),
-            ]);
-            $this->successMessage = 'برداشت با موفقیت ثبت شد';
+        if ($currency === 'USD' && $totalIncomeUSD < $newAmount) {
+            $this->addError('amount', 'برداشت کافی نیست');
+            return;
         }
-        $this->resetForm();
+        Withdrawal::create([
+            'withdrawal_type' => $this->withdrawal_type,
+            'amount' => $newAmount,
+            'description' => $this->description,
+            'currency' => $currency,
+            'withdrawal_date' => now()->toDateString(),
+            'user_id'  => Auth::id(),
+            'admin_id' => Auth::user()->admin_id ?? Auth::id(),
+        ]);
+        $this->successMessage = 'برداشت با موفقیت ثبت شد';
     }
+    $this->resetForm();
+}
     public function render()
     {
         $withdrawals = Withdrawal::query()

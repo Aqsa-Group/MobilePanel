@@ -28,8 +28,13 @@ class Cashfund extends Component
     $totalIncreaseUSD = $salesUSD + $repairIncomeUSD + $receiptUSD;
     $salaryAFN = SalaryPayment::where('currency', 'AFN')->sum('amount');
     $salaryUSD = SalaryPayment::where('currency', 'USD')->sum('amount');
-    $withdrawTotalAFN = Withdrawal::where('currency', 'AFN')->sum('amount');
-    $withdrawTotalUSD = Withdrawal::where('currency', 'USD')->sum('amount');
+    $withdrawTotalAFN = Withdrawal::where('currency', 'AFN')
+    ->where('withdrawal_type', '!=', 'حقوق کارکنان')
+    ->sum('amount');
+
+$withdrawTotalUSD = Withdrawal::where('currency', 'USD')
+    ->where('withdrawal_type', '!=', 'حقوق کارکنان')
+    ->sum('amount');
     $totalDecreaseAFN = $salaryAFN + $withdrawTotalAFN;
     $totalDecreaseUSD = $salaryUSD + $withdrawTotalUSD;
     $totalLoansAFN = Loan::where('currency', 'AFN')->where('amount', '>', 0)->sum('amount');

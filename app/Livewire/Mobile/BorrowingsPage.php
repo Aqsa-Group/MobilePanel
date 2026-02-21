@@ -9,6 +9,7 @@ use App\Models\CashFund;
 use App\Models\CashReceipt;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Withdrawal;
 class BorrowingsPage extends Component
 {
     use WithPagination;
@@ -38,44 +39,44 @@ class BorrowingsPage extends Component
     public $formKey;
     public $editMode = false;
     public $borrowingId;
-public function calculateTotalLoan()
-{
-    $totalAfn = Loan::where('amount', '>', 0)->sum('amount');
-    $this->totalLoanAfn = $totalAfn;
-    $usdRate = 70;
-    $this->totalLoanUsd = $totalAfn / $usdRate;
-}
-public function calculateMonthlyCash()
-{
-    $startOfMonth = now()->startOfMonth()->format('Y-m-d');
-    $endOfMonth   = now()->endOfMonth()->format('Y-m-d');
-    $totalAfn = CashReceipt::where('receipt_date', '>=', $startOfMonth)
-                            ->where('receipt_date', '<=', $endOfMonth)
-                            ->where('amount', '>', 0)
-                            ->sum('amount');
-    $this->monthlyCashAfn = $totalAfn;
-    $usdRate = 70;
-    $this->monthlyCashUsd = $totalAfn / $usdRate;
-}
-public function calculateMonthlyLoan()
-{
-    $startOfMonth = now()->startOfMonth()->format('Y-m-d');
-    $endOfMonth   = now()->endOfMonth()->format('Y-m-d');
-    $totalAfn = Loan::where('loan_date', '>=', $startOfMonth)
-                     ->where('loan_date', '<=', $endOfMonth)
-                     ->where('amount', '>', 0)
-                     ->sum('amount');
-    $this->monthlyLoanAfn = $totalAfn;
-    $usdRate = 70;
-    $this->monthlyLoanUsd = $totalAfn / $usdRate;
-}
-public function calculateTotalCash()
-{
-    $totalAfn = CashReceipt::where('amount', '>', 0)->sum('amount');
-    $this->totalCashAfn = $totalAfn;
-    $usdRate = 70;
-    $this->totalCashUsd = $totalAfn / $usdRate;
-}
+    public function calculateTotalLoan()
+    {
+        $totalAfn = Loan::where('amount', '>', 0)->sum('amount');
+        $this->totalLoanAfn = $totalAfn;
+        $usdRate = 70;
+        $this->totalLoanUsd = $totalAfn / $usdRate;
+    }
+    public function calculateMonthlyCash()
+    {
+        $startOfMonth = now()->startOfMonth()->format('Y-m-d');
+        $endOfMonth   = now()->endOfMonth()->format('Y-m-d');
+        $totalAfn = CashReceipt::where('receipt_date', '>=', $startOfMonth)
+            ->where('receipt_date', '<=', $endOfMonth)
+            ->where('amount', '>', 0)
+            ->sum('amount');
+        $this->monthlyCashAfn = $totalAfn;
+        $usdRate = 70;
+        $this->monthlyCashUsd = $totalAfn / $usdRate;
+    }
+    public function calculateMonthlyLoan()
+    {
+        $startOfMonth = now()->startOfMonth()->format('Y-m-d');
+        $endOfMonth   = now()->endOfMonth()->format('Y-m-d');
+        $totalAfn = Loan::where('loan_date', '>=', $startOfMonth)
+            ->where('loan_date', '<=', $endOfMonth)
+            ->where('amount', '>', 0)
+            ->sum('amount');
+        $this->monthlyLoanAfn = $totalAfn;
+        $usdRate = 70;
+        $this->monthlyLoanUsd = $totalAfn / $usdRate;
+    }
+    public function calculateTotalCash()
+    {
+        $totalAfn = CashReceipt::where('amount', '>', 0)->sum('amount');
+        $this->totalCashAfn = $totalAfn;
+        $usdRate = 70;
+        $this->totalCashUsd = $totalAfn / $usdRate;
+    }
     protected function rules()
     {
         return [
@@ -132,7 +133,7 @@ public function calculateTotalCash()
         $this->calculateTotalLoan();
         $this->calculateMonthlyLoan();
         $this->calculateMonthlyCash();
-    $this->calculateTotalCash();
+        $this->calculateTotalCash();
     }
     private function convertToEnglishNumber($value)
     {
@@ -146,37 +147,93 @@ public function calculateTotalCash()
         $this->resetForm();
         $this->date = now()->format('Y-m-d');
     }
+    private function getTotalIncome(): array
+    {
+        $afnToUsdRate = 70;
+        $salesAFN = \App\Models\LoanSell::sum('sell_price') + \App\Models\CashSell::sum('profit_total');
+        $salesUSD = $salesAFN / $afnToUsdRate;
+        $repairIncomeAFN = \App\Models\DeviceRepairForm::sum('repair_cost');
+        $repairIncomeUSD = $repairIncomeAFN / $afnToUsdRate;
+        $receiptAFN = \App\Models\CashReceipt::where('currency', 'AFN')->sum('amount');
+        $receiptUSD = \App\Models\CashReceipt::where('currency', 'USD')->sum('amount');
+        $totalIncreaseAFN = $salesAFN + $repairIncomeAFN + $receiptAFN;
+        $totalIncreaseUSD = $salesUSD + $repairIncomeUSD + $receiptUSD;
+        $salaryAFN = \App\Models\SalaryPayment::where('currency', 'AFN')->sum('amount');
+        $salaryUSD = \App\Models\SalaryPayment::where('currency', 'USD')->sum('amount');
+        $withdrawTotalAFN = \App\Models\Withdrawal::where('currency', 'AFN')
+            ->where('withdrawal_type', '!=', 'حقوق کارکنان')
+            ->sum('amount');
+        $withdrawTotalUSD = \App\Models\Withdrawal::where('currency', 'USD')
+            ->where('withdrawal_type', '!=', 'حقوق کارکنان')
+            ->sum('amount');
+        $totalDecreaseAFN = $salaryAFN + $withdrawTotalAFN;
+        $totalDecreaseUSD = $salaryUSD + $withdrawTotalUSD;
+        $totalIncomeAFN = $totalIncreaseAFN - $totalDecreaseAFN;
+        $totalIncomeUSD = $totalIncreaseUSD - $totalDecreaseUSD;
+        $totalIncomeAFN = $totalIncomeAFN > 0 ? $totalIncomeAFN : 0;
+        $totalIncomeUSD = $totalIncomeUSD > 0 ? $totalIncomeUSD : 0;
+        return [$totalIncomeAFN, $totalIncomeUSD];
+    }
     public function submit()
     {
-            $this->amount = $this->convertToEnglishNumber($this->amount);
+        $this->amount = $this->convertToEnglishNumber($this->amount);
         $this->validate();
         $amountAfn = Currency::toAfn($this->amount, $this->currency);
         if ($this->editMode) {
             if ($this->formType === 'loan') {
-                 $cashFund = CashFund::first() ?? new CashFund();
-    $afnBalance = $cashFund->afn_balance ?? 0;
-    $usdBalance = $cashFund->usd_balance ?? 0;
-    if ($this->currency === 'AFN' && $amountAfn > $afnBalance) {
-       $this->formError = ' موجودی کافی در صندوق وجود ندارد.';
-        return;
-    }
-    if ($this->currency === 'USD' && $amountAfn > $usdBalance) {
-       $this->formError = ' موجودی کافی در صندوق وجود ندارد.';
-        return;
-    }
+                [$totalIncomeAFN, $totalIncomeUSD] = $this->getTotalIncome();
+                $amountUsd = $amountAfn / 70;
+                if ($this->currency === 'AFN' && $amountAfn > $totalIncomeAFN) {
+                    $this->formError = ' درآمد کل کافی نیست.';
+                    return;
+                }
+                if ($this->currency === 'USD' && $amountUsd > $totalIncomeUSD) {
+                    $this->formError = ' درآمد کل کافی نیست.';
+                    return;
+                }
+                $cashFund = CashFund::first() ?? new CashFund();
+                $afnBalance = $cashFund->afn_balance ?? 0;
+                $usdBalance = $cashFund->usd_balance ?? 0;
                 $loan = Loan::findOrFail($this->borrowingId);
+                $oldAmountAfn = (float) $loan->amount;
+                $newAmountAfn = (float) $amountAfn;
+                $diffAfn = $newAmountAfn - $oldAmountAfn;
+                if ($diffAfn > 0) {
+                    if ($this->currency === 'AFN' && $diffAfn > $afnBalance) {
+                        $this->formError = ' موجودی کافی در صندوق وجود ندارد.';
+                        return;
+                    }
+                    if ($this->currency === 'USD' && $diffAfn > $usdBalance) {
+                        $this->formError = ' موجودی کافی در صندوق وجود ندارد.';
+                        return;
+                    }
+                }
                 $loan->update([
                     'customer_id' => $this->customer_id,
                     'amount'      => $amountAfn,
                     'note'        => $this->note,
                     'loan_date'   => $this->date,
                 ]);
-                 if ($this->currency === 'AFN') {
-        $cashFund->afn_balance -= $amountAfn;
-    } else {
-        $cashFund->usd_balance -= $amountAfn;
-    }
-    $cashFund->save();
+                if ($diffAfn > 0) {
+                    if ($this->currency === 'AFN') {
+                        $cashFund->afn_balance -= $diffAfn;
+                    } else {
+                        $cashFund->usd_balance -= $diffAfn;
+                    }
+                    $cashFund->save();
+                }
+                $w = Withdrawal::where('withdrawal_type', 'قرض مشتری')
+                    ->where('description', 'like', "%(LN#{$loan->id})%")
+                    ->first();
+                if ($w) {
+                    $w->update([
+                        'amount' => $amountAfn,
+                        'currency' => $this->currency,
+                        'withdrawal_date' => $this->date,
+                        'description' => 'برداشت قرض (LN#' . $loan->id . '): ' . ($this->note ?? ''),
+                        'admin_id' => Auth::id(),
+                    ]);
+                }
                 $this->formType = 'loan';
             } else {
                 $cash = CashReceipt::findOrFail($this->borrowingId);
@@ -195,24 +252,60 @@ public function calculateTotalCash()
             $this->calculateMonthlyLoan();
         } else {
             if ($this->formType === 'loan') {
-                Loan::create([
+                [$totalIncomeAFN, $totalIncomeUSD] = $this->getTotalIncome();
+                $amountUsd = $amountAfn / 70;
+                if ($this->currency === 'AFN' && $amountAfn > $totalIncomeAFN) {
+                    $this->formError = ' درآمد کل کافی نیست.';
+                    return;
+                }
+                if ($this->currency === 'USD' && $amountUsd > $totalIncomeUSD) {
+                    $this->formError = ' درآمد کل کافی نیست.';
+                    return;
+                }
+                $loan = Loan::create([
                     'customer_id' => $this->customer_id,
                     'admin_id'    => Auth::id(),
                     'amount'      => $amountAfn,
                     'note'        => $this->note,
                     'loan_date'   => $this->date,
                 ]);
+                Withdrawal::create([
+                    'withdrawal_type' => 'قرض مشتری',
+                    'amount' => $amountAfn,
+                    'currency' => $this->currency,
+                    'withdrawal_date' => $this->date,
+                    'description' => 'برداشت قرض (LN#' . $loan->id . '): ' . ($this->note ?? ''),
+                    'user_id' => Auth::id(),
+                    'admin_id' => Auth::id(),
+                ]);
+                $cashFund = CashFund::first() ?? new CashFund();
+                $afnBalance = $cashFund->afn_balance ?? 0;
+                $usdBalance = $cashFund->usd_balance ?? 0;
+                if ($this->currency === 'AFN' && $amountAfn > $afnBalance) {
+                    $this->formError = ' موجودی کافی در صندوق وجود ندارد.';
+                    return;
+                }
+                if ($this->currency === 'USD' && $amountAfn > $usdBalance) {
+                    $this->formError = ' موجودی کافی در صندوق وجود ندارد.';
+                    return;
+                }
+                if ($this->currency === 'AFN') {
+                    $cashFund->afn_balance -= $amountAfn;
+                } else {
+                    $cashFund->usd_balance -= $amountAfn;
+                }
+                $cashFund->save();
                 $this->formType = 'loan';
             } else {
                 $loan = Loan::where('customer_id', $this->customer_id)
-                        ->where('amount', '>=', $amountAfn)
-                        ->first();
-            if (!$loan) {
-                  $this->formError = ' قرض کافی برای این رسید وجود ندارد.';
-                return;
-            }
-            $loan->amount -= $amountAfn;
-            $loan->save();
+                    ->where('amount', '>=', $amountAfn)
+                    ->first();
+                if (!$loan) {
+                    $this->formError = ' قرض کافی برای این رسید وجود ندارد.';
+                    return;
+                }
+                $loan->amount -= $amountAfn;
+                $loan->save();
                 CashReceipt::create([
                     'customer_id' => $this->customer_id,
                     'user_id'     => Auth::id(),
@@ -221,22 +314,24 @@ public function calculateTotalCash()
                     'note'        => $this->note,
                     'receipt_date' => $this->date,
                 ]);
-    $loan->amount -= $amountAfn;
-    $loan->save();
-    $cashFund = CashFund::first() ?? new CashFund();
-    if ($this->currency === 'AFN') {
-        $cashFund->afn_balance += $amountAfn;
-    } else {
-        $cashFund->usd_balance += $amountAfn;
-    }
-    $cashFund->save();
-                 Loan::create([
-        'customer_id' => $this->customer_id,
-        'admin_id'    => Auth::id(),
-        'amount'      => -$amountAfn,
-        'note'        => 'کاهش قرض با رسید: ' . $this->note,
-        'loan_date'   => $this->date,
-    ]);
+                if (false) {
+                    $loan->amount -= $amountAfn;
+                    $loan->save();
+                }
+                $cashFund = CashFund::first() ?? new CashFund();
+                if ($this->currency === 'AFN') {
+                    $cashFund->afn_balance += $amountAfn;
+                } else {
+                    $cashFund->usd_balance += $amountAfn;
+                }
+                $cashFund->save();
+                Loan::create([
+                    'customer_id' => $this->customer_id,
+                    'admin_id'    => Auth::id(),
+                    'amount'      => -$amountAfn,
+                    'note'        => 'کاهش قرض با رسید: ' . $this->note,
+                    'loan_date'   => $this->date,
+                ]);
                 $this->formType = 'cash';
             }
             $this->formError = null;
@@ -275,14 +370,17 @@ public function calculateTotalCash()
     {
         Loan::findOrFail($id)->delete();
         session()->flash('success', 'قرضه موفقانه حذف شد');
-         $this->calculateTotalLoan();
-         $this->calculateMonthlyLoan();
+        $this->calculateTotalLoan();
+        $this->calculateMonthlyLoan();
+        Withdrawal::where('withdrawal_type', 'قرض مشتری')
+            ->where('description', 'like', "%(LN#{$id})%")
+            ->delete();
     }
     public function deleteCash($id)
     {
         CashReceipt::findOrFail($id)->delete();
-         $this->calculateTotalLoan();
-          $this->calculateMonthlyLoan();
+        $this->calculateTotalLoan();
+        $this->calculateMonthlyLoan();
     }
     public function resetForm()
     {
