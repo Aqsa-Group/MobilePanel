@@ -144,48 +144,11 @@
                         <path d="M4.15997 14.56C1.73997 16.18 1.73997 18.82 4.15997 20.43C6.90997 22.27 11.42 22.27 14.17 20.43C16.59 18.81 16.59 16.17 14.17 14.56C11.43 12.73 6.91997 12.73 4.15997 14.56Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M18.3401 20C19.0601 19.85 19.7401 19.56 20.3001 19.13C21.8601 17.96 21.8601 16.03 20.3001 14.86C19.7501 14.44 19.0801 14.16 18.3701 14" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span class="text-[15px]">کاربران ها</span>
+                    <span class="text-[15px]">کاربران </span>
                 </a>
-                <div
-                        x-data="{
-                            open: @js(
-                                request()->routeIs('admin2.device-list') ||
-                                request()->routeIs('admin2.register-device')
-                            )
-                        }"
-                        class="w-full"
-                    >
-                    <!-- دکمه اصلی -->
-                    <button
-                        @click.prevent="open = !open"
-                        :class="{ 'bg-[#0B35CC] text-white': open }"
-                        class="menu-btn group w-full text-right flex items-center gap-3 rounded-xl px-2 py-2 text-sm  transition hover:bg-[#0B35CC] hover:text-white"
-                        style="cursor: pointer;"
-                    >
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 16.9498H6.21C2.84 16.9498 2 16.1098 2 12.7398V6.73979C2 3.36979 2.84 2.52979 6.21 2.52979H16.74C20.11 2.52979 20.95 3.36979 20.95 6.73979" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M10 21.4702V16.9502" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M2 12.9502H10" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M6.74023 21.4702H10.0002" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M21.9998 12.7998V18.5098C21.9998 20.8798 21.4098 21.4698 19.0398 21.4698H15.4898C13.1198 21.4698 12.5298 20.8798 12.5298 18.5098V12.7998C12.5298 10.4298 13.1198 9.83984 15.4898 9.83984H19.0398C21.4098 9.83984 21.9998 10.4298 21.9998 12.7998Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M17.2445 18.25H17.2535" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-
-                        <span class="text-[15px]">دستگاه‌ها</span>
-
-                        <i
-                            class="fa-solid fa-chevron-down transition ml-auto"
-                            :class="{ 'rotate-180': open }"
-                        ></i>
-                    </button>
-
-                    <!-- زیرمنو -->
-                    <div x-show="open" x-transition class="w-full mt-1 space-y-1">
-                            <a
+                <a
                             href="{{ route('admin2.device-list') }}"
-                            :class="{ 'bg-[#2F5BDE] text-white': @js(request()->routeIs('admin2.device-list')) }"
-                            class="menu-btn bg-gray-50 group w-full text-right flex gap-3 rounded-xl px-5 py-2 text-sm  transition hover:bg-[#2F5BDE] hover:text-white"
-                            >
+                            class="menu-btn group w-full text-right flex {{ request()->routeIs('admin2.device-list') ? 'bg-[#0B35CC] text-white' : 'text-gray-700' }} gap-3 rounded-xl px-2 py-2 text-sm  transition hover:bg-[#0B35CC] hover:text-white">
                            <svg class="w-5 h-5 ttransition" viewBox="0 0 17 17" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6.37484 15.5832H10.6248C14.1665 15.5832 15.5832 14.1665 15.5832 10.6248V6.37484C15.5832 2.83317 14.1665 1.4165 10.6248 1.4165H6.37484C2.83317 1.4165 1.4165 2.83317 1.4165 6.37484V10.6248C1.4165 14.1665 2.83317 15.5832 6.37484 15.5832Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 
@@ -198,34 +161,6 @@
 
                             <span class="text-[14px]">لیست دستگاه</span>
                         </a>
-                        <a
-                            href="{{ route('admin2.register-device') }}"
-                            :class="{ 'bg-[#2F5BDE] text-white': @js(request()->routeIs('admin2.register-device')) }"
-                            class="menu-btn bg-gray-50 group w-full text-right flex gap-3 rounded-xl px-5 py-2 text-sm  transition hover:bg-[#2F5BDE] hover:text-white"
-                            >
-                           <svg class="w-5 h-5 transition" viewBox="0 0 17 17" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_1140_2772)">
-                            <path d="M7.77051 1.4165H6.35384C2.81217 1.4165 1.39551 2.83317 1.39551 6.37484V10.6248C1.39551 14.1665 2.81217 15.5832 6.35384 15.5832H10.6038C14.1455 15.5832 15.5622 14.1665 15.5622 10.6248V9.20817" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M15.4982 2.52166C14.6269 4.69624 12.4382 7.65708 10.6107 9.12333L9.49152 10.0158C9.34986 10.1221 9.20819 10.2071 9.04527 10.2708C9.04527 10.1646 9.03819 10.0583 9.02402 9.94499C8.96027 9.47041 8.74777 9.02416 8.36527 8.64874C7.97569 8.25916 7.50819 8.03958 7.02652 7.97583C6.91319 7.96874 6.79986 7.96166 6.68652 7.96874C6.75027 7.79166 6.84236 7.62874 6.96277 7.49416L7.85527 6.37499C9.32152 4.54749 12.2894 2.34458 14.4569 1.47333C14.7899 1.34583 15.1157 1.44499 15.3211 1.65041C15.5336 1.86291 15.6328 2.18874 15.4982 2.52166Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M9.0524 10.2635C9.0524 10.8868 8.81157 11.4818 8.36532 11.9352C8.01824 12.2823 7.55074 12.5231 6.99115 12.5939L5.59574 12.7427C4.83782 12.8277 4.18615 12.1831 4.27115 11.411L4.4199 10.0156C4.55449 8.77601 5.58865 7.98268 6.69365 7.96143C6.80699 7.95435 6.92032 7.96143 7.03365 7.96851C7.51532 8.03226 7.98282 8.25185 8.3724 8.64143C8.7549 9.02393 8.9674 9.4631 9.03115 9.93768C9.04532 10.051 9.0524 10.1643 9.0524 10.2635Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M11.2061 8.48585C11.2061 7.00544 10.009 5.80127 8.52148 5.80127" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_1140_2772">
-                            <rect width="17" height="17" fill="white"/>
-                            </clipPath>
-                            </defs>
-                            </svg>
-
-
-                            <span class="text-[14px]">ثبت دستگاه</span>
-
-                        </a>
-
-
-
-                    </div>
-                </div>
                 <a
                     x-data
                     href="{{ route('admin2.store') }}"

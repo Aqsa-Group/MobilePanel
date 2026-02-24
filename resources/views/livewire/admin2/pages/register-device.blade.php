@@ -1,4 +1,1 @@
-@extends('livewire.admin2.layouts.app')
-@section('content')
-    @include('livewire.admin2.component.register-device')
-@endsection
+@include('livewire.admin2.component.register-device')
