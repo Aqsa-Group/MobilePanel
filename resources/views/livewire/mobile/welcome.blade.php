@@ -14,7 +14,7 @@
                     <div class="card-anim relative bg-[#616161]/5 shadow-xl p-4 pb-[70px] flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#00000040] overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
-                                <h3 class="text-3xl text-[#1E40AF] sm:text-2xl font-bold leading-none">
+                                <h3 class="text-xl text-[#1E40AF] sm:text-lg font-bold leading-none">
                                      {{ $totalUsers }}
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
@@ -42,7 +42,7 @@
                     <div class="card-anim relative bg-[#616161]/5 shadow-xl p-4 pb-[70px] flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#00000040] overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
-                                <h3 class="text-3xl sm:text-2xl font-bold leading-none text-[#1E40AF]">
+                                <h3 class="text-xl sm:text-lg font-bold leading-none text-[#1E40AF]">
                                     {{ $totalCustomers }}
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
@@ -60,7 +60,7 @@
                     <div class="card-anim relative bg-[#616161]/5 shadow-xl p-4 pb-[70px] flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#00000040] overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
-                                <h3 class="text-3xl sm:text-2xl font-bold leading-none text-[#1E40AF]">
+                                <h3 class="text-xl sm:text-lg font-bold leading-none text-[#1E40AF]">
                                     {{ number_format($todaySalesAmount) }}؋
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
@@ -78,7 +78,7 @@
                     <div class="card-anim relative bg-[#616161]/5 shadow-xl p-4 pb-[70px] flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#00000040] overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
-                                <h3 class="text-3xl sm:text-2xl font-bold leading-none text-[#1E40AF]">
+                                <h3 class="text-xl sm:text-lg font-bold leading-none text-[#1E40AF]">
                                    {{ number_format($todayProfitAmount) }}؋
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
@@ -96,7 +96,7 @@
                     <div class="card-anim relative bg-[#616161]/5 shadow-xl p-4 pb-[70px] flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#1E40AF1E40AF40] overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
-                                <h3 class="text-3xl sm:text-2xl font-bold leading-none text-[#1E40AF]">
+                                <h3 class="text-xl sm:text-lg font-bold leading-none text-[#1E40AF]">
                                     {{ number_format($grandTotal) }} ؋
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
@@ -114,7 +114,7 @@
                     <div class="card-anim relative bg-[#616161]/5 shadow-xl p-4 pb-[70px] flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#00000040] overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
-                                <h3 class="text-3xl sm:text-2xl font-bold leading-none text-[#1E40AF]">
+                                <h3 class="text-xl sm:text-lg font-bold leading-none text-[#1E40AF]">
                                     {{ number_format($totalBorrowings) }} ؋
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
@@ -132,8 +132,8 @@
                     <div class="card-anim relative bg-[#616161]/5 shadow-xl p-4 pb-[70px] flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#00000040] overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
-                                <h3 class="text-3xl sm:text-2xl font-bold leading-none text-[#1E40AF]">
-                                   {{ number_format($this->totalSalaryPaid + $this->totalWithdrawals) }}؋
+                                <h3 class="text-xl sm:text-lg font-bold leading-none text-[#1E40AF]">
+                                   {{ number_format($todayExpensesAmount) }}؋
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">
                                     مصارف امروز
@@ -150,7 +150,7 @@
                     <div class="card-anim relative bg-[#616161]/5 shadow-xl p-4 pb-[70px] flex flex-col justify-between rounded-xl shadow-[0px_4px_4px_0px_#00000040] overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div>
-                                <h3 class="text-3xl sm:text-2xl font-bold leading-none text-[#1E40AF]">
+                                <h3 class="text-xl sm:text-lg font-bold leading-none text-[#1E40AF]">
                                     {{ $totalemployee }}
                                 </h3>
                                 <p class="mt-2 text-[15px] font-semibold text-gray-700">

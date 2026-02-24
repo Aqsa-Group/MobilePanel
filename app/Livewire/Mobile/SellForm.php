@@ -441,7 +441,7 @@ protected $messages = [
 
     foreach ($this->loan_models as $index => $modelId) {
 
-        $device = ProductStock::find($modelId); // ✅ دوکان
+        $device = ProductStock::whereKey($modelId)->lockForUpdate()->first(); // ✅ دوکان
 
         if ($device) {
             $quantity = $this->normalizeQuantity($this->loan_quantities[$index] ?? 1);
@@ -494,7 +494,7 @@ protected $messages = [
             if (empty($row['barcode'])) continue;
 
             $quantity = $this->normalizeQuantity($row['quantity'] ?? 1);
-            $product = Device::where('barcode', $row['barcode'])->first();
+            $product = Device::where('barcode', $row['barcode'])->lockForUpdate()->first();
             $available = (int)($product->quantity ?? 0);
 
             if (!$product || $available < $quantity) {
@@ -531,11 +531,22 @@ protected $messages = [
     } else {
 
         // ✅ کد خودت بدون حذف (فقط به عنوان fallback)
+        $barcode = trim($this->convertToEnglish($this->cash_barcode));
+        $quantity = 1;
+        $product = $barcode ? Device::where('barcode', $barcode)->lockForUpdate()->first() : null;
+        $available = (int) ($product->quantity ?? 0);
+
+        if (!$product || $available < $quantity) {
+            DB::rollBack();
+            session()->flash('error', "موجودی کافی نیست. موجودی فعلی: {$available}");
+            return;
+        }
+
         CashSell::create([
             'customer_id'       => $this->cash_customer_id,
             'model'             => $this->cash_model,
             'number'            => $this->convertToEnglish($this->cash_number),
-            'quantity'          => 1,
+            'quantity'          => $quantity,
             'buy_price'         => $this->cash_buy_price,
             'sell_price_retail' => (float) $this->convertToEnglish($this->cash_sell_price),
             'discount_amount'   => $this->resolveCashDiscountValue(
@@ -543,11 +554,14 @@ protected $messages = [
                 $this->cash_discount
             ),
             'profit_total'      => ((float) $this->convertToEnglish($this->cash_final_price) - (float) $this->convertToEnglish($this->cash_buy_price)),
-            'barcode'           => $this->cash_barcode,
+            'barcode'           => $barcode,
             'id_card'           => $customer?->id_card,
             'address'           => $customer?->address,
             'admin_id'          => auth()->id(),
         ]);
+
+        $product->quantity = $available - $quantity;
+        $product->save();
     }
 }
 

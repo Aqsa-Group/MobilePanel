@@ -17,7 +17,7 @@ class Cashfund extends Component
     $afnBalance = $fund->afn_balance ?? 0;
     $usdBalance = $fund->usd_balance ?? 0;
     $afnToUsdRate = 70;
-    $salesAFN = LoanSell::sum('sell_price') + CashSell::sum('profit_total');
+    $salesAFN = LoanSell::sum('sell_price') + CashSell::sum('sell_price_retail');
     $salesUSD = $salesAFN / $afnToUsdRate;
     $repairIncomeAFN = DeviceRepairForm::sum('repair_cost');
     $afnToUsdRate = 70;
@@ -49,7 +49,7 @@ $withdrawTotalUSD = Withdrawal::where('currency', 'USD')
     $totalDecreaseAFN = $salaryAFN + $withdrawTotalAFN;
     $totalDecreaseUSD = $salaryUSD + $withdrawTotalUSD;
     $totalLoansAFN = Loan::where('currency', 'AFN')->where('amount', '>', 0)->sum('amount');
-    $totalLoansUSD = $totalLoansAFN / $afnToUsdRate;
+    $totalLoansUSD = Loan::where('currency', 'USD')->where('amount', '>', 0)->sum('amount');
     $lossAFN = ($totalDecreaseAFN + $totalLoansAFN) - $afnBalance;
     $lossUSD = ($totalDecreaseUSD + $totalLoansUSD) - $usdBalance;
     $lossAFN = $lossAFN > 0 ? $lossAFN : 0;
