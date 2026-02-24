@@ -116,9 +116,9 @@
     <!-- Sidebar -->
     <aside id="sidebar"
         class="fixed inset-y-0 right-0 sm:top-16 z-40 h-[calc(100vh-100px)] w-64
-        bg-white shadow shadow-[#0B35CC] h-full
+        bg-white shadow shadow-[#0B35CC]
         transform translate-x-full transition-transform duration-200 ease-out
-        lg:static lg:top-0 lg:h-auto lg:translate-x-0 lg:flex lg:flex-col lg:w-52 p-2" aria-label="Sidebar">
+        lg:sticky lg:top-[78px] lg:h-[calc(100vh-78px)] lg:translate-x-0 lg:flex lg:flex-col lg:w-52 p-2" aria-label="Sidebar">
         <div class="h-16 flex items-center justify-start px-3">
            <a id="closeSidebar" class="hidden" aria-label="بستن">
             <i class="fa-solid fa-xmark"></i>

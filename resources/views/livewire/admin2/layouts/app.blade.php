@@ -12,7 +12,7 @@
 </head>
 <body >
     <div class="pt-[78px] min-h-screen">
-        <div class="flex">
+        <div class="flex min-h-[calc(100vh-78px)] items-stretch">
             @include('livewire.admin2.components.sidebar')
             <main class="flex-1 max-w-full px-3  sm:px-4 overflow-x-hidden mx-auto lg:p-6">
                 @isset($slot)
