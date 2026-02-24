@@ -33,24 +33,24 @@ class Sell extends Component
 
         /* ================= LOAN ================= */
 
-        $loanSales = LoanSell::query()
+        $loanSales = LoanSell::with('admin')
             ->when($this->search, function ($query) {
                 $query->where('name', 'like', "%{$this->search}%")
                       ->orWhere('model', 'like', "%{$this->search}%");
             })
-            ->latest()
+            ->oldest('created_at')
             ->paginate(6, ['*'], 'loanPage');
 
         /* ================= CASH ================= */
 
-        $cashSales = CashSell::with('customer')
+        $cashSales = CashSell::with(['customer', 'admin'])
             ->when($this->search, function ($query) {
                 $query->where('model', 'like', "%{$this->search}%")
                       ->orWhereHas('customer', function ($q) {
                           $q->where('fullname', 'like', "%{$this->search}%");
                       });
             })
-            ->latest()
+            ->oldest('created_at')
             ->paginate(6, ['*'], 'cashPage');
 
         /* ================= آمار کلی ================= */

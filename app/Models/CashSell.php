@@ -12,12 +12,15 @@ class CashSell extends Model
     'customer_id',
     'model',
     'number',
+    'quantity',
     'buy_price',
     'sell_price_retail',
+    'discount_amount',
     'profit_total',
     'barcode',
     'id_card',
-    'address'
+    'address',
+    'admin_id',
 ];
 
     public function customer()
@@ -27,6 +30,11 @@ class CashSell extends Model
  public function prouduct()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo(UserForm::class, 'admin_id');
     }
 
 }

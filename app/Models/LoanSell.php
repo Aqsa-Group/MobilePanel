@@ -6,10 +6,14 @@ class LoanSell extends Model
     'name',
     'model',
     'number',
+    'quantity',
     'buy_price',
     'sell_price',
+    'discount_amount',
+    'profit_total',
     'barcode',
     'product_stock_id',
+    'admin_id',
 ];
     public function productStock()
     {
@@ -18,5 +22,10 @@ class LoanSell extends Model
     public function device()
     {
         return $this->belongsTo(Device::class);
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo(UserForm::class, 'admin_id');
     }
 }

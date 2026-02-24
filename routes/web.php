@@ -54,12 +54,12 @@ Route::prefix('admin2')->group(function () {
     Route::post('/login', [AuthControllers::class, 'login'])->name('admin2.login.post');
     Route::post('/logout', [AuthControllers::class, 'logout'])->name('admin2.logout');
     Route::middleware('auth:admin2')->group(function () {
-        Route::get('/dashboard', Dashboard::class)->name('admin2.dashboard');
-        Route::get('/users', Users::class)->name('admin2.users');
-        Route::get('/device-list', DeviceList::class)->name('admin2.device-list');
-        Route::get('/register-device', RegisterDevice::class)->name('admin2.register-device');
-        Route::get('/store', Store::class)->name('admin2.store');
-        Route::get('/reports', Reports::class)->name('admin2.reports');
+    Route::get('/dashboard', Dashboard::class)->name('admin2.dashboard');
+    Route::get('/users', Users::class)->name('admin2.users');
+    Route::get('/device-list', DeviceList::class)->name('admin2.device-list');
+    Route::get('/register-device', RegisterDevice::class)->name('admin2.register-device');
+    Route::get('/store', Store::class)->name('admin2.store');
+    Route::get('/reports', Reports::class)->name('admin2.reports');
     });
 });
 use App\Livewire\Website\Home;
@@ -67,11 +67,13 @@ use App\Livewire\Website\About;
 use App\Livewire\Website\Contact;
 use App\Livewire\Website\Register as WebsiteRegister;
 use App\Livewire\Website\Services;
-Route::prefix('website')->group(function () {
-    Route::get('/', Home::class)->name('website.home');
-    Route::get('/about', About::class)->name('website.about');
-    Route::get('/services', Services::class)->name('website.services');
-    Route::get('/contact', Contact::class)->name('website.contact');
-    Route::get('/register', WebsiteRegister::class)->name('website.register');
-    Route::view('/login', 'livewire.website.login')->name('website.login');
+Route::middleware('auth')->group(function () {
+    Route::prefix('website')->group(function () {
+        Route::get('/', Home::class)->name('website.home');
+        Route::get('/about', About::class)->name('website.about');
+        Route::get('/services', Services::class)->name('website.services');
+        Route::get('/contact', Contact::class)->name('website.contact');
+        Route::get('/register', WebsiteRegister::class)->name('website.register');
+        Route::view('/login', 'livewire.website.login')->name('website.login');
+    });
 });
