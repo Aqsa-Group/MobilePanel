@@ -8,7 +8,10 @@ use App\Models\CashReceipt;
 use App\Models\LoanSell;
 use App\Models\CashSell;
 use App\Models\DeviceRepairForm;
+use App\Models\Device;
+use App\Models\ProductStock;
 use App\Models\CashFund as CashFundModel;
+use Illuminate\Support\Facades\DB;
 class Cashfund extends Component
 {
    public function render()
@@ -37,8 +40,8 @@ $withdrawTotalUSD = Withdrawal::where('currency', 'USD')
     ->sum('amount');
     $totalDecreaseAFN = $salaryAFN + $withdrawTotalAFN;
     $totalDecreaseUSD = $salaryUSD + $withdrawTotalUSD;
-    $totalLoansAFN = Loan::where('currency', 'AFN')->where('amount', '>', 0)->sum('amount');
-    $totalLoansUSD = Loan::where('currency', 'USD')->where('amount', '>', 0)->sum('amount');
+    $totalLoansAFN = Loan::where('amount', '>', 0)->sum('amount');
+    $totalLoansUSD = $totalLoansAFN / $afnToUsdRate;
     $totalIncomeAFN = $totalIncreaseAFN - $totalDecreaseAFN;
     $totalIncomeUSD = $totalIncreaseUSD - $totalDecreaseUSD;
     $profitAFN = ($salesAFN + $repairIncomeAFN + $receiptAFN) - ($salaryAFN + $withdrawTotalAFN);
@@ -48,15 +51,39 @@ $withdrawTotalUSD = Withdrawal::where('currency', 'USD')
     $afnToUsdRate = 70;
     $totalDecreaseAFN = $salaryAFN + $withdrawTotalAFN;
     $totalDecreaseUSD = $salaryUSD + $withdrawTotalUSD;
-    $totalLoansAFN = Loan::where('currency', 'AFN')->where('amount', '>', 0)->sum('amount');
-    $totalLoansUSD = Loan::where('currency', 'USD')->where('amount', '>', 0)->sum('amount');
+    $totalLoansAFN = Loan::where('amount', '>', 0)->sum('amount');
+    $totalLoansUSD = $totalLoansAFN / $afnToUsdRate;
     $lossAFN = ($totalDecreaseAFN + $totalLoansAFN) - $afnBalance;
     $lossUSD = ($totalDecreaseUSD + $totalLoansUSD) - $usdBalance;
     $lossAFN = $lossAFN > 0 ? $lossAFN : 0;
     $lossUSD = $lossUSD > 0 ? $lossUSD : 0;
+    $shopBalanceAFN = 0;
+    if (
+        DB::getSchemaBuilder()->hasColumn('products_stock', 'buy_price') &&
+        DB::getSchemaBuilder()->hasColumn('products_stock', 'stock')
+    ) {
+        $shopBalanceAFN = ProductStock::sum(DB::raw('buy_price * stock'));
+    } elseif (DB::getSchemaBuilder()->hasColumn('products_stock', 'buy_price')) {
+        $shopBalanceAFN = ProductStock::sum('buy_price');
+    }
+    $shopBalanceUSD = $shopBalanceAFN / $afnToUsdRate;
+    $warehouseBalanceAFN = 0;
+    if (
+        DB::getSchemaBuilder()->hasColumn('devices', 'buy_price') &&
+        DB::getSchemaBuilder()->hasColumn('devices', 'quantity')
+    ) {
+        $warehouseBalanceAFN = Device::sum(DB::raw('buy_price * quantity'));
+    } elseif (DB::getSchemaBuilder()->hasColumn('devices', 'buy_price')) {
+        $warehouseBalanceAFN = Device::sum('buy_price');
+    }
+    $warehouseBalanceUSD = $warehouseBalanceAFN / $afnToUsdRate;
     return view('livewire.mobile.cashfund', compact(
         'afnBalance',
         'usdBalance',
+        'shopBalanceAFN',
+        'shopBalanceUSD',
+        'warehouseBalanceAFN',
+        'warehouseBalanceUSD',
         'totalIncomeAFN',
         'totalIncomeUSD',
         'salesAFN',

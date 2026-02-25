@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 <body>
+    @php $latestAdminUnread = ($adminSidebarNotifications ?? collect())->firstWhere('is_read', false); @endphp
+    @if($latestAdminUnread)
+        <div x-data="{show:true}" x-show="show" x-init="setTimeout(() => show = false, 5000)" class="fixed bottom-4 left-4 z-[70]">
+            <div class="bg-[#0B35CC] text-white px-4 py-3 rounded-lg shadow text-sm">{{ $latestAdminUnread->message }}</div>
+        </div>
+    @endif
     <!-- Header -->
     <header class="fixed top-0 inset-x-0 w-full h-auto bg-white z-[60] shadow shadow-[#0B35CC] p-2">
         <div class="w-full  lg:px-2">
@@ -45,10 +51,26 @@
 
 
 
-                    <button class="rounded-full bg-gray-200  w-10 h-10  transition relative">
-                        <i class="fa-regular fa-bell"></i>
-                        <span class="absolute -top-1 -right-1 bg-[#0B35CC] text-white text-center items-center justify-center text-[10px] rounded-full px-1.5">3</span>
-                    </button>
+                    <div class="relative">
+                        <button id="adminBellButton" class="rounded-full bg-gray-200 w-10 h-10 transition relative">
+                            <i class="fa-regular fa-bell"></i>
+                            @if(($adminSidebarNotificationCount ?? 0) > 0)
+                                <span class="absolute -top-1 -right-1 bg-[#0B35CC] text-white text-center items-center justify-center text-[10px] rounded-full px-1.5">{{ $adminSidebarNotificationCount }}</span>
+                            @endif
+                        </button>
+                        <div id="adminBellMenu" class="hidden absolute left-0 mt-2 w-80 bg-white border border-[#0B35CC]/20 rounded-xl shadow-lg z-50 max-h-80 overflow-auto">
+                            <div class="px-3 py-2 border-b font-semibold text-sm text-gray-700">اعلان‌ها</div>
+                            @forelse(($adminSidebarNotifications ?? collect()) as $n)
+                                @php $link = data_get($n->payload, 'link', route('admin2.register-device')); @endphp
+                                <a href="{{ $link }}" class="block px-3 py-2 border-b hover:bg-gray-50">
+                                    <div class="text-xs text-[#0B35CC] font-semibold">{{ $n->title }}</div>
+                                    <div class="text-xs text-gray-600">{{ $n->message }}</div>
+                                </a>
+                            @empty
+                                <div class="px-3 py-3 text-xs text-gray-500">اعلانی موجود نیست</div>
+                            @endforelse
+                        </div>
+                    </div>
                     <!-- پروفایل -->
                     <div class="relative">
                         <button id="profileButton" class="flex items-center border border-gray-600 rounded-full p-0.5 gap-2 focus:outline-none" aria-expanded="false" aria-haspopup="true">
@@ -249,6 +271,8 @@
         });
         const profileBtn  = document.getElementById('profileButton');
         const profileMenu = document.getElementById('profileMenu');
+        const adminBellButton = document.getElementById('adminBellButton');
+        const adminBellMenu = document.getElementById('adminBellMenu');
 
         profileBtn?.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -259,10 +283,18 @@
             );
         });
         profileMenu?.addEventListener('click', (e) => e.stopPropagation());
+        adminBellButton?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            adminBellMenu?.classList.toggle('hidden');
+        });
+        adminBellMenu?.addEventListener('click', (e) => e.stopPropagation());
         document.addEventListener('click', () => {
             if (profileMenu && !profileMenu.classList.contains('hidden')) {
             profileMenu.classList.add('hidden');
             profileBtn?.setAttribute('aria-expanded', 'false');
+            }
+            if (adminBellMenu && !adminBellMenu.classList.contains('hidden')) {
+            adminBellMenu.classList.add('hidden');
             }
         });
         document.addEventListener('keydown', (e) => {

@@ -32,6 +32,7 @@ Route::get('/inventory', function () { return view('Mobile.shop.inventory');})->
 Route::get('/inventory2', function () { return view('Mobile.shop.inventory2');})->name('inventory2');
 Route::get('/sell', function () { return view('Mobile.shop.sell');})->name('sell');
 Route::get('/register', function () { return view('Mobile.shop.register');})->name('register');
+Route::get('/register-list', function () { return view('Mobile.shop.register-list');})->name('seller.register.list');
 Route::get('/sellform', function () { return view('Mobile.shop.sellform');})->name('sellform');
 Route::get('/salaryworkers', function () { return view('Mobile.shop.salaryworkers');})->name('salaryworkers');
 Route::get('/device-Form', function () { return view('Mobile.shop.deviceForm');})->name('device.form');

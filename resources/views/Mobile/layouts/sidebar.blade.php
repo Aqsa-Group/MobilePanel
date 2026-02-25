@@ -31,6 +31,27 @@
     }
 </style>
 <body>
+    @php
+        $latestSidebarUnread = ($sidebarNotifications ?? collect())->firstWhere('is_read', false);
+        $latestType = strtolower((string) data_get($latestSidebarUnread, 'type', ''));
+        $latestIsBlocked = str_contains($latestType, 'blocked') || str_contains($latestType, 'rejected');
+        $latestIsApproved = str_contains($latestType, 'approved');
+        $latestIsPending = str_contains($latestType, 'pending') || str_contains($latestType, 'submitted');
+
+        $latestToastClass = 'bg-slate-700 text-white';
+        if ($latestIsBlocked) {
+            $latestToastClass = 'bg-red-700 text-white';
+        } elseif ($latestIsApproved) {
+            $latestToastClass = 'bg-blue-700 text-white';
+        } elseif ($latestIsPending) {
+            $latestToastClass = 'bg-amber-600 text-white';
+        }
+    @endphp
+    @if($latestSidebarUnread)
+        <div x-data="{show:true}" x-show="show" x-init="setTimeout(() => show = false, 5000)" class="fixed bottom-4 left-4 z-[70]">
+            <div class="{{ $latestToastClass }} px-4 py-3 rounded-lg shadow text-sm">{{ $latestSidebarUnread->message }}</div>
+        </div>
+    @endif
     <header class="fixed header top-0 inset-x-0 w-full bg-white z-[60] shadow shadow-blue-800 p-2">
         <div class="w-full  lg:px-2">
             <div class="h-16 flex items-center justify-between">
@@ -47,10 +68,55 @@
                     <button id="darkToggle" class="toggle-btn w-10 h-10  ">
                         <i class="fa-solid fa-moon text-black"></i>
                     </button>
-                    <button class="rounded-full bg-gray-100  w-10 h-10  transition relative">
-                        <i class="fa-regular text-lg fa-bell"></i>
-                        <span class="absolute -top-1 -right-1 bg-blue-800 text-white text-[10px] rounded-full px-1.5">3</span>
-                    </button>
+                    <div class="relative">
+                        <button id="sellerBellButton" class="rounded-full bg-gray-100 w-10 h-10 transition relative">
+                            <i class="fa-regular text-lg fa-bell"></i>
+                            @if(($sidebarNotificationCount ?? 0) > 0)
+                                <span class="absolute -top-1 -right-1 bg-blue-800 text-white text-[10px] rounded-full px-1.5">{{ $sidebarNotificationCount }}</span>
+                            @endif
+                        </button>
+                        <div id="sellerBellMenu" class="hidden absolute left-0 mt-2 w-80 bg-white border border-blue-200 rounded-xl shadow-lg z-50 max-h-80 overflow-auto">
+                            <div class="px-3 py-2 border-b font-semibold text-sm text-gray-700">اعلان‌ها</div>
+                            @forelse(($sidebarNotifications ?? collect()) as $n)
+                                @php
+                                    $link = data_get($n->payload, 'link', route('seller.register.list'));
+                                    $type = strtolower((string) ($n->type ?? ''));
+                                    $isBlocked = str_contains($type, 'blocked') || str_contains($type, 'rejected');
+                                    $isApproved = str_contains($type, 'approved');
+                                    $isPending = str_contains($type, 'pending') || str_contains($type, 'submitted');
+
+                                    $itemBorderClass = 'border-slate-200 hover:bg-slate-50';
+                                    $titleClass = 'text-slate-700';
+                                    $badgeClass = 'bg-slate-100 text-slate-700';
+
+                                    if ($isBlocked) {
+                                        $itemBorderClass = 'border-red-200 hover:bg-red-50';
+                                        $titleClass = 'text-red-700';
+                                        $badgeClass = 'bg-red-100 text-red-700';
+                                    } elseif ($isApproved) {
+                                        $itemBorderClass = 'border-blue-200 hover:bg-blue-50';
+                                        $titleClass = 'text-blue-700';
+                                        $badgeClass = 'bg-blue-100 text-blue-700';
+                                    } elseif ($isPending) {
+                                        $itemBorderClass = 'border-amber-200 hover:bg-amber-50';
+                                        $titleClass = 'text-amber-700';
+                                        $badgeClass = 'bg-amber-100 text-amber-700';
+                                    }
+                                @endphp
+                                <a href="{{ $link }}" class="block px-3 py-2 border-b {{ $itemBorderClass }}">
+                                    <div class="flex items-center justify-between gap-2">
+                                        <div class="text-xs font-semibold {{ $titleClass }}">{{ $n->title }}</div>
+                                        @if(!$n->is_read)
+                                            <span class="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold {{ $badgeClass }}">جدید</span>
+                                        @endif
+                                    </div>
+                                    <div class="text-xs text-gray-600 mt-1">{{ $n->message }}</div>
+                                </a>
+                            @empty
+                                <div class="px-3 py-3 text-xs text-gray-500">اعلانی موجود نیست</div>
+                            @endforelse
+                        </div>
+                    </div>
                     <div class="relative">
                         <button id="profileButton" class="flex items-center border border-gray-600 rounded-full p-0.5 gap-2 focus:outline-none" aria-expanded="false" aria-haspopup="true">
                             <img   src="{{ asset('storage/' . auth()->user()->image) }}" alt="user avatar"  class="w-10 h-10 rounded-full object-cover border border-blue-800" >
@@ -280,6 +346,13 @@
                     </svg>
                     <span class="text-[15px]">ثبت دستگاه  </span>
                 </a>
+                <a data-section="fix" href="{{ route('seller.register.list') }}"
+                    class="menu-btn group w-full text-right flex gap-3 rounded-xl px-2 py-2 text-sm transition hover:text-white
+                    {{ request()->routeIs('seller.register.list') ? 'bg-[#1E40AF] text-white' : 'text-gray-700 hover:bg-[#1E40AF] ' }}"
+                    style="cursor: pointer;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="#fff"  stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"></path> <path d="M15 2H9a1 1 0 00-1 1v2a1 1 0 001 1h6a1 1 0 001-1V3a1 1 0 00-1-1z"></path> <path d="M12 11h4"></path> <path d="M12 16h4"></path> <path d="M8 11h.01"></path> <path d="M8 16h.01"></path> </g></svg>
+                    <span class="text-[15px]">لیست دستگاه</span>
+                </a>
             </div>
         </nav>
     </aside>
@@ -333,6 +406,8 @@
         });
         const profileBtn  = document.getElementById('profileButton');
         const profileMenu = document.getElementById('profileMenu');
+        const sellerBellButton = document.getElementById('sellerBellButton');
+        const sellerBellMenu = document.getElementById('sellerBellMenu');
         profileBtn?.addEventListener('click', (e) => {
             e.stopPropagation();
             profileMenu?.classList.toggle('hidden');
@@ -342,10 +417,18 @@
             );
         });
         profileMenu?.addEventListener('click', (e) => e.stopPropagation());
+        sellerBellButton?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            sellerBellMenu?.classList.toggle('hidden');
+        });
+        sellerBellMenu?.addEventListener('click', (e) => e.stopPropagation());
         document.addEventListener('click', () => {
             if (profileMenu && !profileMenu.classList.contains('hidden')) {
             profileMenu.classList.add('hidden');
             profileBtn?.setAttribute('aria-expanded', 'false');
+            }
+            if (sellerBellMenu && !sellerBellMenu.classList.contains('hidden')) {
+            sellerBellMenu.classList.add('hidden');
             }
         });
         document.addEventListener('keydown', (e) => {
