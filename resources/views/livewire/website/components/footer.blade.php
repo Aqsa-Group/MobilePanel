@@ -1,9 +1,7 @@
 <footer class="bg-[#2F25FF] text-white">
-    <!-- موج بالای فوتر -->
     <div class="w-full overflow-hidden leading-none">
     <svg class="w-full h-[70px]" viewBox="0 0 1440 100" preserveAspectRatio="none"
          xmlns="http://www.w3.org/2000/svg">
-
         <path fill="#ffffff">
             <animate attributeName="d"
                 dur="5s"
@@ -14,17 +12,10 @@
                 M0,40 C120,80 240,0 360,20 480,40 600,80 720,60 840,40 960,0 1080,20 1200,40 1320,80 1440,60 L1440,0 L0,0 Z
                 " />
         </path>
-
     </svg>
-
 </div>
-
-
-    <!-- محتوای فوتر -->
     <div class="w-full px-6 sm:px-10 lg:px-20 py-6">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 ">
-
-            <!-- درباره ما -->
             <div class="flex flex-col items-center  justify-center ">
                 <h3 class="text-sm font-bold ">درباره ما</h3>
                 <p class="text-white text-[10px] leading-relaxed">
@@ -33,8 +24,6 @@
                     هدف ما افزایش امنیت و شفافیت در بازار موبایل است.
                 </p>
             </div>
-
-            <!-- خدمات -->
             <div class="flex flex-col items-center justify-center">
                 <h3 class="text-sm font-bold mb-2">خدمات</h3>
                 <ul class="space-y-1 flex flex-col items-center justify-center text-sm">
@@ -45,8 +34,6 @@
                     <li class="text-[10px]">همکاری با نمایندگان</li>
                 </ul>
             </div>
-
-            <!-- لینک‌های سریع -->
             <div class="flex flex-col items-center justify-center">
                 <h3 class="text-sm font-bold mb-2">لینک های سریع</h3>
                 <ul class="space-y-1 flex flex-col items-center justify-center">
@@ -57,8 +44,6 @@
                     <li class="text-[10px]"><a href="">تماس با ما</a> ا</li>
                 </ul>
             </div>
-
-            <!-- تماس با ما -->
             <div class="flex flex-col items-center justify-center">
                 <h3 class="text-sm font-bold mb-2">تماس با ما</h3>
                 <ul class="space-y-1 flex flex-col items-center justify-center">
@@ -67,7 +52,6 @@
                         <path d="M17 20.5H7C4 20.5 2 19 2 15.5V8.5C2 5 4 3.5 7 3.5H17C20 3.5 22 5 22 8.5V15.5C22 19 20 20.5 17 20.5Z" fill="white"/>
                         <path d="M17 9L13.87 11.5C12.84 12.32 11.15 12.32 10.12 11.5L7 9" stroke="#2F25FF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-
                         <a href="">aqsagroup.af@gmail.com</a>
                     </li>
                     <li class="flex  gap-2 text-[10px]">
@@ -85,7 +69,6 @@
                     </li>
                 </ul>
             </div>
-
         </div>
     </div>
 </footer>

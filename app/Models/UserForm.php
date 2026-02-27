@@ -47,4 +47,23 @@ class UserForm extends Authenticatable
     {
         return $this->hasMany(UserForm::class, 'creator_id');
     }
+
+    public function isAdminLevel(): bool
+    {
+        return in_array($this->rule, ['super_admin', 'admin'], true);
+    }
+
+    public function isStoreAdmin(): bool
+    {
+        return $this->rule === 'admin';
+    }
+
+    public function storeOwnerId(): int
+    {
+        if ($this->isAdminLevel()) {
+            return (int) $this->id;
+        }
+
+        return (int) ($this->admin_id ?: $this->id);
+    }
 }

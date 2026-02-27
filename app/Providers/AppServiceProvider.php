@@ -43,12 +43,18 @@ class AppServiceProvider extends ServiceProvider
                 return;
             }
 
-            $notifications = AppNotification::forSeller((int) $userId)
+            $baseQuery = AppNotification::forSeller((int) $userId);
+
+            $notifications = (clone $baseQuery)
                 ->latest()
                 ->limit(8)
                 ->get();
 
-            $view->with('sidebarNotificationCount', $notifications->where('is_read', false)->count())
+            $unreadCount = (clone $baseQuery)
+                ->where('is_read', false)
+                ->count();
+
+            $view->with('sidebarNotificationCount', $unreadCount)
                 ->with('sidebarNotifications', $notifications);
         });
 

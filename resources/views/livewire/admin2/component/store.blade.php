@@ -9,8 +9,6 @@
         {{ session('success') }}
     </div>
     @endif
-
-
     {{-- ======================= فرم ثبت / ویرایش ======================= --}}
     <div class="bg-white rounded-2xl shadow-xl p-5">
 
@@ -174,9 +172,9 @@
     <div class="hidden md:block overflow-x-auto">
         <table class="min-w-[900px] w-full text-center border-collapse">
 
-            <thead class="bg-blue-600 text-white text-sm md:text-base">
+            <thead class="bg-[#0B35CC] text-white text-sm md:text-base">
                 <tr>
-                    <th class="p-2 whitespace-nowrap">#</th>
+                    <th class="p-2 whitespace-nowrap">آیدی</th>
                     <th class="p-2 whitespace-nowrap">عکس</th>
                     <th class="p-2 whitespace-nowrap">نام فروشنده</th>
                     <th class="p-2 whitespace-nowrap">نام فروشگاه</th>

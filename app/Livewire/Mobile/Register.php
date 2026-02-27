@@ -3,9 +3,12 @@
 namespace App\Livewire\Mobile;
 
 use App\Models\AppNotification;
+use App\Models\DeviceReport;
 use App\Models\RegisterDevice;
+use App\Models\Store;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -32,14 +35,56 @@ class Register extends Component
     public $showAiModal = false;
     public $aiIssues = [];
     public $aiReport = [];
+    public $isEditMode = false;
+    public $editingRegisterId = null;
+    public $existingCustomerImage = null;
+    public $existingTazkiraImage = null;
+    public $existingCartonImage = null;
+    public $existingDeviceImage = null;
 
     public function mount(): void
     {
         $this->formKey = uniqid();
+
+        $editId = (int) request()->query('edit_register_id', 0);
+        if ($editId > 0) {
+            $this->loadRegisterForEdit($editId);
+            return;
+        }
+
+        $this->ensureAdminAccess();
+    }
+
+    private function ensureAdminAccess(): void
+    {
+        $user = auth()->user();
+
+        if (!$user || !$user->isStoreAdmin()) {
+            abort(403);
+        }
+    }
+
+    private function currentStore(): ?Store
+    {
+        $user = auth()->user();
+
+        if (!$user) {
+            return null;
+        }
+
+        return Store::query()
+            ->where('admin_user_id', $user->storeOwnerId())
+            ->first();
     }
 
     protected function rules(): array
     {
+        $imageRule = $this->isEditMode ? 'nullable|image|max:6144' : 'required|image|max:6144';
+        $imeiUniqueRule = Rule::unique('registers', 'imei');
+        if ($this->isEditMode && $this->editingRegisterId) {
+            $imeiUniqueRule = $imeiUniqueRule->ignore($this->editingRegisterId);
+        }
+
         return [
             'customer_name' => 'required|string|max:150',
             'customer_phone' => ['required', 'regex:/^07[0-9]{8}$/'],
@@ -48,11 +93,17 @@ class Register extends Component
             'category' => 'required',
             'model' => 'required',
             'color' => 'required',
-            'customer_image' => 'required|image|max:6144',
-            'device_image' => 'required|image|max:6144',
-            'tazkira_image' => 'required|image|max:6144',
-            'carton_image' => 'required|image|max:6144',
-            'imei' => 'required|string|min:8|max:64|unique:registers,imei',
+            'customer_image' => $imageRule,
+            'device_image' => $imageRule,
+            'tazkira_image' => $imageRule,
+            'carton_image' => $imageRule,
+            'imei' => [
+                'nullable',
+                'string',
+                'min:8',
+                'max:64',
+                $imeiUniqueRule,
+            ],
         ];
     }
 
@@ -70,7 +121,6 @@ class Register extends Component
         'device_image.required' => 'عکس دستگاه الزامی است.',
         'tazkira_image.required' => 'عکس تذکره الزامی است.',
         'carton_image.required' => 'عکس کارتن دستگاه الزامی است.',
-        'imei.required' => 'شماره IMEI الزامی است.',
         'imei.unique' => 'شماره IMEI قبلاً ثبت شده است.',
         'customer_image.image' => 'فایل عکس مشتری معتبر نیست.',
         'device_image.image' => 'فایل عکس دستگاه معتبر نیست.',
@@ -81,6 +131,39 @@ class Register extends Component
         'tazkira_image.max' => 'حجم عکس تذکره باید کمتر از ۶ مگابایت باشد.',
         'carton_image.max' => 'حجم عکس کارتن باید کمتر از ۶ مگابایت باشد.',
     ];
+
+    private function loadRegisterForEdit(int $id): void
+    {
+        $register = RegisterDevice::query()
+            ->where('id', $id)
+            ->where('submitted_by_user_id', auth()->id())
+            ->where('status', 'blocked')
+            ->first();
+
+        if (!$register) {
+            session()->flash('error', 'این دستگاه برای ویرایش در دسترس نیست.');
+            $this->redirectRoute('seller.register.list');
+            return;
+        }
+
+        $this->isEditMode = true;
+        $this->editingRegisterId = (int) $register->id;
+
+        $this->customer_name = (string) ($register->customer_name ?? '');
+        $this->customer_phone = (string) ($register->customer_phone ?? '');
+        $this->customer_tazkira_id = (string) ($register->customer_tazkira_id ?? '');
+        $this->customer_address = (string) ($register->customer_address ?? '');
+        $this->category = (string) ($register->category ?? '');
+        $this->model = (string) ($register->model ?? '');
+        $this->color = (string) ($register->color ?? '');
+        $this->imei = (string) ($register->imei ?? '');
+
+        $this->existingCustomerImage = $register->customer_image;
+        $this->existingTazkiraImage = $register->tazkira_image;
+        $this->existingCartonImage = $register->carton_image;
+        $this->existingDeviceImage = $register->device_image;
+        $this->aiReport = (array) ($register->ai_report ?? []);
+    }
 
     protected $validationAttributes = [
         'customer_name' => 'نام کامل',
@@ -107,6 +190,11 @@ class Register extends Component
         $this->runAiChecks();
     }
 
+    public function updatedCartonImage(): void
+    {
+        $this->runAiChecks();
+    }
+
     public function updatedImei(): void
     {
         $this->imei = $this->convertToEnglishNumber((string) $this->imei);
@@ -127,31 +215,9 @@ class Register extends Component
     {
         $issues = [];
         $report = [
-            'customer' => [],
             'device' => [],
+            'carton' => [],
         ];
-
-        if ($this->customer_image) {
-            $customerAnalysis = $this->analyzeImage(
-                $this->customer_image->getRealPath(),
-                'customer',
-                (string) $this->customer_image->getClientOriginalName()
-            );
-            $report['customer'] = $customerAnalysis;
-
-            if ($customerAnalysis['low_light']) {
-                $issues[] = 'نور عکس مشتری کم است. لطفا در نور بهتر عکس بگیرید.';
-            }
-            if ($customerAnalysis['too_much_light']) {
-                $issues[] = 'نور عکس مشتری بیش از حد است. لطفا نور را متعادل کنید.';
-            }
-            if (!$customerAnalysis['enough_resolution']) {
-                $issues[] = 'عکس مشتری واضح نیست. حداقل 600x600 باشد.';
-            }
-            if (!$customerAnalysis['looks_without_glasses']) {
-                $issues[] = 'هوش مصنوعی احتمال می‌دهد مشتری عینک/لنز دارد. لطفا عکس بدون عینک ثبت کنید.';
-            }
-        }
 
         if ($this->device_image) {
             $deviceAnalysis = $this->analyzeImage(
@@ -169,6 +235,25 @@ class Register extends Component
             }
             if (!$deviceAnalysis['enough_resolution']) {
                 $issues[] = 'عکس دستگاه واضح نیست. لطفا عکس واضح‌تر ثبت کنید.';
+            }
+        }
+
+        if ($this->carton_image) {
+            $cartonAnalysis = $this->analyzeImage(
+                $this->carton_image->getRealPath(),
+                'carton',
+                (string) $this->carton_image->getClientOriginalName()
+            );
+            $report['carton'] = $cartonAnalysis;
+
+            if ($cartonAnalysis['low_light']) {
+                $issues[] = 'نور عکس کارتن کم است. لطفا عکس روشن‌تر بگیرید.';
+            }
+            if ($cartonAnalysis['too_much_light']) {
+                $issues[] = 'نور عکس کارتن بیش از حد است. لطفا نور را متعادل کنید.';
+            }
+            if (!$cartonAnalysis['enough_resolution']) {
+                $issues[] = 'عکس کارتن واضح نیست. لطفا عکس واضح‌تر ثبت کنید.';
             }
         }
 
@@ -222,14 +307,6 @@ class Register extends Component
             $tooMuchLight = $brightness > 215;
         }
 
-        $filename = strtolower(trim($originalName) !== '' ? $originalName : pathinfo($path, PATHINFO_BASENAME));
-        $looksWithoutGlasses = true;
-        if ($type === 'customer') {
-            $looksWithoutGlasses = !str_contains($filename, 'glass')
-                && !str_contains($filename, 'glasses')
-                && !str_contains($filename, 'lens');
-        }
-
         return [
             'width' => $width,
             'height' => $height,
@@ -239,16 +316,31 @@ class Register extends Component
             'enough_light' => !$lowLight && !$tooMuchLight,
             'low_light' => $lowLight,
             'too_much_light' => $tooMuchLight,
-            'looks_without_glasses' => $looksWithoutGlasses,
+            'type' => $type,
             'checked_at' => now()->toDateTimeString(),
         ];
     }
 
     public function save(): void
     {
+        if (!$this->isEditMode) {
+            $this->ensureAdminAccess();
+        }
+
+        $store = $this->currentStore();
+        if (!$store && !$this->isEditMode) {
+            session()->flash('error', 'ابتدا مشخصات فروشگاه را ثبت کنید.');
+            $this->redirectRoute('store.onboarding');
+            return;
+        }
+
         $this->customer_phone = $this->convertToEnglishNumber((string) $this->customer_phone);
         $this->customer_tazkira_id = $this->convertToEnglishNumber((string) $this->customer_tazkira_id);
-        $this->imei = $this->convertToEnglishNumber((string) $this->imei);
+        $this->imei = trim($this->convertToEnglishNumber((string) $this->imei));
+
+        if ($this->imei === '') {
+            $this->imei = null;
+        }
 
         $this->validate();
         $this->runAiChecks();
@@ -258,49 +350,114 @@ class Register extends Component
             return;
         }
 
-        $imeiValue = trim((string) $this->imei);
-        if ($imeiValue === '') {
-            $imeiValue = $this->generateUniqueImei();
+        $editingRegister = null;
+        if ($this->isEditMode && $this->editingRegisterId) {
+            $editingRegister = RegisterDevice::query()
+                ->where('id', $this->editingRegisterId)
+                ->where('submitted_by_user_id', auth()->id())
+                ->where('status', 'blocked')
+                ->first();
+
+            if (!$editingRegister) {
+                session()->flash('error', 'رکورد برای ویرایش یافت نشد یا قابل ویرایش نیست.');
+                $this->redirectRoute('seller.register.list');
+                return;
+            }
         }
 
-        $isDuplicateOwnerDevice = RegisterDevice::query()
+        $imeiValue = trim((string) $this->imei);
+        if ($imeiValue === '') {
+            if ($editingRegister && trim((string) $editingRegister->imei) !== '') {
+                $imeiValue = trim((string) $editingRegister->imei);
+            } else {
+                $imeiValue = $this->generateUniqueImei();
+            }
+        }
+
+        $blockMessage = $this->resolveBlockedRegistrationMessage(
+            $imeiValue,
+            trim((string) $this->customer_name),
+            trim((string) $this->customer_phone),
+            trim((string) $this->customer_tazkira_id),
+            $editingRegister ? (int) $editingRegister->id : null
+        );
+
+        if ($blockMessage !== null) {
+            $this->addError('imei', $blockMessage);
+            session()->flash('error', $blockMessage);
+            return;
+        }
+
+        $duplicateQuery = RegisterDevice::query()
             ->where('customer_name', trim((string) $this->customer_name))
             ->where('customer_phone', trim((string) $this->customer_phone))
             ->where('model', trim((string) $this->model))
-            ->where('category', trim((string) $this->category))
-            ->exists();
+            ->where('category', trim((string) $this->category));
+
+        if ($editingRegister) {
+            $duplicateQuery->where('id', '!=', $editingRegister->id);
+        }
+
+        $isDuplicateOwnerDevice = $duplicateQuery->exists();
 
         if ($isDuplicateOwnerDevice) {
             $this->addError('model', 'این مالک با همین دستگاه قبلاً ثبت شده است.');
             return;
         }
 
-        $register = RegisterDevice::create([
-            'customer_name' => $this->customer_name,
-            'customer_phone' => $this->customer_phone,
-            'customer_tazkira_id' => $this->customer_tazkira_id,
-            'customer_address' => $this->customer_address,
-            'category' => $this->category,
-            'model' => $this->model,
-            'color' => $this->color,
+        $payload = [
+            'customer_name' => trim((string) $this->customer_name),
+            'customer_phone' => trim((string) $this->customer_phone),
+            'customer_tazkira_id' => trim((string) $this->customer_tazkira_id),
+            'customer_address' => trim((string) $this->customer_address),
+            'category' => trim((string) $this->category),
+            'model' => trim((string) $this->model),
+            'color' => trim((string) $this->color),
             'imei' => $imeiValue,
-            'customer_image' => $this->storeOptimizedImage($this->customer_image, 'customers'),
-            'tazkira_image' => $this->storeOptimizedImage($this->tazkira_image, 'tazkira'),
-            'carton_image' => $this->storeOptimizedImage($this->carton_image, 'cartons'),
-            'device_image' => $this->storeOptimizedImage($this->device_image, 'devices'),
             'status' => 'pending',
             'submitted_by_user_id' => auth()->id(),
-            'shop_name' => trim((string) (auth()->user()->name ?? auth()->user()->username ?? 'فروشگاه')),
-            'ai_report' => $this->aiReport,
-        ]);
+            'shop_name' => trim((string) ($store->store_name ?? ($editingRegister->shop_name ?? 'فروشگاه'))),
+            'reviewed_by_admin2_id' => null,
+            'reviewed_at' => null,
+            'review_note' => null,
+        ];
+
+        if ($editingRegister) {
+            $payload['customer_image'] = $this->customer_image
+                ? $this->storeOptimizedImage($this->customer_image, 'customers')
+                : $editingRegister->customer_image;
+            $payload['tazkira_image'] = $this->tazkira_image
+                ? $this->storeOptimizedImage($this->tazkira_image, 'tazkira')
+                : $editingRegister->tazkira_image;
+            $payload['carton_image'] = $this->carton_image
+                ? $this->storeOptimizedImage($this->carton_image, 'cartons')
+                : $editingRegister->carton_image;
+            $payload['device_image'] = $this->device_image
+                ? $this->storeOptimizedImage($this->device_image, 'devices')
+                : $editingRegister->device_image;
+            $payload['ai_report'] = !empty($this->aiReport) ? $this->aiReport : $editingRegister->ai_report;
+
+            $editingRegister->update($payload);
+            $register = $editingRegister->refresh();
+        } else {
+            $payload['customer_image'] = $this->storeOptimizedImage($this->customer_image, 'customers');
+            $payload['tazkira_image'] = $this->storeOptimizedImage($this->tazkira_image, 'tazkira');
+            $payload['carton_image'] = $this->storeOptimizedImage($this->carton_image, 'cartons');
+            $payload['device_image'] = $this->storeOptimizedImage($this->device_image, 'devices');
+            $payload['ai_report'] = $this->aiReport;
+
+            $register = RegisterDevice::create($payload);
+        }
 
         AppNotification::create([
             'target_guard' => 'admin2',
             'target_user_id' => null,
             'scope' => 'broadcast_admin2',
-            'type' => 'register_submitted',
-            'title' => 'درخواست جدید ثبت دستگاه',
-            'message' => "{$register->shop_name} یک دستگاه با IMEI {$register->imei} برای تایید فرستاد.",
+            'type' => $this->isEditMode ? 'register_resubmitted' : 'register_submitted',
+            'title' => $this->isEditMode ? 'درخواست ویرایش دستگاه' : 'درخواست جدید ثبت دستگاه',
+            'message' => $this->isEditMode
+                ? "{$register->shop_name} دستگاه IMEI {$register->imei} را ویرایش و دوباره برای تایید فرستاد."
+                : "{$register->shop_name} یک دستگاه با IMEI {$register->imei} برای تایید فرستاد.",
             'payload' => [
                 'register_id' => $register->id,
                 'link' => route('admin2.register-device', ['view_register_id' => $register->id]),
@@ -312,15 +469,23 @@ class Register extends Component
             'target_guard' => 'web',
             'target_user_id' => auth()->id(),
             'scope' => 'single',
-            'type' => 'register_submitted',
-            'title' => 'درخواست ارسال شد',
-            'message' => "دستگاه با IMEI {$register->imei} برای تایید مدیریت ارسال شد.",
+            'type' => $this->isEditMode ? 'register_resubmitted' : 'register_submitted',
+            'title' => $this->isEditMode ? 'ویرایش ارسال شد' : 'درخواست ارسال شد',
+            'message' => $this->isEditMode
+                ? "ویرایش دستگاه با IMEI {$register->imei} برای تایید مدیریت ارسال شد."
+                : "دستگاه با IMEI {$register->imei} برای تایید مدیریت ارسال شد.",
             'payload' => [
                 'register_id' => $register->id,
                 'link' => route('seller.register.list', ['view_register_id' => $register->id]),
             ],
             'expires_at' => now()->addMinutes(5),
         ]);
+
+        if ($this->isEditMode) {
+            session()->flash('success', 'ویرایش انجام شد و دوباره برای تایید مدیریت ارسال گردید.');
+            $this->redirectRoute('seller.register.list', ['view_register_id' => $register->id]);
+            return;
+        }
 
         session()->flash('success', 'ثبت انجام شد و برای تایید مدیریت ارسال گردید.');
         $this->resetForm();
@@ -335,11 +500,119 @@ class Register extends Component
         return $candidate;
     }
 
+    private function resolveBlockedRegistrationMessage(
+        string $imei,
+        string $ownerName,
+        string $ownerPhone,
+        string $ownerNationalId,
+        ?int $ignoreRegisterId = null
+    ): ?string {
+        $blockedRegister = RegisterDevice::query()
+            ->when($ignoreRegisterId, function ($query, $id) {
+                $query->where('id', '!=', (int) $id);
+            })
+            ->where('status', 'blocked')
+            ->where(function ($query) use ($imei, $ownerName, $ownerPhone, $ownerNationalId) {
+                $applied = false;
+
+                if ($imei !== '') {
+                    $query->where('imei', $imei);
+                    $applied = true;
+                }
+
+                if ($ownerName !== '' && $ownerPhone !== '') {
+                    $method = $applied ? 'orWhere' : 'where';
+                    $query->{$method}(function ($ownerQuery) use ($ownerName, $ownerPhone) {
+                        $ownerQuery->where('customer_name', $ownerName)
+                            ->where('customer_phone', $ownerPhone);
+                    });
+                    $applied = true;
+                }
+
+                if ($ownerNationalId !== '') {
+                    if ($applied) {
+                        $query->orWhere('customer_tazkira_id', $ownerNationalId);
+                    } else {
+                        $query->where('customer_tazkira_id', $ownerNationalId);
+                    }
+                    $applied = true;
+                }
+
+                if (!$applied) {
+                    $query->whereRaw('1 = 0');
+                }
+            })
+            ->where(function ($query) {
+                $query->where('review_note', 'like', '%REPORTED_BLOCK%')
+                    ->orWhere('review_note', 'like', '%گزارش IMEI%')
+                    ->orWhere('review_note', 'like', '%سرقت%')
+                    ->orWhere('review_note', 'like', '%مفقود%');
+            })
+            ->latest('id')
+            ->first();
+
+        if ($blockedRegister) {
+            $reason = trim((string) ($blockedRegister->review_note ?? ''));
+            if ($reason === '') {
+                $reason = 'این دستگاه به دلیل گزارش سرقت/مفقودی بلاک شده است.';
+            }
+
+            return "این دستگاه/مالک قابل ثبت یا فروش نیست. دلیل: {$reason}";
+        }
+
+        $blockedReport = DeviceReport::query()
+            ->where('status', 'verified')
+            ->where(function ($query) use ($imei, $ownerName, $ownerPhone, $ownerNationalId) {
+                $applied = false;
+
+                if ($imei !== '') {
+                    $query->where('device_imei', $imei);
+                    $applied = true;
+                }
+
+                if ($ownerName !== '' && $ownerPhone !== '') {
+                    $method = $applied ? 'orWhere' : 'where';
+                    $query->{$method}(function ($ownerQuery) use ($ownerName, $ownerPhone) {
+                        $ownerQuery->where('owner_full_name', $ownerName)
+                            ->where('owner_phone', $ownerPhone);
+                    });
+                    $applied = true;
+                }
+
+                if ($ownerNationalId !== '') {
+                    if ($applied) {
+                        $query->orWhere('owner_national_id', $ownerNationalId);
+                    } else {
+                        $query->where('owner_national_id', $ownerNationalId);
+                    }
+                    $applied = true;
+                }
+
+                if (!$applied) {
+                    $query->whereRaw('1 = 0');
+                }
+            })
+            ->latest('id')
+            ->first();
+
+        if (!$blockedReport) {
+            return null;
+        }
+
+        $reportType = (string) $blockedReport->incident_type === 'stolen' ? 'سرقت' : 'مفقودی';
+        $reason = trim((string) ($blockedReport->incident_description ?? ''));
+        if ($reason === '') {
+            $reason = "گزارش {$reportType} توسط مدیریت تایید شده است.";
+        }
+
+        return "این دستگاه/مالک به دلیل گزارش {$reportType} قابل ثبت یا فروش نیست. دلیل: {$reason}";
+    }
+
     private function convertToEnglishNumber(string $value): string
     {
-        $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-        $english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-        return str_replace($persian, $english, $value);
+        $from = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+        $to = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        return str_replace($from, $to, $value);
     }
 
     private function storeOptimizedImage($file, string $directory): ?string
@@ -410,6 +683,11 @@ class Register extends Component
 
     public function cancel(): void
     {
+        if ($this->isEditMode) {
+            $this->redirectRoute('seller.register.list');
+            return;
+        }
+
         $this->resetForm();
     }
 
@@ -430,6 +708,12 @@ class Register extends Component
             'imei',
             'aiIssues',
             'aiReport',
+            'isEditMode',
+            'editingRegisterId',
+            'existingCustomerImage',
+            'existingTazkiraImage',
+            'existingCartonImage',
+            'existingDeviceImage',
         ]);
 
         $this->resetValidation();

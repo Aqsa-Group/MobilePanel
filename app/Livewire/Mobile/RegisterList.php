@@ -58,12 +58,32 @@ class RegisterList extends Component
         } catch (\Throwable $e) {
             report($e);
         }
+
+        $this->dispatchSellerNotificationSync($register->id);
     }
 
     public function closeDetailModal(): void
     {
         $this->showDetailModal = false;
         $this->selectedRegisterId = null;
+    }
+
+    private function dispatchSellerNotificationSync(?int $registerId = null): void
+    {
+        $userId = (int) auth()->id();
+        if ($userId <= 0) {
+            return;
+        }
+
+        try {
+            $unreadCount = AppNotification::forSeller($userId)
+                ->where('is_read', false)
+                ->count();
+
+            $this->dispatch('seller-notifications-sync', unreadCount: $unreadCount, registerId: $registerId);
+        } catch (\Throwable $e) {
+            report($e);
+        }
     }
 
     public function render()

@@ -1,9 +1,6 @@
 <section class="relative " >
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <div data-aos="flip-left"
-     data-aos-easing="ease-out-cubic"
-     data-aos-duration="2000" class="mx-auto w-full  ">
+    <div data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000" class="mx-auto w-full  ">
         <div class="flex flex-wrap">
             <div class="w-full mt-10 lg:w-6/12">
                 <h1 class="flex items-center justify-center mb-3 text-4xl font-bold leading-snug sm:text-[42px] lg:text-[40px] xl:text-[42px]">درباره ما</h1>
@@ -28,7 +25,7 @@
         </div>
     </div>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script>
-  AOS.init();
-</script>
+    <script>
+        AOS.init();
+    </script>
 </section>

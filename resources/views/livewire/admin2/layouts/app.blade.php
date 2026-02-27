@@ -11,6 +11,7 @@
     @livewireStyles
 </head>
 <body >
+    @include('components.flash-modal')
     <div class="pt-[78px] min-h-screen">
         <div class="flex min-h-[calc(100vh-78px)] items-stretch">
             @include('livewire.admin2.components.sidebar')

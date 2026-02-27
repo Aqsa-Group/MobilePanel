@@ -339,6 +339,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="px-4 sm:px-5 py-3 border-t bg-gray-50 flex flex-col-reverse sm:flex-row justify-end gap-2">
+                    <button wire:click="closeDetailModal" type="button" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm">
+                        بستن
+                    </button>
+                    @if($status === 'blocked')
+                        <a href="{{ route('register', ['edit_register_id' => $selectedRegister->id]) }}" class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-blue-700 hover:bg-blue-800 text-white text-sm">
+                            ویرایش و ارسال مجدد
+                        </a>
+                    @endif
+                </div>
             </div>
         </div>
         @else

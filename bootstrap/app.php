@@ -12,6 +12,11 @@ return Application::configure(basePath: dirname(__DIR__))
     $middleware->web(append: [
         \App\Http\Middleware\UpdateLastSeenAt::class,
     ]);
+
+    $middleware->alias([
+        'store.registered' => \App\Http\Middleware\EnsureStoreRegistered::class,
+        'website.auth' => \App\Http\Middleware\EnsureWebsiteAuthenticated::class,
+    ]);
 })
     ->withExceptions(function (Exceptions $exceptions): void {
     })->create();

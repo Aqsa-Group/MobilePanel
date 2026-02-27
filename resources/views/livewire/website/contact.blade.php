@@ -1,40 +1,21 @@
 <div>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <section class="max-w-6xl mx-auto px-4 ">
-         <h2 class="text-2xl font-bold text-center mb-4">تماس با ما</h2>
+    <section class="max-w-full mx-auto px-4 ">
+        <h2 class="text-2xl font-bold text-center mb-4">تماس با ما</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch ">
-             @if (session()->has('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-            <form wire:key="{{ $formKey }}" wire:submit.prevent="sendMessage" data-aos="fade-left" class="bg-gray-50 rounded-xl p-6 shadow-md space-y-5 order-1 md:order-1">
+            <form wire:key="{{ $formKey }}" wire:submit.prevent="sendMessage" data-aos="fade-left" class="bg-white border border-gray-300 rounded-xl p-6 shadow-md space-y-5 order-1 md:order-1">
                 <div class="flex flex-col" >
                     <div class="relative">
                         <input
                             type="text"
                             wire:model="name"
                             placeholder="نام"
-                            class="w-full rounded-lg border border-gray-300 pl-12 pr-4 py-3 text-right
+                            readonly
+                            class="w-full rounded-lg border border-gray-300 pl-12 pr-4 py-3 text-right bg-slate-100
                                 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
-
-
                         <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_1524_3847)">
-                            <path d="M10.9697 2H8.96973C3.96973 2 1.96973 4 1.96973 9V15C1.96973 20 3.96973 22 8.96973 22H14.9697C19.9697 22 21.9697 20 21.9697 15V13" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M21.8804 3.55998C20.6504 6.62998 17.5604 10.81 14.9804 12.88L13.4004 14.14C13.2004 14.29 13.0004 14.41 12.7704 14.5C12.7704 14.35 12.7604 14.2 12.7404 14.04C12.6504 13.37 12.3504 12.74 11.8104 12.21C11.2604 11.66 10.6004 11.35 9.92043 11.26C9.76043 11.25 9.60043 11.24 9.44043 11.25C9.53043 11 9.66043 10.77 9.83043 10.58L11.0904 8.99998C13.1604 6.41998 17.3504 3.30998 20.4104 2.07998C20.8804 1.89998 21.3404 2.03998 21.6304 2.32998C21.9304 2.62998 22.0704 3.08998 21.8804 3.55998Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M12.7801 14.49C12.7801 15.37 12.4401 16.21 11.8101 16.85C11.3201 17.34 10.6601 17.68 9.87009 17.78L7.90009 17.99C6.83009 18.11 5.91009 17.2 6.03009 16.11L6.24009 14.14C6.43009 12.39 7.89009 11.27 9.45009 11.24C9.61009 11.23 9.77009 11.24 9.93009 11.25C10.6101 11.34 11.2701 11.65 11.8201 12.2C12.3601 12.74 12.6601 13.36 12.7501 14.03C12.7701 14.19 12.7801 14.35 12.7801 14.49Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M15.8203 11.9799C15.8203 9.88994 14.1303 8.18994 12.0303 8.18994" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_1524_3847">
-                            <rect width="24" height="24" fill="white"/>
-                            </clipPath>
-                            </defs>
-                            </svg>
-
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="6" r="4" stroke="#1C274C" stroke-width="1.5"></circle> <path d="M15 20.6151C14.0907 20.8619 13.0736 21 12 21C8.13401 21 5 19.2091 5 17C5 14.7909 8.13401 13 12 13C15.866 13 19 14.7909 19 17C19 17.3453 18.9234 17.6804 18.7795 18" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                         </span>
                     </div>
                     @error('name')
@@ -47,18 +28,11 @@
                             type="email"
                             wire:model="email"
                             placeholder="ایمیل"
-                            class="w-full rounded-lg border border-gray-300 pl-12 pr-4 py-3 text-right
+                            readonly
+                            class="w-full rounded-lg border border-gray-300 pl-12 pr-4 py-3 text-right bg-slate-100
                                 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
-
-
-                        <svg width="24" height="24" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17 20.5H7C4 20.5 2 19 2 15.5V8.5C2 5 4 3.5 7 3.5H17C20 3.5 22 5 22 8.5V15.5C22 19 20 20.5 17 20.5Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M17 9L13.87 11.5C12.84 12.32 11.15 12.32 10.12 11.5L7 9" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-
-
-                        </span>
+                        <svg width="22" height="22" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M6.75732 6.22215L11.9865 10.0365L17.3285 6.09078C18.1446 5.44632 19.191 5.33494 20.046 5.76509C20.9153 6.20242 21.5 7.1513 21.5 8.44705V16.7618C21.5 17.2333 21.4407 17.9088 21.0814 18.4781C20.6956 19.0893 20.019 19.4943 18.9793 19.4943H16.889C16.6129 19.4943 16.389 19.2704 16.389 18.9943V13.2008L12.2867 16.2518C12.1093 16.3838 11.8662 16.3835 11.689 16.2511L7.61098 13.2036V16.7186C7.61098 16.9947 7.38713 17.2186 7.11098 17.2186C6.83484 17.2186 6.61098 16.9947 6.61098 16.7186V12.2058C6.61098 12.0165 6.71781 11.8435 6.88699 11.7588C7.05617 11.674 7.25871 11.692 7.41029 11.8053L11.9891 15.2269L16.5906 11.8046C16.7423 11.6918 16.9446 11.6741 17.1135 11.759C17.2824 11.8439 17.389 12.0168 17.389 12.2058V18.4943H18.9793C19.7234 18.4943 20.0572 18.2272 20.2358 17.9443C20.4408 17.6194 20.5 17.1787 20.5 16.7618V8.44705C20.5 7.46479 20.0744 6.89879 19.5966 6.65841C19.1071 6.41213 18.4732 6.45826 17.9434 6.87938C17.9388 6.88305 17.9341 6.88664 17.9294 6.89014L12.2854 11.0589C12.1097 11.1887 11.8701 11.1894 11.6937 11.0607L6.16182 7.02554C5.66596 6.65592 4.93253 6.43285 4.36979 6.51816C4.10149 6.55884 3.89833 6.66433 3.75932 6.82883C3.62023 6.99343 3.5 7.27084 3.5 7.74087V17.1491C3.5 17.8103 3.73627 18.1246 3.96224 18.2868C4.21573 18.4688 4.53566 18.5148 4.74399 18.4962C4.75875 18.4949 4.77357 18.4943 4.78839 18.4943H6.11098C6.38713 18.4943 6.61098 18.7181 6.61098 18.9943C6.61098 19.2704 6.38713 19.4943 6.11098 19.4943H4.80887C4.42163 19.5237 3.86072 19.445 3.37906 19.0992C2.85986 18.7264 2.5 18.0915 2.5 17.1491V7.74087C2.5 7.09846 2.66719 6.57192 2.99552 6.18339C3.32393 5.79476 3.7682 5.59794 4.2199 5.52946C5.09621 5.39661 6.09189 5.72702 6.75732 6.22215Z" fill="#000000"></path> </g></svg>
                     </div>
                    @error('email')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -68,22 +42,22 @@
                     <div class="relative">
                     <textarea rows="5" wire:model="message"
                         placeholder="نوشتن پیام..."
-                        class="w-full rounded-lg border border-gray-300 pr-12 pl-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        class="w-full rounded-lg border border-gray-300 pr-3 pl-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                     </div>
                     @error('message')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="md:col-span-2 flex gap-4 mt-4">
-                    <button type="button" wire:click='resetForm'
-                        class="flex-1 bg-red-600 text-white px-4 py-4 rounded-lg hover:bg-red-700">
+                <div class="mt-4 flex flex-col gap-3 md:flex-row">
+                    <button type="button" wire:click="resetForm"
+                        class="w-full md:flex-1 bg-red-600 text-white px-4 py-3 rounded-lg hover:bg-red-700 transition">
                         لغو
                     </button>
+                    <button type="submit"
+                        class="w-full md:flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">
+                        ارسال پیام
+                    </button>
                 </div>
-                <button type="submit"
-                class="w-full btn btn-primary  bg-blue-600 hover:bg-blue-700  text-white font-semibold py-3 rounded-lg transition">
-                ارسال پیام
-                </button>
             </form>
             <div data-aos="fade-right" class="w-full h-72 md:h-auto bg-gray-300 rounded-2xl flex items-center justify-center text-gray-600 order-2 md:order-2">
                 <iframe
@@ -92,11 +66,7 @@
                 src="https://www.openstreetmap.org/export/embed.html?bbox=62.2045%2C34.3425%2C62.2145%2C34.3525&layer=mapnik&marker=34.3475%2C62.2095">
                 </iframe>
            </div>
-
-
-
         </div>
-
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script>
   AOS.init();

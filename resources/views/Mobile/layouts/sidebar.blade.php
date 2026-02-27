@@ -46,6 +46,13 @@
         } elseif ($latestIsPending) {
             $latestToastClass = 'bg-amber-600 text-white';
         }
+
+        $mobileUser = auth()->user();
+        $canRegisterDevice = $mobileUser
+            && $mobileUser->isStoreAdmin()
+            && \App\Models\Store::query()
+                ->where('admin_user_id', $mobileUser->storeOwnerId())
+                ->exists();
     @endphp
     @if($latestSidebarUnread)
         <div x-data="{show:true}" x-show="show" x-init="setTimeout(() => show = false, 5000)" class="fixed bottom-4 left-4 z-[70]">
@@ -71,15 +78,15 @@
                     <div class="relative">
                         <button id="sellerBellButton" class="rounded-full bg-gray-100 w-10 h-10 transition relative">
                             <i class="fa-regular text-lg fa-bell"></i>
-                            @if(($sidebarNotificationCount ?? 0) > 0)
-                                <span class="absolute -top-1 -right-1 bg-blue-800 text-white text-[10px] rounded-full px-1.5">{{ $sidebarNotificationCount }}</span>
-                            @endif
+                            <span id="sellerBellBadge" class="absolute -top-1 -right-1 inline-flex min-w-[18px] h-[18px] bg-blue-800 text-white items-center justify-center text-[10px] rounded-full px-1.5 {{ (($sidebarNotificationCount ?? 0) > 0) ? '' : 'hidden' }}">{{ $sidebarNotificationCount ?? 0 }}</span>
                         </button>
                         <div id="sellerBellMenu" class="hidden absolute left-0 mt-2 w-80 bg-white border border-blue-200 rounded-xl shadow-lg z-50 max-h-80 overflow-auto">
                             <div class="px-3 py-2 border-b font-semibold text-sm text-gray-700">اعلان‌ها</div>
                             @forelse(($sidebarNotifications ?? collect()) as $n)
                                 @php
                                     $link = data_get($n->payload, 'link', route('seller.register.list'));
+                                    $registerId = (int) data_get($n->payload, 'register_id', 0);
+                                    $reportId = (int) data_get($n->payload, 'report_id', 0);
                                     $type = strtolower((string) ($n->type ?? ''));
                                     $isBlocked = str_contains($type, 'blocked') || str_contains($type, 'rejected');
                                     $isApproved = str_contains($type, 'approved');
@@ -103,7 +110,7 @@
                                         $badgeClass = 'bg-amber-100 text-amber-700';
                                     }
                                 @endphp
-                                <a href="{{ $link }}" class="block px-3 py-2 border-b {{ $itemBorderClass }}">
+                                <a href="{{ $link }}" class="seller-notification-item block px-3 py-2 border-b {{ $itemBorderClass }}" data-register-id="{{ $registerId }}" data-report-id="{{ $reportId }}">
                                     <div class="flex items-center justify-between gap-2">
                                         <div class="text-xs font-semibold {{ $titleClass }}">{{ $n->title }}</div>
                                         @if(!$n->is_read)
@@ -113,7 +120,7 @@
                                     <div class="text-xs text-gray-600 mt-1">{{ $n->message }}</div>
                                 </a>
                             @empty
-                                <div class="px-3 py-3 text-xs text-gray-500">اعلانی موجود نیست</div>
+                                <div id="sellerBellEmptyState" class="px-3 py-3 text-xs text-gray-500">اعلانی موجود نیست</div>
                             @endforelse
                         </div>
                     </div>
@@ -332,26 +339,40 @@
                     </svg>
                     <span class="text-[15px]">خدمات و تعمیرات</span>
                 </a>
-                <a data-section="fix" href="{{ route('register') }}"
-                    class="menu-btn group w-full text-right flex gap-3 rounded-xl px-2 py-2 text-sm transition hover:text-white
-                    {{ request()->routeIs('register') ? 'bg-[#1E40AF] text-white' : 'text-gray-700 hover:bg-[#1E40AF] ' }}"
-                    style="cursor: pointer;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 16.95H6.21C2.84 16.95 2 16.11 2 12.74V6.74003C2 3.37003 2.84 2.53003 6.21 2.53003H16.74C20.11 2.53003 20.95 3.37003 20.95 6.74003" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M10 21.4699V16.95" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 12.95H10" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M6.73999 21.47H9.99999" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M22 12.8V18.51C22 20.88 21.41 21.47 19.04 21.47H15.49C13.12 21.47 12.53 20.88 12.53 18.51V12.8C12.53 10.43 13.12 9.83997 15.49 9.83997H19.04C21.41 9.83997 22 10.43 22 12.8Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M17.2445 18.25H17.2535" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <span class="text-[15px]">ثبت دستگاه  </span>
-                </a>
+                @if($canRegisterDevice)
+                    <a data-section="fix" href="{{ route('register') }}"
+                        class="menu-btn group w-full text-right flex gap-3 rounded-xl px-2 py-2 text-sm transition hover:text-white
+                        {{ request()->routeIs('register') ? 'bg-[#1E40AF] text-white' : 'text-gray-700 hover:bg-[#1E40AF] ' }}"
+                        style="cursor: pointer;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 16.95H6.21C2.84 16.95 2 16.11 2 12.74V6.74003C2 3.37003 2.84 2.53003 6.21 2.53003H16.74C20.11 2.53003 20.95 3.37003 20.95 6.74003" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10 21.4699V16.95" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12.95H10" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6.73999 21.47H9.99999" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M22 12.8V18.51C22 20.88 21.41 21.47 19.04 21.47H15.49C13.12 21.47 12.53 20.88 12.53 18.51V12.8C12.53 10.43 13.12 9.83997 15.49 9.83997H19.04C21.41 9.83997 22 10.43 22 12.8Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M17.2445 18.25H17.2535" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="text-[15px]">ثبت دستگاه  </span>
+                    </a>
+                @endif
                 <a data-section="fix" href="{{ route('seller.register.list') }}"
                     class="menu-btn group w-full text-right flex gap-3 rounded-xl px-2 py-2 text-sm transition hover:text-white
                     {{ request()->routeIs('seller.register.list') ? 'bg-[#1E40AF] text-white' : 'text-gray-700 hover:bg-[#1E40AF] ' }}"
                     style="cursor: pointer;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="#fff"  stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"></path> <path d="M15 2H9a1 1 0 00-1 1v2a1 1 0 001 1h6a1 1 0 001-1V3a1 1 0 00-1-1z"></path> <path d="M12 11h4"></path> <path d="M12 16h4"></path> <path d="M8 11h.01"></path> <path d="M8 16h.01"></path> </g></svg>
                     <span class="text-[15px]">لیست دستگاه</span>
+                </a>
+                <a data-section="fix" href="{{ route('reports') }}"
+                    class="menu-btn group w-full text-right flex gap-3 rounded-xl px-2 py-2 text-sm transition hover:text-white
+                    {{ request()->routeIs('reports') ? 'bg-[#1E40AF] text-white' : 'text-gray-700 hover:bg-[#1E40AF] ' }}"
+                    style="cursor: pointer;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10.1 11.15H7.45C6.82 11.15 6.31 11.66 6.31 12.29V17.41H10.1V11.15Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12.76 6.6H11.24C10.61 6.6 10.1 7.11 10.1 7.74V17.4H13.89V7.74C13.89 7.11 13.39 6.6 12.76 6.6Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16.54 12.85H13.89V17.4H17.68V13.99C17.68 13.36 17.17 12.85 16.54 12.85Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="text-[15px]">گزارشات بلاک</span>
                 </a>
             </div>
         </nav>
@@ -408,6 +429,49 @@
         const profileMenu = document.getElementById('profileMenu');
         const sellerBellButton = document.getElementById('sellerBellButton');
         const sellerBellMenu = document.getElementById('sellerBellMenu');
+        const sellerBellBadge = document.getElementById('sellerBellBadge');
+        const sellerUnreadPollUrl = @json(route('seller.notifications.unread'));
+
+        const updateSellerBellBadge = (count) => {
+            if (!sellerBellBadge) return;
+            const nextCount = Number.isFinite(Number(count)) ? Math.max(0, Number(count)) : 0;
+            sellerBellBadge.textContent = String(nextCount);
+            sellerBellBadge.classList.toggle('hidden', nextCount <= 0);
+        };
+
+        const ensureSellerBellEmptyState = () => {
+            if (!sellerBellMenu) return;
+            const hasItems = sellerBellMenu.querySelectorAll('.seller-notification-item').length > 0;
+            let empty = document.getElementById('sellerBellEmptyState');
+            if (!hasItems && !empty) {
+                empty = document.createElement('div');
+                empty.id = 'sellerBellEmptyState';
+                empty.className = 'px-3 py-3 text-xs text-gray-500';
+                empty.textContent = 'اعلانی موجود نیست';
+                sellerBellMenu.appendChild(empty);
+            }
+            if (hasItems && empty) {
+                empty.remove();
+            }
+        };
+
+        const removeSellerNotificationItemsByRegisterId = (registerId) => {
+            if (!sellerBellMenu || !registerId) return 0;
+            const items = sellerBellMenu.querySelectorAll(`.seller-notification-item[data-register-id="${registerId}"]`);
+            const removed = items.length;
+            items.forEach((item) => item.remove());
+            ensureSellerBellEmptyState();
+            return removed;
+        };
+
+        const removeSellerNotificationItemsByReportId = (reportId) => {
+            if (!sellerBellMenu || !reportId) return 0;
+            const items = sellerBellMenu.querySelectorAll(`.seller-notification-item[data-report-id="${reportId}"]`);
+            const removed = items.length;
+            items.forEach((item) => item.remove());
+            ensureSellerBellEmptyState();
+            return removed;
+        };
         profileBtn?.addEventListener('click', (e) => {
             e.stopPropagation();
             profileMenu?.classList.toggle('hidden');
@@ -421,6 +485,63 @@
             e.stopPropagation();
             sellerBellMenu?.classList.toggle('hidden');
         });
+        sellerBellMenu?.querySelectorAll('.seller-notification-item').forEach((item) => {
+            item.addEventListener('click', () => {
+                const registerId = Number(item.getAttribute('data-register-id'));
+                const reportId = Number(item.getAttribute('data-report-id'));
+                let removed = 0;
+
+                if (!Number.isNaN(registerId) && registerId > 0) {
+                    removed += removeSellerNotificationItemsByRegisterId(registerId);
+                }
+                if (!Number.isNaN(reportId) && reportId > 0) {
+                    removed += removeSellerNotificationItemsByReportId(reportId);
+                }
+
+                if (removed > 0) {
+                    updateSellerBellBadge(Number(sellerBellBadge?.textContent ?? 0) - removed);
+                }
+            });
+        });
+        if (window.Livewire && typeof window.Livewire.on === 'function') {
+            window.Livewire.on('seller-notifications-sync', (payload) => {
+                const data = Array.isArray(payload) ? (payload[0] ?? {}) : (payload ?? {});
+                const unreadCount = Number(data.unreadCount ?? 0);
+                const registerId = Number(data.registerId ?? 0);
+                const reportId = Number(data.reportId ?? 0);
+                if (!Number.isNaN(registerId) && registerId > 0) {
+                    removeSellerNotificationItemsByRegisterId(registerId);
+                }
+                if (!Number.isNaN(reportId) && reportId > 0) {
+                    removeSellerNotificationItemsByReportId(reportId);
+                }
+                updateSellerBellBadge(unreadCount);
+                ensureSellerBellEmptyState();
+            });
+        }
+        const pollSellerUnreadCount = async () => {
+            if (!sellerUnreadPollUrl) return;
+            try {
+                const response = await fetch(sellerUnreadPollUrl, {
+                    method: 'GET',
+                    cache: 'no-store',
+                    credentials: 'same-origin',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json',
+                    },
+                });
+                if (!response.ok) return;
+                const data = await response.json();
+                updateSellerBellBadge(Number(data.unreadCount ?? 0));
+            } catch (error) {
+            }
+        };
+        pollSellerUnreadCount();
+        if (!window.__sellerNotificationPollTimer) {
+            window.__sellerNotificationPollTimer = window.setInterval(pollSellerUnreadCount, 15000);
+        }
+        ensureSellerBellEmptyState();
         sellerBellMenu?.addEventListener('click', (e) => e.stopPropagation());
         document.addEventListener('click', () => {
             if (profileMenu && !profileMenu.classList.contains('hidden')) {

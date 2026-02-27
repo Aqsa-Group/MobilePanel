@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Website;
 
+use App\Models\AppNotification;
+use App\Models\DeviceReport;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use App\Models\DeviceReport;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Auth;
 
 class Register extends Component
 {
@@ -23,10 +23,7 @@ class Register extends Component
     public $incident_type;
     public $incident_location;
     public $incident_description;
-    public $incident_date;
     public $formKey;
-
-
 
     protected function rules()
     {
@@ -46,7 +43,6 @@ class Register extends Component
             'incident_type'     => 'required|in:lost,stolen',
             'incident_location' => 'required|string|max:255',
             'incident_description' => 'nullable|string',
-            'incident_date'     => 'nullable|date',
         ];
     }
 
@@ -79,10 +75,9 @@ class Register extends Component
 
             'incident_location.required' => 'محل وقوع حادثه الزامی است.',
             'incident_location.max' => 'محل وقوع حادثه بیش از حد طولانی است.',
-
-            'incident_date.date' => 'تاریخ حادثه معتبر نیست.',
         ];
     }
+
     protected function validationAttributes()
     {
         return [
@@ -97,19 +92,44 @@ class Register extends Component
             'incident_type' => 'نوع حادثه',
             'incident_location' => 'محل وقوع حادثه',
             'incident_description' => 'توضیحات',
-            'incident_date' => 'تاریخ حادثه',
         ];
     }
 
     public function mount()
     {
         $this->formKey = uniqid();
-        $this->user = Auth::user();
+    }
+
+    public function updatedOwnerPhone(): void
+    {
+        $this->owner_phone = $this->convertToEnglishNumber((string) $this->owner_phone);
+    }
+
+    public function updatedOwnerNationalId(): void
+    {
+        $this->owner_national_id = $this->convertToEnglishNumber((string) $this->owner_national_id);
+    }
+
+    public function updatedDeviceImei(): void
+    {
+        $this->device_imei = $this->convertToEnglishNumber((string) $this->device_imei);
     }
 
     public function submit()
     {
+        if (!Auth::check()) {
+            return redirect()
+                ->route('website.login')
+                ->with('warning', 'برای ثبت گزارش باید وارد حساب خود شوید.');
+        }
 
+        $this->owner_phone = trim($this->convertToEnglishNumber((string) $this->owner_phone));
+        $this->owner_national_id = trim($this->convertToEnglishNumber((string) $this->owner_national_id));
+        $this->device_imei = trim($this->convertToEnglishNumber((string) $this->device_imei));
+
+        if ($this->owner_national_id === '') {
+            $this->owner_national_id = null;
+        }
 
         $this->validate();
 
@@ -124,7 +144,7 @@ class Register extends Component
             $ownerPhotoPath = $this->owner_photo->store('owner_photos', 'public');
         }
 
-        DeviceReport::create(
+        $report = DeviceReport::create(
             [
                 'owner_full_name'   => $this->owner_full_name,
                 'owner_phone'       => $this->owner_phone,
@@ -140,20 +160,35 @@ class Register extends Component
                 'incident_type'     => $this->incident_type,
                 'incident_location' => $this->incident_location,
                 'incident_description' => $this->incident_description,
-                'incident_date'     => $this->incident_date,
+                'incident_date'     => now(),
 
-                'ip_address' => Request::ip(),
-                'user_agent' => Request::header('User-Agent'),
+                'ip_address' => request()->ip(),
+                'user_agent' => request()->userAgent(),
 
                 'admin_id' => Auth::id(),
                 'admin_name' => Auth::user()->name ?? null,
             ]
         );
 
+        AppNotification::create([
+            'target_guard' => 'admin2',
+            'target_user_id' => null,
+            'scope' => 'broadcast_admin2',
+            'type' => 'device_report_submitted',
+            'title' => 'گزارش جدید سرقت/مفقودی',
+            'message' => "گزارش جدید با IMEI {$report->device_imei} توسط {$report->owner_full_name} ثبت شد.",
+            'payload' => [
+                'report_id' => $report->id,
+                'link' => route('admin2.reports', ['view_report_id' => $report->id]),
+            ],
+            'expires_at' => now()->addDays(7),
+        ]);
+
         session()->flash('success', 'گزارش با موفقیت ثبت شد.');
 
         $this->resetForm();
     }
+
     public function resetForm()
     {
         $this->reset([
@@ -168,10 +203,17 @@ class Register extends Component
             'incident_type',
             'incident_location',
             'incident_description',
-            'incident_date',
         ]);
         $this->formKey = uniqid();
         $this->resetValidation();
+    }
+
+    private function convertToEnglishNumber(string $value): string
+    {
+        $from = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+        $to = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+        return str_replace($from, $to, $value);
     }
 
     public function render()

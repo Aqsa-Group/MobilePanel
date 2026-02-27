@@ -28,6 +28,7 @@
             </div>
         </div>
     @endif
+    @include('components.flash-modal')
     <div class="flex min-h-screen ">
         @include('Mobile.layouts.sidebar')
         <main class="flex-1 w-full px-3 sm:px-4 overflow-x-hidden mx-auto lg:px-6 pt-16 sm:pt-20 lg:pt-20">

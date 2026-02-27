@@ -20,14 +20,24 @@
         </div>
     @endif
     <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6">
-        <h2 class="text-xl font-bold text-gray-700 mb-4">ثبت دستگاه</h2>
+        <h2 class="text-xl font-bold text-gray-700 mb-2">{{ $isEditMode ? 'ویرایش دستگاه رد شده' : 'ثبت دستگاه' }}</h2>
+        @if($isEditMode)
+            <p class="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-4">
+                شما در حالت ویرایش هستید. اطلاعات را اصلاح کنید و دوباره برای تایید مدیریت ارسال نمایید.
+            </p>
+        @else
+            <div class="mb-4"></div>
+        @endif
         <form wire:submit.prevent="save" novalidate class="grid grid-cols-1 lg:grid-cols-2 gap-4" wire:key="register-form-{{ $formKey }}">
             <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6 mb-1">
                 <div class="hidden sm:flex flex-col items-center gap-2">
                     <label class="relative w-32 h-32 sm:w-36 sm:h-36 rounded-full border-2 border-dashed border-blue-500 bg-blue-50 overflow-hidden cursor-pointer group">
-                        <input wire:model="customer_image" id="customer_image_{{ $formKey }}" type="file" accept="image/*" required class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20">
+                        <input wire:model="customer_image" id="customer_image_{{ $formKey }}" type="file" accept="image/*" @if(!$isEditMode) required @endif class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20">
                         @if($customer_image)
                             <img src="{{ $customer_image->temporaryUrl() }}" alt="پیش نمایش عکس مشتری" class="w-full h-full object-cover">
+                            <span class="absolute inset-0 bg-black/35 text-white text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition">تغییر عکس</span>
+                        @elseif($isEditMode && $existingCustomerImage)
+                            <img src="{{ asset('storage/' . $existingCustomerImage) }}" alt="عکس مشتری فعلی" class="w-full h-full object-cover">
                             <span class="absolute inset-0 bg-black/35 text-white text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition">تغییر عکس</span>
                         @else
                             <div class="w-full h-full flex flex-col items-center justify-center gap-1 text-blue-700 text-xs">
@@ -44,15 +54,20 @@
                             </svg>
                         </span>
                     </label>
-                    <span class="text-xs text-gray-600">برای انتخاب/تغییر عکس مشتری کلیک کنید</span>
+                    <span class="text-xs text-gray-600">
+                        {{ $isEditMode ? 'برای تغییر عکس مشتری کلیک کنید (اختیاری)' : 'برای انتخاب/تغییر عکس مشتری کلیک کنید' }}
+                    </span>
                     <span wire:loading wire:target="customer_image" class="text-xs text-blue-700">در حال آپلود...</span>
                     @error('customer_image') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
                 <div class="flex flex-col items-center gap-2">
                     <label class="relative w-32 h-32 sm:w-36 sm:h-36 rounded-full border-2 border-dashed border-blue-500 bg-blue-50 overflow-hidden cursor-pointer group">
-                        <input wire:model="device_image" id="device_image_{{ $formKey }}" type="file" accept="image/*" required class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20">
+                        <input wire:model="device_image" id="device_image_{{ $formKey }}" type="file" accept="image/*" @if(!$isEditMode) required @endif class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20">
                         @if($device_image)
                             <img src="{{ $device_image->temporaryUrl() }}" alt="پیش نمایش عکس دستگاه" class="w-full h-full object-cover">
+                            <span class="absolute inset-0 bg-black/35 text-white text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition">تغییر عکس</span>
+                        @elseif($isEditMode && $existingDeviceImage)
+                            <img src="{{ asset('storage/' . $existingDeviceImage) }}" alt="عکس دستگاه فعلی" class="w-full h-full object-cover">
                             <span class="absolute inset-0 bg-black/35 text-white text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition">تغییر عکس</span>
                         @else
                             <div class="w-full h-full flex flex-col items-center justify-center gap-1 text-blue-700 text-xs">
@@ -69,7 +84,9 @@
                             </svg>
                         </span>
                     </label>
-                    <span class="text-xs text-gray-600">برای انتخاب/تغییر عکس دستگاه کلیک کنید</span>
+                    <span class="text-xs text-gray-600">
+                        {{ $isEditMode ? 'برای تغییر عکس دستگاه کلیک کنید (اختیاری)' : 'برای انتخاب/تغییر عکس دستگاه کلیک کنید' }}
+                    </span>
                     <span wire:loading wire:target="device_image" class="text-xs text-blue-700">در حال آپلود...</span>
                     @error('device_image') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
@@ -109,9 +126,12 @@
                 <h3 class="font-semibold text-blue-800">مشخصات دستگاه</h3>
                 <div class="flex sm:hidden flex-col items-center gap-2 mb-2">
                     <label class="relative w-32 h-32 rounded-full border-2 border-dashed border-blue-500 bg-blue-50 overflow-hidden cursor-pointer group">
-                        <input wire:model="device_image" id="device_image_mobile_{{ $formKey }}" type="file" accept="image/*" required class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20">
+                        <input wire:model="device_image" id="device_image_mobile_{{ $formKey }}" type="file" accept="image/*" @if(!$isEditMode) required @endif class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20">
                         @if($device_image)
                             <img src="{{ $device_image->temporaryUrl() }}" alt="پیش نمایش عکس دستگاه" class="w-full h-full object-cover">
+                            <span class="absolute inset-0 bg-black/35 text-white text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition">تغییر عکس</span>
+                        @elseif($isEditMode && $existingDeviceImage)
+                            <img src="{{ asset('storage/' . $existingDeviceImage) }}" alt="عکس دستگاه فعلی" class="w-full h-full object-cover">
                             <span class="absolute inset-0 bg-black/35 text-white text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition">تغییر عکس</span>
                         @else
                             <div class="w-full h-full flex flex-col items-center justify-center gap-1 text-blue-700 text-xs">
@@ -128,7 +148,9 @@
                             </svg>
                         </span>
                     </label>
-                    <span class="text-xs text-gray-600">برای انتخاب/تغییر عکس دستگاه کلیک کنید</span>
+                    <span class="text-xs text-gray-600">
+                        {{ $isEditMode ? 'برای تغییر عکس دستگاه کلیک کنید (اختیاری)' : 'برای انتخاب/تغییر عکس دستگاه کلیک کنید' }}
+                    </span>
                     <span wire:loading wire:target="device_image" class="text-xs text-blue-700">در حال آپلود...</span>
                     @error('device_image') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
@@ -156,7 +178,7 @@
                 </div>
                 @error('color') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 <div class="relative">
-                    <input wire:model.defer="imei" type="text" class="input-field !pl-11" placeholder="شماره IMEI" required>
+                    <input wire:model.defer="imei" type="text" class="input-field !pl-11" placeholder="شماره IMEI">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-blue-700">
                         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8 8L8 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12 8L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M16 8L16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M8.976 21C4.05476 21 3 19.9453 3 15.024" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path> <path d="M20.9999 15.024C20.9999 19.9453 19.9452 21 15.0239 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path> <path d="M15.0239 3C19.9452 3 20.9999 4.05476 20.9999 8.976" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path> <path d="M3 8.976C3 4.05476 4.05476 3 8.976 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path> </g></svg>
                     </span>
@@ -165,14 +187,18 @@
             </div>
             <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div class="space-y-1">
-                    <input wire:model="tazkira_image" id="tazkira_image_{{ $formKey }}" type="file" accept="image/*" required class="hidden">
+                    <input wire:model="tazkira_image" id="tazkira_image_{{ $formKey }}" type="file" accept="image/*" @if(!$isEditMode) required @endif class="hidden">
                     <label for="tazkira_image_{{ $formKey }}" class="relative input-field !pl-11 !py-2 cursor-pointer flex items-center gap-2">
                         @if($tazkira_image)
                             <img src="{{ $tazkira_image->temporaryUrl() }}" alt="پیش نمایش تذکره" class="w-9 h-9 rounded object-cover border border-blue-200 shrink-0">
+                        @elseif($isEditMode && $existingTazkiraImage)
+                            <img src="{{ asset('storage/' . $existingTazkiraImage) }}" alt="تذکره فعلی" class="w-9 h-9 rounded object-cover border border-blue-200 shrink-0">
                         @endif
                         <span class="flex-1 min-w-0 truncate text-right text-gray-700">
                             @if($tazkira_image)
                                 {{ $tazkira_image->getClientOriginalName() }}
+                            @elseif($isEditMode && $existingTazkiraImage)
+                                عکس تذکره فعلی (برای تغییر کلیک کنید)
                             @else
                                 عکس تذکره
                             @endif
@@ -185,14 +211,18 @@
                     @error('tazkira_image') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
                 <div class="space-y-1">
-                    <input wire:model="carton_image" id="carton_image_{{ $formKey }}" type="file" accept="image/*" required class="hidden">
+                    <input wire:model="carton_image" id="carton_image_{{ $formKey }}" type="file" accept="image/*" @if(!$isEditMode) required @endif class="hidden">
                     <label for="carton_image_{{ $formKey }}" class="relative input-field !pl-11 !py-2 cursor-pointer flex items-center gap-2">
                         @if($carton_image)
                             <img src="{{ $carton_image->temporaryUrl() }}" alt="پیش نمایش کارتن" class="w-9 h-9 rounded object-cover border border-blue-200 shrink-0">
+                        @elseif($isEditMode && $existingCartonImage)
+                            <img src="{{ asset('storage/' . $existingCartonImage) }}" alt="کارتن فعلی" class="w-9 h-9 rounded object-cover border border-blue-200 shrink-0">
                         @endif
                         <span class="flex-1 min-w-0  truncate text-right text-gray-700">
                             @if($carton_image)
                                 {{ $carton_image->getClientOriginalName() }}
+                            @elseif($isEditMode && $existingCartonImage)
+                                عکس کارتن فعلی (برای تغییر کلیک کنید)
                             @else
                                 عکس کارتن دستگاه
                             @endif
@@ -207,7 +237,9 @@
             </div>
             <div class="lg:col-span-2 flex justify-between gap-3 pt-2">
                 <button type="button" wire:click="cancel" class="p-3 w-full rounded-lg bg-red-900 hover:bg-red-700  text-white">لغو</button>
-                <button type="submit" class="p-3 rounded-lg w-full bg-blue-900 hover:bg-blue-700  text-white">ارسال برای تایید مدیریت</button>
+                <button type="submit" class="p-3 rounded-lg w-full bg-blue-900 hover:bg-blue-700  text-white">
+                    {{ $isEditMode ? 'ویرایش و ارسال مجدد برای تایید' : 'ارسال برای تایید مدیریت' }}
+                </button>
             </div>
         </form>
     </div>
@@ -238,7 +270,7 @@
                         </div>
                     @endforeach
                     <div class="rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 text-xs text-blue-800">
-                        نکته: عکس‌ها را واضح، بدون لرزش و با نور متعادل ثبت کنید. صورت مشتری باید واضح و بدون عینک/لنز باشد.
+                        نکته: عکس دستگاه و کارتن را واضح، بدون لرزش و با نور متعادل ثبت کنید.
                     </div>
                 </div>
                 <div class="px-5 py-4 bg-gray-50 flex justify-end">
