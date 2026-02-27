@@ -66,7 +66,7 @@ class AppServiceProvider extends ServiceProvider
                 return;
             }
 
-            $notifications = AppNotification::query()
+            $baseQuery = AppNotification::query()
                 ->where('target_guard', 'admin2')
                 ->where(function ($q) use ($userId) {
                     $q->where(function ($single) use ($userId) {
@@ -76,12 +76,21 @@ class AppServiceProvider extends ServiceProvider
                 })
                 ->where(function ($q) {
                     $q->whereNull('expires_at')->orWhere('expires_at', '>', now());
-                })
+                });
+
+            $notifications = (clone $baseQuery)
+                ->where('is_read', false)
                 ->latest()
                 ->limit(8)
                 ->get();
 
-            $view->with('adminSidebarNotificationCount', $notifications->where('is_read', false)->count())
+            $unreadCount = (clone $baseQuery)
+                ->where('is_read', false)
+                ->count();
+
+            $badgeCount = $unreadCount;
+
+            $view->with('adminSidebarNotificationCount', $badgeCount)
                 ->with('adminSidebarNotifications', $notifications);
         });
     }

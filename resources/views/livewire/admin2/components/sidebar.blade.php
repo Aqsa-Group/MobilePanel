@@ -7,10 +7,25 @@
     <title>Document</title>
 </head>
 <body>
-    @php $latestAdminUnread = ($adminSidebarNotifications ?? collect())->firstWhere('is_read', false); @endphp
+    @php
+        $latestAdminUnread = ($adminSidebarNotifications ?? collect())->firstWhere('is_read', false);
+        $latestAdminType = strtolower((string) data_get($latestAdminUnread, 'type', ''));
+        $latestAdminIsBlocked = str_contains($latestAdminType, 'blocked') || str_contains($latestAdminType, 'rejected');
+        $latestAdminIsApproved = str_contains($latestAdminType, 'approved');
+        $latestAdminIsPending = str_contains($latestAdminType, 'pending') || str_contains($latestAdminType, 'submitted');
+
+        $latestAdminToastClass = 'bg-slate-700 text-white';
+        if ($latestAdminIsBlocked) {
+            $latestAdminToastClass = 'bg-red-700 text-white';
+        } elseif ($latestAdminIsApproved) {
+            $latestAdminToastClass = 'bg-blue-700 text-white';
+        } elseif ($latestAdminIsPending) {
+            $latestAdminToastClass = 'bg-amber-600 text-white';
+        }
+    @endphp
     @if($latestAdminUnread)
         <div x-data="{show:true}" x-show="show" x-init="setTimeout(() => show = false, 5000)" class="fixed bottom-4 left-4 z-[70]">
-            <div class="bg-[#0B35CC] text-white px-4 py-3 rounded-lg shadow text-sm">{{ $latestAdminUnread->message }}</div>
+            <div class="{{ $latestAdminToastClass }} px-4 py-3 rounded-lg shadow text-sm">{{ $latestAdminUnread->message }}</div>
         </div>
     @endif
     <!-- Header -->
@@ -54,20 +69,49 @@
                     <div class="relative">
                         <button id="adminBellButton" class="rounded-full bg-gray-200 w-10 h-10 transition relative">
                             <i class="fa-regular fa-bell"></i>
-                            @if(($adminSidebarNotificationCount ?? 0) > 0)
-                                <span class="absolute -top-1 -right-1 bg-[#0B35CC] text-white text-center items-center justify-center text-[10px] rounded-full px-1.5">{{ $adminSidebarNotificationCount }}</span>
-                            @endif
+                            <span id="adminBellBadge" class="absolute -top-1 -right-1 inline-flex min-w-[18px] h-[18px] bg-[#0B35CC] text-white items-center justify-center text-[10px] rounded-full px-1.5 {{ (($adminSidebarNotificationCount ?? 0) > 0) ? '' : 'hidden' }}">{{ $adminSidebarNotificationCount ?? 0 }}</span>
                         </button>
-                        <div id="adminBellMenu" class="hidden absolute left-0 mt-2 w-80 bg-white border border-[#0B35CC]/20 rounded-xl shadow-lg z-50 max-h-80 overflow-auto">
+                        <div id="adminBellMenu" class="hidden absolute left-0 mt-2 w-80 bg-white border border-blue-200 rounded-xl shadow-lg z-50 max-h-80 overflow-auto">
                             <div class="px-3 py-2 border-b font-semibold text-sm text-gray-700">اعلان‌ها</div>
                             @forelse(($adminSidebarNotifications ?? collect()) as $n)
-                                @php $link = data_get($n->payload, 'link', route('admin2.register-device')); @endphp
-                                <a href="{{ $link }}" class="block px-3 py-2 border-b hover:bg-gray-50">
-                                    <div class="text-xs text-[#0B35CC] font-semibold">{{ $n->title }}</div>
-                                    <div class="text-xs text-gray-600">{{ $n->message }}</div>
-                                </a>
+                                @php
+                                    $registerId = data_get($n->payload, 'register_id');
+                                    $type = strtolower((string) ($n->type ?? ''));
+                                    $isBlocked = str_contains($type, 'blocked') || str_contains($type, 'rejected');
+                                    $isApproved = str_contains($type, 'approved');
+                                    $isPending = str_contains($type, 'pending') || str_contains($type, 'submitted');
+
+                                    $itemBorderClass = 'border-slate-200 hover:bg-slate-50';
+                                    $titleClass = 'text-slate-700';
+                                    $badgeClass = 'bg-slate-100 text-slate-700';
+
+                                    if ($isBlocked) {
+                                        $itemBorderClass = 'border-red-200 hover:bg-red-50';
+                                        $titleClass = 'text-red-700';
+                                        $badgeClass = 'bg-red-100 text-red-700';
+                                    } elseif ($isApproved) {
+                                        $itemBorderClass = 'border-blue-200 hover:bg-blue-50';
+                                        $titleClass = 'text-blue-700';
+                                        $badgeClass = 'bg-blue-100 text-blue-700';
+                                    } elseif ($isPending) {
+                                        $itemBorderClass = 'border-amber-200 hover:bg-amber-50';
+                                        $titleClass = 'text-amber-700';
+                                        $badgeClass = 'bg-amber-100 text-amber-700';
+                                    }
+                                @endphp
+                                <button
+                                    type="button"
+                                    class="admin-notification-item block w-full px-3 py-2 border-b text-right {{ $itemBorderClass }}"
+                                    data-register-id="{{ $registerId }}"
+                                >
+                                    <div class="flex items-center justify-between gap-2">
+                                        <div class="text-xs font-semibold {{ $titleClass }}">{{ $n->title }}</div>
+                                        <span class="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold {{ $badgeClass }}">جدید</span>
+                                    </div>
+                                    <div class="text-xs text-gray-600 mt-1">{{ $n->message }}</div>
+                                </button>
                             @empty
-                                <div class="px-3 py-3 text-xs text-gray-500">اعلانی موجود نیست</div>
+                                <div id="adminBellEmptyState" class="px-3 py-3 text-xs text-gray-500">اعلانی موجود نیست</div>
                             @endforelse
                         </div>
                     </div>
@@ -273,6 +317,39 @@
         const profileMenu = document.getElementById('profileMenu');
         const adminBellButton = document.getElementById('adminBellButton');
         const adminBellMenu = document.getElementById('adminBellMenu');
+        const adminBellBadge = document.getElementById('adminBellBadge');
+
+        const updateBellBadge = (count) => {
+            if (!adminBellBadge) return;
+            const nextCount = Number.isFinite(Number(count)) ? Math.max(0, Number(count)) : 0;
+            adminBellBadge.textContent = String(nextCount);
+            adminBellBadge.classList.toggle('hidden', nextCount <= 0);
+        };
+
+        const ensureBellEmptyState = () => {
+            if (!adminBellMenu) return;
+            const hasItems = adminBellMenu.querySelectorAll('.admin-notification-item').length > 0;
+            let empty = document.getElementById('adminBellEmptyState');
+            if (!hasItems && !empty) {
+                empty = document.createElement('div');
+                empty.id = 'adminBellEmptyState';
+                empty.className = 'px-3 py-3 text-xs text-gray-500';
+                empty.textContent = 'اعلانی موجود نیست';
+                adminBellMenu.appendChild(empty);
+            }
+            if (hasItems && empty) {
+                empty.remove();
+            }
+        };
+
+        const removeNotificationItemsByRegisterId = (registerId) => {
+            if (!adminBellMenu || !registerId) return 0;
+            const items = adminBellMenu.querySelectorAll(`.admin-notification-item[data-register-id="${registerId}"]`);
+            const removed = items.length;
+            items.forEach((item) => item.remove());
+            ensureBellEmptyState();
+            return removed;
+        };
 
         profileBtn?.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -287,6 +364,34 @@
             e.stopPropagation();
             adminBellMenu?.classList.toggle('hidden');
         });
+        adminBellMenu?.querySelectorAll('.admin-notification-item').forEach((item) => {
+            item.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const rawId = item.getAttribute('data-register-id');
+            const id = Number(rawId);
+            if (!Number.isNaN(id) && id > 0) {
+                const removed = removeNotificationItemsByRegisterId(id);
+                if (removed > 0) {
+                    updateBellBadge(Number(adminBellBadge?.textContent ?? 0) - removed);
+                }
+                window.dispatchEvent(new CustomEvent('admin-open-device-detail', { detail: { id } }));
+            }
+            adminBellMenu?.classList.add('hidden');
+            });
+        });
+        if (window.Livewire && typeof window.Livewire.on === 'function') {
+            window.Livewire.on('admin-notifications-sync', (payload) => {
+                const data = Array.isArray(payload) ? (payload[0] ?? {}) : (payload ?? {});
+                const unreadCount = Number(data.unreadCount ?? 0);
+                const registerId = Number(data.registerId ?? 0);
+                if (!Number.isNaN(registerId) && registerId > 0) {
+                    removeNotificationItemsByRegisterId(registerId);
+                }
+                updateBellBadge(unreadCount);
+                ensureBellEmptyState();
+            });
+        }
         adminBellMenu?.addEventListener('click', (e) => e.stopPropagation());
         document.addEventListener('click', () => {
             if (profileMenu && !profileMenu.classList.contains('hidden')) {
