@@ -39,14 +39,12 @@
             </div>
         </div>
     @endif
-
     <div id="imageModal" class="fixed inset-0 hidden items-center justify-center bg-black/70 z-50" onclick="closeModal(event)">
         <div class="relative" onclick="event.stopPropagation()">
             <button onclick="closeModal()" class="absolute -top-10 right-0 text-white text-3xl font-bold">✕</button>
             <img id="modalImage" class="max-h-[80vh] max-w-[90vw] rounded-lg shadow-lg">
         </div>
     </div>
-
     <script>
         function showImage(src) {
             document.getElementById('modalImage').src = src;
@@ -55,7 +53,6 @@
             modal.classList.add('flex');
             document.body.classList.add('overflow-hidden');
         }
-
         function closeModal(event = null) {
             if (!event || event.target.id === 'imageModal') {
                 const modal = document.getElementById('imageModal');
@@ -70,7 +67,6 @@
                 closeModal();
             }
         });
-
         window.addEventListener('admin-open-device-detail', function (event) {
             const id = event?.detail?.id;
             if (!id) return;
@@ -79,7 +75,6 @@
             }
         });
     </script>
-
     <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6">
         <form method="GET" action="{{ route('admin2.device-list') }}" class="mb-4 space-y-3">
             <div class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
@@ -123,7 +118,6 @@
                 <a href="{{ route('admin2.device-list') }}" class="flex w-full items-center text-white justify-center px-3 py-2 rounded-lg text-sm bg-[#0B35CC]  text-center">فیلتر حذف</a>
             </div>
         </form>
-
         <div class="hidden md:block overflow-x-hidden">
             <table class="w-full table-fixed text-[11px]">
                 <thead class="bg-[#0B35CC] text-white">
@@ -210,7 +204,6 @@
                 </tbody>
             </table>
         </div>
-
         <div class="md:hidden space-y-3">
             @forelse($devices as $device)
                 <div class="rounded-xl border border-gray-200 bg-white shadow-sm p-3">
@@ -310,10 +303,8 @@
                 <div class="rounded-xl border border-gray-200 bg-white p-4 text-center text-gray-500">موردی یافت نشد</div>
             @endforelse
         </div>
-
         <div class="mt-4">{{ $devices->links() }}</div>
     </div>
-
     @if($showDetailModal)
         @if($selectedDevice)
         @php

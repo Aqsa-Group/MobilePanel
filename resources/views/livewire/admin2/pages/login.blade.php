@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>نبض بازار دیجیتال</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@30.1.0/dist/font-face.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -20,7 +20,7 @@
             <div class="w-full h-[500px] bg-white hidden md:flex justify-center items-center">
                 <div class="w-full flex flex-col justify-center items-center">
                     <div class="text-center">
-                        <h1 class="text-2xl font-bold text-[#002ED3]">پنل بازار الکترونیک</h1>
+                        <h1 class="text-2xl font-bold text-[#002ED3]">نبض بازار دیجیتال</h1>
                         <p class="text-[#005CAF80] text-sm mt-3">لطفا اکانت تان را تایید کنید</p>
                     </div>
                     <form method="POST" class="contents" action="{{ route('admin2.login.post') }}">
@@ -67,7 +67,7 @@
                 <div class="bg-[#00000080] w-full sm:h-[500px] h-[600px]  flex justify-center">
                     <div class="bg-white md:hidden w-[90%] h-[80%] flex flex-col justify-center items-center  mt-10">
                         <div class="text-center">
-                            <h1 class="text-4xl font-bold text-[#002ED3]">پنل بازار الکترونیک</h1>
+                            <h1 class="text-4xl font-bold text-[#002ED3]">نبض بازار دیجیتال</h1>
                             <p class="text-[#005CAF80] text-sm mt-3">لطفا اکانت تان را تایید کنید</p>
                         </div>
                         <div class="w-[80%]  mt-20 space-y-10">

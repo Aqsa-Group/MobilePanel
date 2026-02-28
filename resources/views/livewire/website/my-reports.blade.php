@@ -30,10 +30,8 @@
                                 <td class="p-2 text-center" dir="ltr">{{ $report->device_imei }}</td>
                                 <td class="p-2 text-center">{{ $report->incident_type === 'stolen' ? 'سرقت' : 'مفقودی' }}</td>
                                 <td class="p-2 text-center">
-                                    @if($report->status === 'verified')
+                                    @if(in_array($report->status, ['verified', 'rejected'], true))
                                         <span class="px-2 py-1 rounded-full text-xs bg-red-100 text-red-700">بلاک شد</span>
-                                    @elseif($report->status === 'rejected')
-                                        <span class="px-2 py-1 rounded-full text-xs bg-red-100 text-red-700">رد</span>
                                     @elseif($report->status === 'resolved')
                                         <span class="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-700">حل‌شده</span>
                                     @else
@@ -64,10 +62,8 @@
                             <div class="text-center">
                                 <p class="text-gray-500">وضعیت</p>
                                 <p class="font-semibold flex justify-center">
-                                    @if($report->status === 'verified')
+                                    @if(in_array($report->status, ['verified', 'rejected'], true))
                                         <span class="px-2 py-1 rounded-full text-[10px] bg-red-100 text-red-700">بلاک شد</span>
-                                    @elseif($report->status === 'rejected')
-                                        <span class="px-2 py-1 rounded-full text-[10px] bg-red-100 text-red-700">رد</span>
                                     @elseif($report->status === 'resolved')
                                         <span class="px-2 py-1 rounded-full text-[10px] bg-blue-100 text-blue-700">حل‌شده</span>
                                     @else

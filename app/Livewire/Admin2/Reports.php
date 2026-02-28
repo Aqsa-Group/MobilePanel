@@ -49,6 +49,14 @@ class Reports extends Component
         $this->resetPage();
     }
 
+    public function clearFilters(): void
+    {
+        $this->search = '';
+        $this->statusFilter = '';
+        $this->incidentFilter = '';
+        $this->resetPage();
+    }
+
     public function openReportDetails(int $reportId): void
     {
         $report = DeviceReport::query()->find($reportId);
@@ -94,7 +102,7 @@ class Reports extends Component
             $reason = trim((string) $report->incident_description);
         }
         if ($reason === '') {
-            $reason = 'گزارش سرقت/مفقودی توسط مدیریت تایید و برای فروشندگان بلاک شد.';
+            $reason = 'گزارش سرقت/مفقودی توسط مدیریت بررسی و برای فروشندگان بلاک شد.';
         }
 
         $adminId = (int) auth('admin2')->id();
@@ -128,7 +136,7 @@ class Reports extends Component
             }
 
             $report->update([
-                'status' => 'verified',
+                'status' => 'rejected',
             ]);
 
             $payload = [
@@ -203,6 +211,10 @@ class Reports extends Component
                 });
             })
             ->when($this->statusFilter !== '', function ($query) {
+                if ($this->statusFilter === 'blocked') {
+                    $query->whereIn('status', ['verified', 'rejected']);
+                    return;
+                }
                 $query->where('status', $this->statusFilter);
             })
             ->when($this->incidentFilter !== '', function ($query) {

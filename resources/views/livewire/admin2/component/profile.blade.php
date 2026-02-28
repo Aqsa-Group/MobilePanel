@@ -5,7 +5,6 @@
             <p class="text-center text-[12px] text-gray-500 mb-6">
                 شما می‌توانید معلومات تانرا ویرایش کنید.
             </p>
-
             <div class="flex flex-col items-center mb-8">
                 <div class="relative w-28 h-28">
                     @if($image || $oldImage)
@@ -19,7 +18,6 @@
                             بدون عکس
                         </div>
                     @endif
-
                     <input type="file" id="profile_image" wire:model="image" class="hidden" accept="image/*">
                     <label for="profile_image" class="absolute bottom-1 right-1 bg-blue-800 hover:bg-blue-700 text-white w-8 h-8 rounded-full flex items-center justify-center cursor-pointer shadow-lg transition">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -28,7 +26,6 @@
                     </label>
                 </div>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="flex flex-col w-full">
                     <div class="relative w-full">
@@ -41,7 +38,6 @@
                         </svg>
                     </div>
                 </div>
-
                 <div class="flex flex-col w-full">
                     <div class="relative w-full">
                         <input type="text" placeholder="نام کاربری" wire:model.defer="username" class="input-field" />
@@ -53,7 +49,6 @@
                         </svg>
                     </div>
                 </div>
-
                 <div class="flex flex-col">
                     <div class="relative w-full">
                         <input type="email" placeholder="ایمیل" wire:model.defer="email" class="input-field">
@@ -62,7 +57,6 @@
                         </svg>
                     </div>
                 </div>
-
                 <div class="flex flex-col w-full">
                     <div class="relative w-full">
                         <input type="text" placeholder="شماره" wire:model.defer="number" class="input-field" />
@@ -71,7 +65,6 @@
                         </svg>
                     </div>
                 </div>
-
                 <div class="flex flex-col">
                     <div class="relative w-full">
                         <input type="password" wire:model.defer="password" placeholder="پسورد" class="input-field">
@@ -83,7 +76,6 @@
                         </svg>
                     </div>
                 </div>
-
                 <div class="flex flex-col w-full">
                     <div class="relative w-full">
                         <input type="text" wire:model.defer="address" placeholder="آدرس" class="input-field" />
@@ -93,7 +85,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
                 <button wire:click="cancel" type="button" class="w-full bg-red-800 hover:bg-red-700 text-white font-semibold py-3 rounded-md transition">
                     برگشت
