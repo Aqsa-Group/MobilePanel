@@ -1,4 +1,4 @@
-<div class="w-full">
+﻿<div class="w-full">
     <main>
         <div class="p-4  max-w-full mx-auto">
             <div wire:key="{{ $formKey }}"   class="rounded-xl shadow-xl w-full bg-white shadow-[0px_4px_4px_0px_#00000040] border card  px-2 py-4">
@@ -176,7 +176,7 @@
                                     </div>
                                 </div>
                                 <div class="flex justify-center gap-3 mt-5">
-                                    <button  wire:click="edit({{ $device->id }})" class="flex items-center gap-1 text-[#1C274C] border-[#1C274C] border border-2 e py-2 px-3 rounded-lg text-xs">
+                                    <button type="button" onclick="printSingleRow(this)" class="flex items-center gap-1 text-[#1C274C] border-[#1C274C] border border-2 e py-2 px-3 rounded-lg text-xs">
                                         <i class="bi bi-pencil-square">
                                             <svg width="20" height="20" viewBox="0 0 24 24" class="icon-dark-light" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14"  stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="currentColor"></circle> <path d="M15 16.5H9"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827"  stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                                         </i> چاپ
@@ -285,7 +285,7 @@
                                     <td class="p-2">{{ number_format($device->buy_price * $device->quantity - $device->paid_amount) }}؋</td>
                                     <td class="p-2">{{ $device->quantity }}</td>
                                     <td class="p-2">
-                                        <i class="text-blue-800 flex justify-center text-lg cursor-pointer">
+                                        <i onclick="printSingleRow(this)" class="text-blue-800 flex justify-center text-lg cursor-pointer">
                                             <svg class="icon-dark-light" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14"  stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="currentColor"></circle> <path d="M15 16.5H9"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827"  stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                                         </i>
                                     </td>
@@ -378,3 +378,4 @@
     </div>
 @endif
 </div>
+
