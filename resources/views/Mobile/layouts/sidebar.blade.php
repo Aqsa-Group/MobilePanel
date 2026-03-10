@@ -37,7 +37,6 @@
         $latestIsBlocked = str_contains($latestType, 'blocked') || str_contains($latestType, 'rejected');
         $latestIsApproved = str_contains($latestType, 'approved');
         $latestIsPending = str_contains($latestType, 'pending') || str_contains($latestType, 'submitted');
-
         $latestToastClass = 'bg-slate-700 text-white';
         if ($latestIsBlocked) {
             $latestToastClass = 'bg-red-700 text-white';
@@ -46,7 +45,6 @@
         } elseif ($latestIsPending) {
             $latestToastClass = 'bg-amber-600 text-white';
         }
-
         $mobileUser = auth()->user();
         $canRegisterDevice = $mobileUser
             && $mobileUser->isStoreAdmin()
@@ -59,85 +57,140 @@
             <div class="{{ $latestToastClass }} px-4 py-3 rounded-lg shadow text-sm">{{ $latestSidebarUnread->message }}</div>
         </div>
     @endif
-    <header class="fixed header top-0 inset-x-0 w-full bg-white z-[60] shadow shadow-blue-800 p-2">
-        <div class="w-full  lg:px-2">
-            <div class="h-16 flex items-center justify-between">
-                <div class="flex items-center">
-                    <button id="openSidebar" class="lg:hidden inline-flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 transition" aria-label="باز کردن منو">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                    <a href="" class="flex items-center font-bold text-3xl gap-2 text-blue-800">
-                        <span class=""> بازار الکترونیک</span>
-                    </a>
+   @php
+    $authUser = auth()->user();
+
+    $userRoleLabel = 'کاربر';
+    if ($authUser) {
+        if (method_exists($authUser, 'isStoreAdmin') && $authUser->isStoreAdmin()) {
+            $userRoleLabel = 'ادمین فروشگاه';
+        } elseif (method_exists($authUser, 'isAdmin') && $authUser->isAdmin()) {
+            $userRoleLabel = 'ادمین';
+        } elseif (method_exists($authUser, 'isEmployee') && $authUser->isEmployee()) {
+            $userRoleLabel = 'کارمند';
+        } elseif (method_exists($authUser, 'isSeller') && $authUser->isSeller()) {
+            $userRoleLabel = 'فروشنده';
+        } elseif (!empty($authUser->role)) {
+            $userRoleLabel = $authUser->role;
+        } elseif (!empty($authUser->user_type)) {
+            $userRoleLabel = $authUser->user_type;
+        }
+    }
+@endphp
+<header class="fixed top-0 inset-x-0 w-full bg-white z-[60] shadow-md shadow-gray-300 p-2">
+    <div class="w-full lg:px-2">
+        <div class="h-16 flex items-center justify-between gap-3">
+            <div class="flex items-center shrink-0">
+                <button id="openSidebar" class="lg:hidden inline-flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 transition" aria-label="باز کردن منو">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <a href="" class="flex items-center font-bold text-2xl sm:text-3xl gap-2 text-blue-800 whitespace-nowrap">
+                    <span>بازار الکترونیک</span>
+                </a>
+            </div>
+
+            <!-- center search -->
+            <div class="flex-1 flex justify-center px-2">
+                <div class="hidden md:flex items-center relative w-full max-w-[200px]">
+                    <input
+                        type="text"
+                        placeholder="جستجو..."
+                        class="w-full h-11 rounded-xl border border-gray-200 bg-[#F8FAFC] pr-11 pl-4 text-sm text-gray-700 placeholder:text-gray-400 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition"
+                    />
+                    <i class="fa-solid fa-magnifying-glass absolute right-4 text-gray-400 text-sm"></i>
                 </div>
-                <div class="flex-1"></div>
-                <div class="flex items-center gap-2 sm:gap-3">
-                    <button id="darkToggle" class="toggle-btn w-10 h-10  ">
-                        <i class="fa-solid fa-moon text-black"></i>
+            </div>
+
+            <!-- left -->
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+
+                <!-- datetime -->
+               <div class="hidden xl:flex flex-col items-center justify-center rounded-xl border border-[#E5E7EB] bg-white px-3 py-2 shadow-sm min-w-[220px]">
+    <span id="clockTime" class="text-[12px] font-bold text-[#111827] leading-none text-center">
+        --
+    </span>
+
+    <div class="mt-1 flex items-center justify-center gap-1 text-[10px] text-[#6B7280] leading-none text-center">
+        <span id="shamsiDate">--</span>
+        <span class="text-[#9CA3AF]">/</span>
+        <span id="miladiDate">--</span>
+    </div>
+</div>
+
+                <!-- notification -->
+                <div class="relative">
+                    <button id="sellerBellButton" class="rounded-full bg-gray-100 w-10 h-10 transition relative hover:bg-gray-200">
+                        <i class="fa-regular text-lg fa-bell"></i>
+                        <span id="sellerBellBadge" class="absolute -top-1 -right-1 inline-flex min-w-[18px] h-[18px] bg-blue-800 text-white items-center justify-center text-[10px] rounded-full px-1.5 {{ (($sidebarNotificationCount ?? 0) > 0) ? '' : 'hidden' }}">{{ $sidebarNotificationCount ?? 0 }}</span>
                     </button>
-                    <div class="relative">
-                        <button id="sellerBellButton" class="rounded-full bg-gray-100 w-10 h-10 transition relative">
-                            <i class="fa-regular text-lg fa-bell"></i>
-                            <span id="sellerBellBadge" class="absolute -top-1 -right-1 inline-flex min-w-[18px] h-[18px] bg-blue-800 text-white items-center justify-center text-[10px] rounded-full px-1.5 {{ (($sidebarNotificationCount ?? 0) > 0) ? '' : 'hidden' }}">{{ $sidebarNotificationCount ?? 0 }}</span>
-                        </button>
-                        <div id="sellerBellMenu" class="hidden absolute left-0 mt-2 w-80 bg-white border border-blue-200 rounded-xl shadow-lg z-50 max-h-80 overflow-auto">
-                            <div class="px-3 py-2 border-b font-semibold text-sm text-gray-700">اعلان‌ها</div>
-                            @forelse(($sidebarNotifications ?? collect()) as $n)
-                                @php
-                                    $link = data_get($n->payload, 'link', route('seller.register.list'));
-                                    $registerId = (int) data_get($n->payload, 'register_id', 0);
-                                    $reportId = (int) data_get($n->payload, 'report_id', 0);
-                                    $type = strtolower((string) ($n->type ?? ''));
-                                    $isBlocked = str_contains($type, 'blocked') || str_contains($type, 'rejected');
-                                    $isApproved = str_contains($type, 'approved');
-                                    $isPending = str_contains($type, 'pending') || str_contains($type, 'submitted');
 
-                                    $itemBorderClass = 'border-slate-200 hover:bg-slate-50';
-                                    $titleClass = 'text-slate-700';
-                                    $badgeClass = 'bg-slate-100 text-slate-700';
+                    <div id="sellerBellMenu" class="hidden absolute left-0 mt-2 w-80 bg-white border border-blue-200 rounded-xl shadow-lg z-50 max-h-80 overflow-auto">
+                        <div class="px-3 py-2 border-b font-semibold text-sm text-gray-700">اعلان‌ها</div>
+                        @forelse(($sidebarNotifications ?? collect()) as $n)
+                            @php
+                                $link = data_get($n->payload, 'link', route('seller.register.list'));
+                                $registerId = (int) data_get($n->payload, 'register_id', 0);
+                                $reportId = (int) data_get($n->payload, 'report_id', 0);
+                                $type = strtolower((string) ($n->type ?? ''));
+                                $isBlocked = str_contains($type, 'blocked') || str_contains($type, 'rejected');
+                                $isApproved = str_contains($type, 'approved');
+                                $isPending = str_contains($type, 'pending') || str_contains($type, 'submitted');
 
-                                    if ($isBlocked) {
-                                        $itemBorderClass = 'border-red-200 hover:bg-red-50';
-                                        $titleClass = 'text-red-700';
-                                        $badgeClass = 'bg-red-100 text-red-700';
-                                    } elseif ($isApproved) {
-                                        $itemBorderClass = 'border-blue-200 hover:bg-blue-50';
-                                        $titleClass = 'text-blue-700';
-                                        $badgeClass = 'bg-blue-100 text-blue-700';
-                                    } elseif ($isPending) {
-                                        $itemBorderClass = 'border-amber-200 hover:bg-amber-50';
-                                        $titleClass = 'text-amber-700';
-                                        $badgeClass = 'bg-amber-100 text-amber-700';
-                                    }
-                                @endphp
-                                <a href="{{ $link }}" class="seller-notification-item block px-3 py-2 border-b {{ $itemBorderClass }}" data-register-id="{{ $registerId }}" data-report-id="{{ $reportId }}">
-                                    <div class="flex items-center justify-between gap-2">
-                                        <div class="text-xs font-semibold {{ $titleClass }}">{{ $n->title }}</div>
-                                        @if(!$n->is_read)
-                                            <span class="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold {{ $badgeClass }}">جدید</span>
-                                        @endif
-                                    </div>
-                                    <div class="text-xs text-gray-600 mt-1">{{ $n->message }}</div>
-                                </a>
-                            @empty
-                                <div id="sellerBellEmptyState" class="px-3 py-3 text-xs text-gray-500">اعلانی موجود نیست</div>
-                            @endforelse
-                        </div>
+                                $itemBorderClass = 'border-slate-200 hover:bg-slate-50';
+                                $titleClass = 'text-slate-700';
+                                $badgeClass = 'bg-slate-100 text-slate-700';
+
+                                if ($isBlocked) {
+                                    $itemBorderClass = 'border-red-200 hover:bg-red-50';
+                                    $titleClass = 'text-red-700';
+                                    $badgeClass = 'bg-red-100 text-red-700';
+                                } elseif ($isApproved) {
+                                    $itemBorderClass = 'border-blue-200 hover:bg-blue-50';
+                                    $titleClass = 'text-blue-700';
+                                    $badgeClass = 'bg-blue-100 text-blue-700';
+                                } elseif ($isPending) {
+                                    $itemBorderClass = 'border-amber-200 hover:bg-amber-50';
+                                    $titleClass = 'text-amber-700';
+                                    $badgeClass = 'bg-amber-100 text-amber-700';
+                                }
+                            @endphp
+                            <a href="{{ $link }}" class="seller-notification-item block px-3 py-2 border-b {{ $itemBorderClass }}" data-register-id="{{ $registerId }}" data-report-id="{{ $reportId }}">
+                                <div class="flex items-center justify-between gap-2">
+                                    <div class="text-xs font-semibold {{ $titleClass }}">{{ $n->title }}</div>
+                                    @if(!$n->is_read)
+                                        <span class="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold {{ $badgeClass }}">جدید</span>
+                                    @endif
+                                </div>
+                                <div class="text-xs text-gray-600 mt-1">{{ $n->message }}</div>
+                            </a>
+                        @empty
+                            <div id="sellerBellEmptyState" class="px-3 py-3 text-xs text-gray-500">اعلانی موجود نیست</div>
+                        @endforelse
                     </div>
-                    <div class="relative">
-                        <button id="profileButton" class="flex items-center border border-gray-600 rounded-full p-0.5 gap-2 focus:outline-none" aria-expanded="false" aria-haspopup="true">
-                            <img   src="{{ asset('storage/' . auth()->user()->image) }}" alt="user avatar"  class="w-10 h-10 rounded-full object-cover border border-blue-800" >
-                        </button>
-                        <div id="profileMenu" class="hidden absolute left-0  mt-2 w-[150px] bg-white border border-blue-800 rounded-xl shadow shadow-[#0B35CC] overflow-hidden z-50 text-right">
-                            <div class="p-3 border-b border-dashed border-blue-800 flex items-center justify-center">
-                                <img src="{{ asset('storage/' . auth()->user()->image) }}"   alt="user avatar" class="w-16 h-16 rounded-full object-cover border border-blue-800"  >
-                            </div>
-                            <div class="py-1">
-                                <a   href="{{ route('profile') }}"  class="flex items-center gap-2 px-3 py-1.5 text-[13px] text-gray-700 hover:bg-gray-100 transition">
-                                    <i class="fa-regular fa-user text-blue-800"></i>
-                                    پروفایل من
-                                </a>
-                                <form method="POST" action="{{ route('logout') }}">
+                </div>
+
+                <!-- profile -->
+                <div class="relative">
+                    <button id="profileButton" class="flex items-center gap-3 focus:outline-none" aria-expanded="false" aria-haspopup="true">
+                        <div class="shrink-0">
+                            <img
+                                src="{{ asset('storage/' . auth()->user()->image) }}"
+                                alt="user avatar"
+                                class="w-10 h-10 rounded-full object-cover border border-blue-800"
+                            >
+                        </div>
+                    </button>
+
+                    <div id="profileMenu" class="hidden absolute left-0 mt-2 w-[150px] bg-white border border-blue-800 rounded-xl shadow shadow-[#0B35CC] overflow-hidden z-50 text-right">
+                        <div class="p-3 border-b border-dashed border-blue-800 flex items-center justify-center">
+                            <img src="{{ asset('storage/' . auth()->user()->image) }}" alt="user avatar" class="w-16 h-16 rounded-full object-cover border border-blue-800">
+                        </div>
+                        <div class="py-1">
+                            <a href="{{ route('profile') }}" class="flex items-center gap-2 px-3 py-1.5 text-[13px] text-gray-700 hover:bg-gray-100 transition">
+                                <i class="fa-regular fa-user text-blue-800"></i>
+                                پروفایل من
+                            </a>
+                            <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button
                                     type="submit"
@@ -152,14 +205,15 @@
                                     خروج از حساب
                                 </button>
                             </form>
-                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-    </header>
-    <aside id="sidebar"   class="fixed lg:static sidebar sm:top-20 lg:top-0 top-5  right-0  h-[calc(100vh-5rem)] lg:h-auto  w-56  bg-white  shadow shadow-blue-800    duration-200 ease-out  z-40  overflow-y-auto transform translate-x-full lg:translate-x-0  transition-transform" aria-label="Sidebar">
+    </div>
+</header>
+    <aside id="sidebar"   class="fixed lg:static  sm:top-20 lg:top-0 top-5  right-0  h-[calc(100vh-5rem)] lg:h-auto  w-56  bg-white  shadow-sm shadow-gray-300    duration-200 ease-out  z-40  overflow-y-auto transform translate-x-full lg:translate-x-0  transition-transform" aria-label="Sidebar">
         <div class="h-16 flex items-center justify-start ">
             <a id="closeSidebar" class="hidden" aria-label="بستن">
                 <i class="fa-solid fa-xmark"></i>
@@ -560,5 +614,68 @@
         });
         });
     </script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const timeEl = document.getElementById('clockTime');
+    const shamsiEl = document.getElementById('shamsiDate');
+    const miladiEl = document.getElementById('miladiDate');
+
+    const afghanMonths = [
+        "حمل","ثور","جوزا","سرطان","اسد","سنبله",
+        "میزان","عقرب","قوس","جدی","دلو","حوت"
+    ];
+
+    function toEnglishNumber(str){
+        return str.replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d))
+                  .replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d));
+    }
+
+    function updateDateTime(){
+
+        const now = new Date();
+
+        // TIME
+        let time = new Intl.DateTimeFormat('fa-AF',{
+            hour:'2-digit',
+            minute:'2-digit',
+            second:'2-digit'
+        }).format(now);
+
+        time = toEnglishNumber(time);
+
+        // SHAMSI
+        const parts = new Intl.DateTimeFormat('fa-AF-u-ca-persian',{
+            year:'numeric',
+            month:'numeric',
+            day:'numeric'
+        }).formatToParts(now);
+
+        let year = toEnglishNumber(parts.find(p=>p.type==="year").value);
+        let month = toEnglishNumber(parts.find(p=>p.type==="month").value);
+        let day = toEnglishNumber(parts.find(p=>p.type==="day").value);
+
+        const monthName = afghanMonths[Number(month)-1];
+
+        const shamsi = `${day} ${monthName} ${year}`;
+
+        // MILADI
+        const miladi = new Intl.DateTimeFormat('en-GB',{
+            year:'numeric',
+            month:'short',
+            day:'numeric'
+        }).format(now);
+
+        timeEl.textContent = time;
+        shamsiEl.textContent = shamsi;
+        miladiEl.textContent = miladi;
+
+    }
+
+    updateDateTime();
+    setInterval(updateDateTime,1000);
+
+});
+</script>
 </body>
 </html>
