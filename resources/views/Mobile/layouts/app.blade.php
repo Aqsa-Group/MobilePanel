@@ -14,20 +14,6 @@
 <style>
 </style>
 <body>
-    @if(session()->has('welcome'))
-        <div  x-data="{ show: true }"  x-show="show"  x-init="setTimeout(() => show = false, 4000)" x-transition:enter="transition duration-500 ease-out"
-            x-transition:enter-start="opacity-0 scale-90"  x-transition:enter-end="opacity-100 scale-100"  x-transition:leave="transition duration-700 ease-in"  x-transition:leave-start="opacity-100 scale-100"  x-transition:leave-end="opacity-0 scale-90"  class="fixed inset-0 flex items-center justify-center z-50" >
-            <div class="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
-            <div class="relative px-6 py-4 rounded-2xl bg-white shadow-lg border border-[#0948EE] text-[#0948EE] font-medium  gap-4">
-                <div class="w-16 flex items-center justify-center h-16 rounded-full block mx-auto overflow-hidden border-2 border-[#0948EE] flex-shrink-0">
-                    <img    src="{{ asset('storage/' . auth()->user()->image) }}"    alt="{{ auth()->user()->name }}"    class="w-full h-full object-cover"  >
-                </div>
-                <span class="text-sm block mx-auto mt-4 text-center">
-                    {{ session('welcome') }}
-                </span>
-            </div>
-        </div>
-    @endif
     @include('components.flash-modal')
     <div class="flex min-h-screen ">
         @include('Mobile.layouts.sidebar')
@@ -53,15 +39,12 @@ window.__sellerStoreName = @json($printStoreName);
 const toggleBtn = document.getElementById('darkToggle');
 
 if (toggleBtn) {
-    // اعمال حالت ذخیره شده
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark');
-        toggleBtn.innerHTML = '<i class="fa-solid fa-sun "></i>'; // آیکون خورشید
+        toggleBtn.innerHTML = '<i class="fa-solid fa-sun "></i>';
     } else {
-        toggleBtn.innerHTML = '<i class="fa-solid fa-moon "></i>'; // آیکون ماه
+        toggleBtn.innerHTML = '<i class="fa-solid fa-moon "></i>';
     }
-
-    // کلیک روی toggle
     toggleBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark');
         if (document.body.classList.contains('dark')) {
@@ -73,7 +56,6 @@ if (toggleBtn) {
         }
     });
 }
-
 function printEscapeHtml(value) {
     return String(value ?? '')
         .replace(/&/g, '&amp;')
@@ -82,11 +64,9 @@ function printEscapeHtml(value) {
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;');
 }
-
 function normalizePrintLabel(label) {
     return String(label || '').replace(/\s+/g, ' ').trim();
 }
-
 function isIgnoredPrintLabel(label) {
     const l = normalizePrintLabel(label).toLowerCase();
     return (
@@ -100,37 +80,29 @@ function isIgnoredPrintLabel(label) {
         l === '#'
     );
 }
-
 function printCellText(cell) {
     if (!cell) return '';
     return (cell.innerText || cell.textContent || '').trim();
 }
-
 function printCellHtml(cell) {
     if (!cell) return '—';
-
     const img = cell.querySelector('img');
     if (img && img.src) {
         return `<img src="${printEscapeHtml(img.src)}" alt="image">`;
     }
-
     const text = (cell.innerText || cell.textContent || '').trim();
     if (!text) return '—';
     return printEscapeHtml(text).replace(/\n/g, '<br>');
 }
-
 function collectPairsFromTableRow(trigger) {
     const row = trigger.closest('tr');
     if (!row) return [];
-
     const table = row.closest('table');
     if (!table) return [];
-
     const headers = Array.from(table.querySelectorAll('thead th')).map((th) => normalizePrintLabel(th.innerText || th.textContent || ''));
     const cells = Array.from(row.querySelectorAll('td,th'));
     const limit = Math.min(headers.length, cells.length);
     const pairs = [];
-
     for (let i = 0; i < limit; i++) {
         const label = headers[i];
         if (!label || isIgnoredPrintLabel(label)) continue;

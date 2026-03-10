@@ -37,6 +37,7 @@
                 }
             </style>
         @endif
+        <div data-employe-form-anchor></div>
         <h2 class="text-2xl text-center font-bold mb-2">اطلاعات کارمند </h2>
         <p class="text-gray-500 text-center text-[12px]">شما می‌توانید کارمند جدید ثبت کنید.</p>
         <form  wire:submit.prevent="{{ $editMode ? 'update' : 'save' }}"  wire:key="{{ $formKey }}"    enctype="multipart/form-data" class=" mt-3 ">
@@ -68,7 +69,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="flex flex-col  ">
                     <div class="relative  w-full">
-                        <input type="text" placeholder="نام کامل" wire:model="name" class="input-field">
+                        <input type="text" placeholder="نام کامل" wire:model="name" data-employe-first-input="1" class="input-field">
                         <svg class="w-4 h-4 absolute left-2 top-1/2  -translate-y-1/2 svg-dark-light2" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.0002 10.0001C12.3013 10.0001 14.1668 8.1346 14.1668 5.83341C14.1668 3.53223 12.3013 1.66675 10.0002 1.66675C7.69898 1.66675 5.8335 3.53223 5.8335 5.83341C5.8335 8.1346 7.69898 10.0001 10.0002 10.0001Z"  stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M16.0085 13.1167L13.0585 16.0667C12.9418 16.1834 12.8335 16.4 12.8085 16.5584L12.6502 17.6833C12.5919 18.0917 12.8752 18.375 13.2835 18.3167L14.4085 18.1583C14.5668 18.1333 14.7919 18.025 14.9002 17.9084L17.8502 14.9584C18.3585 14.45 18.6002 13.8583 17.8502 13.1083C17.1085 12.3667 16.5169 12.6083 16.0085 13.1167Z"  stroke-opacity="0.8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -135,7 +136,7 @@
                     <button  wire:click="resetForm" type="button" class="w-full bg-red-800 hover:bg-red-700 md:w-auto flex-1 text-white font-semibold py-3 rounded-md transition">
                         لغو
                     </button>
-                    <button {{ $editMode ? 'bg-green-600' : 'bg-blue-600' }}  type="submit" class="w-full bg-blue-800 hover:bg-blue-700 md:w-auto flex-1  text-white font-semibold py-3 rounded-md transition">
+                    <button type="submit" class="w-full md:w-auto flex-1 text-white font-semibold py-3 rounded-md transition {{ $editMode ? 'bg-green-600 hover:bg-green-700' : 'bg-blue-800 hover:bg-blue-700' }}">
                     {{ $editMode ? 'بروزرسانی' : 'ثبت کارمند' }}
                     </button>
                 </div>
@@ -231,7 +232,7 @@
                                 </button>
                             </td>
                             <td class="p-2">
-                                <button wire:click="edit({{ $employee->id }})" >
+                                <button type="button" onclick="scrollToEmployeForm();" wire:click="edit({{ $employee->id }})" >
                                     <i class="text-blue-600 text-center flex justify-center text-lg cursor-pointer">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="icon-blue"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -256,7 +257,7 @@
                                 </button>
                             </td>
                             <td class="p-2">
-                                <button wire:click="confirmDelete({{ $employee->id }})">
+                                <button type="button" wire:click="confirmDelete({{ $employee->id }})">
                                     <i class="text-red-600 text-center flex justify-center text-lg cursor-pointer">
                                         <svg width="20" class="icon-danger" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -354,7 +355,7 @@
                             <svg width="20"  class="icon-dark-light" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 10H6"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M19 14L5 14"  stroke-width="1.5" stroke-linecap="round"></path> <circle cx="17" cy="10" r="1" fill="currentColor"></circle> <path d="M15 16.5H9"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 19H9"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C21.4211 7.17848 21.6186 7.54062 21.7487 8"  stroke-width="1.5" stroke-linecap="round"></path> <path d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2426 2 14.8284 2 12 2C9.17157 2 7.75736 2 6.87868 2.87868C6.23738 3.51998 6.06413 4.44655 6.01732 6M18 15V16C18 18.8284 18 20.2426 17.1213 21.1213C16.48 21.7626 15.5535 21.9359 14 21.9827M6 15V16C6 18.8284 6 20.2426 6.87868 21.1213C7.51998 21.7626 8.44655 21.9359 10 21.9827"  stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
                             چاپ
                         </button>
-                        <a wire:click="edit({{ $employee->id }})"   class="flex items-center gap-1 border-[#1E40AF] border border-2 py-2 px-3 rounded-lg text-xs">
+                        <button type="button" onclick="scrollToEmployeForm();" wire:click="edit({{ $employee->id }})" class="flex items-center gap-1 border-[#1E40AF] border border-2 py-2 px-3 rounded-lg text-xs">
                             <i class="bi bi-pencil-square">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"  class="icon-blue"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -375,8 +376,8 @@
                                 </svg>
                             </i>
                             ویرایش
-                        </a>
-                        <button wire:click="confirmDelete({{ $employee->id }})" class="flex items-center gap-1  border-red-600 border border-2   py-2 px-3 rounded-lg text-xs">
+                        </button>
+                        <button type="button" wire:click="confirmDelete({{ $employee->id }})" class="flex items-center gap-1  border-red-600 border border-2   py-2 px-3 rounded-lg text-xs">
                             <i class="bi bi-trash">
                             <svg width="24" height="24" class="icon-danger" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21 5.98047C17.67 5.65047 14.32 5.48047 10.98 5.48047C9 5.48047 7.02 5.58047 5.04 5.78047L3 5.98047"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -416,13 +417,6 @@
             @endif
         </div>
     </div>
-    @push('scripts')
-    <script>
-    window.addEventListener('scroll-to-form', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    </script>
-    @endpush
     @if ($confirmingDelete)
         <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
             <div class="bg-white rounded-2xl shadow-xl w-[90%] max-w-sm p-6 animate-fade-in">
@@ -456,12 +450,30 @@
         </div>
     @endif
     <script>
-        window.addEventListener('reset-file-input', () => {
-            const fileInput = document.getElementById('imageUpload');
-            if (fileInput) {
-                fileInput.value = '';
+        function scrollToEmployeForm() {
+            const anchor = document.querySelector('[data-employe-form-anchor]');
+            if (!anchor) {
+                return;
             }
-        });
+            anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            setTimeout(() => {
+                const firstInput = document.querySelector('[data-employe-first-input]');
+                if (firstInput) {
+                    firstInput.focus();
+                }
+            }, 250);
+        }
+
+        if (!window.__employeListenersBound) {
+            window.__employeListenersBound = true;
+            window.addEventListener('scroll-to-form', scrollToEmployeForm);
+            window.addEventListener('reset-file-input', () => {
+                const fileInput = document.getElementById('profile_image');
+                if (fileInput) {
+                    fileInput.value = '';
+                }
+            });
+        }
     </script>
 </div>
 

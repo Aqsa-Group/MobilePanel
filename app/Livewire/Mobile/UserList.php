@@ -32,6 +32,11 @@ class UserList extends Component
     public $editingUser = null;
     public $userId = null;
     public $formResetKey;
+
+    public function mount()
+    {
+        $this->formResetKey = uniqid('', true);
+    }
     protected function rules()
     {
         $rules = [
@@ -42,7 +47,7 @@ class UserList extends Component
             'number'     => ['required', 'regex:/^07\d{8}$/', 'unique:users,number,' . $this->userId],
             'address'    => 'required|string|max:255',
             'rule'       => 'required',
-            'image' => $this->editMode ? 'required|image|max:2048' : 'nullable|image|max:2048',
+            'image'      => 'nullable|image|max:2048',
         ];
         if (auth()->user()->rule === 'super_admin' && $this->rule === 'admin') {
             $rules['limit'] = 'required|integer|in:5,10';
@@ -91,6 +96,16 @@ class UserList extends Component
         $this->number = $this->convertPersianNumbersToEnglish($this->number);
         $this->limit  = $this->convertPersianNumbersToEnglish($this->limit);
         $this->validate();
+
+        $imagePath = $this->userId ? $this->oldImage : null;
+        if ($this->image && method_exists($this->image, 'getRealPath')) {
+            $filename = $this->compressAndStoreImage($this->image);
+            $imagePath = $filename;
+            if ($this->oldImage && Storage::disk('public')->exists($this->oldImage)) {
+                Storage::disk('public')->delete($this->oldImage);
+            }
+        }
+
         $data = [
             'first_name' => $this->first_name,
             'last_name'  => $this->last_name,
@@ -103,8 +118,9 @@ class UserList extends Component
             'creator_id' => auth()->id(),
             'admin_id'   => auth()->user()?->id,
             'name'       => trim($this->first_name . ' ' . $this->last_name),
-            'image' => $this->image ? $this->image->store('users', 'public') : null,
+            'image'      => $imagePath,
         ];
+
         if ($this->userId) {
             if ($this->password) {
                 $data['password'] = bcrypt($this->password);
@@ -112,42 +128,46 @@ class UserList extends Component
         } else {
             $data['password'] = bcrypt($this->password ?? '123456');
         }
-        if ($this->image instanceof \Livewire\TemporaryUploadedFile) {
-            $filename = $this->compressAndStoreImage($this->image);
-            $data['image'] = $filename;
-            if ($this->oldImage && Storage::disk('public')->exists($this->oldImage)) {
-                Storage::disk('public')->delete($this->oldImage);
-            }
-        }
+
         if ($this->userId) {
-        $user = User::find($this->userId);
-        $user->update($data);
-        session()->flash('message', 'کاربر با موفقیت ویرایش شد');
-        session()->flash('type', 'edit');
+            $user = User::find($this->userId);
+            if (!$user) {
+                return;
+            }
+            $user->update($data);
+            session()->flash('message', 'کاربر با موفقیت ویرایش شد');
+            session()->flash('type', 'edit');
         } else {
             User::create($data);
             session()->flash('message', 'کاربر با موفقیت ایجاد شد');
             session()->flash('type', 'create');
         }
+
         $this->resetForm();
         $this->reset(['image', 'oldImage', 'editMode', 'userId']);
-        $this->formResetKey = now();
+        $this->formResetKey = uniqid('', true);
     }
+
     protected function compressAndStoreImage($image)
     {
-        $manager = new ImageManager(['driver' => 'gd']);
-        $img = $manager->make($image->getRealPath());
-        $img->resize(800, null, function ($constraint) {
-            $constraint->aspectRatio();
-            $constraint->upsize();
-        });
+        $manager = new ImageManager(new Driver());
+        $img = $manager->read($image->getRealPath());
+        $img = $img->scaleDown(width: 800);
+
         Storage::disk('public')->makeDirectory('users');
         $filename = 'users/' . uniqid() . '.jpg';
-        Storage::disk('public')->put($filename, (string)$img->encode('jpg', 85));
+        Storage::disk('public')->put($filename, (string)$img->toJpeg(85));
+
         return $filename;
     }
-    public function editUser(User $user)
+
+    public function editUser($userId)
     {
+        $user = User::find($userId);
+        if (!$user) {
+            return;
+        }
+
         $this->editMode = true;
         $this->userId = $user->id;
         $this->editingUser = $user;
@@ -160,15 +180,20 @@ class UserList extends Component
         $this->rule       = $user->rule;
         $this->limit      = $user->limit;
         $this->oldImage   = $user->image;
-        $this->formResetKey = now();
+        $this->password   = null;
+        $this->resetValidation();
+        $this->formResetKey = uniqid('', true);
+        $this->dispatch('scrollToUserForm');
     }
+
     public function cancelForm()
     {
         $this->resetForm();
         $this->reset(['image', 'oldImage', 'editMode', 'userId']);
         $this->resetValidation();
-        $this->formResetKey = now();
+        $this->formResetKey = uniqid('', true);
     }
+
     public function resetForm()
     {
         $this->reset([
@@ -193,8 +218,19 @@ class UserList extends Component
         $this->deleteUserId = $id;
         $this->confirmingDelete = true;
     }
+
+    public function hideMaxModal()
+    {
+        $this->showMaxModal = false;
+    }
+
     public function deleteConfirmed()
     {
+        if (!$this->deleteUserId) {
+            $this->confirmingDelete = false;
+            return;
+        }
+
         $user = User::findOrFail($this->deleteUserId);
         if ($user->image && Storage::disk('public')->exists($user->image)) {
             Storage::disk('public')->delete($user->image);

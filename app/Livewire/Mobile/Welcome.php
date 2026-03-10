@@ -74,6 +74,40 @@ class Welcome extends Component
         return round(max(0, min(100, $value)), 1);
     }
 
+    private function addMonthlyNet(array &$netByMonth, $dateValue, float $net): void
+    {
+        if (!$dateValue) {
+            return;
+        }
+
+        $jalaliMonth = Jalalian::fromDateTime(Carbon::parse($dateValue))->getMonth();
+        if ($jalaliMonth >= 1 && $jalaliMonth <= 12) {
+            $netByMonth[$jalaliMonth] += $net;
+        }
+    }
+
+    private function resolveLoanSaleNet($sale): float
+    {
+        if ($sale->profit_total !== null) {
+            return (float) $sale->profit_total;
+        }
+
+        return (float) ($sale->sell_price ?? 0) - (float) ($sale->buy_price ?? 0);
+    }
+
+    private function resolveCashSaleNet($sale): float
+    {
+        if ($sale->profit_total !== null) {
+            return (float) $sale->profit_total;
+        }
+
+        $sell = (float) ($sale->sell_price_retail ?? 0);
+        $buy = (float) ($sale->buy_price ?? 0);
+        $discount = (float) ($sale->discount_amount ?? 0);
+
+        return $sell - $buy - $discount;
+    }
+
     public function mount()
     {
         /* =========================
@@ -155,10 +189,22 @@ class Welcome extends Component
             ? $this->clampPercent(($todaySales / $todayIncome) * 100)
             : 0;
 
-        $this->todayProfitAmount = max(0, $todayIncome - $todayExpenses);
+        $todayNetProfit = 0.0;
 
-        $this->todayProfitPercent = $todayIncome > 0
-            ? $this->clampPercent((($this->todayProfitAmount) / $todayIncome) * 100)
+        $todayLoanSales = LoanSell::whereBetween('created_at', [$todayStart, $todayEnd])->get();
+        foreach ($todayLoanSales as $sale) {
+            $todayNetProfit += $this->resolveLoanSaleNet($sale);
+        }
+
+        $todayCashSales = CashSell::whereBetween('created_at', [$todayStart, $todayEnd])->get();
+        foreach ($todayCashSales as $sale) {
+            $todayNetProfit += $this->resolveCashSaleNet($sale);
+        }
+
+        $this->todayProfitAmount = round($todayNetProfit, 2);
+
+        $this->todayProfitPercent = $todaySales > 0
+            ? round((($this->todayProfitAmount) / $todaySales) * 100, 1)
             : 0;
 
         /* =========================
@@ -220,64 +266,22 @@ class Welcome extends Component
         $nextYearStart = Jalalian::fromFormat('Y/n/j', ($jalaliYear + 1) . '/1/1')->toCarbon()->startOfDay();
         $yearEnd = $nextYearStart->copy()->subSecond();
 
-        $loanDaily = LoanSell::whereBetween('created_at', [$yearStart, $yearEnd])
-            ->selectRaw('DATE(created_at) as d, SUM(sell_price) as amount')
-            ->groupBy('d')
-            ->get();
-        $cashDaily = CashSell::whereBetween('created_at', [$yearStart, $yearEnd])
-            ->selectRaw('DATE(created_at) as d, SUM(sell_price_retail) as amount')
-            ->groupBy('d')
-            ->get();
-        $repairDaily = DeviceRepairForm::whereBetween('visit_date', [$yearStart->toDateString(), $yearEnd->toDateString()])
-            ->selectRaw('visit_date as d, SUM(repair_cost) as amount')
-            ->groupBy('d')
-            ->get();
-        $receiptDaily = CashReceipt::whereBetween('receipt_date', [$yearStart->toDateString(), $yearEnd->toDateString()])
-            ->where('currency', 'AFN')
-            ->selectRaw('receipt_date as d, SUM(amount) as amount')
-            ->groupBy('d')
-            ->get();
-        $salaryDaily = SalaryPayment::whereBetween('payment_date', [$yearStart->toDateString(), $yearEnd->toDateString()])
-            ->where('currency', 'AFN')
-            ->selectRaw('payment_date as d, SUM(amount) as amount')
-            ->groupBy('d')
-            ->get();
-        $withdrawDaily = Withdrawal::whereBetween('withdrawal_date', [$yearStart->toDateString(), $yearEnd->toDateString()])
-            ->where('currency', 'AFN')
-            ->where('withdrawal_type', '!=', 'حقوق کارکنان')
-            ->selectRaw('withdrawal_date as d, SUM(amount) as amount')
-            ->groupBy('d')
-            ->get();
+        $monthlyNet = array_fill(1, 12, 0.0);
 
-        $salesByMonth = array_fill(1, 12, 0.0);
-        foreach ($this->aggregateByJalaliMonth($loanDaily, 'd', 'amount') as $m => $v) {
-            $salesByMonth[$m] += $v;
-        }
-        foreach ($this->aggregateByJalaliMonth($cashDaily, 'd', 'amount') as $m => $v) {
-            $salesByMonth[$m] += $v;
+        $loanSales = LoanSell::whereBetween('created_at', [$yearStart, $yearEnd])->get();
+        foreach ($loanSales as $sale) {
+            $this->addMonthlyNet($monthlyNet, $sale->created_at, $this->resolveLoanSaleNet($sale));
         }
 
-        $incomeByMonth = $salesByMonth;
-        foreach ($this->aggregateByJalaliMonth($repairDaily, 'd', 'amount') as $m => $v) {
-            $incomeByMonth[$m] += $v;
-        }
-        foreach ($this->aggregateByJalaliMonth($receiptDaily, 'd', 'amount') as $m => $v) {
-            $incomeByMonth[$m] += $v;
-        }
-
-        $expenseByMonth = array_fill(1, 12, 0.0);
-        foreach ($this->aggregateByJalaliMonth($salaryDaily, 'd', 'amount') as $m => $v) {
-            $expenseByMonth[$m] += $v;
-        }
-        foreach ($this->aggregateByJalaliMonth($withdrawDaily, 'd', 'amount') as $m => $v) {
-            $expenseByMonth[$m] += $v;
+        $cashSales = CashSell::whereBetween('created_at', [$yearStart, $yearEnd])->get();
+        foreach ($cashSales as $sale) {
+            $this->addMonthlyNet($monthlyNet, $sale->created_at, $this->resolveCashSaleNet($sale));
         }
 
         for ($month = 1; $month <= 12; $month++) {
-            $monthlyIncome = $incomeByMonth[$month];
-            $monthlyExpenses = $expenseByMonth[$month];
-            $this->monthlyProfit[] = max(0, $monthlyIncome - $monthlyExpenses);
-            $this->monthlyLoss[] = max(0, $monthlyExpenses - $monthlyIncome);
+            $net = (float) $monthlyNet[$month];
+            $this->monthlyProfit[] = round(max(0, $net), 2);
+            $this->monthlyLoss[] = round(max(0, -$net), 2);
         }
     }
 

@@ -51,14 +51,11 @@ class Employe extends Component
         $value = str_replace($persian,$english,$value);
         return str_replace($arabic,$english,$value);
     }
-    protected function compressAndStoreImage($image)
+protected function compressAndStoreImage($image)
 {
     $manager = new ImageManager(new Driver());
     $img = $manager->read($image->getRealPath());
-    $img->resize(800, null, function ($constraint) {
-        $constraint->aspectRatio();
-        $constraint->upsize();
-    });
+    $img = $img->scaleDown(width: 800);
     Storage::disk('public')->makeDirectory('employees');
     $filename = 'employees/' . uniqid() . '.jpg';
     Storage::disk('public')->put(
@@ -111,6 +108,8 @@ class Employe extends Component
         $this->imageName = $emp->image ? basename($emp->image) : null;
         $this->editMode = true;
         $this->formKey = uniqid();
+        $this->resetValidation();
+        $this->dispatch('scroll-to-form');
     }
     public function update()
     {
@@ -158,12 +157,18 @@ class Employe extends Component
     }
     public function deleteConfirmed()
     {
+        if (!$this->deleteemployeeId) {
+            $this->confirmingDelete = false;
+            return;
+        }
+
         $emp = Employee::findOrFail($this->deleteemployeeId);
         if($emp->image && Storage::disk('public')->exists($emp->image)){
             Storage::disk('public')->delete($emp->image);
         }
         $emp->delete();
         $this->confirmingDelete=false;
+        $this->deleteemployeeId = null;
         session()->flash('message','کارمند حذف شد');
         session()->flash('type','delete');
     }
